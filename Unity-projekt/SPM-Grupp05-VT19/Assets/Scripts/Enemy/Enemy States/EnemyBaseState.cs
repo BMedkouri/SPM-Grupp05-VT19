@@ -6,7 +6,6 @@ public class EnemyBaseState : State
 {
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected Material material;
-    protected float playerDistance;
     protected Enemy owner;
 
     public override void Enter()
@@ -23,4 +22,5 @@ public class EnemyBaseState : State
     {
         return !Physics.Linecast(owner.transform.position, owner.player.transform.position, owner.visionBlock);
     }
+   
 }

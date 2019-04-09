@@ -704,9 +704,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 11400000, guid: df8e7d46ab56abc4892e5f8ee702b58a, type: 2}
   - {fileID: 11400000, guid: a77318d5bd59b204d996bcbd003f854d, type: 2}
   - {fileID: 11400000, guid: a978ce5b0538f214e93443a7ead92a90, type: 2}
+  currentState: {fileID: 0}
   physics: {fileID: 0}
   capsuleCollider: {fileID: 0}
   sumOfSnapsPerFrame: {x: 0, y: 0, z: 0}
@@ -822,6 +822,7 @@ GameObject:
   - component: {fileID: 1286053725}
   - component: {fileID: 1286053724}
   - component: {fileID: 1286053723}
+  - component: {fileID: 1286053727}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -902,6 +903,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1286053727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286053722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a50353a1d86abd48ae30afef28463bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: []
+  currentState: {fileID: 0}
+  Renderer: {fileID: 0}
+  player: {fileID: 939625193}
+  visionBlock:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1311768101
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : StateMachine
 {
     //Attributes
-    [HideInInspector] public PhysicsComponent physics;
     [HideInInspector] public CapsuleCollider capsuleCollider;
     [HideInInspector] public RaycastHit hitInfo;
     [HideInInspector] public Vector3 sumOfSnapsPerFrame;
@@ -29,7 +28,6 @@ public class Player : StateMachine
         sumOfSnapsPerFrame = new Vector3();
 
         capsuleCollider = GetComponent<CapsuleCollider>();
-        physics = GetComponent<PhysicsComponent>();
 
         point1 = capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
         point2 = capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
@@ -37,81 +35,7 @@ public class Player : StateMachine
         base.Awake();
     }
 
-    public void PlayerInput(float jumpHeight, float acceleration, float turnSpeedModifier)
-    {
-        //Regeneration
-        HealthRegeneration();
-
-        //Takes input from player
-        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-
-        //Multiplies input with camera rotation (so that we move in accordance with the camera, and not the world coordinates)
-        if (Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, skinWidth + groundCheckDistance, geometryLayer))
-        {
-            direction = Vector3.ProjectOnPlane(Camera.main.transform.rotation * direction, hitInfo.normal).normalized;
-        }
-        else
-        {
-            direction = Vector3.ProjectOnPlane(Camera.main.transform.rotation * direction, Vector3.up).normalized;
-        }
-
-        //Movement
-        if (direction != Vector3.zero)
-        {
-            physics.Accelerate(direction, acceleration, turnSpeedModifier);
-        }
-
-        //Jumping
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, skinWidth + groundCheckDistance, geometryLayer))
-            {
-                physics.Jump(jumpHeight);
-            }
-        }
-
-        //Take damage - For testing purposes
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            TakeDamage(10f);
-        }
-
-        //Checks for collisions
-        CollisionCheck();
-
-        //Moves player and resets snaps per frame
-        transform.position += physics.GetVelocity() * Time.deltaTime - sumOfSnapsPerFrame;
-        sumOfSnapsPerFrame = Vector3.zero;
-    }
-
-    private void CollisionCheck()
-    {
-        int escape = 100;
-        do
-        {
-            if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, physics.GetVelocity().normalized, out hitInfo, physics.GetVelocity().magnitude * Time.deltaTime + skinWidth, geometryLayer))
-            {
-                if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, -hitInfo.normal, out hitInfo, physics.GetVelocity().magnitude * Time.deltaTime + skinWidth, geometryLayer))
-                {
-                    if (hitInfo.distance - skinWidth > skinWidth)
-                    {
-                        sumOfSnapsPerFrame += -hitInfo.normal * (hitInfo.distance - skinWidth);
-                        transform.position += -hitInfo.normal * (hitInfo.distance - skinWidth);
-                    }
-                    else
-                    {
-                        sumOfSnapsPerFrame += -hitInfo.normal * (-skinWidth);
-                        transform.position += -hitInfo.normal * (-skinWidth);
-                    }
-                    //Calculate and apply forces
-                    physics.CalculateAndApplyForces(hitInfo.normal);
-                }
-            }
-            escape--;
-        } while (hitInfo.collider != null && escape > 0);
-    }
-
-    private void HealthRegeneration()
+    public void HealthRegeneration()
     {
         if(currentHealth > maxHealth)
         {
@@ -128,7 +52,7 @@ public class Player : StateMachine
         healthRegenerationTimer -= Time.deltaTime;
     }
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
     }
@@ -141,5 +65,9 @@ public class Player : StateMachine
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+    public bool isGrounded()
+    {
+        return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, skinWidth + groundCheckDistance, geometryLayer);
     }
 }

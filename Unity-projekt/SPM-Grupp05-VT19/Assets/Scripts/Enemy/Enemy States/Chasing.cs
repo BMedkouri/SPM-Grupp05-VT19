@@ -7,11 +7,11 @@ public class Chasing : EnemyBaseState
 {
     public override void HandleUpdate()
     {
-        if (playerDistance > 20.0f)
+        if (owner.getDistance() > 20.0f)
         {
             owner.Transition<Idle>();
         }
-        else if (playerDistance < 10.0f)
+        else if (owner.getDistance() < 10.0f)
         {
             owner.Transition<Attack>();
         }

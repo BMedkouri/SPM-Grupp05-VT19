@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Player States/OnGroundState")]
 public class OnGroundState : PlayerBaseState
 {
     // Attributes
@@ -15,6 +14,15 @@ public class OnGroundState : PlayerBaseState
 
     public override void HandleUpdate()
     {
+        
         base.HandleUpdate();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!owner.isGrounded())
+            {
+                physics.Jump(jumpHeight);
+                owner.Transition<InAirState>();
+            }
+        }
     }
 }
