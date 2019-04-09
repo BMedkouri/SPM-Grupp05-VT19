@@ -705,10 +705,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 11400000, guid: df8e7d46ab56abc4892e5f8ee702b58a, type: 2}
   - {fileID: 11400000, guid: a77318d5bd59b204d996bcbd003f854d, type: 2}
   - {fileID: 11400000, guid: a978ce5b0538f214e93443a7ead92a90, type: 2}
-  physics: {fileID: 0}
+  currentState: {fileID: 0}
   capsuleCollider: {fileID: 0}
   sumOfSnapsPerFrame: {x: 0, y: 0, z: 0}
   currentStateAsString: 
@@ -840,8 +839,6 @@ GameObject:
   - component: {fileID: 1286053724}
   - component: {fileID: 1286053723}
   - component: {fileID: 1286053727}
-  - component: {fileID: 1286053729}
-  - component: {fileID: 1286053728}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -938,6 +935,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 185997ab0f5541a4596c21f5a15f66ef, type: 2}
   - {fileID: 11400000, guid: 404967a11b11a9d41b0985a770e1997f, type: 2}
   - {fileID: 11400000, guid: 2b9c2680f1c5c5c4aac8c253ea947b1f, type: 2}
+  currentState: {fileID: 0}
   Renderer: {fileID: 0}
   player: {fileID: 939625193}
   visionBlock:

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : StateMachine
 {
     //Attributes
-    [HideInInspector] public PhysicsComponent physics;
     [HideInInspector] public CapsuleCollider capsuleCollider;
     [HideInInspector] public RaycastHit hitInfo;
     [HideInInspector] public Vector3 sumOfSnapsPerFrame;
