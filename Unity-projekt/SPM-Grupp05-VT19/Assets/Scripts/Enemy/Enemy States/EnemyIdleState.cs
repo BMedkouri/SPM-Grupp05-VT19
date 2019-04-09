@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy/Idle")]
-public class Idle : EnemyBaseState
+[CreateAssetMenu(menuName = "Enemy States/IdleState")]
+public class EnemyIdleState : EnemyBaseState
 {
     public override void Enter()
     {
@@ -12,9 +12,10 @@ public class Idle : EnemyBaseState
     public override void HandleUpdate()
     {
         base.HandleUpdate();
-        if(GetDistance()< 20.0f && CanSeePlayer())
+
+        if(owner.GetDistance() < 20.0f && owner.CanSeePlayer())
         {
-            owner.Transition<Chasing>();
+            owner.Transition<EnemyChaseState>();
         }
     }
 }

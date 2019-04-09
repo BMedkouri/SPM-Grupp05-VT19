@@ -7,7 +7,6 @@ public class PlayerBaseState : State
     // Attributes
     [SerializeField] protected float jumpHeight;              // 7f
     [SerializeField] protected float acceleration;            // 14f
-    //[SerializeField] protected float deceleration;            // 14f 
     [SerializeField] protected float turnSpeedModifier;       // 5f
 
     protected Player owner;
@@ -15,14 +14,7 @@ public class PlayerBaseState : State
     // Methods
     public override void Initialize(StateMachine owner)
     {
-
         this.owner = (Player)owner;
-
-    }
-
-    public override void Enter()
-    {
-
     }
 
     public override void HandleUpdate()
@@ -40,9 +32,9 @@ public class PlayerBaseState : State
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         //Multiplies input with camera rotation (so that we move in accordance with the camera, and not the world coordinates)
-        if (owner.IsGrounded())
+        if (Physics.SphereCast(owner.transform.position + owner.point2, owner.capsuleCollider.radius, Vector3.down, out RaycastHit hitInfo, owner.GetSkinWidth() + owner.GetGroundCheckDistance(), owner.GetGeometryLayer()))
         {
-            direction = Vector3.ProjectOnPlane(Camera.main.transform.rotation * direction, owner.hitInfo.normal).normalized;
+            direction = Vector3.ProjectOnPlane(Camera.main.transform.rotation * direction, hitInfo.normal).normalized;
         }
         else
         {

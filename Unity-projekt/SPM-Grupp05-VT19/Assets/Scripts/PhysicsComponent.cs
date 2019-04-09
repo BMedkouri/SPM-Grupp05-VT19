@@ -9,7 +9,7 @@ public class PhysicsComponent : MonoBehaviour
     [SerializeField] private float dynamicFrictionCoefficient; // 0.5f * 0.6f ( = 0.3f)
     [SerializeField] private float airResistanceCoefficient; // 0.5f
 
-    private Vector3 velocity, normalForce;
+    [SerializeField] private Vector3 velocity, normalForce; //For testing
 
     private void Awake()
     {

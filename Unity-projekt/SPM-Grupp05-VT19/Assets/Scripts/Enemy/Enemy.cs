@@ -8,19 +8,21 @@ public class Enemy : StateMachine
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public Player player;
     [HideInInspector] public PhysicsComponent physics;
-    public LayerMask visionBlock;
+    [HideInInspector] public LayerMask visionBlock;
 
     [SerializeField] private float maxHealth; // 100f
     private float currentHealth;
 
     protected override void Awake()
     {
-    	currentHealth = maxHealth;
-        physics = GetComponent<PhysicsComponent>();
+    	Renderer = GetComponent<MeshRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        Renderer = GetComponent<MeshRenderer>();
-        base.Awake();
+        physics = GetComponent<PhysicsComponent>();
         visionBlock = LayerMask.GetMask("Geometry");
+
+        currentHealth = maxHealth;
+
+        base.Awake();
     }
    
     public void TakeDamage(float damage)
@@ -36,5 +38,15 @@ public class Enemy : StateMachine
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public bool CanSeePlayer()
+    {
+        return !Physics.Linecast(transform.position, player.transform.position, visionBlock);
+    }
+
+    public float GetDistance()
+    {
+        return Vector3.Distance(player.transform.position, transform.position);
     }
 }

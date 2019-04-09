@@ -7,10 +7,7 @@ public class Player : StateMachine
     //Attributes
     [HideInInspector] public PhysicsComponent physics;
     [HideInInspector] public CapsuleCollider capsuleCollider;
-    [HideInInspector] public RaycastHit hitInfo;
-    [HideInInspector] public Vector3 sumOfSnapsPerFrame;
-    [HideInInspector] private Vector3 point1;
-    [HideInInspector] private Vector3 point2;
+    [HideInInspector] public Vector3 point2;
 
     [SerializeField] private float skinWidth;               // 0.063f
     [SerializeField] private float groundCheckDistance;     // 0.063f
@@ -29,7 +26,6 @@ public class Player : StateMachine
         physics = GetComponent<PhysicsComponent>();
         capsuleCollider = GetComponent<CapsuleCollider>();
 
-        point1 = capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
         point2 = capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
 
         base.Awake();
@@ -70,6 +66,22 @@ public class Player : StateMachine
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public float GetSkinWidth()
+    {
+        return skinWidth;
+    }
+
+    public float GetGroundCheckDistance()
+    {
+        return groundCheckDistance;
+    }
+
+    //Ta eventuellt bort denna och ersätt till en annan pekare, om allt ändå bara pekar åt ett lager
+    public LayerMask GetGeometryLayer()
+    {
+        return geometryLayer;
     }
 
     public bool IsGrounded()

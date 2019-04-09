@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Player States/RunningState")]
-public class RunningState : OnGroundState
+[CreateAssetMenu(menuName = "Player States/RunState")]
+public class RunState : OnGroundState
 {
     // Attributes
 

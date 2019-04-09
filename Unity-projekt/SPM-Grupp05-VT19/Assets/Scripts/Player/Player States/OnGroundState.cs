@@ -16,7 +16,7 @@ public class OnGroundState : PlayerBaseState
         //Transition to RunningState if grounded
         if (owner.IsGrounded())
         {
-            owner.Transition<RunningState>();
+            owner.Transition<RunState>();
         }
     }
 }

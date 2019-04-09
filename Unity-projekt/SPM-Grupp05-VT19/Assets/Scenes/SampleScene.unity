@@ -711,7 +711,7 @@ MonoBehaviour:
   currentState: {fileID: 0}
   physics: {fileID: 0}
   capsuleCollider: {fileID: 0}
-  sumOfSnapsPerFrame: {x: 0, y: 0, z: 0}
+  point2: {x: 0, y: 0, z: 0}
   skinWidth: 0.065
   groundCheckDistance: 0.065
   geometryLayer:
@@ -810,6 +810,8 @@ MonoBehaviour:
   staticFrictionCoefficient: 0.8
   dynamicFrictionCoefficient: 0.6
   airResistanceCoefficient: 0.5
+  velocity: {x: 0, y: 0, z: 0}
+  normalForce: {x: 0, y: 0, z: 0}
 --- !u!114 &939625200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,13 +937,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 11400000, guid: 185997ab0f5541a4596c21f5a15f66ef, type: 2}
-  - {fileID: 11400000, guid: 404967a11b11a9d41b0985a770e1997f, type: 2}
   - {fileID: 11400000, guid: 2b9c2680f1c5c5c4aac8c253ea947b1f, type: 2}
+  - {fileID: 11400000, guid: 404967a11b11a9d41b0985a770e1997f, type: 2}
+  - {fileID: 11400000, guid: 185997ab0f5541a4596c21f5a15f66ef, type: 2}
   currentState: {fileID: 0}
-  attackSpeed: 2.6
   Renderer: {fileID: 0}
   player: {fileID: 0}
+  physics: {fileID: 0}
   visionBlock:
     serializedVersion: 2
     m_Bits: 0
@@ -979,6 +981,8 @@ MonoBehaviour:
   staticFrictionCoefficient: 0.8
   dynamicFrictionCoefficient: 0.6
   airResistanceCoefficient: 0.5
+  velocity: {x: 0, y: 0, z: 0}
+  normalForce: {x: 0, y: 0, z: 0}
 --- !u!1 &1311768101
 GameObject:
   m_ObjectHideFlags: 0
