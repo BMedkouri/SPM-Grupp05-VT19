@@ -708,10 +708,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: df8e7d46ab56abc4892e5f8ee702b58a, type: 2}
   - {fileID: 11400000, guid: a77318d5bd59b204d996bcbd003f854d, type: 2}
   - {fileID: 11400000, guid: a978ce5b0538f214e93443a7ead92a90, type: 2}
+  currentState: {fileID: 0}
   physics: {fileID: 0}
   capsuleCollider: {fileID: 0}
   sumOfSnapsPerFrame: {x: 0, y: 0, z: 0}
-  currentStateAsString: 
   skinWidth: 0.065
   groundCheckDistance: 0.065
   geometryLayer:
@@ -824,9 +824,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinWidth: 0.065
   groundCheckDistance: 0.065
-  geometryLayer:
+  rayCastLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 3072
 --- !u!1 &1286053722
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,9 +842,9 @@ GameObject:
   - component: {fileID: 1286053727}
   - component: {fileID: 1286053728}
   - component: {fileID: 1286053729}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -938,11 +938,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 185997ab0f5541a4596c21f5a15f66ef, type: 2}
   - {fileID: 11400000, guid: 404967a11b11a9d41b0985a770e1997f, type: 2}
   - {fileID: 11400000, guid: 2b9c2680f1c5c5c4aac8c253ea947b1f, type: 2}
+  currentState: {fileID: 0}
+  attackSpeed: 2.6
   Renderer: {fileID: 0}
-  player: {fileID: 939625193}
+  player: {fileID: 0}
   visionBlock:
     serializedVersion: 2
     m_Bits: 0
+  maxHealth: 100
 --- !u!114 &1286053728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -957,9 +960,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinWidth: 0.065
   groundCheckDistance: 0.065
-  geometryLayer:
+  rayCastLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1536
 --- !u!114 &1286053729
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Player States/OnGroundState")]
 public class OnGroundState : PlayerBaseState
 {
     // Attributes

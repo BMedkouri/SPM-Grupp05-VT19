@@ -17,7 +17,7 @@ public class CollisionDetection : MonoBehaviour
 
     [SerializeField] private float skinWidth;               // 0.063f
     [SerializeField] private float groundCheckDistance;     // 0.063f
-    [SerializeField] private LayerMask geometryLayer;
+    [SerializeField] private LayerMask rayCastLayerMask;
 
     private void Awake()
     {
@@ -56,9 +56,9 @@ public class CollisionDetection : MonoBehaviour
         int escape = 100;
         do
         {
-            if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, physics.GetVelocity().normalized, out hitInfo, physics.GetVelocity().magnitude * Time.deltaTime + skinWidth, geometryLayer))
+            if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, physics.GetVelocity().normalized, out hitInfo, physics.GetVelocity().magnitude * Time.deltaTime + skinWidth, rayCastLayerMask))
             {
-                if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, -hitInfo.normal, out hitInfo, physics.GetVelocity().magnitude * Time.deltaTime + skinWidth, geometryLayer))
+                if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, -hitInfo.normal, out hitInfo, physics.GetVelocity().magnitude * Time.deltaTime + skinWidth, rayCastLayerMask))
                 {
                     if (hitInfo.distance - skinWidth > skinWidth)
                     {

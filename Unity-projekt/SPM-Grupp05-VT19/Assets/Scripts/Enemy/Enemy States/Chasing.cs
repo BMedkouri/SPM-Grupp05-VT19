@@ -11,14 +11,21 @@ public class Chasing : EnemyBaseState
     }
     public override void HandleUpdate()
     {
-        base.HandleUpdate();
-        if (owner.getDistance() > 20.0f)
+        if (GetDistance() > 20.0f || !CanSeePlayer())
         {
             owner.Transition<Idle>();
         }
-        else if (owner.getDistance() < 10.0f)
+        else if (GetDistance() < 2.6f && CanSeePlayer())
         {
             owner.Transition<Attack>();
         }
+        move();
+    }
+    private void move()
+    {
+       
+        Vector3 movement = owner.player.transform.position - owner.transform.position;
+        Vector3 direction = movement / GetDistance();
+        owner.physics.Accelerate(direction, moveSpeed, turnSpeedModifier);
     }
 }

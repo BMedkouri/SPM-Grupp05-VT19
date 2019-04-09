@@ -4,24 +4,37 @@ using UnityEngine;
 
 public class Enemy : StateMachine
 {
+    
     [HideInInspector] public MeshRenderer Renderer;
-    private float playerDistance;
-    public GameObject player;
+    [HideInInspector] public Player player;
+    [HideInInspector] public PhysicsComponent physics;
     public LayerMask visionBlock;
-    // Start is called before the first frame update
+
+    [SerializeField] private float maxHealth; // 100f
+    private float currentHealth;
+
     protected override void Awake()
     {
+    	currentHealth = maxHealth;
+        physics = GetComponent<PhysicsComponent>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Renderer = GetComponent<MeshRenderer>();
-        player = GameObject.FindGameObjectWithTag("Player");
         base.Awake();
-        visionBlock = LayerMask.GetMask("Ground");
+        visionBlock = LayerMask.GetMask("Geometry");
     }
-    private void Update()
+   
+    public void TakeDamage(float damage)
     {
-        playerDistance = Vector3.Distance(transform.position, player.transform.position);
+        currentHealth -= damage;
     }
-    public float getDistance()
+
+    public float GetCurrentHealth()
     {
-        return playerDistance;
+        return currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 }

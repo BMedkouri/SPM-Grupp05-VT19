@@ -22,7 +22,7 @@ public class PlayerBaseState : State
 
     public override void Enter()
     {
-        owner.currentStateAsString = this.ToString();
+
     }
 
     public override void HandleUpdate()

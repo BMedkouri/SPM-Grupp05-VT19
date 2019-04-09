@@ -12,8 +12,6 @@ public class Player : StateMachine
     [HideInInspector] private Vector3 point1;
     [HideInInspector] private Vector3 point2;
 
-    public string currentStateAsString;
-
     [SerializeField] private float skinWidth;               // 0.063f
     [SerializeField] private float groundCheckDistance;     // 0.063f
     [SerializeField] private LayerMask geometryLayer;
@@ -78,4 +76,5 @@ public class Player : StateMachine
     {
         return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out RaycastHit hitInfo, skinWidth + groundCheckDistance, geometryLayer);
     }
+
 }
