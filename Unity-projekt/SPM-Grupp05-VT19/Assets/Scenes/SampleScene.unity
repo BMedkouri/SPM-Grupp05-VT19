@@ -707,7 +707,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a77318d5bd59b204d996bcbd003f854d, type: 2}
   - {fileID: 11400000, guid: a978ce5b0538f214e93443a7ead92a90, type: 2}
   currentState: {fileID: 0}
-  physics: {fileID: 0}
   capsuleCollider: {fileID: 0}
   sumOfSnapsPerFrame: {x: 0, y: 0, z: 0}
   point1: {x: 0, y: 0, z: 0}
@@ -915,7 +914,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a50353a1d86abd48ae30afef28463bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: []
+  states:
+  - {fileID: 11400000, guid: 185997ab0f5541a4596c21f5a15f66ef, type: 2}
+  - {fileID: 11400000, guid: 404967a11b11a9d41b0985a770e1997f, type: 2}
+  - {fileID: 11400000, guid: 2b9c2680f1c5c5c4aac8c253ea947b1f, type: 2}
   currentState: {fileID: 0}
   Renderer: {fileID: 0}
   player: {fileID: 939625193}

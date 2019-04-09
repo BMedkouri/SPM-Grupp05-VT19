@@ -11,6 +11,7 @@ public class Enemy : StateMachine
     // Start is called before the first frame update
     protected override void Awake()
     {
+        Renderer = GetComponent<MeshRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
         base.Awake();
         visionBlock = LayerMask.GetMask("Ground");

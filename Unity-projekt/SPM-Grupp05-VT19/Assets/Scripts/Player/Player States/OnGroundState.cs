@@ -18,7 +18,7 @@ public class OnGroundState : PlayerBaseState
         base.HandleUpdate();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!owner.isGrounded())
+            if (!owner.IsGrounded())
             {
                 physics.Jump(jumpHeight);
                 owner.Transition<InAirState>();

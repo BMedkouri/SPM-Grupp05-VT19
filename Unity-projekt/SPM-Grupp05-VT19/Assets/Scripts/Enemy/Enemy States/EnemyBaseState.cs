@@ -22,5 +22,9 @@ public class EnemyBaseState : State
     {
         return !Physics.Linecast(owner.transform.position, owner.player.transform.position, owner.visionBlock);
     }
-   
+    public override void HandleUpdate()
+    {
+        Debug.Log(owner.getDistance());
+    }
+
 }

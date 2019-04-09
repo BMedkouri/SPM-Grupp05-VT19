@@ -16,7 +16,7 @@ public class InAirState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        if (owner.isGrounded())
+        if (owner.IsGrounded())
             owner.Transition<RunningState>();
         base.HandleUpdate();
     }

@@ -8,8 +8,8 @@ public class Player : StateMachine
     [HideInInspector] public CapsuleCollider capsuleCollider;
     [HideInInspector] public RaycastHit hitInfo;
     [HideInInspector] public Vector3 sumOfSnapsPerFrame;
-    [HideInInspector] public Vector3 point1;
-    [HideInInspector] public Vector3 point2;
+    [HideInInspector] private Vector3 point1;
+    [HideInInspector] private Vector3 point2;
 
     [SerializeField] private float skinWidth;               // 0.063f
     [SerializeField] private float groundCheckDistance;     // 0.063f
@@ -66,7 +66,7 @@ public class Player : StateMachine
     {
         return maxHealth;
     }
-    public bool isGrounded()
+    public bool IsGrounded()
     {
         return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, skinWidth + groundCheckDistance, geometryLayer);
     }
