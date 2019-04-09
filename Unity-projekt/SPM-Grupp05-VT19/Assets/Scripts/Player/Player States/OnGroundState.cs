@@ -7,22 +7,15 @@ public class OnGroundState : PlayerBaseState
     // Attributes
 
     // Methods
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
     public override void HandleUpdate()
     {
         
         base.HandleUpdate();
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        //Transition to RunningState if grounded
+        if (owner.IsGrounded())
         {
-            if (!owner.IsGrounded())
-            {
-                physics.Jump(jumpHeight);
-                owner.Transition<InAirState>();
-            }
+            owner.Transition<RunningState>();
         }
     }
 }

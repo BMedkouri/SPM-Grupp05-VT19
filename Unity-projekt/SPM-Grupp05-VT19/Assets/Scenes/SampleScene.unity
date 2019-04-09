@@ -684,6 +684,7 @@ GameObject:
   - component: {fileID: 939625195}
   - component: {fileID: 939625194}
   - component: {fileID: 939625199}
+  - component: {fileID: 939625200}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -704,13 +705,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
+  - {fileID: 11400000, guid: df8e7d46ab56abc4892e5f8ee702b58a, type: 2}
   - {fileID: 11400000, guid: a77318d5bd59b204d996bcbd003f854d, type: 2}
   - {fileID: 11400000, guid: a978ce5b0538f214e93443a7ead92a90, type: 2}
-  currentState: {fileID: 0}
+  physics: {fileID: 0}
   capsuleCollider: {fileID: 0}
   sumOfSnapsPerFrame: {x: 0, y: 0, z: 0}
-  point1: {x: 0, y: 0, z: 0}
-  point2: {x: 0, y: 0, z: 0}
+  currentStateAsString: 
   skinWidth: 0.065
   groundCheckDistance: 0.065
   geometryLayer:
@@ -809,6 +810,23 @@ MonoBehaviour:
   staticFrictionCoefficient: 0.8
   dynamicFrictionCoefficient: 0.6
   airResistanceCoefficient: 0.5
+--- !u!114 &939625200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939625193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a5c0cc327639c40a475b487a504b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinWidth: 0.065
+  groundCheckDistance: 0.065
+  geometryLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &1286053722
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +840,8 @@ GameObject:
   - component: {fileID: 1286053724}
   - component: {fileID: 1286053723}
   - component: {fileID: 1286053727}
+  - component: {fileID: 1286053728}
+  - component: {fileID: 1286053729}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -918,12 +938,44 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 185997ab0f5541a4596c21f5a15f66ef, type: 2}
   - {fileID: 11400000, guid: 404967a11b11a9d41b0985a770e1997f, type: 2}
   - {fileID: 11400000, guid: 2b9c2680f1c5c5c4aac8c253ea947b1f, type: 2}
-  currentState: {fileID: 0}
   Renderer: {fileID: 0}
   player: {fileID: 939625193}
   visionBlock:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &1286053728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286053722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a5c0cc327639c40a475b487a504b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinWidth: 0.065
+  groundCheckDistance: 0.065
+  geometryLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &1286053729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286053722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7f9dac28abbd949951e246f85ca7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: 9.8
+  staticFrictionCoefficient: 0.8
+  dynamicFrictionCoefficient: 0.6
+  airResistanceCoefficient: 0.5
 --- !u!1 &1311768101
 GameObject:
   m_ObjectHideFlags: 0

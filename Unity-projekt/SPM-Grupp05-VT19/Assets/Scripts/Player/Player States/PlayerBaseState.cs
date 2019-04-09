@@ -9,7 +9,6 @@ public class PlayerBaseState : State
     [SerializeField] protected float acceleration;            // 14f
     //[SerializeField] protected float deceleration;            // 14f 
     [SerializeField] protected float turnSpeedModifier;       // 5f
-    protected PhysicsComponent physics;
 
     protected Player owner;
 
@@ -21,20 +20,22 @@ public class PlayerBaseState : State
 
     }
 
-
-
+    public override void Enter()
+    {
+        owner.currentStateAsString = this.ToString();
+    }
 
     public override void HandleUpdate()
     {
-        PlayerInput(jumpHeight, acceleration, turnSpeedModifier);
+        //Handles input
+        PlayerInput();
+
+        //Regeneration
         owner.HealthRegeneration();
     }
 
-    private void PlayerInput(float jumpHeight, float acceleration, float turnSpeedModifier)
+    private void PlayerInput()
     {
-        //Regeneration
-        
-
         //Takes input from player
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
@@ -51,7 +52,7 @@ public class PlayerBaseState : State
         //Movement
         if (direction != Vector3.zero)
         {
-            physics.Accelerate(direction, acceleration, turnSpeedModifier);
+            owner.physics.Accelerate(direction, acceleration, turnSpeedModifier);
         }
 
         //Take damage - For testing purposes
@@ -59,10 +60,11 @@ public class PlayerBaseState : State
         {
             owner.TakeDamage(10.0f);
         }
-        
 
-        //Moves player and resets snaps per frame
-        owner.transform.position += physics.GetVelocity() * Time.deltaTime - owner.sumOfSnapsPerFrame;
-        owner.sumOfSnapsPerFrame = Vector3.zero;
+        //Heal player - For testing purposes
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            owner.RecoverHealth(10.0f);
+        }
     }
 }
