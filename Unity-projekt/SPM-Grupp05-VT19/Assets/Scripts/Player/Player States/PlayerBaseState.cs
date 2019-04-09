@@ -9,7 +9,6 @@ public class PlayerBaseState : State
     [SerializeField] protected float acceleration;            // 14f
     //[SerializeField] protected float deceleration;            // 14f 
     [SerializeField] protected float turnSpeedModifier;       // 5f
-    protected PhysicsComponent physics;
 
     protected Player owner;
 
