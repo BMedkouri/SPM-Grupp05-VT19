@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chasing : MonoBehaviour
+[CreateAssetMenu(menuName = "Enemy/Chasing")]
+public class Chasing : EnemyBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Enter()
     {
-        
+        base.Enter();
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void HandleUpdate()
     {
-        
+        base.HandleUpdate();
+        if (owner.getDistance() > 20.0f)
+        {
+            owner.Transition<Idle>();
+        }
+        else if (owner.getDistance() < 10.0f)
+        {
+            owner.Transition<Attack>();
+        }
     }
 }

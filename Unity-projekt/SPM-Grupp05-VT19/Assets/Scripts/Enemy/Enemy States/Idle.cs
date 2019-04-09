@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Idle : MonoBehaviour
+[CreateAssetMenu(menuName = "Enemy/Idle")]
+public class Idle : EnemyBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Enter()
     {
         
+        base.Enter();
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void HandleUpdate()
     {
-        
+        base.HandleUpdate();
     }
 }

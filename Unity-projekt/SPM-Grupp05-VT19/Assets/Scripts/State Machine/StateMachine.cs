@@ -25,7 +25,6 @@ public class StateMachine : MonoBehaviour
             }
         }
         currentState.Enter();
-
     }
 
     public void Transition<T>() where T : State

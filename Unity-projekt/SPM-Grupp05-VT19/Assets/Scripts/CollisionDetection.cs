@@ -45,6 +45,10 @@ public class CollisionDetection : MonoBehaviour
         {
             CollisionCheck(capsuleCollider);
         }
+
+        //Moves target and resets snaps per frame
+        transform.position += physics.GetVelocity() * Time.deltaTime - sumOfSnapsPerFrame;
+        sumOfSnapsPerFrame = Vector3.zero;
     }
 
     private void CollisionCheck(CapsuleCollider capsuleCollider)
