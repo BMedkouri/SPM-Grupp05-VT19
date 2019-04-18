@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Footsteps : MonoBehaviour
 {
-    //RunState playerScript;
+    /* 
+     * He will have sounds ....
 
     // Start is called before the first frame update
     private AudioSource PlayerSource;
@@ -18,9 +19,11 @@ public class Footsteps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !PlayerSource.isPlaying) 
+        if (Input.GetKeyDown(KeyCode.E) && !PlayerSource.isPlaying) 
         {
-            PlayerSource.Play(0);
+            PlayerSource.Play(1);
         }
     }
+
+    */
 }
