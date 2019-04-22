@@ -21,4 +21,14 @@ public static class Functions
     {
         return frictionCoefficient * normalForce.magnitude;
     }
+
+    public static float CalculateAngleOfImpact(Vector3 vector1, Vector3 vector2)
+    {
+        return Vector3.Angle(vector1, vector2) - 90;
+    }
+
+    public static float CalculateHypotenuse(float angle, float shortSideLength)
+    {
+        return shortSideLength / Mathf.Sin(angle);
+    }
 }
