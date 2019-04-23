@@ -18,6 +18,7 @@ public class CollisionDetection : MonoBehaviour
     [SerializeField] private float skinWidth;               // 0.063f
     [SerializeField] private float groundCheckDistance;     // 0.063f
     [SerializeField] private LayerMask rayCastLayerMask;
+    float temporarySkinWidth;
 
     private void Awake()
     {
@@ -56,71 +57,29 @@ public class CollisionDetection : MonoBehaviour
         int escape = 100;
         do
         {
-            if(Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, physics.GetVelocity().normalized, out hitInfo, Mathf.Infinity, rayCastLayerMask))
+            if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, physics.GetVelocity().normalized, out hitInfo, Mathf.Infinity, rayCastLayerMask))
             {
                 float angleOfImpact = Functions.CalculateAngleOfImpact(physics.GetVelocity(), hitInfo.normal);
                 float hypotenuse = Functions.CalculateHypotenuse(angleOfImpact, skinWidth);
-                
-                if(angleOfImpact < 80f)
-                {
-                    if (hitInfo.distance - hypotenuse <= physics.GetVelocity().magnitude * Time.deltaTime + hypotenuse)
-                    {
-                        Debug.Log("Collision detected. Angle of impact: " + angleOfImpact + " Hypotenuse: " + hypotenuse);
 
-                        if (hitInfo.distance - hypotenuse > hypotenuse)
-                        {
-                            sumOfSnapsPerFrame += physics.GetVelocity().normalized * (hitInfo.distance - hypotenuse);
-                            transform.position += physics.GetVelocity().normalized * (hitInfo.distance - hypotenuse);
-                        }
-                        else
-                        {
-                            sumOfSnapsPerFrame -= physics.GetVelocity().normalized * hypotenuse;
-                            transform.position -= physics.GetVelocity().normalized * hypotenuse;
-                        }
-                        // Calculate and apply forces
-                        physics.CalculateAndApplyForces(hitInfo.normal);
-                    }
-                }
-                else
-                {
-                    if (hitInfo.distance - skinWidth <= physics.GetVelocity().magnitude * Time.deltaTime + skinWidth)
-                    {
-                        Debug.Log("Collision detected. Angle of impact: " + angleOfImpact + " Skinwidth: " + skinWidth);
+                temporarySkinWidth = (skinWidth > hypotenuse ? skinWidth : hypotenuse);
 
-                        if (hitInfo.distance - skinWidth > skinWidth)
-                        {
-                            sumOfSnapsPerFrame += physics.GetVelocity().normalized * (hitInfo.distance - skinWidth);
-                            transform.position += physics.GetVelocity().normalized * (hitInfo.distance - skinWidth);
-                        }
-                        else
-                        {
-                            sumOfSnapsPerFrame -= physics.GetVelocity().normalized * skinWidth;
-                            transform.position -= physics.GetVelocity().normalized * skinWidth;
-                        }
-                        // Calculate and apply forces
-                        physics.CalculateAndApplyForces(hitInfo.normal);
-                    }
-                }
-            }
-
-            /*if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, physics.GetVelocity().normalized, out hitInfo, physics.GetVelocity().magnitude * Time.deltaTime + skinWidth, rayCastLayerMask))
-            {
-                if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, -hitInfo.normal, out hitInfo, physics.GetVelocity().magnitude * Time.deltaTime + skinWidth, rayCastLayerMask))
+                if (hitInfo.distance - temporarySkinWidth <= physics.GetVelocity().magnitude * Time.deltaTime + temporarySkinWidth)
                 {
-                    if (hitInfo.distance - skinWidth > skinWidth)
+                    if (hitInfo.distance - temporarySkinWidth > temporarySkinWidth)
                     {
-                        sumOfSnapsPerFrame += -hitInfo.normal * (hitInfo.distance - skinWidth);
-                        transform.position += -hitInfo.normal * (hitInfo.distance - skinWidth);
+                        sumOfSnapsPerFrame += physics.GetVelocity().normalized * (hitInfo.distance - temporarySkinWidth);
+                        transform.position += physics.GetVelocity().normalized * (hitInfo.distance - temporarySkinWidth);
                     }
                     else
                     {
-                        sumOfSnapsPerFrame += -hitInfo.normal * (-skinWidth);
-                        transform.position += -hitInfo.normal * (-skinWidth);
+                        sumOfSnapsPerFrame -= physics.GetVelocity().normalized * (temporarySkinWidth - hitInfo.distance);
+                        transform.position -= physics.GetVelocity().normalized * (temporarySkinWidth - hitInfo.distance);
                     }
-                    //Calculate and apply forces
+                    // Calculate and apply forces
                     physics.CalculateAndApplyForces(hitInfo.normal);
                 }
-            }*/
+            }
             escape--;
         } while (hitInfo.collider != null && escape > 0);
     }
@@ -129,14 +88,23 @@ public class CollisionDetection : MonoBehaviour
     {
         RaycastHit hitInfo = new RaycastHit();
 
-        if (Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, Mathf.Infinity, rayCastLayerMask))
+        if (collider.GetType() == typeof(CapsuleCollider))
+        {
+            return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, temporarySkinWidth + groundCheckDistance, rayCastLayerMask);
+        }
+        else if (collider.GetType() == typeof(SphereCollider))
+        {
+            return Physics.SphereCast(transform.position + sphereCollider.center, capsuleCollider.radius, Vector3.down, out hitInfo, temporarySkinWidth + groundCheckDistance, rayCastLayerMask);
+        }
+
+        /*if (Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, Mathf.Infinity, rayCastLayerMask))
         {
             float angleOfImpact = Functions.CalculateAngleOfImpact(physics.GetVelocity(), hitInfo.normal);
             float hypotenuse = Functions.CalculateHypotenuse(angleOfImpact, skinWidth);
 
             if (angleOfImpact < 80f)
             {
-                if (hitInfo.distance - hypotenuse <= physics.GetVelocity().magnitude * Time.deltaTime + hypotenuse)
+                if (hitInfo.distance - hypotenuse <= groundCheckDistance + hypotenuse)
                 {
                     Debug.Log("Is grounded.");
                     return true;
@@ -149,7 +117,7 @@ public class CollisionDetection : MonoBehaviour
             }
             else
             {
-                if (hitInfo.distance - skinWidth <= physics.GetVelocity().magnitude * Time.deltaTime + skinWidth)
+                if (hitInfo.distance - skinWidth <= groundCheckDistance + skinWidth)
                 {
                     Debug.Log("Is grounded.");
                     return true;
@@ -160,7 +128,7 @@ public class CollisionDetection : MonoBehaviour
                     return false;
                 }
             }
-        }
+    }*/
 
         Debug.Log("Is not grounded.");
         return false;
