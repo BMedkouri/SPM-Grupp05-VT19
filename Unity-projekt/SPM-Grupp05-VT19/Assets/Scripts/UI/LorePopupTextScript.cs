@@ -9,7 +9,7 @@ public class LorePopupTextScript : MonoBehaviour
     public Canvas loreCanvas;
 
     public Image blackFade;
-    public Text[] loreTextList;
+    private Text loreText;
 
 
     // Start is called before the first frame update
@@ -28,9 +28,13 @@ public class LorePopupTextScript : MonoBehaviour
     {
 
         blackFade.gameObject.SetActive(!blackFade.gameObject.activeSelf);
-        loreTextList[0].gameObject.SetActive(!loreTextList[0].gameObject.activeSelf);
+        loreText.gameObject.SetActive(!loreText.gameObject.activeSelf);
 
         Debug.Log("ButtonClick");
     }
 
+    public void SetLoreText(Text loreText)
+    {
+        this.loreText = loreText;
+    }
 }
