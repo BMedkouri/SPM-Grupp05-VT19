@@ -8,43 +8,27 @@ public class LorePopupTextScript : MonoBehaviour
 
     public Canvas loreCanvas;
 
-    private bool isVisible;
-
     public Image blackFade;
     public Text[] loreTextList;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-       /* loreCanvas = GetComponent<Canvas>();
-        blackFade = GetComponent<Image>();
-        loreTextList = GetComponents<Text>(); */
+        /* loreCanvas = GetComponent<Canvas>();
+         blackFade = GetComponent<Image>();
+         loreTextList = GetComponents<Text>(); */
 
-        loreCanvas.enabled = true;
+        loreCanvas.gameObject.SetActive(true);
 
-        blackFade.enabled = false;
-        isVisible = false;
+        blackFade.gameObject.SetActive(false);
     }
-    
-    public void OnClick()
-    {
-   
 
-        if (Input.GetKeyDown("Fire1"))
-        {
-            if(isVisible == false)
-            {
-                blackFade.enabled = true;
-                isVisible = true;
-            }
-        }
-        else
-        {
-            blackFade.enabled = false;
-            isVisible = false;
-        }
-      
+    public void OnMouseClick()
+    {
+
+        blackFade.gameObject.SetActive(!blackFade.gameObject.activeSelf);
+        loreTextList[0].gameObject.SetActive(!loreTextList[0].gameObject.activeSelf);
 
         Debug.Log("ButtonClick");
     }
