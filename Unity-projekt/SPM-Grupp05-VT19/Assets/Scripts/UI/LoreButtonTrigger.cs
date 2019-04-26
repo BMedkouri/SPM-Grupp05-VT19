@@ -21,15 +21,15 @@ public class LoreButtonTrigger : MonoBehaviour
         {
             lorePopupTextScript.SetLoreText(loreText);
             loreButton.gameObject.SetActive(true);
-            Debug.Log("Trigger Enter");
         }
     }
+
     public void OnTriggerExit(Collider col)
     {
         if (col.CompareTag("Player"))
         {
             loreButton.gameObject.SetActive(false);
-            Debug.Log("Trigger Enter");
+            lorePopupTextScript.gameObject.SetActive(false);
         }
     }
 }
