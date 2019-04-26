@@ -11,13 +11,8 @@ public class LorePopupTextScript : MonoBehaviour
     public Image blackFade;
     private Text loreText;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        /* loreCanvas = GetComponent<Canvas>();
-         blackFade = GetComponent<Image>();
-         loreTextList = GetComponents<Text>(); */
 
         loreCanvas.gameObject.SetActive(true);
 
@@ -30,7 +25,6 @@ public class LorePopupTextScript : MonoBehaviour
         blackFade.gameObject.SetActive(!blackFade.gameObject.activeSelf);
         loreText.gameObject.SetActive(!loreText.gameObject.activeSelf);
 
-        Debug.Log("ButtonClick");
     }
 
     public void SetLoreText(Text loreText)
