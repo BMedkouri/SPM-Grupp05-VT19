@@ -13,6 +13,11 @@ public class followPlayer : MonoBehaviour
 
     Collider col;
 
+
+    public float checkRadius;
+    public LayerMask checkLayers;
+
+
     void Start()
     {
         this.transform.LookAt(goal.position);
@@ -21,6 +26,9 @@ public class followPlayer : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+
                 Vector3 lookAtGoal = new Vector3(goal.position.x, this.transform.position.y,
                 goal.position.z);
 
@@ -33,7 +41,13 @@ public class followPlayer : MonoBehaviour
                 this.transform.Translate(0, 0, speed * Time.deltaTime);
         
 
+        }
        
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, checkRadius);
     }
  
 }
