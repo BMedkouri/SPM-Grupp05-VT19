@@ -7,9 +7,9 @@ public class followPlayer : MonoBehaviour
     Enemy enemy;
 
     public Transform goal;
-    public float speed = 2.0f;
+    public float speed = 0.5f;
     public float accuracy = 1.0f;
-    public float rotSpeed = 0.4f;
+    public float rotSpeed = 0.1f;
 
     Collider col;
 
@@ -21,11 +21,7 @@ public class followPlayer : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        
-        
-
-     
-            Vector3 lookAtGoal = new Vector3(goal.position.x, this.transform.position.y,
+                Vector3 lookAtGoal = new Vector3(goal.position.x, this.transform.position.y,
                 goal.position.z);
 
             Vector3 direction = lookAtGoal - this.transform.position;
