@@ -928,7 +928,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: cedd4265a157958498598216191e75d0, type: 3}
       propertyPath: m_Name
-      value: 2HandedSword_Idle
+      value: PlayerCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cedd4265a157958498598216191e75d0, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cedd4265a157958498598216191e75d0, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cedd4265a157958498598216191e75d0, type: 3}
       propertyPath: m_LocalPosition.x

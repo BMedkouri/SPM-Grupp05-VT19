@@ -34,5 +34,15 @@ public class CharacterController : MonoBehaviour
             anim.SetTrigger("Dodge");
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            anim.SetTrigger("Slash");
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            anim.SetTrigger("LightAttack");
+        }
+
     }
 }
