@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,7 +13,8 @@ public class Enemy : StateMachine
     [HideInInspector] public LayerMask visionBlock;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Animator animator;
-
+    
+    [SerializeField] private GameObject[] patroleLocations;
     [SerializeField] private float maxHealth; // 100f
     [SerializeField] private float invulnerabilityPeriod;
     private float currentHealth, invulnerabilityTimer;
@@ -26,7 +28,7 @@ public class Enemy : StateMachine
         physics = GetComponent<PhysicsComponent>();
         visionBlock = LayerMask.GetMask("Geometry");
         animator = GetComponent<Animator>();
-
+        
         currentHealth = maxHealth; invulnerabilityTimer = 0;
         isDead = false;
 
@@ -72,5 +74,16 @@ public class Enemy : StateMachine
     {
         return Vector3.Distance(player.transform.position, transform.position);
     }
+    public Vector3[] GetMovePoints()
+    {
+        Vector3[] movePoints = new Vector3[patroleLocations.Length];
+        for(int i = 0; i < patroleLocations.Length; i++)
+        {
+            Debug.Log("MovePoints");
+            movePoints[i] = patroleLocations[i].transform.position;
+        }
+        return movePoints;
+    }
+    
 
 }
