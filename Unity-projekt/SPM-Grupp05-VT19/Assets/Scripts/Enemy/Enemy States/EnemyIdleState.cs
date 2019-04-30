@@ -5,12 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy States/IdleState")]
 public class EnemyIdleState : EnemyBaseState
 {
-    [SerializeField] private Vector3[] movePoints;
+    private Vector3[] movePoints;
     private int walkTo;
     public override void Enter()
     {
+        movePoints = owner.GetMovePoints();
+        foreach(Vector3 mo in movePoints)
+        {
+            Debug.Log(mo);
+        }
         choosClosest();
-        
         base.Enter();
     }
     public override void HandleUpdate()
