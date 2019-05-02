@@ -71,12 +71,19 @@ public class Enemy : StateMachine
 
     public bool CanSeePlayer()
     {
-        return !Physics.Linecast(transform.position, player.transform.position, visionBlock);
+        if (player != null)
+            return !Physics.Linecast(transform.position, player.transform.position, visionBlock);
+        return false;
     }
 
     public float GetDistance()
     {
+        if(player != null)
+        {
         return Vector3.Distance(player.transform.position, transform.position);
+        }
+            return 0f;
+        
     }
     public Vector3[] GetMovePoints()
     {
@@ -87,6 +94,10 @@ public class Enemy : StateMachine
             movePoints[i] = patrolLocations[i].transform.position;
         }
         return movePoints;
+    }
+    public void destroyEnemy()
+    {
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
     public AudioSource GetDeathSound()

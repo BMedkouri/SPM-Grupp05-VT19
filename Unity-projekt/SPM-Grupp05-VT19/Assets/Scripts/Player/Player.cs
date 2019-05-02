@@ -214,4 +214,9 @@ public class Player : StateMachine
     {
         return deathParticleEffect;
     }
+    
+    public void destroyPlayer()
+    {
+        Destroy(gameObject);
+    }
 }
