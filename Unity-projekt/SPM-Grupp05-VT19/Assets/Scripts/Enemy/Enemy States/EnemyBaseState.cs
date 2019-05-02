@@ -22,6 +22,10 @@ public class EnemyBaseState : State
     }
     public override void HandleUpdate()
     {
+        if(owner.GetCurrentHealth() <= 0)
+        {
+            owner.Transition<EnemyDeathState>();
+        }
         //Invulnerability timer
         owner.InvulnerabilityCountdown();
     }

@@ -11,7 +11,8 @@ public class EnemyDeathState : EnemyBaseState
         base.Enter();
 
         //Plays animation
-        owner.animator.Play("EnemyDeathAnimation");
+        //owner.animator.Play("EnemyDeathAnimation");
+        owner.destroyEnemy();
     }
 
     public override void HandleUpdate()

@@ -7,6 +7,7 @@ public class EnemyIdleState : EnemyBaseState
 {
     private Vector3[] movePoints;
     private int walkTo;
+
     public override void Enter()
     {
         movePoints = owner.GetMovePoints();
@@ -14,25 +15,31 @@ public class EnemyIdleState : EnemyBaseState
         {
             Debug.Log(mo);
         }
-        choosClosest();
+        ChooseClosest();
         base.Enter();
     }
+
     public override void HandleUpdate()
     {
-        owner.agent.SetDestination(movePoints[walkTo]);
-        if (Vector3.Distance(owner.transform.position, movePoints[walkTo]) < 3)
+        if(movePoints.Length > 0)
         {
             owner.agent.SetDestination(movePoints[walkTo]);
-            walkTo = (walkTo + 1) % movePoints.Length;
+            if (Vector3.Distance(owner.transform.position, movePoints[walkTo]) < 3)
+            {
+                owner.agent.SetDestination(movePoints[walkTo]);
+                walkTo = (walkTo + 1) % movePoints.Length;
+            }
         }
 
-        if(owner.GetDistance() < 20.0f && owner.CanSeePlayer())
+        if (owner.GetDistance() < 20.0f && owner.CanSeePlayer())
         {
             owner.Transition<EnemyChaseState>();
         }
+
         base.HandleUpdate();
     }
-    private void choosClosest()
+
+    private void ChooseClosest()
     {
         int closest = 0;
         for(int i = 0; i < movePoints.Length; i++)
@@ -42,7 +49,7 @@ public class EnemyIdleState : EnemyBaseState
                 closest = i;
             }
         }
-        walkTo = closest;
 
+        walkTo = closest;
     }
 }

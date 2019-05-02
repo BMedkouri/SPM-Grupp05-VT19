@@ -11,7 +11,8 @@ public class PlayerDeathState : PlayerBaseState
         base.Enter();
 
         //Plays animation
-        owner.animator.Play("PlayerDeathAnimation");
+        //owner.animator.Play("PlayerDeathAnimation");
+        owner.destroyPlayer();
     }
 
     public override void HandleUpdate()
