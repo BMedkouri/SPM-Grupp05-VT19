@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 4067de1a02072244798361060c5e7325, type: 2}
   m_HaloStrength: 0.45
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.25641918, g: 0.26670164, b: 0.31099528, a: 1}
+  m_IndirectSpecularColor: {r: 0.5254353, g: 0.4897421, b: 0.5074979, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21675,7 +21675,7 @@ PrefabInstance:
     - target: {fileID: 6487628019093402122, guid: 056af1a98fc9164428d9bf0456481888,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 199.26698
+      value: 190.23
       objectReference: {fileID: 0}
     - target: {fileID: 6487628019093402122, guid: 056af1a98fc9164428d9bf0456481888,
         type: 3}
@@ -21685,7 +21685,7 @@ PrefabInstance:
     - target: {fileID: 6487628019093402122, guid: 056af1a98fc9164428d9bf0456481888,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 460.0345
+      value: 450.184
       objectReference: {fileID: 0}
     - target: {fileID: 6487628019093402122, guid: 056af1a98fc9164428d9bf0456481888,
         type: 3}
@@ -46070,6 +46070,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783088405}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1783187391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2977056783993930735, guid: 97567730bde4d3e4dae6ec093b34f894,
+    type: 3}
+  m_PrefabInstance: {fileID: 1813239391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1783187397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783187391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: d5a240f9b846efb41975b3c535f476ad, type: 2}
 --- !u!1 &1785086718
 GameObject:
   m_ObjectHideFlags: 0
@@ -46867,20 +46886,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: CapsulePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 2977056783387845448, guid: 97567730bde4d3e4dae6ec093b34f894,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2977056783387845455, guid: 97567730bde4d3e4dae6ec093b34f894,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 200
+      value: 185.94
       objectReference: {fileID: 0}
     - target: {fileID: 2977056783387845455, guid: 97567730bde4d3e4dae6ec093b34f894,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 79
+      value: 74.962
       objectReference: {fileID: 0}
     - target: {fileID: 2977056783387845455, guid: 97567730bde4d3e4dae6ec093b34f894,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 460
+      value: 437.778
       objectReference: {fileID: 0}
     - target: {fileID: 2977056783387845455, guid: 97567730bde4d3e4dae6ec093b34f894,
         type: 3}
@@ -46890,7 +46914,7 @@ PrefabInstance:
     - target: {fileID: 2977056783387845455, guid: 97567730bde4d3e4dae6ec093b34f894,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2977056783387845455, guid: 97567730bde4d3e4dae6ec093b34f894,
         type: 3}
@@ -46900,7 +46924,7 @@ PrefabInstance:
     - target: {fileID: 2977056783387845455, guid: 97567730bde4d3e4dae6ec093b34f894,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2977056783387845455, guid: 97567730bde4d3e4dae6ec093b34f894,
         type: 3}
@@ -46915,7 +46939,7 @@ PrefabInstance:
     - target: {fileID: 2977056783387845455, guid: 97567730bde4d3e4dae6ec093b34f894,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2977056783387845455, guid: 97567730bde4d3e4dae6ec093b34f894,
         type: 3}
