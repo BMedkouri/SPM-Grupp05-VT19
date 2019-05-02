@@ -203,6 +203,6 @@ public class Player : StateMachine
     }
     public void destroyPlayer()
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

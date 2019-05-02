@@ -8,11 +8,11 @@ public class PlayerDeathState : PlayerBaseState
     // Methods
     public override void Enter()
     {
-        base.Enter();
-
+        //base.Enter();
+        owner.renderer.enabled = false;
         //Plays animation
         //owner.animator.Play("PlayerDeathAnimation");
-        owner.destroyPlayer();
+        //owner.destroyPlayer();
     }
 
     public override void HandleUpdate()
