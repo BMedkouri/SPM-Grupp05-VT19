@@ -14,7 +14,7 @@ public class Enemy : StateMachine
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Animator animator;
     
-    [SerializeField] private GameObject[] patroleLocations;
+    [SerializeField] private GameObject[] patrolLocations;
     [SerializeField] private float maxHealth; // 100f
     [SerializeField] private float invulnerabilityPeriod;
     private float currentHealth, invulnerabilityTimer;
@@ -76,11 +76,11 @@ public class Enemy : StateMachine
     }
     public Vector3[] GetMovePoints()
     {
-        Vector3[] movePoints = new Vector3[patroleLocations.Length];
-        for(int i = 0; i < patroleLocations.Length; i++)
+        Vector3[] movePoints = new Vector3[patrolLocations.Length];
+        for(int i = 0; i < patrolLocations.Length; i++)
         {
             Debug.Log("MovePoints");
-            movePoints[i] = patroleLocations[i].transform.position;
+            movePoints[i] = patrolLocations[i].transform.position;
         }
         return movePoints;
     }
