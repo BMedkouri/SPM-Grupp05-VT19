@@ -84,6 +84,9 @@ public class Enemy : StateMachine
         }
         return movePoints;
     }
-    
+    public void destroyEnemy()
+    {
+        Destroy(this);
+    }
 
 }

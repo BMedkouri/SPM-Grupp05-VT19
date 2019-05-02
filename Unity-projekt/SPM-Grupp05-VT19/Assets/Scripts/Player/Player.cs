@@ -201,4 +201,8 @@ public class Player : StateMachine
     {
         return maxEnergy;
     }
+    public void destroyPlayer()
+    {
+        Destroy(this);
+    }
 }
