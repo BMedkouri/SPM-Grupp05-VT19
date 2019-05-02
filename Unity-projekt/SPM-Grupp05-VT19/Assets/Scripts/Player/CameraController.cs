@@ -10,29 +10,40 @@ public class CameraController : MonoBehaviour
     Vector3 cameraMovement;
 
     [SerializeField] private Vector3 cameraOffset;      // 1.2, 1.5, -4
-    [SerializeField] private float mouseSensitivity;
+    [SerializeField] private float yAxisJoystickSensitivity, xAxisJoystickSensitivity;
+    [SerializeField] private bool yAxisInverted, xAxisInverted;
+    
     [SerializeField] private float minimumXRotation;
     [SerializeField] private float maximumXRotation;
     [SerializeField] private LayerMask geometryLayer;
+    
 
     private void Awake()
     {
         cameraRotation = Vector2.zero;
         sphereCollider = GetComponent<SphereCollider>();
         cameraMovement = Vector3.zero;
+        //yAxisInverted = false;
+        //xAxisInverted = false;
     }
 
     private void Update()
     {
+        
         //Moves camera
         CameraMovement();
     }
 
     private void CameraMovement()
     {
+        int yAxisInvertion = yAxisInverted ? -1 : 1;
+        int xAxisInvertion = xAxisInverted ? -1 : 1;
+
+        
         //Receives input from mouse, multiplied by mouseSensitivity
-        cameraRotation.x -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
-        cameraRotation.y += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
+        cameraRotation.x -= Input.GetAxis("Horizontal Turn") * yAxisJoystickSensitivity * xAxisInvertion;
+        cameraRotation.y += Input.GetAxis("Vertical Turn") * xAxisJoystickSensitivity * yAxisInvertion;
+        
 
         //Sets a min and max for rotation on the x-axis. Basically how far up or down the character can look
         cameraRotation.x = Mathf.Clamp(cameraRotation.x, minimumXRotation, maximumXRotation);

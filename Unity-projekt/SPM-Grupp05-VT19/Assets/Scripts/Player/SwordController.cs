@@ -27,8 +27,8 @@ public class SwordController : MonoBehaviour
     private void SwordMovement()
     {
         //Receives input from mouse, multiplied by mouseSensitivity
-        swordRotation.x -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
-        swordRotation.y += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
+        swordRotation.x -= Input.GetAxis("Horizontal Turn") * mouseSensitivity;
+        swordRotation.y += Input.GetAxis("Vertical Turn") * mouseSensitivity;
 
         //Sets a min and max for rotation on the x-axis. Basically how far up or down the character can look
         swordRotation.x = Mathf.Clamp(swordRotation.x, minimumXRotation, maximumXRotation);

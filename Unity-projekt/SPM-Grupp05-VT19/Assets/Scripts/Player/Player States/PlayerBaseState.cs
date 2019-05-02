@@ -55,15 +55,15 @@ public class PlayerBaseState : State
         }
 
         //Attack
-        if (Input.GetMouseButtonDown(0) && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        if (Input.GetAxisRaw("Right Trigger") == 1 && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
         {
             owner.Transition<AttackState>();
         }
-        if (Input.GetMouseButtonDown(1) && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        if (Input.GetButtonDown("Left Bumper") && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
         {
             owner.Transition<PlayerParryState>();
         }
-        if(Input.GetKeyDown(KeyCode.E) && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        if(Input.GetAxisRaw("Left Trigger") == 1 && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
         {
             owner.Transition<PlayerLightState>();
         }
@@ -74,7 +74,7 @@ public class PlayerBaseState : State
         }
 
         //Take damage - For testing purposes
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetButtonDown("Xbox A"))
         {
             owner.TakeDamage(10.0f);
             owner.LoseStamina(20.0f);
@@ -82,7 +82,7 @@ public class PlayerBaseState : State
         }
 
         //Heal player - For testing purposes
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetButtonDown("Xbox Y"))
         {
             owner.RecoverHealth(10.0f);
             owner.RecoverStamina(15.0f);
@@ -97,7 +97,6 @@ public class PlayerBaseState : State
    
     public Vector3 GetDirection()
     {
-        Debug.Log("Direction from getter: " + direction);
         return direction;
     }
 }

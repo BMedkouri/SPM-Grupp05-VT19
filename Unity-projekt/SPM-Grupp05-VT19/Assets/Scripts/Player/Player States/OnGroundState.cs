@@ -6,7 +6,6 @@ using UnityEngine;
 public class OnGroundState : PlayerBaseState
 {
     // Attributes
-    [SerializeField] private float jumpStaminaExpenditure; // Stamina cost for jumping
     
     // Methods
     public override void Enter()
@@ -23,18 +22,7 @@ public class OnGroundState : PlayerBaseState
             owner.Transition<RunState>();
         }
 
-        //Jumping and transitioning to InAirState
-        if (Input.GetKeyDown(KeyCode.Space) && owner.collision.IsGrounded())
-        {
-            if (owner.GetCurrentStamina() >= jumpStaminaExpenditure)
-            {
-                owner.LoseStamina(jumpStaminaExpenditure);
-                owner.physics.Jump(jumpHeight);
-                owner.Transition<InAirState>();
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetButton("Xbox B"))
         {
             owner.Transition<PlayerDodgeState>();
         }

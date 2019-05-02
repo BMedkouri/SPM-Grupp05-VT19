@@ -22,7 +22,7 @@ public class PlayerSprintState : RunState
     public override void HandleUpdate()
     {
         Debug.Log(GetDirection());
-        if (Input.GetKey(KeyCode.LeftShift) && GetDirection() != Vector3.zero)
+        if (Input.GetButton("Xbox X") && GetDirection() != Vector3.zero)
         {
             Debug.Log(staminaExpenditure * Time.deltaTime);
             owner.LoseStamina(staminaExpenditure * Time.deltaTime);

@@ -16,7 +16,7 @@ public class RunState : OnGroundState
 
     public override void HandleUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetButtonDown("Xbox X"))
         {
             owner.Transition<PlayerSprintState>();
         }
