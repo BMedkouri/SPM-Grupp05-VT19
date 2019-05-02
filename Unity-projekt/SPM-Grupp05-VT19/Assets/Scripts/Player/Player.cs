@@ -11,7 +11,6 @@ public class Player : StateMachine
     [HideInInspector] public PhysicsComponent physics;
     [HideInInspector] public CollisionDetection collision;
     [HideInInspector] public Animator animator;
-    //[HideInInspector] public Animation animation;
 
     // Health attributes
     [SerializeField] private float maxHealth; // 100f
@@ -32,6 +31,10 @@ public class Player : StateMachine
     [SerializeField] private float energyRegeneration; // 1f
     [SerializeField] private float energyRegenerationCooldown; // 5f
     private float currentEnergy, currentEnergyRegeneration, energyRegenerationTimer;
+
+    // Audio and particle effect prefabs
+    [SerializeField] private AudioSource deathSound;
+    [SerializeField] private ParticleSystem deathParticleEffect;
 
     // Methods
     protected override void Awake()
@@ -200,5 +203,15 @@ public class Player : StateMachine
     public float GetMaxEnergy()
     {
         return maxEnergy;
+    }
+
+    public AudioSource GetDeathSound()
+    {
+        return deathSound;
+    }
+
+    public ParticleSystem GetDeathParticle()
+    {
+        return deathParticleEffect;
     }
 }

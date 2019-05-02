@@ -20,6 +20,10 @@ public class Enemy : StateMachine
     private float currentHealth, invulnerabilityTimer;
     private bool isDead;
 
+    // Audio and particle effect prefabs
+    [SerializeField] private AudioSource deathSound;
+    [SerializeField] private ParticleSystem deathParticleEffect;
+
     protected override void Awake()
     {
     	renderer = GetComponent<MeshRenderer>();
@@ -84,6 +88,14 @@ public class Enemy : StateMachine
         }
         return movePoints;
     }
-    
 
+    public AudioSource GetDeathSound()
+    {
+        return deathSound;
+    }
+
+    public ParticleSystem GetDeathParticle()
+    {
+        return deathParticleEffect;
+    }
 }
