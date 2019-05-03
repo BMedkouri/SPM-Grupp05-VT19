@@ -39,6 +39,11 @@ public class Enemy : StateMachine
         base.Awake();
     }
 
+    private void OnDestroy()
+    {
+        Destroy(gameObject.transform.parent.gameObject);
+    }
+
     public void InvulnerabilityCountdown()
     {
         invulnerabilityTimer -= Time.deltaTime;
@@ -94,10 +99,6 @@ public class Enemy : StateMachine
             movePoints[i] = patrolLocations[i].transform.position;
         }
         return movePoints;
-    }
-    public void destroyEnemy()
-    {
-        Destroy(gameObject.transform.parent.gameObject);
     }
 
     public AudioSource GetDeathSound()

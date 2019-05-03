@@ -8,17 +8,12 @@ public class EnemyDeathState : EnemyBaseState
     // Methods
     public override void Enter()
     {
-       // base.Enter();
-
-        //owner.renderer.enabled = false;
-        //Plays animation
-        //owner.animator.Play("EnemyDeathAnimation");
-        
-        owner.destroyEnemy();
-    }
-
-    public override void HandleUpdate()
-    {
-        
+        DeathEvent deathEvent = new DeathEvent
+        {
+            DyingGameObject = owner.gameObject,
+            DeathSound = owner.GetDeathSound(),
+            DeathParticle = owner.GetDeathParticle()
+        };
+        deathEvent.FireEvent();
     }
 }

@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2977056783387845448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.69, z: 20.72}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2977056783993930736}
@@ -494,7 +494,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordOffset: {x: -0.56, y: 0.125, z: 0.1}
-  mouseSensitivity: 1
+  yAxisJoystickSensitivity: 1
+  xAxisJoystickSensitivity: 2
+  yAxisInverted: 0
+  xAxisInverted: 1
   minimumXRotation: -20
   maximumXRotation: 20
 --- !u!1 &2977056783935906559
@@ -1075,7 +1078,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordOffset: {x: 0.56, y: 0.315, z: 0.1}
-  mouseSensitivity: 1
+  yAxisJoystickSensitivity: 1
+  xAxisJoystickSensitivity: 2
+  yAxisInverted: 0
+  xAxisInverted: 1
   minimumXRotation: -20
   maximumXRotation: 20
 --- !u!1 &2977056785101276890
