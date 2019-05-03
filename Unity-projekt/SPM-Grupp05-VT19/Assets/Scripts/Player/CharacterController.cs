@@ -24,11 +24,6 @@ public class CharacterController : MonoBehaviour
         anim.SetFloat("Speed", speed);
         anim.SetFloat("Direction", direction);
 
-        if (Input.GetKeyDown("space"))
-        {
-            anim.SetTrigger("Jump");
-        }
-
         if (Input.GetKeyDown(KeyCode.Q))
         {
             anim.SetTrigger("Dodge");
@@ -39,10 +34,19 @@ public class CharacterController : MonoBehaviour
             anim.SetTrigger("Slash");
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             anim.SetTrigger("LightAttack");
         }
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            anim.SetTrigger("HeavyAttack");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetTrigger("Block");
+        }
     }
 }
