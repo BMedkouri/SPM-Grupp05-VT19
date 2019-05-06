@@ -31,7 +31,7 @@ public class CharacterController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            anim.SetTrigger("Slash");
+            anim.SetTrigger("Attack1");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
