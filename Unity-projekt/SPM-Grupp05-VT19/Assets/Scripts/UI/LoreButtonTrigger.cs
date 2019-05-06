@@ -19,6 +19,7 @@ public class LoreButtonTrigger : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            Debug.Log("Player");
             lorePopupTextScript.SetLoreText(loreText);
             loreButton.gameObject.SetActive(true);
         }

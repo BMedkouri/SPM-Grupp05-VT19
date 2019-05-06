@@ -5,18 +5,19 @@ using UnityEngine;
 public class PlayerBaseState : State
 {
     // Attributes
-    [SerializeField] protected float jumpHeight;              // 7f
-    [SerializeField] protected float acceleration;            // 14f
-    [SerializeField] protected float turnSpeedModifier;       // 5f
+    //[SerializeField] protected float jumpHeight;              // 7f
+    //[SerializeField] protected float acceleration;            // 14f
+    //[SerializeField] protected float turnSpeedModifier;       // 5f
     [SerializeField] protected Material material;
     protected Vector3 direction;
-
     protected Player owner;
+
 
     // Methods
     public override void Initialize(StateMachine owner)
     {
         this.owner = (Player)owner;
+        
     }
 
     public override void Enter()
@@ -36,8 +37,8 @@ public class PlayerBaseState : State
     private void PlayerInput()
     {
         //Takes input from player
-        direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-
+        direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 input = direction;
         //owner.animator.SetFloat("Speed", direction.x);
         //owner.animator.SetFloat("Direction", direction.z);
 
@@ -50,7 +51,6 @@ public class PlayerBaseState : State
         {
             direction = Vector3.ProjectOnPlane(Camera.main.transform.rotation * direction, Vector3.up).normalized;
         }
-
         //Attack
         if (Input.GetAxisRaw("Right Trigger") == 1 && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
         {
@@ -67,7 +67,12 @@ public class PlayerBaseState : State
         //Movement
         if (direction != Vector3.zero)
         {
-            owner.physics.Accelerate(direction, acceleration, turnSpeedModifier);
+
+            //owner.physics.Accelerate(direction, owner.Acceleration, owner.TurnSpeedModifier);
+            owner.transform.position += direction * input.magnitude * owner.Acceleration * Time.deltaTime;
+            Debug.Log(direction * input.magnitude * owner.Acceleration);
+            //Rotates the players mesh with the direction
+            owner.rotate.Rotate(direction);
         }
 
         //Take damage - For testing purposes

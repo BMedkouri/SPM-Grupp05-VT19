@@ -53,6 +53,12 @@ public class PhysicsComponent : MonoBehaviour
         }
     }
 
+    public void Move(Vector3 direction, float speed)
+    {
+        this.direction = direction;
+        velocity = speed * direction * Time.deltaTime;
+    }
+
     public void Accelerate(Vector3 direction, float acceleration, float turnSpeedModifier)
     {
         this.direction = direction;
