@@ -35,6 +35,14 @@ public class DebugEvent : Event<DebugEvent>
     public string DebugMessage;
 }
 
+public class DamageEvent : Event<DamageEvent>
+{
+    public float damage;
+    public GameObject DamagedGameObject;
+    public AudioSource DamagedSoundEffect;
+    public ParticleSystem DamagedParticleSystem;
+}
+
 public class DeathEvent : Event<DeathEvent>
 {
     public GameObject DyingGameObject;

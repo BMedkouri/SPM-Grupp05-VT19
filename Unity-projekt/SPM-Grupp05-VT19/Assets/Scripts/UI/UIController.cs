@@ -8,37 +8,133 @@ public class UIController : MonoBehaviour
     // Health
     [SerializeField] private Text healthText;
     [SerializeField] private Slider healthSlider;
+    private float currentHealth, maxHealth;
 
     // Stamina
     [SerializeField] private Text staminaText;
     [SerializeField] private Slider staminaSlider;
+    private float currentStamina, maxStamina;
 
     // Energy
     [SerializeField] private Text energyText;
     [SerializeField] private Slider energySlider;
+    private float currentEnergy, maxEnergy;
 
-    private Player player;
-
-    private void Start()
+    private void UpdateHealth()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
-
-    private void Update()
-    {
-        // Text setters
-        healthText.text = Mathf.Round(player.GetCurrentHealth()) + "/" + player.GetMaxHealth();
-        staminaText.text = Mathf.Round(player.GetCurrentStamina()) + "/" + player.GetMaxStamina();
-        energyText.text = Mathf.Round(player.GetCurrentEnergy()) + "/" + player.GetMaxEnergy();
+        // Text setter
+        healthText.text = Mathf.Round(currentHealth) + "/" + maxHealth;
 
         // Slider setters
-        healthSlider.value = player.GetCurrentHealth();
-        healthSlider.maxValue = player.GetMaxHealth();
+        healthSlider.value = currentHealth;
+        healthSlider.maxValue = maxHealth;
+    }
 
-        staminaSlider.value = player.GetCurrentStamina();
-        staminaSlider.maxValue = player.GetMaxStamina();
+    private void UpdateStamina()
+    {
+        // Text setter
+        staminaText.text = Mathf.Round(currentStamina) + "/" + maxStamina;
 
-        energySlider.value = player.GetCurrentEnergy();
-        energySlider.maxValue = player.GetMaxEnergy();
+        // Slider setters
+        staminaSlider.value = currentStamina;
+        staminaSlider.maxValue = maxStamina;
+    }
+
+    private void UpdateEnergy()
+    {
+        // Text setter
+        energyText.text = Mathf.Round(currentEnergy) + "/" + maxEnergy;
+
+        // Slider setters
+        energySlider.value = currentEnergy;
+        energySlider.maxValue = maxEnergy;
+    }
+
+    public void AddHealth(float health)
+    {
+        currentHealth += health;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        UpdateHealth();
+    }
+
+    public void SetMaxHealth(float maxHealth)
+    {
+        currentHealth = maxHealth;
+        this.maxHealth = maxHealth;
+        UpdateHealth();
+    }
+
+    public void RemoveHealth(float health)
+    {
+        currentHealth -= health;
+        UpdateHealth();
+    }
+
+    public void AddStamina(float stamina)
+    {
+        currentStamina += stamina;
+
+        if (currentStamina > maxStamina)
+        {
+            currentStamina = maxStamina;
+        }
+
+        UpdateStamina();
+    }
+
+    public void SetMaxStamina(float maxStamina)
+    {
+        currentStamina = maxStamina;
+        this.maxStamina = maxStamina;
+
+        UpdateStamina();
+    }
+
+    public void RemoveStamina(float stamina)
+    {
+        currentStamina -= stamina;
+
+        if (currentStamina < 0)
+        {
+            currentStamina = 0;
+        }
+
+        UpdateStamina();
+    }
+
+    public void AddEnergy(float energy)
+    {
+        currentEnergy += energy;
+
+        if (currentEnergy > maxEnergy)
+        {
+            currentEnergy = maxEnergy;
+        }
+
+        UpdateEnergy();
+    }
+
+    public void SetMaxEnergy(float maxEnergy)
+    {
+        currentEnergy = maxEnergy;
+        this.maxEnergy = maxEnergy;
+        UpdateEnergy();
+    }
+
+    public void RemoveEnergy(float energy)
+    {
+        currentEnergy -= energy;
+
+        if (currentEnergy < 0)
+        {
+            currentEnergy = 0;
+        }
+
+        UpdateEnergy();
     }
 }

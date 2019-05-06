@@ -11,15 +11,7 @@ public class Player : StateMachine
     [HideInInspector] public PhysicsComponent physics;
     [HideInInspector] public CollisionDetection collision;
     [HideInInspector] public Animator animator;
-
-    // Health attributes
-    [SerializeField] private float maxHealth; // 100f
-    [SerializeField] private float healthRegeneration; // 1f
-    [SerializeField] private float healthRegenerationCooldown; // 1f
-    [SerializeField] private float invulnerabilityPeriod;
-    private float currentHealth, currentHealthRegeneration, healthRegenerationTimer, invulnerabilityTimer;
-    private bool isDead;
-
+    
     // Stamina attributes
     [SerializeField] private float maxStamina; // 100f
     [SerializeField] private float staminaRegeneration; // 5f
@@ -31,18 +23,10 @@ public class Player : StateMachine
     [SerializeField] private float energyRegeneration; // 1f
     [SerializeField] private float energyRegenerationCooldown; // 5f
     private float currentEnergy, currentEnergyRegeneration, energyRegenerationTimer;
-
-    // Audio and particle effect prefabs
-    [SerializeField] private AudioSource deathSound;
-    [SerializeField] private ParticleSystem deathParticleEffect;
-
+    
     // Methods
     protected override void Awake()
     {
-        // Health
-        currentHealth = maxHealth; currentHealthRegeneration = healthRegeneration; healthRegenerationTimer = healthRegenerationCooldown; invulnerabilityTimer = invulnerabilityPeriod;
-        isDead = false;
-
         // Stamina
         currentStamina = maxStamina; currentStaminaRegeneration = staminaRegeneration; staminaRegenerationTimer = staminaRegenerationCooldown;
 
@@ -60,54 +44,10 @@ public class Player : StateMachine
 
     public void Regeneration()
     {
-        HealthRegeneration();
         StaminaRegeneration();
         EnergyRegeneration();
     }
-
-    // Health methods **************************************************************************************   
-    public void HealthRegeneration()
-    {
-        if (healthRegenerationTimer <= 0 && currentHealth < maxHealth)
-        {
-            RecoverHealth(currentHealthRegeneration);
-            healthRegenerationTimer = healthRegenerationCooldown;
-        }
-
-        healthRegenerationTimer -= Time.deltaTime;
-    }
-
-    public void RecoverHealth(float health)
-    {
-        currentHealth += health;
-
-        if(currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-    }
-
-    public void InvulnerabilityCountdown()
-    {
-        invulnerabilityTimer -= Time.deltaTime;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        if (!isDead && invulnerabilityTimer <= 0)
-        {
-            currentHealth -= damage;
-            invulnerabilityTimer = invulnerabilityPeriod;
-        }
-
-        if (!isDead && currentHealth <= 0)
-        {
-            isDead = true;
-            Transition<PlayerDeathState>();
-        }
-    }
-    // End of health methods *******************************************************************************
-
+    
     // Stamina methods *************************************************************************************
     public void StaminaRegeneration()
     {
@@ -175,16 +115,6 @@ public class Player : StateMachine
     // End of energy methods *******************************************************************************
 
     // Getters
-    public float GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public float GetMaxHealth()
-    {
-        return maxHealth;
-    }
-
     public float GetCurrentStamina()
     {
         return currentStamina;
@@ -203,20 +133,5 @@ public class Player : StateMachine
     public float GetMaxEnergy()
     {
         return maxEnergy;
-    }
-
-    public AudioSource GetDeathSound()
-    {
-        return deathSound;
-    }
-
-    public ParticleSystem GetDeathParticle()
-    {
-        return deathParticleEffect;
-    }
-    
-    public void destroyPlayer()
-    {
-        Destroy(gameObject);
     }
 }

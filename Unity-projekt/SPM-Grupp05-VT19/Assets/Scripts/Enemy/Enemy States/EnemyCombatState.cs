@@ -39,12 +39,12 @@ public class EnemyCombatState : EnemyBaseState
     {
         if (attackTimer <= 0)
         {
-            if (owner.player.GetCurrentHealth() > 0)
-            {
+            //if (owner.player.GetCurrentHealth() > 0)
+            //{
                 
-                owner.Transition<EnemyAttackState>();
-                //owner.player.TakeDamage(attackDamage);
-            }
+            //    owner.Transition<EnemyAttackState>();
+            //    //owner.player.TakeDamage(attackDamage);
+            //}
         }
         if(attackTimer < 0.5f && attackTimer > 0.01f)
         {

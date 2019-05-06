@@ -5,37 +5,56 @@ using UnityEngine.UI;
 
 public class EnemyCanvasController : MonoBehaviour
 {
-    private Enemy enemy;
-    private float enemyCurrentHealth, enemyMaxHealth;
-    [SerializeField] private Slider enemyHealthSlider;
+    private float currentHealth, maxHealth;
+    [SerializeField] private Slider healthSlider;
 
     private Vector3 targetPosition;
-
-    private void Awake()
-    {
-        enemy = GetComponentInParent<Enemy>();
-    }
-
+    
     private void Start()
     {
-        enemyCurrentHealth = enemy.GetCurrentHealth();
-        enemyMaxHealth = enemy.GetMaxHealth();
-
-        enemyHealthSlider.value = enemyCurrentHealth;
-        enemyHealthSlider.maxValue = enemyMaxHealth;
-
-        enemyHealthSlider.gameObject.SetActive(false);
+        healthSlider.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        targetPosition = new Vector3(Camera.main.transform.position.x, transform.position.y, Camera.main.transform.position.z);
-        transform.LookAt(targetPosition);
+        if (currentHealth < maxHealth && !healthSlider.IsActive())
+            healthSlider.gameObject.SetActive(true);
 
-        enemyCurrentHealth = enemy.GetCurrentHealth();
-        enemyHealthSlider.value = enemyCurrentHealth;
+        if(healthSlider.IsActive())
+        {
+            targetPosition = new Vector3(Camera.main.transform.position.x, transform.position.y, Camera.main.transform.position.z);
+            transform.LookAt(targetPosition);
+        }
+    }
 
-        if (enemyCurrentHealth < enemyMaxHealth && !enemyHealthSlider.IsActive())
-            enemyHealthSlider.gameObject.SetActive(true);
+    private void UpdateHealth()
+    {
+        healthSlider.value = currentHealth;
+        healthSlider.maxValue = maxHealth;
+    }
+
+    public void AddHealth(float health)
+    {
+        currentHealth += health;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        UpdateHealth();
+    }
+
+    public void RemoveHealth(float health)
+    {
+        currentHealth -= health;
+        UpdateHealth();
+    }
+
+    public void SetMaxHealth(float maxHealth)
+    {
+        currentHealth = maxHealth;
+        this.maxHealth = maxHealth;
+        UpdateHealth();
     }
 }

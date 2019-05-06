@@ -18,7 +18,7 @@ public class DeathEventListener : MonoBehaviour
     {
         DebugEvent debugEvent = new DebugEvent
         {
-            DebugMessage = "Alerted about unit death: " + deathEvent.DyingGameObject.name
+            DebugMessage = deathEvent.DyingGameObject.name + " has died."
         };
         debugEvent.FireEvent();
 

@@ -12,7 +12,7 @@ public class PlayerLightState : OnGroundState
     private SphereCollider collider;
     private float clipTimer;
     private GameObject lightChild, Cross;
-    AttackCollisionDetection attackCollisionDetection;
+    BoxAttackController attackCollisionDetection;
     AnimatorClipInfo[] animClip;
     [SerializeField] private LayerMask lightAttackMask;
 
@@ -33,8 +33,7 @@ public class PlayerLightState : OnGroundState
             Cross = GameObject.FindGameObjectWithTag("Cross");
             collider = lightChild.GetComponent<SphereCollider>();
 
-            attackCollisionDetection = lightChild.GetComponent<AttackCollisionDetection>();
-            attackCollisionDetection.InitializeOldPosition();
+            attackCollisionDetection = lightChild.GetComponent<BoxAttackController>();
 
             anim = Cross.GetComponentInChildren<Animator>();
 
@@ -87,19 +86,4 @@ public class PlayerLightState : OnGroundState
     {
         clipTimer -= Time.deltaTime;
     }
-    void OnCollisionEnter(Collision col)
-    {
-        Debug.Log("HIT");
-        Debug.Log(col.gameObject.name);
-        if(col.gameObject.name == "Enemy")
-        {
-            Debug.Log("hit");
-            Enemy enemy = attackCollisionDetection.GetEnemy();
-
-            Debug.Log("Enemy health before attack: " + enemy.GetCurrentHealth());
-            enemy.TakeDamage(attackDamage);
-            Debug.Log("Enemy health after attack: " + enemy.GetCurrentHealth());
-        }
-    }
-
 }

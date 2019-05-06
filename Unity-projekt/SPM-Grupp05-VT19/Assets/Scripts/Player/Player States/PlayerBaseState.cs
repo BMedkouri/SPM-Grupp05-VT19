@@ -26,18 +26,11 @@ public class PlayerBaseState : State
 
     public override void HandleUpdate()
     {
-        if(owner.GetCurrentHealth() <= 0)
-        {
-            owner.Transition<PlayerDeathState>();
-        }
         //Handles input
         PlayerInput();
 
         //Regeneration
         owner.Regeneration();
-
-        //Invulnerability timer
-        owner.InvulnerabilityCountdown();
     }
 
     private void PlayerInput()
@@ -80,7 +73,6 @@ public class PlayerBaseState : State
         //Take damage - For testing purposes
         if (Input.GetKeyDown(KeyCode.L))
         {
-            owner.TakeDamage(10.0f);
             owner.LoseStamina(20.0f);
             owner.LoseEnergy(10.0f);
         }
@@ -88,7 +80,6 @@ public class PlayerBaseState : State
         //Heal player - For testing purposes
         if (Input.GetKeyDown(KeyCode.K))
         {
-            owner.RecoverHealth(10.0f);
             owner.RecoverStamina(15.0f);
             owner.RecoverEnergy(10.0f);
         }

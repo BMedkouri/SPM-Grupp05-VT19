@@ -15,10 +15,6 @@ public class Enemy : StateMachine
     [HideInInspector] public Animator animator;
     
     [SerializeField] private GameObject[] patrolLocations;
-    [SerializeField] private float maxHealth; // 100f
-    [SerializeField] private float invulnerabilityPeriod;
-    private float currentHealth, invulnerabilityTimer;
-    private bool isDead;
 
     // Audio and particle effect prefabs
     [SerializeField] private AudioSource deathSound;
@@ -32,9 +28,6 @@ public class Enemy : StateMachine
         physics = GetComponent<PhysicsComponent>();
         visionBlock = LayerMask.GetMask("Geometry");
         animator = GetComponent<Animator>();
-        
-        currentHealth = maxHealth; invulnerabilityTimer = 0;
-        isDead = false;
 
         base.Awake();
     }
@@ -42,36 +35,6 @@ public class Enemy : StateMachine
     private void OnDestroy()
     {
         Destroy(gameObject.transform.parent.gameObject);
-    }
-
-    public void InvulnerabilityCountdown()
-    {
-        invulnerabilityTimer -= Time.deltaTime;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        if (!isDead && invulnerabilityTimer <= 0)
-        {
-            currentHealth -= damage;
-            invulnerabilityTimer = invulnerabilityPeriod;
-        }
-
-        if (!isDead && currentHealth <= 0)
-        {
-            isDead = true;
-            Transition<EnemyDeathState>();
-        }
-    }
-
-    public float GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public float GetMaxHealth()
-    {
-        return maxHealth;
     }
 
     public bool CanSeePlayer()

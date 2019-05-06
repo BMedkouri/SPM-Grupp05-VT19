@@ -12,19 +12,19 @@ public class PlayerHealState : PlayerBaseState
     {
         base.Enter();
         timer = healTimer;
-        healthWhenStartedState = owner.GetCurrentHealth();
+        //healthWhenStartedState = owner.GetCurrentHealth();
     }
     public override void HandleUpdate()
     {
-        if(owner.GetCurrentHealth() < healthWhenStartedState)
-        {
-            owner.Transition<OnGroundState>();
-        }
-        if(timer <= 0)
-        {
-            owner.RecoverHealth(increaseHealth);
-            owner.Transition<OnGroundState>();
-        }
+        //if(owner.GetCurrentHealth() < healthWhenStartedState)
+        //{
+        //    owner.Transition<OnGroundState>();
+        //}
+        //if(timer <= 0)
+        //{
+        //    owner.RecoverHealth(increaseHealth);
+        //    owner.Transition<OnGroundState>();
+        //}
         countdown();
     }
     private void countdown()

@@ -12,7 +12,6 @@ public class AttackState : PlayerBaseState
     private float attackTimer;
 
     //Attack
-    private AttackCollisionDetection attackCollisionDetection;
     private Animator animator;
 
     // Methods
@@ -28,10 +27,6 @@ public class AttackState : PlayerBaseState
         {
             owner.LoseStamina(staminaExpenditure);
 
-            //Attack
-            attackCollisionDetection = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponent<AttackCollisionDetection>();
-            attackCollisionDetection.InitializeOldPosition();
-
             attackTimer = attackSpeed;
 
             //Plays animation
@@ -46,18 +41,6 @@ public class AttackState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        attackCollisionDetection.RunCollisionDetection();
-
-        if(attackCollisionDetection.GetHitInfo().collider != null)
-        {
-            Debug.Log("Enemy health before attack: " + attackCollisionDetection.GetEnemy().GetCurrentHealth());
-            attackCollisionDetection.GetEnemy().TakeDamage(attackDamage);
-            Debug.Log("Enemy health after attack: " + attackCollisionDetection.GetEnemy().GetCurrentHealth());
-
-            //Add knockback later
-            //enemy.physics.AddVelocity();
-        }
-
         if (attackTimer <= 0)
         {
             if (owner.collision.IsGrounded())

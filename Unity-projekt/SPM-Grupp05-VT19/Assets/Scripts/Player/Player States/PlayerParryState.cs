@@ -11,7 +11,7 @@ public class PlayerParryState : OnGroundState
     private Animator anim;
     private float clipTimer;
     private GameObject cross, parry;
-    AttackCollisionDetection attackCollisionDetection;
+    BoxAttackController attackCollisionDetection;
     BoxCollider box;
 
     public override void Enter()
@@ -32,27 +32,26 @@ public class PlayerParryState : OnGroundState
             anim = cross.GetComponentInChildren<Animator>();
             anim.Play("PlayerParryAnimation");
             clipTimer = anim.GetCurrentAnimatorClipInfo(0).Length;
-            attackCollisionDetection = parry.GetComponent<AttackCollisionDetection>();
-            attackCollisionDetection.InitializeOldPosition();
+            attackCollisionDetection = parry.GetComponent<BoxAttackController>();
         }
     }
     public override void HandleUpdate()
     {
         if (box.enabled)
         {
-            attackCollisionDetection.RunCollisionDetection();
+            //attackCollisionDetection.RunCollisionDetection();
 
-            if (attackCollisionDetection.GetHitInfo().collider != null)
-            {
-                Enemy enemy = attackCollisionDetection.GetEnemy();
+            //if (attackCollisionDetection.GetHitInfo().collider != null)
+            //{
+            //    Enemy enemy = attackCollisionDetection.GetEnemy();
 
-                Debug.Log("Enemy health before attack: " + enemy.GetCurrentHealth());
-                enemy.TakeDamage(attackDamage);
-                Debug.Log("Enemy health after attack: " + enemy.GetCurrentHealth());
+            //    Debug.Log("Enemy health before attack: " + enemy.GetCurrentHealth());
+            //    enemy.TakeDamage(attackDamage);
+            //    Debug.Log("Enemy health after attack: " + enemy.GetCurrentHealth());
 
-                //Add knockback later
-                //enemy.physics.AddVelocity();
-            }
+            //    //Add knockback later
+            //    //enemy.physics.AddVelocity();
+            //}
         }
        
         if (clipTimer <= 0)
