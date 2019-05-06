@@ -11,13 +11,16 @@ public class PlayerBaseState : State
     [SerializeField] protected Material material;
     protected Vector3 direction;
     protected Player owner;
-
+    private CapsuleCollider capsuleCollider;
+    private Vector3 point1, point2;
 
     // Methods
     public override void Initialize(StateMachine owner)
     {
         this.owner = (Player)owner;
-        
+        capsuleCollider = owner.GetComponent<CapsuleCollider>();
+        point1 = capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        point2 = capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
     }
 
     public override void Enter()
@@ -67,10 +70,9 @@ public class PlayerBaseState : State
         //Movement
         if (direction != Vector3.zero)
         {
-
-            //owner.physics.Accelerate(direction, owner.Acceleration, owner.TurnSpeedModifier);
-            owner.transform.position += direction * input.magnitude * owner.Acceleration * Time.deltaTime;
-            Debug.Log(direction * input.magnitude * owner.Acceleration);
+            owner.physics.Accelerate(direction, owner.Acceleration, 0);
+            //Vector3 movementSpeed = direction * input.magnitude * owner.Acceleration;
+            //owner.transform.position += LookForCollision(movementSpeed) * Time.deltaTime;
             //Rotates the players mesh with the direction
             owner.rotate.Rotate(direction);
         }
@@ -98,5 +100,21 @@ public class PlayerBaseState : State
     public Vector3 GetDirection()
     {
         return direction;
+    }
+
+    public Vector3 LookForCollision(Vector3 movementSpeed)
+    {
+        LayerMask layer = LayerMask.GetMask("Geometry");
+        RaycastHit hitInfo = new RaycastHit();
+        if (Physics.CapsuleCast(owner.transform.position + point1, owner.transform.position + point2, capsuleCollider.radius, (direction * owner.Acceleration).normalized, out hitInfo, Mathf.Infinity, layer))
+        {
+            Debug.Log("Hit");
+            if (hitInfo.distance < 0.1f)
+            {
+                movementSpeed = Vector3.zero;
+                Debug.Log("Vector zero");
+            }
+        }
+        return movementSpeed;
     }
 }
