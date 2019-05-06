@@ -44,10 +44,10 @@ public class AttackHandler : MonoBehaviour
         {
             attacks[index].GetComponent<BoxAttackController>().CheckForCollision();
         }
-        /*else if(attacks[index].GetComponent<AttackController>().GetType() == typeof(SphereAttackController))
+        else if(attacks[index].GetComponent<AttackController>().GetType() == typeof(SphereAttackController))
         {
             attacks[index].GetComponent<SphereAttackController>().CheckForCollision();
-        }*/
+        }
         else
         {
             //New debug event.
