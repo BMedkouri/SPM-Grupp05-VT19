@@ -68,8 +68,8 @@ public class PlayerBaseState : State
         if (direction != Vector3.zero)
         {
 
-            //owner.physics.Accelerate(direction, owner.Acceleration, owner.TurnSpeedModifier);
-            owner.collision.CollisionCheck(direction * input.magnitude * owner.Acceleration * Time.deltaTime);
+            owner.physics.Accelerate(direction, owner.Acceleration, owner.TurnSpeedModifier);
+            //owner.collision.CollisionCheck(direction * input.magnitude * owner.Acceleration * Time.deltaTime);
             //Rotates the players mesh with the direction
             owner.rotate.Rotate(direction);
         }
