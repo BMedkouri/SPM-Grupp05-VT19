@@ -15533,10 +15533,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2adeb4744b444ea77651f42b2c8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinWidth: 0.063
-  rayCastLayerMask:
+  collisionLayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
+  attackName: 
+  attackDamage: 0
+  attackSoundEffect: {fileID: 0}
+  attackParticleEffect: {fileID: 0}
 --- !u!65 &243669413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24416,10 +24419,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2adeb4744b444ea77651f42b2c8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinWidth: 0.063
-  rayCastLayerMask:
+  collisionLayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
+  attackName: 
+  attackDamage: 0
+  attackSoundEffect: {fileID: 0}
+  attackParticleEffect: {fileID: 0}
 --- !u!65 &390331704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31806,10 +31812,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2adeb4744b444ea77651f42b2c8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinWidth: 0.063
-  rayCastLayerMask:
+  collisionLayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
+  attackName: 
+  attackDamage: 0
+  attackSoundEffect: {fileID: 0}
+  attackParticleEffect: {fileID: 0}
 --- !u!135 &526441788
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -40261,10 +40270,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2adeb4744b444ea77651f42b2c8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinWidth: 0.063
-  rayCastLayerMask:
+  collisionLayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
+  attackName: 
+  attackDamage: 0
+  attackSoundEffect: {fileID: 0}
+  attackParticleEffect: {fileID: 0}
 --- !u!135 &664517996
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -57367,11 +57379,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 4448947692922527381, guid: 686aa924b1e785444bbfac77f6b3762a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4448947692922527383, guid: 686aa924b1e785444bbfac77f6b3762a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -57500,11 +57507,6 @@ PrefabInstance:
     - target: {fileID: 4448947691103954015, guid: 686aa924b1e785444bbfac77f6b3762a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448947691625697217, guid: 686aa924b1e785444bbfac77f6b3762a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -111298,22 +111300,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6784203a79eeb544a4502d5d7da80f6, type: 2}
   - {fileID: 11400000, guid: 7de4e9417b0c1474292d4c356632dff1, type: 2}
   currentState: {fileID: 0}
+  acceleration: 0
+  turnSpeedModifier: 0
   renderer: {fileID: 0}
   physics: {fileID: 0}
   collision: {fileID: 0}
   animator: {fileID: 0}
-  maxHealth: 100
-  healthRegeneration: 1
-  healthRegenerationCooldown: 1
-  invulnerabilityPeriod: 0.5
   maxStamina: 80
   staminaRegeneration: 5
   staminaRegenerationCooldown: 1
   maxEnergy: 30
   energyRegeneration: 1
   energyRegenerationCooldown: 5
-  deathSound: {fileID: 0}
-  deathParticleEffect: {fileID: 0}
+  rotate: {fileID: 0}
 --- !u!136 &1895780746
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -116155,10 +116154,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2adeb4744b444ea77651f42b2c8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinWidth: 0.063
-  rayCastLayerMask:
+  collisionLayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
+  attackName: 
+  attackDamage: 0
+  attackSoundEffect: {fileID: 0}
+  attackParticleEffect: {fileID: 0}
 --- !u!65 &1974269480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123452,10 +123454,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2adeb4744b444ea77651f42b2c8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinWidth: 0.063
-  rayCastLayerMask:
+  collisionLayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
+  attackName: 
+  attackDamage: 0
+  attackSoundEffect: {fileID: 0}
+  attackParticleEffect: {fileID: 0}
 --- !u!65 &2105753873
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123551,22 +123556,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6784203a79eeb544a4502d5d7da80f6, type: 2}
   - {fileID: 11400000, guid: 7de4e9417b0c1474292d4c356632dff1, type: 2}
   currentState: {fileID: 0}
+  acceleration: 0
+  turnSpeedModifier: 0
   renderer: {fileID: 0}
   physics: {fileID: 0}
   collision: {fileID: 0}
   animator: {fileID: 0}
-  maxHealth: 100
-  healthRegeneration: 1
-  healthRegenerationCooldown: 1
-  invulnerabilityPeriod: 0.5
   maxStamina: 80
   staminaRegeneration: 5
   staminaRegenerationCooldown: 1
   maxEnergy: 30
   energyRegeneration: 1
   energyRegenerationCooldown: 5
-  deathSound: {fileID: 0}
-  deathParticleEffect: {fileID: 0}
+  rotate: {fileID: 0}
 --- !u!136 &2106899336
 CapsuleCollider:
   m_ObjectHideFlags: 0
