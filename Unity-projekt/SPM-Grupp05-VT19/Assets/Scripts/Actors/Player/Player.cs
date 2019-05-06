@@ -46,6 +46,10 @@ public class Player : StateMachine
         // Energy
         currentEnergy = maxEnergy; currentEnergyRegeneration = energyRegeneration; energyRegenerationTimer = energyRegenerationCooldown;
 
+        // UI
+        GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().SetMaxStamina(maxStamina);
+        GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().SetMaxEnergy(maxEnergy);
+
         // GetComponent<T>
         renderer = transform.Find("MeshRenderer").GetComponent<MeshRenderer>();
         physics = GetComponent<PhysicsComponent>();
@@ -81,6 +85,8 @@ public class Player : StateMachine
         {
             currentStamina = maxStamina;
         }
+
+        UpdateStaminaUI();
     }
 
     public void LoseStamina(float staminaExpenditure)
@@ -91,6 +97,13 @@ public class Player : StateMachine
         {
             currentStamina = 0;
         }
+
+        UpdateStaminaUI();
+    }
+
+    private void UpdateStaminaUI()
+    {
+        GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().SetStamina(currentStamina);
     }
     // End of stamina methods ******************************************************************************
 
@@ -114,6 +127,8 @@ public class Player : StateMachine
         {
             currentEnergy = maxEnergy;
         }
+
+        UpdateEnergyUI();
     }
 
     public void LoseEnergy(float energyExpenditure)
@@ -124,6 +139,13 @@ public class Player : StateMachine
         {
             currentEnergy = 0;
         }
+
+        UpdateEnergyUI();
+    }
+
+    private void UpdateEnergyUI()
+    {
+        GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().SetEnergy(currentEnergy);
     }
     // End of energy methods *******************************************************************************
 

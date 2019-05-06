@@ -12,11 +12,6 @@ public class BoxAttackController : AttackController
 
         Collider[] actorsHit = Physics.OverlapBox(transform.position + boxCollider.center, boxCollider.size / 2, Quaternion.identity, collisionLayerMask);
 
-        foreach (Collider ac in actorsHit)
-        {
-            Debug.Log("Actors hit: " + ac.name);
-        }
-
         if (actorsHit.Length == 0)
         {
             DebugEvent debugEvent = new DebugEvent
@@ -32,10 +27,10 @@ public class BoxAttackController : AttackController
             {
                 DebugMessage = attackName + " hits " + actorsHit.Length + " actors for " + attackDamage + " damage."
             };
+            debugEvent.FireEvent();
 
             foreach (Collider ac in actorsHit)
             {
-                Debug.Log("Actors hit: " + ac.name);
                 ac.GetComponent<HealthComponent>().TakeDamage(attackDamage);
             }
         }
