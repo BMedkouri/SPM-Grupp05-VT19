@@ -96,40 +96,7 @@ public class CollisionDetection : MonoBehaviour
         {
             return Physics.SphereCast(transform.position + sphereCollider.center, capsuleCollider.radius, Vector3.down, out hitInfo, temporarySkinWidth + groundCheckDistance, rayCastLayerMask);
         }
-
-        /*if (Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, Mathf.Infinity, rayCastLayerMask))
-        {
-            float angleOfImpact = Functions.CalculateAngleOfImpact(physics.GetVelocity(), hitInfo.normal);
-            float hypotenuse = Functions.CalculateHypotenuse(angleOfImpact, skinWidth);
-
-            if (angleOfImpact < 80f)
-            {
-                if (hitInfo.distance - hypotenuse <= groundCheckDistance + hypotenuse)
-                {
-                    Debug.Log("Is grounded.");
-                    return true;
-                }
-                else
-                {
-                    Debug.Log("Is not grounded.");
-                    return false;
-                }
-            }
-            else
-            {
-                if (hitInfo.distance - skinWidth <= groundCheckDistance + skinWidth)
-                {
-                    Debug.Log("Is grounded.");
-                    return true;
-                }
-                else
-                {
-                    Debug.Log("Is not grounded.");
-                    return false;
-                }
-            }
-    }*/
-
+        
         Debug.Log("Is not grounded.");
         return false;
     }
