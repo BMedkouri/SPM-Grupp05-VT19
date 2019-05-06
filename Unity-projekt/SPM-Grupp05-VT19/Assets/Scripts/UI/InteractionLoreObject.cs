@@ -2,63 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InteractionLoreObject : MonoBehaviour
 {
-   // public string myString;
-   // public Text myText;
-    public float fadeTime;
     public bool displayInfo;
-
-    public LoreTextDialouge dialougeText;
-
+    
+    public TextMeshProUGUI textDisplay;
+    
     private bool hasClickedY = false;
-    bool exit = false;
-
- 
-
+  
     public GameObject myButton1;
     public GameObject darkCanvas;
+    public GameObject loreText;
+
+
+   
 
     void Start()
     {
-     //   myText = GameObject.Find("Text").GetComponent<Text>();
-  
-
+    
          myButton1.SetActive(false);
-        darkCanvas.SetActive(false);
+         darkCanvas.SetActive(false);
+         loreText.SetActive(false);
 
- 
+       
+
+        
+         
     }
         
     void Update()
     {
- 
+
+       
+
         if(Input.GetKeyDown(KeyCode.Joystick1Button3) && displayInfo == true)
         {
-            hasClickedY = true;
+            hasClickedY = true;         
 
-//            myText.text = myString;
-
-            exit = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Joystick1Button2)) {
             hasClickedY = false;
             darkCanvas.SetActive(false);
+
+            
         }
-
-
-
 
         if (hasClickedY)
         {
             darkCanvas.SetActive(true);
+            loreText.SetActive(true);
             myButton1.SetActive(false);
+
+            textDisplay.text = "Spooky Statue";
+
+
         }
         else
         {
             darkCanvas.SetActive(false);
+            loreText.SetActive(false);
         }
     }
 
@@ -77,4 +82,5 @@ public class InteractionLoreObject : MonoBehaviour
         myButton1.SetActive(false);
     }
          
+ 
 }
