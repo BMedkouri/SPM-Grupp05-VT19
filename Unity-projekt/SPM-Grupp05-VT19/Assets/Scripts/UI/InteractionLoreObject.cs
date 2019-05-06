@@ -5,39 +5,40 @@ using UnityEngine.UI;
 
 public class InteractionLoreObject : MonoBehaviour
 {
-    public string myString;
-    public Text myText;
+   // public string myString;
+   // public Text myText;
     public float fadeTime;
     public bool displayInfo;
+
+    public LoreTextDialouge dialougeText;
 
     private bool hasClickedY = false;
     bool exit = false;
 
-   // public GameObject darkCanvas;
+ 
 
     public GameObject myButton1;
     public GameObject darkCanvas;
 
     void Start()
     {
-        myText = GameObject.Find("Text").GetComponent<Text>();
-     //   myText.color = Color.clear;
+     //   myText = GameObject.Find("Text").GetComponent<Text>();
+  
 
          myButton1.SetActive(false);
         darkCanvas.SetActive(false);
 
-    // bort   Image darkCanvas = gameObject.GetComponent<Image>();
+ 
     }
         
     void Update()
     {
-      //  FadeText();
-
+ 
         if(Input.GetKeyDown(KeyCode.Joystick1Button3) && displayInfo == true)
         {
             hasClickedY = true;
 
-            myText.text = myString;
+//            myText.text = myString;
 
             exit = true;
         }
@@ -75,23 +76,5 @@ public class InteractionLoreObject : MonoBehaviour
         displayInfo = false;
         myButton1.SetActive(false);
     }
-
-
-    /*
-    void FadeText()
-    {
-        if(displayInfo)
-        {
-            myText.text = myString;
-            myText.color = Color.Lerp(myText.color, Color.white, fadeTime * Time.deltaTime);
-        }
-
-        else
-        {
-            myText.color = Color.Lerp(myText.color, Color.clear, fadeTime * Time.deltaTime);
-            
-        }
-    }
-
-    */
+         
 }
