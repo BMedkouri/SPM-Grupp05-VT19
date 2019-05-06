@@ -16,10 +16,6 @@ public class Enemy : StateMachine
     
     [SerializeField] private GameObject[] patrolLocations;
 
-    // Audio and particle effect prefabs
-    [SerializeField] private AudioSource deathSound;
-    [SerializeField] private ParticleSystem deathParticleEffect;
-
     protected override void Awake()
     {
     	renderer = GetComponent<MeshRenderer>();
@@ -62,15 +58,5 @@ public class Enemy : StateMachine
             movePoints[i] = patrolLocations[i].transform.position;
         }
         return movePoints;
-    }
-
-    public AudioSource GetDeathSound()
-    {
-        return deathSound;
-    }
-
-    public ParticleSystem GetDeathParticle()
-    {
-        return deathParticleEffect;
     }
 }

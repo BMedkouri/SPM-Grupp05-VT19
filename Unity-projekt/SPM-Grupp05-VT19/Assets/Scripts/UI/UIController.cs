@@ -62,17 +62,22 @@ public class UIController : MonoBehaviour
         UpdateHealth();
     }
 
-    public void SetMaxHealth(float maxHealth)
-    {
-        currentHealth = maxHealth;
-        this.maxHealth = maxHealth;
-        UpdateHealth();
-    }
-
     public void RemoveHealth(float health)
     {
         currentHealth -= health;
         UpdateHealth();
+    }
+
+    public void SetHealth(float health)
+    {
+        currentHealth = health;
+        UpdateHealth();
+    }
+
+    public void SetMaxHealth(float maxHealth)
+    {
+        this.maxHealth = maxHealth;
+        SetHealth(maxHealth);
     }
 
     public void AddStamina(float stamina)
@@ -83,14 +88,6 @@ public class UIController : MonoBehaviour
         {
             currentStamina = maxStamina;
         }
-
-        UpdateStamina();
-    }
-
-    public void SetMaxStamina(float maxStamina)
-    {
-        currentStamina = maxStamina;
-        this.maxStamina = maxStamina;
 
         UpdateStamina();
     }
@@ -107,6 +104,18 @@ public class UIController : MonoBehaviour
         UpdateStamina();
     }
 
+    public void SetStamina(float stamina)
+    {
+        currentStamina = stamina;
+        UpdateStamina();
+    }
+
+    public void SetMaxStamina(float maxStamina)
+    {
+        this.maxStamina = maxStamina;
+        SetStamina(maxStamina);
+    }
+
     public void AddEnergy(float energy)
     {
         currentEnergy += energy;
@@ -116,13 +125,6 @@ public class UIController : MonoBehaviour
             currentEnergy = maxEnergy;
         }
 
-        UpdateEnergy();
-    }
-
-    public void SetMaxEnergy(float maxEnergy)
-    {
-        currentEnergy = maxEnergy;
-        this.maxEnergy = maxEnergy;
         UpdateEnergy();
     }
 
@@ -136,5 +138,17 @@ public class UIController : MonoBehaviour
         }
 
         UpdateEnergy();
+    }
+
+    public void SetEnergy(float energy)
+    {
+        currentEnergy = energy;
+        UpdateEnergy();
+    }
+
+    public void SetMaxEnergy(float maxEnergy)
+    {
+        this.maxEnergy = maxEnergy;
+        SetEnergy(maxEnergy);
     }
 }

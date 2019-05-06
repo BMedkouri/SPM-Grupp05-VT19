@@ -26,6 +26,7 @@ public class AttackState : PlayerBaseState
         else
         {
             owner.LoseStamina(staminaExpenditure);
+            GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().RemoveStamina(staminaExpenditure);
 
             attackTimer = attackSpeed;
 

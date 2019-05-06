@@ -9,31 +9,62 @@ public class InteractionLoreObject : MonoBehaviour
     public Text myText;
     public float fadeTime;
     public bool displayInfo;
-  //  public Button myButton;
+
+    private bool hasClickedY = false;
+    bool exit = false;
+
+   // public GameObject darkCanvas;
 
     public GameObject myButton1;
-   
+    public GameObject darkCanvas;
+
     void Start()
     {
         myText = GameObject.Find("Text").GetComponent<Text>();
-        myText.color = Color.clear;
+     //   myText.color = Color.clear;
 
-       // myButton = GetComponent<Button>();
-        myButton1.SetActive(false);
-       
+         myButton1.SetActive(false);
+        darkCanvas.SetActive(false);
+
+    // bort   Image darkCanvas = gameObject.GetComponent<Image>();
     }
         
     void Update()
     {
-        FadeText();
+      //  FadeText();
+
+        if(Input.GetKeyDown(KeyCode.Joystick1Button3) && displayInfo == true)
+        {
+            hasClickedY = true;
+
+            myText.text = myString;
+
+            exit = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2)) {
+            hasClickedY = false;
+            darkCanvas.SetActive(false);
+        }
+
+
+
+
+        if (hasClickedY)
+        {
+            darkCanvas.SetActive(true);
+            myButton1.SetActive(false);
+        }
+        else
+        {
+            darkCanvas.SetActive(false);
+        }
     }
 
     void OnMouseOver()
     {
         {
             displayInfo = true;
-            //myButton.enabled = true;
-
             myButton1.SetActive(true);
 
         }
@@ -45,6 +76,8 @@ public class InteractionLoreObject : MonoBehaviour
         myButton1.SetActive(false);
     }
 
+
+    /*
     void FadeText()
     {
         if(displayInfo)
@@ -59,4 +92,6 @@ public class InteractionLoreObject : MonoBehaviour
             
         }
     }
+
+    */
 }
