@@ -6,6 +6,10 @@ public class Player : StateMachine
 {
     // Attributes
 
+    // Physics
+    [SerializeField] private float acceleration;            // 14f
+    [SerializeField] private float turnSpeedModifier;       // 5f
+
     // Components
     [HideInInspector] public MeshRenderer renderer;
     [HideInInspector] public PhysicsComponent physics;
@@ -36,9 +40,17 @@ public class Player : StateMachine
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private ParticleSystem deathParticleEffect;
 
+    [HideInInspector] public RotatePlayer rotate;
+    
+    public float Acceleration { get => acceleration; set => acceleration = value; }
+    public float TurnSpeedModifier { get => turnSpeedModifier; set => turnSpeedModifier = value; }
+
     // Methods
     protected override void Awake()
     {
+
+        rotate = GetComponentInChildren<RotatePlayer>();
+
         // Health
         currentHealth = maxHealth; currentHealthRegeneration = healthRegeneration; healthRegenerationTimer = healthRegenerationCooldown; invulnerabilityTimer = invulnerabilityPeriod;
         isDead = false;
@@ -50,7 +62,7 @@ public class Player : StateMachine
         currentEnergy = maxEnergy; currentEnergyRegeneration = energyRegeneration; energyRegenerationTimer = energyRegenerationCooldown;
 
         // GetComponent<T>
-        renderer = GetComponent<MeshRenderer>();
+        renderer = transform.Find("MeshRenderer").GetComponent<MeshRenderer>();
         physics = GetComponent<PhysicsComponent>();
         collision = GetComponent<CollisionDetection>();
         animator = GetComponent<Animator>();        
