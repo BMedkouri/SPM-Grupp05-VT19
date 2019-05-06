@@ -5,16 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player States/PlayerLightState")]
 public class PlayerLightState : OnGroundState
 {
-    [SerializeField] private float attackDamage;
     [SerializeField] private float energyExpenditure; // Energy cost
 
     private Animator anim;
-    private SphereCollider collider;
     private float clipTimer;
-    private GameObject lightChild, Cross;
-    BoxAttackController attackCollisionDetection;
     AnimatorClipInfo[] animClip;
-    [SerializeField] private LayerMask lightAttackMask;
 
 
 
@@ -29,13 +24,8 @@ public class PlayerLightState : OnGroundState
         else
         {
             owner.LoseEnergy(energyExpenditure);
-            lightChild = GameObject.FindGameObjectWithTag("LightAttack");
-            Cross = GameObject.FindGameObjectWithTag("Cross");
-            collider = lightChild.GetComponent<SphereCollider>();
 
-            attackCollisionDetection = lightChild.GetComponent<BoxAttackController>();
-
-            anim = Cross.GetComponentInChildren<Animator>();
+            anim = GameObject.FindGameObjectWithTag("Cross").GetComponent<Animator>();
 
             anim.Play("PlayerLightAnimation");
 
@@ -47,28 +37,6 @@ public class PlayerLightState : OnGroundState
     }
     public override void HandleUpdate()
     {
-
-        if (collider.enabled)
-        {
-           // Physics.OverlapSphere(owner.transform.position, collider.radius, lightAttackMask);
-            Debug.Log("Enable");
-            
-            //attackCollisionDetection.RunCollisionDetection();
-
-            //if (attackCollisionDetection.GetHitInfo().collider != null)
-            //{
-            //    Debug.Log("hit");
-            //    Enemy enemy = attackCollisionDetection.GetEnemy();
-
-            //    Debug.Log("Enemy health before attack: " + enemy.GetCurrentHealth());
-            //    enemy.TakeDamage(attackDamage);
-            //    Debug.Log("Enemy health after attack: " + enemy.GetCurrentHealth());
-
-            //    //Add knockback later
-            //    //enemy.physics.AddVelocity();
-            //}
-        }
-        
         if (clipTimer <= 0)
         {
             if (owner.collision.IsGrounded())
@@ -80,10 +48,7 @@ public class PlayerLightState : OnGroundState
                 owner.Transition<InAirState>();
             }
         }
-        countDown();
-    }
-    public void countDown()
-    {
+
         clipTimer -= Time.deltaTime;
     }
 }

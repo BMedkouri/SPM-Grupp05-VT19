@@ -6,7 +6,6 @@ using UnityEngine;
 public class AttackState : PlayerBaseState
 {
     // Attributes
-    [SerializeField] private float attackDamage;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float staminaExpenditure;
     private float attackTimer;
@@ -26,7 +25,6 @@ public class AttackState : PlayerBaseState
         else
         {
             owner.LoseStamina(staminaExpenditure);
-            GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().RemoveStamina(staminaExpenditure);
 
             attackTimer = attackSpeed;
 
@@ -55,7 +53,5 @@ public class AttackState : PlayerBaseState
         }
 
         attackTimer -= Time.deltaTime;
-
-        base.HandleUpdate();
     }
 }

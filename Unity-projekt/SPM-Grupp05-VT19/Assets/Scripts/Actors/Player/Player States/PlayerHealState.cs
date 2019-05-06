@@ -5,26 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player States/PlayerHealState")]
 public class PlayerHealState : PlayerBaseState
 {
-    [SerializeField] private float healTimer , increaseHealth;
+    [SerializeField] private float healCastDuration, healAmount;
     private float timer;
-    private float healthWhenStartedState;
     public override void Enter()
     {
         base.Enter();
-        timer = healTimer;
-        //healthWhenStartedState = owner.GetCurrentHealth();
+        timer = healCastDuration;
     }
     public override void HandleUpdate()
     {
-        //if(owner.GetCurrentHealth() < healthWhenStartedState)
-        //{
-        //    owner.Transition<OnGroundState>();
-        //}
-        //if(timer <= 0)
-        //{
-        //    owner.RecoverHealth(increaseHealth);
-        //    owner.Transition<OnGroundState>();
-        //}
+        if (timer <= 0)
+        {
+            owner.GetComponent<HealthComponent>().RecoverHealth(healAmount);
+            owner.Transition<OnGroundState>();
+        }
         countdown();
     }
     private void countdown()
