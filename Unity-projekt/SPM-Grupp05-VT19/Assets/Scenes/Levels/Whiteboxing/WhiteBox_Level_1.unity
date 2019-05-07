@@ -7722,6 +7722,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 287329773}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &289035421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3556754960782002540, guid: 371f2d1688f90d3428369ebc7bd20f57,
+    type: 3}
+  m_PrefabInstance: {fileID: 1137935697}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &289035427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289035421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: d5a240f9b846efb41975b3c535f476ad, type: 2}
 --- !u!1001 &292043641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35980,6 +35999,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player with animations
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556754961232226763, guid: 371f2d1688f90d3428369ebc7bd20f57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3556754961232226764, guid: 371f2d1688f90d3428369ebc7bd20f57,
         type: 3}
