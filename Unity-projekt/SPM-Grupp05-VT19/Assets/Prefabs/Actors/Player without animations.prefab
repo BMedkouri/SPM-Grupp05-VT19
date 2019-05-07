@@ -501,6 +501,7 @@ MonoBehaviour:
   energyRegeneration: 1
   energyRegenerationCooldown: 5
   rotate: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!114 &6529661674605677075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,9 +1201,10 @@ GameObject:
   - component: {fileID: 6529661676206239733}
   - component: {fileID: 6529661676206239734}
   - component: {fileID: 6529661676206239735}
+  - component: {fileID: 1646525155872788367}
   m_Layer: 9
   m_Name: MeshRenderer
-  m_TagString: Untagged
+  m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1280,6 +1282,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee8b3bdcdc0a8447b29967c6e09f9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1646525155872788367
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529661676206239739}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ddd4e62ef0dd89f43a3a1b601c6da2b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6529661676323249207
 GameObject:
   m_ObjectHideFlags: 0

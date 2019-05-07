@@ -22,7 +22,7 @@ public class PlayerBaseState : State
 
     public override void Enter()
     {
-        owner.renderer.material = material;
+       // owner.renderer.material = material;
     }
 
     public override void HandleUpdate()
@@ -38,6 +38,8 @@ public class PlayerBaseState : State
     {
         //Takes input from player
         direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        owner.anim.SetFloat("Speed", Input.GetAxis("Horizontal"));
+        owner.anim.SetFloat("Direction", Input.GetAxis("Vertical"));
         Vector3 input = direction;
         //owner.animator.SetFloat("Speed", direction.x);
         //owner.animator.SetFloat("Direction", direction.z);
@@ -56,19 +58,20 @@ public class PlayerBaseState : State
         {
             owner.Transition<AttackState>();
         }
-        if (Input.GetButtonDown("Left Bumper") && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        if (Input.GetAxisRaw("Left Trigger") == 1 && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
         {
             owner.Transition<PlayerParryState>();
         }
-        if(Input.GetAxisRaw("Left Trigger") == 1 && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        if(Input.GetButtonDown("Left Bumper") && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
         {
             owner.Transition<PlayerLightState>();
         }
         //Movement
         if (direction != Vector3.zero)
         {
-
             owner.physics.Accelerate(direction, owner.Acceleration, owner.TurnSpeedModifier);
+            
+            
             //owner.collision.CollisionCheck(direction * input.magnitude * owner.Acceleration * Time.deltaTime);
             //Rotates the players mesh with the direction
             owner.rotate.Rotate(direction);

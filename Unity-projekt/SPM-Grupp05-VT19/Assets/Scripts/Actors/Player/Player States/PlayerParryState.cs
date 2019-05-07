@@ -7,8 +7,9 @@ public class PlayerParryState : OnGroundState
 {
     [SerializeField] private float staminaExpenditure;  // Stamina cost
 
-    private Animator anim;
+    //private Animator anim;
     private float clipTimer;
+    AnimatorClipInfo[] animClip;
 
     public override void Enter()
     {
@@ -20,19 +21,19 @@ public class PlayerParryState : OnGroundState
         }
         else
         {
+            owner.anim.SetTrigger("Block");
             owner.LoseStamina(staminaExpenditure);
-
-            anim = GameObject.FindGameObjectWithTag("Cross").GetComponent<Animator>();
-
-            anim.Play("PlayerParryAnimation");
-            clipTimer = anim.GetCurrentAnimatorClipInfo(0).Length;
+            animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
+            clipTimer = 0.5f;
+                //animClip[0].clip.length;
+            
         }
     }
     public override void HandleUpdate()
     {
         if (clipTimer <= 0)
         {
-            clipTimer = anim.GetCurrentAnimatorClipInfo(0).Length;
+            clipTimer = owner.anim.GetCurrentAnimatorClipInfo(0).Length;
             owner.Transition<OnGroundState>();
         }
 

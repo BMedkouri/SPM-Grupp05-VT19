@@ -18,8 +18,8 @@ public class AttackHandler : MonoBehaviour
     {
         AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
         string clipName = clipInfo[0].clip.name;
-
-        for(int i = 0; i < attacks.Length; i++)
+        Debug.Log(clipName);
+        for (int i = 0; i < attacks.Length; i++)
         {
             if(attacks[i].name.Equals(clipName))
             {

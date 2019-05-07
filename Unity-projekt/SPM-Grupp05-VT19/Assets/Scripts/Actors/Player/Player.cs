@@ -29,6 +29,10 @@ public class Player : StateMachine
     private float currentEnergy, currentEnergyRegeneration, energyRegenerationTimer;
     
     [HideInInspector] public RotatePlayer rotate;
+
+    [HideInInspector] public Animator anim;
+
+    
     
     public float Acceleration { get => acceleration; set => acceleration = value; }
     public float TurnSpeedModifier { get => turnSpeedModifier; set => turnSpeedModifier = value; }
@@ -36,8 +40,9 @@ public class Player : StateMachine
     // Methods
     protected override void Awake()
     {
-    
 
+        anim = GameObject.FindGameObjectWithTag("Animation").GetComponentInChildren<Animator>();
+        Debug.Log(anim.GetCurrentAnimatorClipInfoCount(0));
         rotate = GetComponentInChildren<RotatePlayer>();
         
         // Stamina

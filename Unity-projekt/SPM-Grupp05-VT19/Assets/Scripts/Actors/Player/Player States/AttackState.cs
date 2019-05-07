@@ -9,7 +9,7 @@ public class AttackState : PlayerBaseState
     [SerializeField] private float attackSpeed;
     [SerializeField] private float staminaExpenditure;
     private float attackTimer;
-
+    AnimatorClipInfo[] animClip;
     //Attack
     private Animator animator;
 
@@ -26,11 +26,13 @@ public class AttackState : PlayerBaseState
         {
             owner.LoseStamina(staminaExpenditure);
 
-            attackTimer = attackSpeed;
-
+            owner.anim.SetTrigger("Attack1");
+            animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
+            attackTimer = 0.7f;
+            //animClip[0].clip.length;
             //Plays animation
-            animator = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponentInParent<Animator>();
-            animator.Play("PlayerAttackAnimation");
+            //animator = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponentInParent<Animator>();
+            //animator.Play("Sword And Shield Slash");
             //Se AnimatorClipInfo för lösning
             //animator.SetFloat("playerAttackSpeed", animator.GetCurrentAnimatorClipInfo(0).Length / attackSpeed);
 
