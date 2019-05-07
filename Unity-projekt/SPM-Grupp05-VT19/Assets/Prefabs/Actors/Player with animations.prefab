@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93109ecfd23829249bfe6b5c3c2ea85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraOffset: {x: 1.2, y: 1.5, z: -4}
+  cameraOffset: {x: 0.8, y: 0.7, z: -2}
   yAxisJoystickSensitivity: 1
   xAxisJoystickSensitivity: 2
   yAxisInverted: 0
@@ -1431,6 +1431,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 598679087835902092}
     m_Modifications:
+    - target: {fileID: 4395866732398217079, guid: 2c0a1cf853059cc4b92dd241eacbbc78,
+        type: 3}
+      propertyPath: m_Name
+      value: Sword And Shield Slash
+      objectReference: {fileID: 0}
     - target: {fileID: 69260371959770691, guid: 2c0a1cf853059cc4b92dd241eacbbc78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1485,11 +1490,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4395866732398217079, guid: 2c0a1cf853059cc4b92dd241eacbbc78,
-        type: 3}
-      propertyPath: m_Name
-      value: Sword And Shield Slash
       objectReference: {fileID: 0}
     - target: {fileID: 2342830006571931268, guid: 2c0a1cf853059cc4b92dd241eacbbc78,
         type: 3}
@@ -1569,6 +1569,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3556754961232226764}
     m_Modifications:
+    - target: {fileID: 100000, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
+      propertyPath: m_Name
+      value: 2HandedSword_Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
+      propertyPath: m_TagString
+      value: Animation
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1612,26 +1620,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400130, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 5.1239123
-      objectReference: {fileID: 0}
-    - target: {fileID: 400130, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -171.3831
-      objectReference: {fileID: 0}
-    - target: {fileID: 400130, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -156.09627
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
-      propertyPath: m_Name
-      value: 2HandedSword_Attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
-      propertyPath: m_TagString
-      value: Animation
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
       propertyPath: m_Controller
@@ -1732,6 +1720,18 @@ PrefabInstance:
     - target: {fileID: 400128, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400130, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 5.1239123
+      objectReference: {fileID: 0}
+    - target: {fileID: 400130, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -171.3831
+      objectReference: {fileID: 0}
+    - target: {fileID: 400130, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -156.09627
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
