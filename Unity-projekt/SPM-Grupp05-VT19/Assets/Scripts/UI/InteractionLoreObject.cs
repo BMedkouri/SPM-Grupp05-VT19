@@ -7,47 +7,40 @@ using TMPro;
 public class InteractionLoreObject : MonoBehaviour
 {
     public bool displayInfo;
-    
+
     public TextMeshProUGUI textDisplay;
-    
+
     private bool hasClickedY = false;
-  
+
     public GameObject myButton1;
     public GameObject darkCanvas;
     public GameObject loreText;
 
 
-   
+
 
     void Start()
     {
-    
-         myButton1.SetActive(false);
-         darkCanvas.SetActive(false);
-         loreText.SetActive(false);
+        myButton1.SetActive(false);
+        darkCanvas.SetActive(false);
+        loreText.SetActive(false);
 
-       
-
-        
-         
     }
-        
+
     void Update()
     {
 
-       
 
-        if(Input.GetKeyDown(KeyCode.Joystick1Button3) && displayInfo == true)
+
+        if (Input.GetKeyDown(KeyCode.Joystick1Button3) && displayInfo == true)
         {
-            hasClickedY = true;         
-
+            hasClickedY = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2)) {
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2))
+        {
             hasClickedY = false;
             darkCanvas.SetActive(false);
-
-            
         }
 
         if (hasClickedY)
@@ -55,10 +48,6 @@ public class InteractionLoreObject : MonoBehaviour
             darkCanvas.SetActive(true);
             loreText.SetActive(true);
             myButton1.SetActive(false);
-
-            textDisplay.text = "Spooky Statue";
-
-
         }
         else
         {
@@ -72,7 +61,6 @@ public class InteractionLoreObject : MonoBehaviour
         {
             displayInfo = true;
             myButton1.SetActive(true);
-
         }
     }
 
@@ -81,6 +69,6 @@ public class InteractionLoreObject : MonoBehaviour
         displayInfo = false;
         myButton1.SetActive(false);
     }
-         
- 
+
+
 }
