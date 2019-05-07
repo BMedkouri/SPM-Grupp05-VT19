@@ -39,11 +39,8 @@ public class EnemyCombatState : EnemyBaseState
     {
         if (attackTimer <= 0)
         {
-            
-
-                owner.Transition<EnemyAttackState>();
-                //owner.player.TakeDamage(attackDamage);
-            
+            owner.Transition<EnemyAttackState>();
+               
         }
         if(attackTimer < 0.5f && attackTimer > 0.01f)
         {

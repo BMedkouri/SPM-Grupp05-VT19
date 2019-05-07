@@ -26,8 +26,9 @@ public class AttackState : PlayerBaseState
         {
             owner.LoseStamina(staminaExpenditure);
 
-            owner.anim.SetTrigger("Attack1");
-            animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
+            owner.anim.SetTrigger("SwordAndShieldSlash1");
+            owner.GetComponentInChildren<AttackHandler>().SetAttackName("SwordAndShieldSlash1");
+            //animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
             attackTimer = 0.7f;
             //animClip[0].clip.length;
             //Plays animation

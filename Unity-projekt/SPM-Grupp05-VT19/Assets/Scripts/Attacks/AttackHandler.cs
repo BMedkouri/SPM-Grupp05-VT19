@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackHandler : MonoBehaviour
 {
     [SerializeField] private GameObject[] attacks;
+    private string attackName;
     private int index;
 
     private Animator animator;
@@ -16,12 +17,9 @@ public class AttackHandler : MonoBehaviour
 
     private void FindIndex()
     {
-        AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
-        string clipName = clipInfo[0].clip.name;
-        Debug.Log(clipName);
         for (int i = 0; i < attacks.Length; i++)
         {
-            if(attacks[i].name.Equals(clipName))
+            if(attacks[i].name.Equals(attackName))
             {
                 index = i;
             }
@@ -52,5 +50,11 @@ public class AttackHandler : MonoBehaviour
         {
             //New debug event.
         }
+    }
+
+    public void SetAttackName(string attackName)
+    {
+        this.attackName = attackName;
+        FindIndex();
     }
 }

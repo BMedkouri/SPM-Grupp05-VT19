@@ -41,8 +41,7 @@ public class Player : StateMachine
     protected override void Awake()
     {
 
-        anim = GameObject.FindGameObjectWithTag("Animation").GetComponentInChildren<Animator>();
-        Debug.Log(anim.GetCurrentAnimatorClipInfoCount(0));
+        anim = GameObject.FindGameObjectWithTag("Animation").GetComponent<Animator>();
         rotate = GetComponentInChildren<RotatePlayer>();
         
         // Stamina

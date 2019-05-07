@@ -24,10 +24,11 @@ public class PlayerLightState : OnGroundState
         {
             owner.LoseEnergy(energyExpenditure);
 
-            owner.anim.SetTrigger("LightAttack");
-            animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
+            owner.anim.SetTrigger("HolyNova");
+            owner.GetComponentInChildren<AttackHandler>().SetAttackName("HolyNova");
+            //animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
             clipTimer = 2f; 
-                //animClip[0].clip.length;
+            //animClip[0].clip.length;
         }
     }
     public override void HandleUpdate()
