@@ -7,10 +7,10 @@ using TMPro;
 public class InteractionLoreObject : MonoBehaviour
 {
     public bool displayInfo;
+    private bool hasClickedY = false;
 
     public TextMeshProUGUI textDisplay;
 
-    private bool hasClickedY = false;
 
     public GameObject myButton1;
     public GameObject darkCanvas;

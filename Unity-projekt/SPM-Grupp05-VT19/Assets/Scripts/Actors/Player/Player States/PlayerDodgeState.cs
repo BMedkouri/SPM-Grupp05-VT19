@@ -8,9 +8,12 @@ public class PlayerDodgeState : OnGroundState
     [SerializeField] private float dodgeTimer;
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float staminaExpenditure; // Stamina cost
+    private float clipTimer;
+    AnimatorClipInfo[] animClip;
+
 
     private float countDown;
-    Vector3 oldVelocity;
+    //Vector3 oldVelocity;
     public override void Enter()
     {
         base.Enter();
@@ -25,10 +28,12 @@ public class PlayerDodgeState : OnGroundState
 
             //Debug.Log(dodgeTimer);
             //Debug.Log("Enter DodgeState");
-            countDown = dodgeTimer;
-            oldVelocity = owner.physics.GetVelocity();
+            //oldVelocity = owner.physics.GetVelocity();
 
             owner.physics.AddVelocity(dodgeSpeed * owner.physics.GetDirection());
+            owner.anim.SetTrigger("Dodge");
+            animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
+            countDown = animClip[0].clip.length;
         }
     }
     public override void HandleUpdate()
@@ -36,12 +41,12 @@ public class PlayerDodgeState : OnGroundState
         if (countDown <= 0)
         {
             //Debug.Log("dodgetimer < 0");
-            owner.physics.SetVelocity(oldVelocity);
+            //owner.physics.SetVelocity(oldVelocity);
             owner.Transition<OnGroundState>();
         }
-        DodgeTimer();
+        CountDown();
     }
-    public void DodgeTimer()
+    public void CountDown()
     {
         
         countDown -= Time.deltaTime;

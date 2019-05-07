@@ -6,8 +6,7 @@ using UnityEngine;
 public class PlayerLightState : OnGroundState
 {
     [SerializeField] private float energyExpenditure; // Energy cost
-
-    private Animator anim;
+    
     private float clipTimer;
     AnimatorClipInfo[] animClip;
 
@@ -25,14 +24,10 @@ public class PlayerLightState : OnGroundState
         {
             owner.LoseEnergy(energyExpenditure);
 
-            anim = GameObject.FindGameObjectWithTag("Cross").GetComponent<Animator>();
-
-            anim.Play("PlayerLightAnimation");
-
-            animClip = this.anim.GetCurrentAnimatorClipInfo(0);
-
-            clipTimer = 1f;
-            //clipTimer = animClip[0].clip.length;
+            owner.anim.SetTrigger("LightAttack");
+            animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
+            clipTimer = 2f; 
+                //animClip[0].clip.length;
         }
     }
     public override void HandleUpdate()
