@@ -13,7 +13,7 @@ public class PlayerDodgeState : OnGroundState
 
 
     private float countDown;
-    Vector3 oldVelocity;
+    //Vector3 oldVelocity;
     public override void Enter()
     {
         base.Enter();
@@ -28,7 +28,7 @@ public class PlayerDodgeState : OnGroundState
 
             //Debug.Log(dodgeTimer);
             //Debug.Log("Enter DodgeState");
-            oldVelocity = owner.physics.GetVelocity();
+            //oldVelocity = owner.physics.GetVelocity();
 
             owner.physics.AddVelocity(dodgeSpeed * owner.physics.GetDirection());
             owner.anim.SetTrigger("Dodge");
@@ -41,7 +41,7 @@ public class PlayerDodgeState : OnGroundState
         if (countDown <= 0)
         {
             //Debug.Log("dodgetimer < 0");
-            owner.physics.SetVelocity(oldVelocity);
+            //owner.physics.SetVelocity(oldVelocity);
             owner.Transition<OnGroundState>();
         }
         CountDown();

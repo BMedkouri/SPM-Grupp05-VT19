@@ -56,7 +56,7 @@ public class Player : StateMachine
         GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().SetMaxEnergy(maxEnergy);
 
         // GetComponent<T>
-        renderer = transform.Find("MeshRenderer").GetComponent<MeshRenderer>();
+        //renderer = transform.Find("MeshRenderer").GetComponent<MeshRenderer>();
         physics = GetComponent<PhysicsComponent>();
         collision = GetComponent<CollisionDetection>();
         animator = GetComponent<Animator>();        

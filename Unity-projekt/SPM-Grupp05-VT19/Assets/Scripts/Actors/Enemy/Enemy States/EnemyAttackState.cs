@@ -13,7 +13,7 @@ public class EnemyAttackState : EnemyCombatState
     {
         anim = owner.GetComponentInChildren<Animator>();
         anim.Play("EnemyAttackAnimation");
-        clipTimer = 1;
+        clipTimer = 1f;
 //anim.GetCurrentAnimatorClipInfo(0).Length;
         base.Enter();
     }
