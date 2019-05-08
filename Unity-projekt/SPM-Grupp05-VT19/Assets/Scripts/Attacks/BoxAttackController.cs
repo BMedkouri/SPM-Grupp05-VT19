@@ -31,7 +31,7 @@ public class BoxAttackController : AttackController
 
             foreach (Collider ac in actorsHit)
             {
-                ac.GetComponent<HealthComponent>().TakeDamage(attackDamage);
+                ac.GetComponent<HealthComponent>().TakeDamage(attackDamage + ac.GetComponent<ActiveWeapon>().GetActiveWeaponDamage());
             }
         }
     }
