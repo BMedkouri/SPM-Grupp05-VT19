@@ -8,7 +8,6 @@ public class Player : StateMachine
 
     // Physics
     [SerializeField] private float acceleration;            // 14f
-    [SerializeField] private float turnSpeedModifier;       // 5f
 
     // Components
     [HideInInspector] public MeshRenderer renderer;
@@ -31,7 +30,6 @@ public class Player : StateMachine
     [HideInInspector] public RotatePlayer rotate;
     
     public float Acceleration { get => acceleration; set => acceleration = value; }
-    public float TurnSpeedModifier { get => turnSpeedModifier; set => turnSpeedModifier = value; }
 
     // Methods
     protected override void Awake()

@@ -53,7 +53,7 @@ public class PhysicsComponent : MonoBehaviour
         }
     }
 
-    public void Accelerate(Vector3 direction, float acceleration, float turnSpeedModifier)
+    public void Accelerate(Vector3 direction, float acceleration)
     {
         this.direction = direction;
         if (direction.magnitude > 1)

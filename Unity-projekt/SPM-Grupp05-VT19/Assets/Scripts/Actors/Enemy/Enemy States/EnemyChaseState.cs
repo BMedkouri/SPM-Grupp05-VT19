@@ -35,7 +35,7 @@ public class EnemyChaseState : EnemyBaseState
     private void ChasePlayer()
     {
         Vector3 direction = (owner.player.transform.position - owner.transform.position) / owner.GetDistance();
-        owner.physics.Accelerate(direction, movementSpeed, turnSpeedModifier);
+        owner.physics.Accelerate(direction, movementSpeed);
     }
    
 }

@@ -18,7 +18,6 @@ public class HealthComponent : MonoBehaviour
     [SerializeField] private ParticleSystem onHitParticleEffect;
     [SerializeField] private AudioSource deathSoundEffect;
     [SerializeField] private ParticleSystem deathParticleEffect;
-    [SerializeField] private string loadLevel;
 
     private void Awake()
     {

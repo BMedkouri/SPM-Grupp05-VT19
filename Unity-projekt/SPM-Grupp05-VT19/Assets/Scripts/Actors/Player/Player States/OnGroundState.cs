@@ -24,7 +24,7 @@ public class OnGroundState : PlayerBaseState
 
         if (Input.GetButton("Xbox Y"))
         {
-            owner.Transition<PlayerHealState>();
+            //owner.Transition<PlayerHealState>();
         }
 
         if (Input.GetButton("Xbox B"))

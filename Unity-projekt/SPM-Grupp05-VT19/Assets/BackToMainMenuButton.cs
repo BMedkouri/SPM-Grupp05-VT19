@@ -11,11 +11,9 @@ public class BackToMainMenuButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     if(Input.GetKeyDown(KeyCode.Joystick1Button2))
+     if(Input.GetKeyDown(KeyCode.X))
         {
             SceneManager.LoadScene(loadLevel);
         }
-
-        
     }
 }
