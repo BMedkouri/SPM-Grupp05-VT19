@@ -64,6 +64,19 @@ Transform:
   m_Father: {fileID: 3556754960707201149}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &840021837564534498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3556754959622778041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ebdf2c6fd7761d45ae46dd9b8cc3a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  excalibur: {fileID: 4713989705330292822}
 --- !u!114 &3556754960162905931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +89,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee8b3bdcdc0a8447b29967c6e09f9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5903974764323172550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3556754959622778041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf7c50bf99734d4b86708688d33ad81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeWeapon: {fileID: 3556754960954207910}
 --- !u!114 &7962892024149953159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +399,6 @@ GameObject:
   - component: {fileID: 3556754961232226765}
   - component: {fileID: 3556754961232226770}
   - component: {fileID: 3556754961232226766}
-  - component: {fileID: 2419943824978899463}
   m_Layer: 9
   m_Name: Player with animations
   m_TagString: Player
@@ -442,6 +467,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6784203a79eeb544a4502d5d7da80f6, type: 2}
   - {fileID: 11400000, guid: 7de4e9417b0c1474292d4c356632dff1, type: 2}
   - {fileID: 11400000, guid: 8a5b2bcb08bb514429542aed7d91e6c5, type: 2}
+  - {fileID: 11400000, guid: f7a3ba6ba678a9341bcb771ac1de439e, type: 2}
   currentState: {fileID: 0}
   acceleration: 14
   turnSpeedModifier: 5
@@ -456,7 +482,6 @@ MonoBehaviour:
   energyRegeneration: 1
   energyRegenerationCooldown: 5
   rotate: {fileID: 0}
-  anim: {fileID: 0}
 --- !u!114 &3556754961232226765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,19 +541,7 @@ MonoBehaviour:
     type: 3}
   deathParticleEffect: {fileID: 198220379293217532, guid: d8f0099df63275647a8bcf646df1ca00,
     type: 3}
---- !u!114 &2419943824978899463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3556754961232226763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf7c50bf99734d4b86708688d33ad81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeWeapon: {fileID: 3556754960954207910}
+  loadLevel: 
 --- !u!1 &3884554665944774676
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,6 +773,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5459134238589263994, guid: a39f58bcd563a30419b1ef10270b214b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Excalibur
+      objectReference: {fileID: 0}
     - target: {fileID: 5459134238589631578, guid: a39f58bcd563a30419b1ef10270b214b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -817,6 +835,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a39f58bcd563a30419b1ef10270b214b, type: 3}
+--- !u!1 &4713989705330292822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5459134238589263994, guid: a39f58bcd563a30419b1ef10270b214b,
+    type: 3}
+  m_PrefabInstance: {fileID: 768366229743622188}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1196617961977853558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1001,7 +1025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.878354e-10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1013,15 +1037,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -3.83636e-24
+      value: -1.5099074e-24
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000006686674
+      value: 0.000000008322377
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000034100523
+      value: -0.000000034451904
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 6d4105a687508ca44936c52e85a40002, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1406,6 +1430,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459134238589263994, guid: d2fc6b46cf1d5c2449ab887f43f52280,
+        type: 3}
+      propertyPath: m_TagString
+      value: Rusty Sword
       objectReference: {fileID: 0}
     - target: {fileID: 5459134238589631578, guid: d2fc6b46cf1d5c2449ab887f43f52280,
         type: 3}

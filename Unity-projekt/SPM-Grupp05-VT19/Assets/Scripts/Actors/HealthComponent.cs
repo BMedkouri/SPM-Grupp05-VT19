@@ -98,9 +98,6 @@ public class HealthComponent : MonoBehaviour
                 DeathParticle = deathParticleEffect
             };
             deathEvent.FireEvent();
-
-            SceneManager.LoadScene(loadLevel);
-            Debug.Log("Enemy dead");
         }
     }
 }

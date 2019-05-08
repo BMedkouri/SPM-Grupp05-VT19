@@ -21,9 +21,9 @@ public class PlayerParryState : OnGroundState
         }
         else
         {
-            owner.anim.SetTrigger("Block");
+            owner.animator.SetTrigger("Block");
             owner.LoseStamina(staminaExpenditure);
-            animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
+            animClip = owner.animator.GetCurrentAnimatorClipInfo(0);
             clipTimer = 0.5f;
                 //animClip[0].clip.length;
             
@@ -33,7 +33,7 @@ public class PlayerParryState : OnGroundState
     {
         if (clipTimer <= 0)
         {
-            clipTimer = owner.anim.GetCurrentAnimatorClipInfo(0).Length;
+            clipTimer = owner.animator.GetCurrentAnimatorClipInfo(0).Length;
             owner.Transition<OnGroundState>();
         }
 

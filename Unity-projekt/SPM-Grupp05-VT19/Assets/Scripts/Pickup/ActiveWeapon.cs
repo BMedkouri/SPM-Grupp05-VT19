@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActiveWeapon : MonoBehaviour
 {
     // Active weapon
-    [SerializeField] private GameObject activeWeapon;
+    [SerializeField] private GameObject activeWeapon; 
 
     public GameObject GetActiveWeapon()
     {

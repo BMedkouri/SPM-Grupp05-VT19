@@ -24,7 +24,7 @@ public class PlayerLightState : OnGroundState
         {
             owner.LoseEnergy(energyExpenditure);
 
-            owner.anim.SetTrigger("HolyNova");
+            owner.animator.SetTrigger("HolyNova");
             owner.GetComponentInChildren<AttackHandler>().SetAttackName("HolyNova");
             //animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
             clipTimer = 2f; 
