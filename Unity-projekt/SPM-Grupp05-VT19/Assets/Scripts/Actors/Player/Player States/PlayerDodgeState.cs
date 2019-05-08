@@ -31,8 +31,8 @@ public class PlayerDodgeState : OnGroundState
             //oldVelocity = owner.physics.GetVelocity();
 
             owner.physics.AddVelocity(dodgeSpeed * owner.physics.GetDirection());
-            owner.anim.SetTrigger("Dodge");
-            animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
+            owner.animator.SetTrigger("Dodge");
+            animClip = owner.animator.GetCurrentAnimatorClipInfo(0);
             countDown = dodgeTimer;
         }
     }

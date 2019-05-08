@@ -37,8 +37,8 @@ public class PlayerBaseState : State
     {
         //Takes input from player
         direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        owner.anim.SetFloat("Speed", Input.GetAxis("Horizontal"));
-        owner.anim.SetFloat("Direction", Input.GetAxis("Vertical"));
+        owner.animator.SetFloat("Speed", Input.GetAxis("Horizontal"));
+        owner.animator.SetFloat("Direction", Input.GetAxis("Vertical"));
         Vector3 input = direction;
         //owner.animator.SetFloat("Speed", direction.x);
         //owner.animator.SetFloat("Direction", direction.z);

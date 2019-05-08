@@ -15,7 +15,7 @@ public class Player : StateMachine
     [HideInInspector] public PhysicsComponent physics;
     [HideInInspector] public CollisionDetection collision;
     [HideInInspector] public Animator animator;
-    
+
     // Stamina attributes
     [SerializeField] private float maxStamina; // 100f
     [SerializeField] private float staminaRegeneration; // 5f
@@ -29,10 +29,6 @@ public class Player : StateMachine
     private float currentEnergy, currentEnergyRegeneration, energyRegenerationTimer;
     
     [HideInInspector] public RotatePlayer rotate;
-
-    [HideInInspector] public Animator anim;
-
-    
     
     public float Acceleration { get => acceleration; set => acceleration = value; }
     public float TurnSpeedModifier { get => turnSpeedModifier; set => turnSpeedModifier = value; }
@@ -40,10 +36,6 @@ public class Player : StateMachine
     // Methods
     protected override void Awake()
     {
-
-        anim = GameObject.FindGameObjectWithTag("Animation").GetComponent<Animator>();
-        rotate = GetComponentInChildren<RotatePlayer>();
-        
         // Stamina
         currentStamina = maxStamina; currentStaminaRegeneration = staminaRegeneration; staminaRegenerationTimer = staminaRegenerationCooldown;
 
@@ -58,7 +50,8 @@ public class Player : StateMachine
         //renderer = transform.Find("MeshRenderer").GetComponent<MeshRenderer>();
         physics = GetComponent<PhysicsComponent>();
         collision = GetComponent<CollisionDetection>();
-        animator = GetComponent<Animator>();        
+        animator = GameObject.FindGameObjectWithTag("Animation").GetComponent<Animator>();
+        rotate = GetComponentInChildren<RotatePlayer>();
 
         base.Awake();
     }
