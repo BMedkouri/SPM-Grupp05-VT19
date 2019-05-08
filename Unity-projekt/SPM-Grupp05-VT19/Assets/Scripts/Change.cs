@@ -9,6 +9,7 @@ public class Change : MonoBehaviour
 //	public Animator animator;
 
 	void OnTriggerEnter(Collider other) {
+        Debug.Log("enter");
 		if(other.CompareTag("Player")) {
 			SceneManager.LoadScene(loadLevel);
 		

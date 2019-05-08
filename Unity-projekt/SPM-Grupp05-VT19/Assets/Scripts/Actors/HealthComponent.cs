@@ -77,7 +77,7 @@ public class HealthComponent : MonoBehaviour
 
             DamageEvent damageEvent = new DamageEvent
             {
-                damage = damage,
+                Damage = damage,
                 DamagedGameObject = gameObject,
                 DamagedSoundEffect = onHitSoundEffect,
                 DamagedParticleSystem = onHitParticleEffect
