@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * @author Bilal El Medkouri
+ * @co-author Anders Ragnar
+ * 
+ * This class applies physics on the object it's applied to.
+ */
+
 public class PhysicsComponent : MonoBehaviour
 {
     [SerializeField] private float gravity; // 9.8f
@@ -11,12 +18,18 @@ public class PhysicsComponent : MonoBehaviour
 
     [SerializeField] private Vector3 velocity, normalForce; //For testing
     private Vector3 direction;
-
+    
+    /// <summary>
+    /// This sets all our vectors to zero, it's a failsafe for us.
+    /// </summary>
     private void Awake()
     {
         velocity = Vector3.zero; normalForce = Vector3.zero;
     }
 
+    /// <summary>
+    /// Updates the gravity and airresistance on all the objects it's applied to.
+    /// </summary>
     private void Update()
     {
         ApplyGravity();
@@ -36,8 +49,10 @@ public class PhysicsComponent : MonoBehaviour
         //Apply air resistance
         velocity *= Mathf.Pow(airResistanceCoefficient, Time.deltaTime);
     }
-
-    //Change friction to work on movable objects, instead of current movingPlatform fix
+    
+    /// <summary>
+    /// Change friction to work on movable objects, instead of current movingPlatform fix
+    /// </summary>
     private void ApplyFriction()
     {
         float staticFriction = Functions.CalculateFriction(staticFrictionCoefficient, normalForce);
@@ -52,7 +67,14 @@ public class PhysicsComponent : MonoBehaviour
             velocity += -velocity.normalized * dynamicFriction;
         }
     }
-
+    /// <summary>
+    /// This Accelerates the object in any direction
+    /// </summary>
+    /// <param name="direction"></param>
+    /// This is the direction the object should accelerate in.
+    /// 
+    /// <param name="acceleration"></param>
+    /// What speed the player accelerats in.
     public void Accelerate(Vector3 direction, float acceleration)
     {
         this.direction = direction;
@@ -66,6 +88,11 @@ public class PhysicsComponent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is a method that is saved from the first assignment. 
+    /// </summary>
+    /// <param name="deceleration"></param>
+    /// What speed the object should decelerate in.
     public void Decelerate(float deceleration)
     {
         if (Mathf.Abs(velocity.x) < deceleration * Time.deltaTime)
@@ -79,11 +106,21 @@ public class PhysicsComponent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This makes the object jump.
+    /// </summary>
+    /// <param name="jumpHeight"></param>
+    /// Is the hight the objects are going to jump.
     public void Jump(float jumpHeight)
     {
         velocity += Vector3.up * jumpHeight;
     }
 
+    /// <summary>
+    /// Applies normalforce to the object
+    /// </summary>
+    /// <param name="normal"></param>
+    /// 
     public void CalculateAndApplyForces(Vector3 normal)
     {
         //Calculate normal force
@@ -95,7 +132,7 @@ public class PhysicsComponent : MonoBehaviour
         //Apply friction
         ApplyFriction();
     }
-
+    
     public Vector3 GetVelocity()
     {
         return velocity;

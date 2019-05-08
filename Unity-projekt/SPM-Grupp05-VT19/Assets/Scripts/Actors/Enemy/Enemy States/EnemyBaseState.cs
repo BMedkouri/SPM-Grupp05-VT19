@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * @author Anders Ragnar
+ * @co-author Bilal El Medkouri
+ */
 public class EnemyBaseState : State
 {
-    [SerializeField] protected float turnSpeedModifier;
     [SerializeField] protected float movementSpeed;
     [SerializeField] protected Material material;
 
