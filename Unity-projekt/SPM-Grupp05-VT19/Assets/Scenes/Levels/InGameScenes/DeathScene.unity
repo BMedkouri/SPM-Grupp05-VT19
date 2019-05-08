@@ -1323,9 +1323,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1674468238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0185894a119f5c240b69b355d5516fc4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6da08f871b3a0b9498fc801592d1d23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadLevel: MainMenu
 --- !u!114 &1674468241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1367,7 +1368,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1674468240}
-        m_MethodName: ClickQuitGame
+        m_MethodName: OnClickStartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

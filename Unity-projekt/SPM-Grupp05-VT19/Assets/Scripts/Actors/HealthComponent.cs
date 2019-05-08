@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthComponent : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class HealthComponent : MonoBehaviour
     [SerializeField] private ParticleSystem onHitParticleEffect;
     [SerializeField] private AudioSource deathSoundEffect;
     [SerializeField] private ParticleSystem deathParticleEffect;
+    [SerializeField] private string loadLevel;
 
     private void Awake()
     {
@@ -96,6 +98,9 @@ public class HealthComponent : MonoBehaviour
                 DeathParticle = deathParticleEffect
             };
             deathEvent.FireEvent();
+
+            SceneManager.LoadScene(loadLevel);
+            Debug.Log("Enemy dead");
         }
     }
 }
