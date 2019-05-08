@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*
+ * @author Bilal El Medkouri
+ * @author Anders Ragnar
+ */
 public class Enemy : StateMachine
 {
     
@@ -16,6 +20,9 @@ public class Enemy : StateMachine
     
     [SerializeField] private GameObject[] patrolLocations;
 
+    /// <summary>
+    /// Sets almost all component on the enemy.
+    /// </summary>
     protected override void Awake()
     {
     	renderer = GetComponent<MeshRenderer>();
@@ -33,6 +40,11 @@ public class Enemy : StateMachine
         Destroy(gameObject.transform.parent.gameObject);
     }
 
+    /// <summary>
+    /// Checks if the enemy can see the player, to prevent chasing when player is on the other side of the wall.
+    /// </summary>
+    /// <returns></returns>
+    /// returns true or falls if it can see the player or not.
     public bool CanSeePlayer()
     {
         if (player != null)
@@ -40,6 +52,11 @@ public class Enemy : StateMachine
         return false;
     }
 
+    /// <summary>
+    /// Gets the distance between the player and the enemy
+    /// </summary>
+    /// <returns></returns>
+    /// returns the distance between the player and the enemy
     public float GetDistance()
     {
         if(player != null)
@@ -49,6 +66,12 @@ public class Enemy : StateMachine
             return 0f;
         
     }
+
+    /// <summary>
+    /// Gets the array of points the enemy patroles between.
+    /// </summary>
+    /// <returns></returns>
+    /// returns an array with locations.
     public Vector3[] GetMovePoints()
     {
         Vector3[] movePoints = new Vector3[patrolLocations.Length];

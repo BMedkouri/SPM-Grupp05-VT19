@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * @autor Anders Ragnar
+ * @co-author Bilal El Medkouri
+ */
 [CreateAssetMenu(menuName = "Enemy States/EnemyAttackState")]
 public class EnemyAttackState : EnemyCombatState
 {
@@ -9,6 +13,9 @@ public class EnemyAttackState : EnemyCombatState
     private float clipTimer;
     AnimatorClipInfo[] animClip;
 
+    /// <summary>
+    /// Gets the animation and plays it.
+    /// </summary>
     public override void Enter()
     {
         anim = owner.GetComponentInChildren<Animator>();
@@ -17,6 +24,11 @@ public class EnemyAttackState : EnemyCombatState
 //anim.GetCurrentAnimatorClipInfo(0).Length;
         base.Enter();
     }
+
+    /// <summary>
+    /// Counts down so you can't do other this at the same time as you attack.
+    /// That's why it is missing base.HandelUpdate();.
+    /// </summary>
     public override void HandleUpdate()
     {
         
@@ -27,10 +39,6 @@ public class EnemyAttackState : EnemyCombatState
 
             owner.Transition<EnemyCombatState>();
         }
-        countDown();
-    }
-    public void countDown()
-    {
         clipTimer -= Time.deltaTime;
     }
 }
