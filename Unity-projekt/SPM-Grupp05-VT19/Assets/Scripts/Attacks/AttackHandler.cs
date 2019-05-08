@@ -1,20 +1,24 @@
-﻿using System.Collections;
+﻿//Main author: Bilal El Medkouri
+//Secondary author: Anders Ragnar
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class holds an array of an actors attacks in it.
+/// It then shoots off events based on their indexes, when called upon from an animation event.
+/// This class mostly holds objects and makes sure that the correct attack is fired, the actual logic for collision etc. is in AttackController.
+/// </summary>
 public class AttackHandler : MonoBehaviour
 {
     [SerializeField] private GameObject[] attacks;
     private string attackName;
     private int index;
 
-    private Animator animator;
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-
+    /// <summary>
+    /// This method compares attackName to the items in the array, to find the corresponding index.
+    /// </summary>
     private void FindIndex()
     {
         for (int i = 0; i < attacks.Length; i++)

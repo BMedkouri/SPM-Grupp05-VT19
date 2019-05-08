@@ -9,9 +9,7 @@ public class PlayerLightState : OnGroundState
     
     private float clipTimer;
     AnimatorClipInfo[] animClip;
-
-
-
+    
     public override void Enter()
     {
         base.Enter();

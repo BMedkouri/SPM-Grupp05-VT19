@@ -1,7 +1,14 @@
-﻿using System.Collections;
+﻿//Main author: Bilal El Medkouri
+//Secondary author: Anders Ragnar
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script in charge of moving and rotating the camera.
+/// </summary>
 public class CameraController : MonoBehaviour
 {
     private Vector2 cameraRotation;
@@ -9,7 +16,7 @@ public class CameraController : MonoBehaviour
     private RaycastHit hitInfo;
     Vector3 cameraMovement;
 
-    [SerializeField] private Vector3 cameraOffset;      // 1.2, 1.5, -4
+    [SerializeField] private Vector3 cameraOffset;
     [SerializeField] private float yAxisJoystickSensitivity, xAxisJoystickSensitivity;
     [SerializeField] private bool yAxisInverted, xAxisInverted;
     
@@ -17,23 +24,30 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float maximumXRotation;
     [SerializeField] private LayerMask geometryLayer;
     
-
+    /// <summary>
+    /// Gets the spherecollider that makes sure that our camera doesn't pass through walls.
+    /// Sets our camera's initial movement vector to 0.
+    /// </summary>
     private void Awake()
     {
-        cameraRotation = Vector2.zero;
         sphereCollider = GetComponent<SphereCollider>();
         cameraMovement = Vector3.zero;
-        //yAxisInverted = false;
-        //xAxisInverted = false;
     }
 
+    /// <summary>
+    /// Calls on our CameraMovement() script.
+    /// </summary>
     private void Update()
     {
-        
         //Moves camera
         CameraMovement();
     }
 
+    /// <summary>
+    /// Checks the options for inverted camera controls.
+    /// Rotates the camera based on input, and whether or not axes have been inverted.
+    /// Checks for collision via CameraCollisionCheck() and then moves the camera.
+    /// </summary>
     private void CameraMovement()
     {
         int yAxisInvertion = yAxisInverted ? -1 : 1;
@@ -61,6 +75,10 @@ public class CameraController : MonoBehaviour
         transform.position = cameraMovement + transform.parent.position;
     }
 
+    /// <summary>
+    /// Works pretty similarly to our CollisionDetection script. 
+    /// Checks for collision and moves the camera if a collision has been detected.
+    /// </summary>
     private void CameraCollisionCheck()
     {
         int escape = 100;

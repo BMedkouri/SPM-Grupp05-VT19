@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Bilal El Medkouri
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +15,4 @@ public class PickUpState : OnGroundState
     }
 
     public override void HandleUpdate() { }
-
-    public override void Exit() { }
 }

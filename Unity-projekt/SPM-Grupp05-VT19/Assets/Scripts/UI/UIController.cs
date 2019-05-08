@@ -1,8 +1,14 @@
-﻿using System.Collections;
+﻿//Author: Bilal El Medkouri
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Script in charge of changing the UI elements.
+/// It used to update all values using an Update(), but now it only updates an element once it is changed.
+/// </summary>
 public class UIController : MonoBehaviour
 {
     // Health
@@ -20,6 +26,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Slider energySlider;
     private float currentEnergy, maxEnergy;
 
+    
     private void UpdateHealth()
     {
         // Text setter

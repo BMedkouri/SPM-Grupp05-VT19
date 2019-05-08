@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Main author: Bilal El Medkouri
+//Secondary author: Anders Ragnar
+
+using System;
 using UnityEngine;
 
 public abstract class Event<T> where T : Event<T>

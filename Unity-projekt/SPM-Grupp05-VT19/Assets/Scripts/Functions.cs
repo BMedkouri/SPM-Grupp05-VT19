@@ -1,7 +1,12 @@
-﻿using System.Collections;
+﻿//Author: Bilal El Medkouri
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class for holding our functions.
+/// </summary>
 public static class Functions
 {
     public static Vector3 CalculateNormalForce(Vector3 velocity, Vector3 normal)
