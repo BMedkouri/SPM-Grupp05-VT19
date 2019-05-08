@@ -34,7 +34,5 @@ public class EnemyChaseState : EnemyBaseState
         }
         
         base.HandleUpdate();
-    }
-
-    
+    }   
 }

@@ -43,8 +43,8 @@ public class PlayerBaseState : State
     {
         //Takes input from player
         direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        owner.animator.SetFloat("Speed", Input.GetAxis("Horizontal"));
-        owner.animator.SetFloat("Direction", Input.GetAxis("Vertical"));
+        //owner.animator.SetFloat("Speed", Input.GetAxis("Horizontal"));
+        //owner.animator.SetFloat("Direction", Input.GetAxis("Vertical"));
         Vector3 input = direction;
         //owner.animator.SetFloat("Speed", direction.x);
         //owner.animator.SetFloat("Direction", direction.z);
@@ -91,14 +91,7 @@ public class PlayerBaseState : State
             //Rotates the players mesh with the direction
             owner.rotate.Rotate(direction);
         }
-
-        //Take damage - For testing purposes
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            owner.LoseStamina(20.0f);
-            owner.LoseEnergy(10.0f);
-        }
-
+        
         //Heal player - For testing purposes
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -106,12 +99,21 @@ public class PlayerBaseState : State
             owner.RecoverEnergy(10.0f);
         }
 
+        // Temporary 
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            owner.transform.position += Vector3.up * 5f;
+        }
+
         if (!owner.collision.IsGrounded())
         {
             owner.Transition<InAirState>();
         }
+
+        owner.animator.SetFloat("Speed", owner.physics.GetVelocity().x);
+        owner.animator.SetFloat("Direction", owner.physics.GetVelocity().z);
     }
-   
+
     public Vector3 GetDirection()
     {
         return direction;
