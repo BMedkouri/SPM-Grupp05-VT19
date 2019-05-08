@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * @author Bilal El Medkouri
+ * @author Anders Ragnar
+ */
 [CreateAssetMenu(menuName = "Player States/InAirState")]
 public class InAirState : PlayerBaseState
 {
