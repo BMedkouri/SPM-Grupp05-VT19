@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * @author Bilal El Medkouri
+ * @co-author Anders Ragnar
+ */
 public class PlayerBaseState : State
 {
-    // Attributes
-    //[SerializeField] protected float jumpHeight;              // 7f
-    //[SerializeField] protected float acceleration;            // 14f
-    //[SerializeField] protected float turnSpeedModifier;       // 5f
     [SerializeField] protected Material material;
     protected Vector3 direction;
     protected Player owner;
-
 
     // Methods
     public override void Initialize(StateMachine owner)
@@ -69,7 +68,7 @@ public class PlayerBaseState : State
         //Movement
         if (direction != Vector3.zero)
         {
-            owner.physics.Accelerate(direction, owner.Acceleration, owner.TurnSpeedModifier);
+            owner.physics.Accelerate(direction, owner.Acceleration);
             
             
             //owner.collision.CollisionCheck(direction * input.magnitude * owner.Acceleration * Time.deltaTime);
