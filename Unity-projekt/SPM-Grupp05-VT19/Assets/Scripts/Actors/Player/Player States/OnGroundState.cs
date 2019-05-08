@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * @author Bilal El Medkouri
+ * @co-author Anders Ragnar
+ */
 [CreateAssetMenu(menuName = "Player States/OnGroundState")]
 public class OnGroundState : PlayerBaseState
 {
@@ -12,7 +16,9 @@ public class OnGroundState : PlayerBaseState
     {
         base.Enter();
     }
-
+    /// <summary>
+    /// Checks if the player is grounded, if it heals and if it is trying to dodge, then transitions to it.
+    /// </summary>
     public override void HandleUpdate()
     {
         //Change this later!   

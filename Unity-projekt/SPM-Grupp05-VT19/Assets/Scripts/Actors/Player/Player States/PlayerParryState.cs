@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * @author Anders Ragnar
+ */
 [CreateAssetMenu(menuName = "Player States/PlayerParryState")]
 public class PlayerParryState : OnGroundState
 {

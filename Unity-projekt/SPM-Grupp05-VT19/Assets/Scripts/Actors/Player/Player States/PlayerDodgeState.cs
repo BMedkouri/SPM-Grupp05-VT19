@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * @author Anders Ragnar
+ */
 [CreateAssetMenu(menuName = "Player States/PlayerDodgeState")]
 public class PlayerDodgeState : OnGroundState
 {
@@ -14,6 +17,10 @@ public class PlayerDodgeState : OnGroundState
 
     private float countDown;
     //Vector3 oldVelocity;
+
+    /// <summary>
+    /// Adds Velocity in the direction of the Joystick to make it feel like a dodge.
+    /// </summary>
     public override void Enter()
     {
         base.Enter();
@@ -36,6 +43,9 @@ public class PlayerDodgeState : OnGroundState
             countDown = dodgeTimer;
         }
     }
+    /// <summary>
+    /// Transition back when the timer for the dodge is finished.
+    /// </summary>
     public override void HandleUpdate()
     {
         if (countDown <= 0)

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * @author Anders Ragnar
+ */
 [CreateAssetMenu(menuName = "Player States/PlayerLightState")]
 public class PlayerLightState : OnGroundState
 {
@@ -31,6 +34,9 @@ public class PlayerLightState : OnGroundState
             //animClip[0].clip.length;
         }
     }
+    /// <summary>
+    /// Stays in the state until the timer is finished
+    /// </summary>
     public override void HandleUpdate()
     {
         if (clipTimer <= 0)

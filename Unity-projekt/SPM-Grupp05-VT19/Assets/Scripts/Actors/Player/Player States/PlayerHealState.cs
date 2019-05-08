@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * @author Anders Ragnar
+ */
 [CreateAssetMenu(menuName = "Player States/PlayerHealState")]
 public class PlayerHealState : PlayerBaseState
 {
@@ -12,6 +15,9 @@ public class PlayerHealState : PlayerBaseState
         base.Enter();
         timer = healCastDuration;
     }
+    /// <summary>
+    /// Stays in the state until the timer is finished
+    /// </summary>
     public override void HandleUpdate()
     {
         if (timer <= 0)
@@ -19,10 +25,6 @@ public class PlayerHealState : PlayerBaseState
             owner.GetComponent<HealthComponent>().RecoverHealth(healAmount);
             owner.Transition<OnGroundState>();
         }
-        countdown();
-    }
-    private void countdown()
-    {
         timer -= Time.deltaTime;
     }
 }
