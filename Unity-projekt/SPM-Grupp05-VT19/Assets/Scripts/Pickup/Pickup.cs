@@ -19,11 +19,17 @@ public class Pickup : MonoBehaviour
             gameObject.SetActive(true);
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             gameObject.SetActive(false);
         }
-    }
+    }    
 }

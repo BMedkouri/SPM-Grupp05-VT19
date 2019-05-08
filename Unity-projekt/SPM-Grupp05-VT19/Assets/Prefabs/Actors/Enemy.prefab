@@ -803,8 +803,8 @@ GameObject:
   - component: {fileID: 6235296383806731708}
   - component: {fileID: 6235296383806731683}
   m_Layer: 11
-  m_Name: EnemyAttack
-  m_TagString: Untagged
+  m_Name: EnemyAttacks
+  m_TagString: EnemyAttacks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -904,7 +904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8876407786736889433}
   m_Layer: 0
-  m_Name: Enemy 1
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1008,6 +1008,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6235296383806731682}
     m_Modifications:
+    - target: {fileID: 4395866732398217079, guid: 2c0a1cf853059cc4b92dd241eacbbc78,
+        type: 3}
+      propertyPath: m_Name
+      value: BoxAttack
+      objectReference: {fileID: 0}
     - target: {fileID: 69260371959770691, guid: 2c0a1cf853059cc4b92dd241eacbbc78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1062,11 +1067,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4395866732398217079, guid: 2c0a1cf853059cc4b92dd241eacbbc78,
-        type: 3}
-      propertyPath: m_Name
-      value: BoxAttack
       objectReference: {fileID: 0}
     - target: {fileID: 2342830006571931268, guid: 2c0a1cf853059cc4b92dd241eacbbc78,
         type: 3}
