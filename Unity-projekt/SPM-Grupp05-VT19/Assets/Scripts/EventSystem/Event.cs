@@ -37,7 +37,7 @@ public class DebugEvent : Event<DebugEvent>
 
 public class DamageEvent : Event<DamageEvent>
 {
-    public float damage;
+    public float Damage;
     public GameObject DamagedGameObject;
     public AudioSource DamagedSoundEffect;
     public ParticleSystem DamagedParticleSystem;
@@ -60,4 +60,10 @@ public class ParticleEvent : Event<ParticleEvent>
 {
     public Vector3 ParticleLocation;
     public ParticleSystem ParticleSystem;
+}
+public class ChangeLevelEvent : Event<ChangeLevelEvent>
+{
+    public int Level;
+    public AudioSource ChangeLevelSound;
+    public Vector3 PlayerLocation;
 }

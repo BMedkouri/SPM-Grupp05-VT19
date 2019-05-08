@@ -31,8 +31,11 @@ public class BoxAttackController : AttackController
 
             foreach (Collider ac in actorsHit)
             {
+                Debug.Log(ac.tag);
                 if (ac.CompareTag("Parry"))
                 {
+                    
+                    Debug.Log("Parry");
                     if(gameObject.transform.parent.tag == "EnemyAttacks") {
 
                         GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().Transition<EnemyImmobilisedState>();

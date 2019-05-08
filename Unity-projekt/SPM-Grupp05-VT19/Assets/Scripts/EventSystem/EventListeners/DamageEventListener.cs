@@ -19,16 +19,16 @@ public class DamageEventListener : MonoBehaviour
         // If the actor taking damage is the player, update the UI accordingly.
         if(damageEvent.DamagedGameObject.layer == 9)
         {
-            GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().RemoveHealth(damageEvent.damage);
+            GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().RemoveHealth(damageEvent.Damage);
         }
         else if (damageEvent.DamagedGameObject.layer == 11)
         {
-            damageEvent.DamagedGameObject.GetComponentInChildren<EnemyCanvasController>().RemoveHealth(damageEvent.damage);
+            damageEvent.DamagedGameObject.GetComponentInChildren<EnemyCanvasController>().RemoveHealth(damageEvent.Damage);
         }
 
         DebugEvent debugEvent = new DebugEvent
         {
-            DebugMessage = damageEvent.DamagedGameObject.name + " has taken " + damageEvent.damage + " damage."
+            DebugMessage = damageEvent.DamagedGameObject.name + " has taken " + damageEvent.Damage + " damage."
         };
         debugEvent.FireEvent();
 
