@@ -31,7 +31,29 @@ public class BoxAttackController : AttackController
 
             foreach (Collider ac in actorsHit)
             {
-                ac.GetComponent<HealthComponent>().TakeDamage(attackDamage + ac.GetComponent<ActiveWeapon>().GetActiveWeaponDamage());
+                if (ac.CompareTag("Parry"))
+                {
+                    if(gameObject.transform.parent.tag == "EnemyAttacks") {
+
+                        GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().Transition<EnemyImmobilisedState>();
+                    }
+                    else if(gameObject.transform.parent.tag == "PlayerAttacks")
+                    {
+                        //gameObject.GetComponentInParent<Player>().Transition<PlayerImmobilisedState??>();
+                    }
+                }
+                else
+                {
+                    if (gameObject.transform.parent.tag == "EnemyAttacks")
+                    {
+                        ac.GetComponent<HealthComponent>().TakeDamage(attackDamage);
+                    }
+                    else if (gameObject.transform.parent.tag == "PlayerAttacks")
+                    {
+                        ac.GetComponent<HealthComponent>().TakeDamage(attackDamage + GameObject.FindGameObjectWithTag("Player").GetComponent<ActiveWeapon>().GetActiveWeaponDamage());
+                    }
+                    //GetComponent<ActiveWeapon>().GetActiveWeaponDamage()
+                }
             }
         }
     }
