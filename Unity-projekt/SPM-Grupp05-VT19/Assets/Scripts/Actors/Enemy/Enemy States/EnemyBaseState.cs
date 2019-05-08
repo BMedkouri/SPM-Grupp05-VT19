@@ -13,6 +13,9 @@ public class EnemyBaseState : State
 
     protected Enemy owner;
 
+    /// <summary>
+    /// Sets the speed and the material.
+    /// </summary>
     public override void Enter()
     {
         owner.renderer.material = material;

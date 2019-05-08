@@ -5,6 +5,8 @@ using UnityEngine;
 /*
  * @author Bilal El Medkouri
  * @co-author Anders Ragnar
+ * 
+ * The base to all playerstates
  */
 public class PlayerBaseState : State
 {
@@ -33,6 +35,10 @@ public class PlayerBaseState : State
         owner.Regeneration();
     }
 
+    /// <summary>
+    /// This method takes the input from the player, as movement and hits with weapon.
+    /// It also makes the input direction acts from the cameras point of view with Vector3.ProjectOnPlane
+    /// </summary>
     private void PlayerInput()
     {
         //Takes input from player
@@ -52,26 +58,36 @@ public class PlayerBaseState : State
         {
             direction = Vector3.ProjectOnPlane(Camera.main.transform.rotation * direction, Vector3.up).normalized;
         }
+
         //Attack
-        if (Input.GetAxisRaw("Right Trigger") == 1 && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        if (Input.GetAxisRaw("Right Trigger") == 1 &&
+            !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") &&
+            !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") &&
+            !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
         {
             owner.Transition<AttackState>();
         }
-        if (Input.GetAxisRaw("Left Trigger") == 1 && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        if (Input.GetAxisRaw("Left Trigger") == 1 &&
+            !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") &&
+            !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") &&
+            !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
         {
             owner.Transition<PlayerParryState>();
         }
-        if(Input.GetButtonDown("Left Bumper") && !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") && !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") && !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        if(Input.GetButtonDown("Left Bumper") &&
+            !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") &&
+            !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") &&
+            !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
         {
             owner.Transition<PlayerLightState>();
         }
+
         //Movement
         if (direction != Vector3.zero)
         {
             owner.physics.Accelerate(direction, owner.Acceleration);
-            
-            
             //owner.collision.CollisionCheck(direction * input.magnitude * owner.Acceleration * Time.deltaTime);
+            
             //Rotates the players mesh with the direction
             owner.rotate.Rotate(direction);
         }
