@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartGameSctipy : MonoBehaviour
+public class MainMenuScript : MonoBehaviour
 {
 
     [SerializeField] private string loadLevel;
@@ -12,5 +12,7 @@ public class StartGameSctipy : MonoBehaviour
     public void OnClickStartGame()
     {
         SceneManager.LoadScene(loadLevel);
+
+        Debug.Log("Main menu click");
     }
 }
