@@ -52,7 +52,7 @@ public class PlayerBaseState : State
         {
             owner.physics.Accelerate(direction, owner.Acceleration);
 
-            // Projects velocity onto the ground planes normal
+            // If the grounds normals angle is equals to or less than 50 degrees, this projects the players velocity onto the ground plane
             if(Vector3.Angle(owner.collision.GetGroundRaycastHit().normal, Vector3.up) <= 50)
             {
                 owner.physics.SetVelocity(Vector3.ProjectOnPlane(owner.physics.GetVelocity(), owner.collision.GetGroundRaycastHit().normal));
