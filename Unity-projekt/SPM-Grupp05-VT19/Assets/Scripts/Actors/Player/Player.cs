@@ -13,7 +13,6 @@ public class Player : StateMachine
     [SerializeField] private float acceleration;            // 14f
 
     // Components
-    [HideInInspector] public MeshRenderer renderer;
     [HideInInspector] public PhysicsComponent physics;
     [HideInInspector] public CollisionDetection collision;
     [HideInInspector] public Animator animator;
@@ -48,7 +47,6 @@ public class Player : StateMachine
         GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().SetMaxEnergy(maxEnergy);
 
         // GetComponent<T>
-        //renderer = transform.Find("MeshRenderer").GetComponent<MeshRenderer>();
         physics = GetComponent<PhysicsComponent>();
         collision = GetComponent<CollisionDetection>();
         animator = GameObject.FindGameObjectWithTag("Animation").GetComponent<Animator>();
@@ -64,7 +62,7 @@ public class Player : StateMachine
     }
     
     // Stamina methods *************************************************************************************
-    public void StaminaRegeneration()
+    private void StaminaRegeneration()
     {
         if (staminaRegenerationTimer <= 0 && currentStamina < maxStamina)
         {
@@ -106,7 +104,7 @@ public class Player : StateMachine
     // End of stamina methods ******************************************************************************
 
     // Energy methods **************************************************************************************
-    public void EnergyRegeneration()
+    private void EnergyRegeneration()
     {
         if (energyRegenerationTimer <= 0 && currentEnergy < maxEnergy)
         {

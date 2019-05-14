@@ -432,15 +432,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3792446875245570218, guid: 371f2d1688f90d3428369ebc7bd20f57,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3556754961232226763, guid: 371f2d1688f90d3428369ebc7bd20f57,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792446875245570218, guid: 371f2d1688f90d3428369ebc7bd20f57,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3556754961232226764, guid: 371f2d1688f90d3428369ebc7bd20f57,
         type: 3}
@@ -953,6 +953,26 @@ PrefabInstance:
         type: 3}
       propertyPath: attackDamage
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556754961232226761, guid: 371f2d1688f90d3428369ebc7bd20f57,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556754961232226761, guid: 371f2d1688f90d3428369ebc7bd20f57,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556754961232226761, guid: 371f2d1688f90d3428369ebc7bd20f57,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556754961232226765, guid: 371f2d1688f90d3428369ebc7bd20f57,
+        type: 3}
+      propertyPath: airResistanceCoefficient
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3556754961214981749, guid: 371f2d1688f90d3428369ebc7bd20f57, type: 3}

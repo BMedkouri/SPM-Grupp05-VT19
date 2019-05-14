@@ -11,7 +11,7 @@ public static class Functions
 {
     public static Vector3 CalculateNormalForce(Vector3 velocity, Vector3 normal)
     {
-        if (Vector3.Dot(velocity, normal) > 1)
+        if (Vector3.Dot(velocity, normal) >= 1)
         {
             return Vector3.zero;
         }
