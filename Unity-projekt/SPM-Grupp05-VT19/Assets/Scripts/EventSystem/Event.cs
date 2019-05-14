@@ -4,6 +4,7 @@
 using System;
 using UnityEngine;
 
+// SE ÖVER DETTA
 public abstract class Event<T> where T : Event<T>
 {
     private bool hasFired;

@@ -4,45 +4,26 @@
 using System;
 using UnityEngine;
 
-public abstract class EventListener : MonoBehaviour
+//SE ÖVER DETTA
+public abstract class EventListener<EventType> where EventType : Event<EventType>
 {
-    protected virtual void Awake() { }
-
-    protected virtual void Start() { }
-
-    protected virtual void OnDestroy() { }
-
-    protected virtual void OnEvent(Event soundEvent)
+    protected virtual void Start()
     {
-        if (currentSimultaneousSoundEvents < maxSimultaneousSoundEvents)
-        {
-            Instantiate(soundEvent.AudioSource, soundEvent.AudioLocation, Quaternion.identity);
-        }
-        else
-        {
-            DebugEvent debugEvent = new DebugEvent
-            {
-                DebugMessage = "Maximum amount of sound events reached. " + maxSimultaneousSoundEvents + " audio clips are currently playing."
-            };
-            debugEvent.FireEvent();
-        }
+        Event<EventType>.RegisterListener(OnEvent);
     }
+
+    protected virtual void OnDestroy()
+    {
+        Event<EventType>.UnregisterListener(OnEvent);
+    }
+
+    protected virtual void OnEvent(Event<EventType> eventType){ }
 }
 
-public class ParticleEventListener : EventListener
+public class ParticleEventListener : EventListener<ParticleEvent>
 {
-    private override void Start()
+    /*protected override void OnEvent(ParticleEvent particleEvent)
     {
-        ParticleEvent.RegisterListener(OnParticleEvent);
-    }
-
-    private void OnDestroy()
-    {
-        ParticleEvent.UnregisterListener(OnParticleEvent);
-    }
-
-    private void OnParticleEvent(ParticleEvent particleEvent)
-    {
-        Instantiate(particleEvent.ParticleSystem, particleEvent.ParticleLocation, Quaternion.identity);
-    }
+        UnityEngine.Object.Instantiate(particleEvent.ParticleSystem, particleEvent.ParticleLocation, Quaternion.identity);
+    }*/
 }
