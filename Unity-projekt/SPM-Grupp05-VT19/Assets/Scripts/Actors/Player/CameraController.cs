@@ -31,7 +31,6 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         sphereCollider = GetComponent<SphereCollider>();
-        cameraMovement = Vector3.zero;
     }
 
     /// <summary>
@@ -64,6 +63,8 @@ public class CameraController : MonoBehaviour
 
         //Adjusts the camera in accordance with the camera offset
         cameraMovement = Quaternion.Euler(cameraRotation) * cameraOffset;
+
+        // DEN HÄR NOLLAR ROTATIONEN!! FIXA
 
         //Rotates camera based on input
         transform.rotation = Quaternion.Euler(cameraRotation);

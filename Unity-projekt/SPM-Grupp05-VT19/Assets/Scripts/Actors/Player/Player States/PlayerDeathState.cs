@@ -9,7 +9,7 @@ public class PlayerDeathState : PlayerBaseState
     public override void Enter()
     {
         //base.Enter();
-        owner.renderer.enabled = false;
+        owner.GetComponent<Renderer>().enabled = false;
         //Plays animation
         //owner.animator.Play("PlayerDeathAnimation");
         //owner.destroyPlayer();

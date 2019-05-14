@@ -10,7 +10,6 @@ using UnityEngine;
  */
 public class PlayerBaseState : State
 {
-    [SerializeField] protected Material material;
     protected Vector3 direction;
     protected Player owner;
 
@@ -19,11 +18,6 @@ public class PlayerBaseState : State
     {
         this.owner = (Player)owner;
         
-    }
-
-    public override void Enter()
-    {
-       // owner.renderer.material = material;
     }
 
     public override void HandleUpdate()
@@ -43,11 +37,6 @@ public class PlayerBaseState : State
     {
         //Takes input from player
         direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        //owner.animator.SetFloat("Speed", Input.GetAxis("Horizontal"));
-        //owner.animator.SetFloat("Direction", Input.GetAxis("Vertical"));
-        Vector3 input = direction;
-        //owner.animator.SetFloat("Speed", direction.x);
-        //owner.animator.SetFloat("Direction", direction.z);
 
         //Multiplies input with camera rotation (so that we move in accordance with the camera, and not the world coordinates)
         if (owner.collision.IsGrounded())
@@ -57,6 +46,33 @@ public class PlayerBaseState : State
         else
         {
             direction = Vector3.ProjectOnPlane(Camera.main.transform.rotation * direction, Vector3.up).normalized;
+        }
+        //Movement
+        if (direction != Vector3.zero)
+        {
+            owner.physics.Accelerate(direction, owner.Acceleration);
+
+            // If the grounds normals angle is equals to or less than 50 degrees, this projects the players velocity onto the ground plane
+            if(Vector3.Angle(owner.collision.GetGroundRaycastHit().normal, Vector3.up) <= 50)
+            {
+                owner.physics.SetVelocity(Vector3.ProjectOnPlane(owner.physics.GetVelocity(), owner.collision.GetGroundRaycastHit().normal));
+            }
+            
+            //Rotates the players mesh with the direction
+            owner.rotate.Rotate(direction);
+        }
+        
+        //Heal player - For testing purposes
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            owner.RecoverStamina(15.0f);
+            owner.RecoverEnergy(10.0f);
+        }
+
+        // Temporary 
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            owner.transform.position += Vector3.up * 5f;
         }
 
         //Attack
@@ -74,35 +90,12 @@ public class PlayerBaseState : State
         {
             owner.Transition<PlayerParryState>();
         }
-        if(Input.GetButtonDown("Left Bumper") &&
+        if (Input.GetButtonDown("Left Bumper") &&
             !owner.GetCurrentState().ToString().Equals("AttackState(Clone) (AttackState)") &&
             !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") &&
             !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
         {
             owner.Transition<PlayerLightState>();
-        }
-
-        //Movement
-        if (direction != Vector3.zero)
-        {
-            owner.physics.Accelerate(direction, owner.Acceleration);
-            //owner.collision.CollisionCheck(direction * input.magnitude * owner.Acceleration * Time.deltaTime);
-            
-            //Rotates the players mesh with the direction
-            owner.rotate.Rotate(direction);
-        }
-        
-        //Heal player - For testing purposes
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            owner.RecoverStamina(15.0f);
-            owner.RecoverEnergy(10.0f);
-        }
-
-        // Temporary 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            owner.transform.position += Vector3.up * 5f;
         }
 
         if (!owner.collision.IsGrounded())
