@@ -15,6 +15,9 @@ public class RunState : OnGroundState
     public override void Enter()
     {
         base.Enter();
+
+        //Enters state run here
+       
     }
 
     public override void HandleUpdate()
@@ -29,6 +32,13 @@ public class RunState : OnGroundState
             owner.Transition<OnGroundState>();
         }
 
-        base.HandleUpdate();
+        base.HandleUpdate(); 
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        //Exits state
     }
 }
