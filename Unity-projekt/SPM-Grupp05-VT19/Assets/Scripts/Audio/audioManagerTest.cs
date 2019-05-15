@@ -11,13 +11,21 @@ public class audioManagerTest : MonoBehaviour
 
     public void Update()
     { 
-        if(RunState.FindObjectOfType<RunState>())
+
+
+
+        if(Input.GetKeyDown(KeyCode.W) ) {
+            audioManager.Instance.PlaySFX(WalkLoop);
+        }
+
+        /*
+     
         {
-         // audioManager.Instance.PlaySFX(WalkLoop, 1);
-            audioManager.Instance.PlayLoop(WalkLoop, 1);
+         audioManager.Instance.PlaySFX(WalkLoop, 1);
+            //audioManager.Instance.PlayLoop(WalkLoop, 1);
         }
         
-        
+        */
 
 
         /*

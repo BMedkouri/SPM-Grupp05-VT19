@@ -8,6 +8,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player States/RunState")]
 public class RunState : OnGroundState
 {
+
+
+
+
     // Attributes
 
 
@@ -39,6 +43,7 @@ public class RunState : OnGroundState
     {
         base.Exit();
 
+      
         //Exits state
     }
 }
