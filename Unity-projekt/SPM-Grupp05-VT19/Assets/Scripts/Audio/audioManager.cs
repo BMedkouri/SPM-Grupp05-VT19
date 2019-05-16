@@ -167,14 +167,15 @@ public class audioManager : MonoBehaviour
 
     public void PlayLoop(AudioClip clip, float volume)
     {
-       //sfxSource.loop = true;
-       sfxSource.PlayOneShot(clip);
+        //sfxSource.loop = true;
+        sfxSource.loop = enabled;
+        sfxSource.PlayOneShot(clip);
         
     }
 
     public void StopLoop(AudioClip clip, float volume)
     {
-        sfxSource.loop = false;
+        sfxSource.loop = !enabled;
     }
 
 

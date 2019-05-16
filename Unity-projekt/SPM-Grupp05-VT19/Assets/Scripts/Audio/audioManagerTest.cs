@@ -5,6 +5,7 @@ using UnityEngine;
 public class audioManagerTest : MonoBehaviour
 {
     [SerializeField] private AudioClip WalkLoop;
+    [SerializeField] private AudioClip dodge;
     [SerializeField] private AudioClip music1;
     [SerializeField] private AudioClip music2;
 
@@ -17,28 +18,19 @@ public class audioManagerTest : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.W) ) {
             audioManager.Instance.PlaySFX(WalkLoop);
         }
-
-        /*
-     
-        {
-         audioManager.Instance.PlaySFX(WalkLoop, 1);
-            //audioManager.Instance.PlayLoop(WalkLoop, 1);
-        }
         
-        */
-
-
-        /*
-        if (Input.GetKeyDown(KeyCode.E)) // Play normal sfx function
+        if (Input.GetButtonDown("Xbox B"))
         {
-            audioManager.Instance.PlaySFX(buttonClickSFX, 1); //Buttonclick sfx AND volume
+            audioManager.Instance.PlaySFX(dodge);
+         
         }
 
-        if (Input.GetKeyDown(KeyCode.L)) // Play normal sfx function
-        {
-            audioManager.Instance.PlayMusic(music1); //Play the second track
-        }
-        */
+      
+     
+       
+            
+        
+      
     }
 
 }

@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Player States/RunState")]
+
 public class RunState : OnGroundState
 {
-
 
 
 
