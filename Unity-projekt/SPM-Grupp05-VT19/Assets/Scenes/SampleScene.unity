@@ -97,18 +97,18 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentRadius: 1
+    agentHeight: 1.4
+    agentSlope: 38.5
+    agentClimb: 0.6
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.33333334
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    accuratePlacement: 1
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 622dc41abd1982b43a72a28e62cd3bb6, type: 2}
@@ -303,6 +303,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &962465557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8581617199425026380, guid: 33d0f5c7d91dde444b2e1d83d2646046,
+    type: 3}
+  m_PrefabInstance: {fileID: 6235296383961298828}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1222291301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -491,6 +497,12 @@ MonoBehaviour:
   itemName: Cross
   itemDamage: 50
   itemHealAmount: 40
+--- !u!1 &1490479245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8581617200927766960, guid: 33d0f5c7d91dde444b2e1d83d2646046,
+    type: 3}
+  m_PrefabInstance: {fileID: 6235296383961298828}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1791298146
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,7 +714,7 @@ PrefabInstance:
     - target: {fileID: 8876407786736889433, guid: 33d0f5c7d91dde444b2e1d83d2646046,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 8876407786736889433, guid: 33d0f5c7d91dde444b2e1d83d2646046,
         type: 3}
@@ -788,6 +800,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Direction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235296382576526417, guid: 33d0f5c7d91dde444b2e1d83d2646046,
+        type: 3}
+      propertyPath: patrolLocations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235296382576526417, guid: 33d0f5c7d91dde444b2e1d83d2646046,
+        type: 3}
+      propertyPath: patrolLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 962465557}
+    - target: {fileID: 6235296382576526417, guid: 33d0f5c7d91dde444b2e1d83d2646046,
+        type: 3}
+      propertyPath: patrolLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1490479245}
+    - target: {fileID: 6235296382576526422, guid: 33d0f5c7d91dde444b2e1d83d2646046,
+        type: 3}
+      propertyPath: m_AgentTypeID
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d0f5c7d91dde444b2e1d83d2646046, type: 3}
