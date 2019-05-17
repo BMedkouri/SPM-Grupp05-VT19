@@ -1,104 +1,67 @@
 ﻿//Author: Bilal El Medkouri
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class HealthComponent : MonoBehaviour
 {
-    // Health attributes
-    [SerializeField] private float maxHealth; // 100f
-    [SerializeField] private float healthRegeneration; // 1f
-    [SerializeField] private float healthRegenerationCooldown; // 1f
-    [SerializeField] private float invulnerabilityPeriod;
-    private float currentHealth, currentHealthRegeneration, healthRegenerationTimer, invulnerabilityTimer;
-    private bool isDead;
+    //Attributes
 
-    // Audio and particle effect prefabs
-    [SerializeField] private AudioSource onHitSoundEffect;
-    [SerializeField] private ParticleSystem onHitParticleEffect;
-    [SerializeField] private AudioSource deathSoundEffect;
-    [SerializeField] private ParticleSystem deathParticleEffect;
+    [Header("UI reference:")]
+    [SerializeField] private GameObject canvas;
+    private HealthBarController healthBarController;
 
+    [Header("Health attributes:")]
+    [SerializeField] private float maxHealth;
+    private float currentHealth;
+
+
+    // Properties
+    public float MaxHealth
+    {
+        get => maxHealth;
+        set
+        {
+            maxHealth = value;
+            CurrentHealth = maxHealth;
+        }
+    }
+
+    public float CurrentHealth
+    {
+        get => currentHealth;
+        set
+        {
+            if (value > MaxHealth)
+            {
+                currentHealth = MaxHealth;
+            }
+            else if (value <= 0)
+            {
+                currentHealth = value;
+                DeathEvent deathEvent = new DeathEvent(gameObject);
+                deathEvent.FireEvent();
+            }
+            else
+            {
+                currentHealth = value;
+            }
+
+            healthBarController.CurrentHealth = currentHealth;
+        }
+    }
+
+    public bool IsDead { get; private set; }
+
+    // Methods
     private void Awake()
     {
-        if(gameObject.layer == 9)
-        {
-            GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>().SetMaxHealth(maxHealth);
-        }
-        else if(gameObject.layer == 11)
-        {
-            gameObject.GetComponentInChildren<EnemyCanvasController>().SetMaxHealth(maxHealth);
-        }
-
-        // Health
-        currentHealth = maxHealth; currentHealthRegeneration = healthRegeneration; healthRegenerationTimer = healthRegenerationCooldown; invulnerabilityTimer = invulnerabilityPeriod;
-        isDead = false;
+        IsDead = false;
     }
 
-    private void Update()
+    private void Start()
     {
-        HealthRegeneration();
-        InvulnerabilityCountdown();
-    }
-
-    private void HealthRegeneration()
-    {
-        if (healthRegenerationTimer <= 0 && currentHealth < maxHealth)
-        {
-            RecoverHealth(currentHealthRegeneration);
-            healthRegenerationTimer = healthRegenerationCooldown;
-        }
-
-        healthRegenerationTimer -= Time.deltaTime;
-    }
-
-    public void RecoverHealth(float health)
-    {
-        currentHealth += health;
-
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-    }
-
-    public void InvulnerabilityCountdown()
-    {
-        invulnerabilityTimer -= Time.deltaTime;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        if (!isDead && invulnerabilityTimer <= 0)
-        {
-            currentHealth -= damage;
-            invulnerabilityTimer = invulnerabilityPeriod;
-
-            DamageEvent damageEvent = new DamageEvent
-            {
-                Damage = damage,
-                DamagedGameObject = gameObject,
-                DamagedSoundEffect = onHitSoundEffect,
-                DamagedParticleSystem = onHitParticleEffect
-            };
-            damageEvent.FireEvent();
-        }
-
-        if (!isDead && currentHealth <= 0)
-        {
-            isDead = true;
-
-            // Create a transition for player and enemies into their respective DeathStates
-
-            DeathEvent deathEvent = new DeathEvent
-            {
-                DyingGameObject = gameObject,
-                DeathSound = deathSoundEffect,
-                DeathParticle = deathParticleEffect
-            };
-            deathEvent.FireEvent();
-        }
+        healthBarController = canvas.GetComponent<HealthBarController>();
+        MaxHealth = maxHealth;
+        healthBarController.MaxHealth = MaxHealth;
     }
 }

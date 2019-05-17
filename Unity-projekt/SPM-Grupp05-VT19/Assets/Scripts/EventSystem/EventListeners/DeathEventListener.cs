@@ -1,42 +1,18 @@
 ﻿//Author: Bilal El Medkouri
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class DeathEventListener : MonoBehaviour
+public class DeathEventListener : EventListener<DeathEvent>
 {
-    private void Start()
+    protected override void OnEvent(DeathEvent deathEvent)
     {
-        DeathEvent.RegisterListener(OnDeathEvent);
-    }
-
-    private void OnDestroy()
-    {
-        DeathEvent.UnregisterListener(OnDeathEvent);
-    }
-
-    private void OnDeathEvent(DeathEvent deathEvent)
-    {
-        DebugEvent debugEvent = new DebugEvent
-        {
-            DebugMessage = deathEvent.DyingGameObject.name + " has died."
-        };
+        DebugEvent debugEvent = new DebugEvent(deathEvent.DyingGameObject.name + " has died.");
         debugEvent.FireEvent();
 
-        SoundEvent soundEvent = new SoundEvent
-        {
-            AudioLocation = deathEvent.DyingGameObject.transform.position,
-            AudioSource = deathEvent.DeathSound
-        };
-        soundEvent.FireEvent();
+        //SoundEvent soundEvent = new SoundEvent(deathEvent.DyingGameObject.transform.position, deathEvent.DeathSound);
+        //soundEvent.FireEvent();
 
-        ParticleEvent particleEvent = new ParticleEvent
-        {
-            ParticleLocation = deathEvent.DyingGameObject.transform.position,
-            ParticleSystem = deathEvent.DeathParticle
-        };
-        particleEvent.FireEvent();
+        //ParticleEvent particleEvent = new ParticleEvent(deathEvent.DyingGameObject.transform.position, deathEvent.DeathParticle);
+        //particleEvent.FireEvent();
 
         Destroy(deathEvent.DyingGameObject);
     }

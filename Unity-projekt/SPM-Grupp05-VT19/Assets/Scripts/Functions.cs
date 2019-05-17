@@ -1,7 +1,5 @@
 ﻿//Author: Bilal El Medkouri
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -35,5 +33,10 @@ public static class Functions
     public static float CalculateHypotenuse(float angle, float shortSideLength)
     {
         return shortSideLength / Mathf.Sin(angle);
+    }
+
+    public static bool IsInDistance(Vector3 fromObject, Vector3 toObject, float distance)
+    {
+        return (toObject - fromObject).sqrMagnitude < distance * distance;
     }
 }

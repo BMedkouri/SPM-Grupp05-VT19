@@ -1,57 +1,48 @@
 ﻿//Main author: Anders Ragnar
 //Secondary author: Bilal El Medkouri
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-/*
- * @author Bilal El Medkouri
- * @author Anders Ragnar
- */
 public class Enemy : StateMachine
 {
-    
-    [HideInInspector] public MeshRenderer renderer;
-    [HideInInspector] public Player player;
-    [HideInInspector] public PhysicsComponent physics;
-    [HideInInspector] public LayerMask visionBlock;
-    [HideInInspector] public NavMeshAgent agent;
-    [HideInInspector] public Animator animator;
-    
+    // Attributes    
+
+    [Header("Enemy Patrol Locations:")]
     [SerializeField] private GameObject[] patrolLocations;
+
+
+    // Properties
+    public MeshRenderer Renderer { get; set; }
+    public Animator Animator { get; set; }
+
+    // TODO: Create a separate script for enemy movement (perhaps(?))
+    public LayerMask LayerMask { get; private set; }
+    public NavMeshAgent Agent { get; set; }
 
     /// <summary>
     /// Sets almost all component on the enemy.
     /// </summary>
     protected override void Awake()
     {
-    	renderer = GetComponent<MeshRenderer>();
-	    agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        physics = GetComponent<PhysicsComponent>();
-        visionBlock = LayerMask.GetMask("Geometry");
-        animator = GetComponent<Animator>();
+        Renderer = GetComponent<MeshRenderer>();
+        Agent = GetComponent<NavMeshAgent>();
+        LayerMask = LayerMask.GetMask("Geometry");
+        Animator = GetComponent<Animator>();
 
         base.Awake();
-    }
-
-    private void OnDestroy()
-    {
-        Destroy(gameObject.transform.parent.gameObject);
     }
 
     /// <summary>
     /// Checks if the enemy can see the player, to prevent chasing when player is on the other side of the wall.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
     /// returns true or falls if it can see the player or not.
+    /// </returns>
     public bool CanSeePlayer()
     {
-        if (player != null)
-            return !Physics.Linecast(transform.position, player.transform.position, visionBlock);
+        if (Player.PlayerReference != null)
+            return !Physics.Linecast(transform.position, Player.PlayerReference.transform.position, LayerMask);
         return false;
     }
 
@@ -62,12 +53,12 @@ public class Enemy : StateMachine
     /// returns the distance between the player and the enemy
     public float GetDistance()
     {
-        if(player != null)
+        if (Player.PlayerReference != null)
         {
-        return Vector3.Distance(player.transform.position, transform.position);
+            return Vector3.Distance(Player.PlayerReference.transform.position, transform.position);
         }
-            return 0f;
-        
+        return 0f;
+
     }
 
     /// <summary>
@@ -78,7 +69,7 @@ public class Enemy : StateMachine
     public Vector3[] GetMovePoints()
     {
         Vector3[] movePoints = new Vector3[patrolLocations.Length];
-        for(int i = 0; i < patrolLocations.Length; i++)
+        for (int i = 0; i < patrolLocations.Length; i++)
         {
             Debug.Log("MovePoints");
             movePoints[i] = patrolLocations[i].transform.position;

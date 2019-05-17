@@ -1,18 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main author: Anders Ragnar
+//Secondary author: Bilal El Medkouri
+
 using UnityEngine;
 
-/**
- * @author Anders Ragnar
- * @co-author Bilal El Medkouri
- * 
- * This class tells the Enemy/object what to do when it does not try to attack or chase the player
- */
 [CreateAssetMenu(menuName = "Enemy States/IdleState")]
 public class EnemyIdleState : EnemyBaseState
 {
+    // Attributes
     private Vector3[] movePoints;
     private int walkTo;
+
 
     /// <summary>
     /// When this state is initialized the enemy choses what point it should patrole to, if there are any points
@@ -30,12 +27,12 @@ public class EnemyIdleState : EnemyBaseState
     /// </summary>
     public override void HandleUpdate()
     {
-        if(movePoints.Length > 0)
+        if (movePoints.Length > 0)
         {
-            owner.agent.SetDestination(movePoints[walkTo]);
+            owner.Agent.SetDestination(movePoints[walkTo]);
             if (Vector3.Distance(owner.transform.position, movePoints[walkTo]) < 3f)
             {
-                owner.agent.SetDestination(movePoints[walkTo]);
+                owner.Agent.SetDestination(movePoints[walkTo]);
                 walkTo = (walkTo + 1) % movePoints.Length;
             }
         }
@@ -54,9 +51,9 @@ public class EnemyIdleState : EnemyBaseState
     private void ChooseClosest()
     {
         int closest = 0;
-        for(int i = 0; i < movePoints.Length; i++)
+        for (int i = 0; i < movePoints.Length; i++)
         {
-            if(Vector3.Distance(movePoints[i], owner.transform.position) < Vector3.Distance(movePoints[closest], owner.transform.position))
+            if (Vector3.Distance(movePoints[i], owner.transform.position) < Vector3.Distance(movePoints[closest], owner.transform.position))
             {
                 closest = i;
             }

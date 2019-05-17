@@ -1,7 +1,5 @@
 ﻿//Author: Bilal El Medkouri
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExitPickUpState : MonoBehaviour
@@ -15,7 +13,7 @@ public class ExitPickUpState : MonoBehaviour
 
     private void ChangePlayerState()
     {
-        GetComponentInParent<Player>().Transition<OnGroundState>();
-        GetComponent<ActiveWeapon>().SetActiveWeapon(excalibur);
+        Player.PlayerReference.Transition<PlayerOnGroundState>();
+        Player.PlayerReference.ActiveWeaponGameObject = excalibur;
     }
 }

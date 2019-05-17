@@ -1,42 +1,29 @@
 ﻿//Author: Bilal El Medkouri
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundEventListener : MonoBehaviour
+public class SoundEventListener : EventListener<SoundEvent>
 {
+    [Header("Settings")]
     [SerializeField] private int maxSimultaneousSoundEvents;
     private static int currentSimultaneousSoundEvents;
+
 
     private void Awake()
     {
         currentSimultaneousSoundEvents = 0;
     }
 
-    private void Start()
-    {
-        SoundEvent.RegisterListener(OnSoundEvent);
-    }
-
-    private void OnDestroy()
-    {
-        SoundEvent.UnregisterListener(OnSoundEvent);
-    }
-
-    private void OnSoundEvent(SoundEvent soundEvent)
+    protected override void OnEvent(SoundEvent soundEvent)
     {
         if (currentSimultaneousSoundEvents < maxSimultaneousSoundEvents)
         {
-            Instantiate(soundEvent.AudioSource, soundEvent.AudioLocation, Quaternion.identity);
-            //AudioSource.PlayClipAtPoint(soundEvent.AudioClip, soundEvent.AudioLocation);
+            GameObject gameObject = Instantiate(soundEvent.AudioSource.gameObject, soundEvent.AudioLocation, Quaternion.identity);
+            Destroy(gameObject, soundEvent.AudioSource.clip.length);
         }
         else
         {
-            DebugEvent debugEvent = new DebugEvent
-            {
-                DebugMessage = "Maximum amount of sound events reached. " + maxSimultaneousSoundEvents + " audio clips are currently playing."
-            };
+            DebugEvent debugEvent = new DebugEvent("Maximum amount of sound events reached. " + maxSimultaneousSoundEvents + " audio clips are currently playing.");
             debugEvent.FireEvent();
         }
     }

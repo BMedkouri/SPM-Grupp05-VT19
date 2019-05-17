@@ -1,43 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main author: Anders Ragnar
+//Secondary author: Bilal El Medkouri
+
 using UnityEngine;
 
-/*
- * @author Anders Ragnar
- */
 [CreateAssetMenu(menuName = "Player States/PlayerParryState")]
-public class PlayerParryState : OnGroundState
+public class PlayerParryState : PlayerOnGroundState
 {
-    [SerializeField] private float staminaExpenditure;  // Stamina cost
+    // Attributes
 
-    //private Animator anim;
+    [Header("Stamina cost:")]
+    [SerializeField] private float staminaExpenditure;
+
     private float clipTimer;
-    AnimatorClipInfo[] animClip;
 
+    // Methods
     public override void Enter()
     {
         base.Enter();
 
-        if (owner.GetCurrentStamina() < staminaExpenditure)
+        if (owner.CurrentStamina < staminaExpenditure)
         {
-            owner.Transition<OnGroundState>();
+            owner.Transition<PlayerOnGroundState>();
         }
         else
         {
-            owner.animator.SetTrigger("Block");
-            owner.LoseStamina(staminaExpenditure);
-            animClip = owner.animator.GetCurrentAnimatorClipInfo(0);
-            clipTimer = 0.5f;
-                //animClip[0].clip.length;
-            
+            owner.Animator.SetTrigger("Block");
+
+            owner.CurrentStamina -= staminaExpenditure;
+
+            clipTimer = 0.5f; // TODO: Replace this with clip length!
+
         }
     }
+
     public override void HandleUpdate()
     {
         if (clipTimer <= 0)
         {
-            clipTimer = owner.animator.GetCurrentAnimatorClipInfo(0).Length;
-            owner.Transition<OnGroundState>();
+            clipTimer = owner.Animator.GetCurrentAnimatorClipInfo(0).Length;
+            owner.Transition<PlayerOnGroundState>();
         }
 
         clipTimer -= Time.deltaTime;

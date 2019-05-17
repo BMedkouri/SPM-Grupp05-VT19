@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿//Co-authors: Anders Ragnar & Bilal El Medkouri
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class StateMachine : MonoBehaviour
 {

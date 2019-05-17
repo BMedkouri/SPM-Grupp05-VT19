@@ -1,22 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main author: Anders Ragnar
+//Secondary author: Bilal El Medkouri
+
 using UnityEngine;
 
-/*
- * @author Anders Ragnar
- */
 [CreateAssetMenu(menuName = "Player States/PlayerDodgeState")]
-public class PlayerDodgeState : OnGroundState
+public class PlayerDodgeState : PlayerOnGroundState
 {
-    [SerializeField] private float dodgeTimer;
-    [SerializeField] private float dodgeSpeed;
-    [SerializeField] private float staminaExpenditure; // Stamina cost
-    private float clipTimer;
-    AnimatorClipInfo[] animClip;
+    // Attributes
 
+    [Header("Dodge properties:")]
+    [SerializeField] private float dodgeTimer; // TODO: Replace this with animation length
+    [SerializeField] private float dodgeSpeed;
+
+    [Header("Stamina cost:")]
+    [SerializeField] private float staminaExpenditure;
 
     private float countDown;
-    //Vector3 oldVelocity;
 
     /// <summary>
     /// Adds Velocity in the direction of the Joystick to make it feel like a dodge.
@@ -25,40 +24,28 @@ public class PlayerDodgeState : OnGroundState
     {
         base.Enter();
 
-        if(owner.GetCurrentStamina() < staminaExpenditure)
+        if (owner.CurrentStamina < staminaExpenditure)
         {
-            owner.Transition<OnGroundState>();
+            owner.Transition<PlayerOnGroundState>();
         }
         else
         {
-            owner.LoseStamina(staminaExpenditure);
+            owner.CurrentStamina -= staminaExpenditure;
 
-            //Debug.Log(dodgeTimer);
-            //Debug.Log("Enter DodgeState");
-            //oldVelocity = owner.physics.GetVelocity();
+            owner.Physics.Velocity += (dodgeSpeed * owner.Physics.Direction);
+            owner.Animator.SetTrigger("Dodge");
 
-            owner.physics.AddVelocity(dodgeSpeed * owner.physics.GetDirection());
-            owner.animator.SetTrigger("Dodge");
-            animClip = owner.animator.GetCurrentAnimatorClipInfo(0);
             countDown = dodgeTimer;
         }
     }
-    /// <summary>
-    /// Transition back when the timer for the dodge is finished.
-    /// </summary>
+
     public override void HandleUpdate()
     {
         if (countDown <= 0)
         {
-            //Debug.Log("dodgetimer < 0");
-            //owner.physics.SetVelocity(oldVelocity);
-            owner.Transition<OnGroundState>();
+            owner.Transition<PlayerOnGroundState>();
         }
-        CountDown();
-    }
-    public void CountDown()
-    {
-        
+
         countDown -= Time.deltaTime;
     }
 }

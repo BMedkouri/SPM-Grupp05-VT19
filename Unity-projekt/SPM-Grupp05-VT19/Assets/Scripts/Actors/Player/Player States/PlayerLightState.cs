@@ -1,52 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main author: Anders Ragnar
+//Secondary author: Bilal El Medkouri
+
 using UnityEngine;
 
-/*
- * @author Anders Ragnar
- */
 [CreateAssetMenu(menuName = "Player States/PlayerLightState")]
-public class PlayerLightState : OnGroundState
+public class PlayerLightState : PlayerOnGroundState
 {
-    [SerializeField] private float energyExpenditure; // Energy cost
-    
+    //Attributes
+
+    [Header("Energy Cost:")]
+    [SerializeField] private float energyExpenditure;
+
+    // Animation 
     private float clipTimer;
     AnimatorClipInfo[] animClip;
-    
+
+    // Methods
     public override void Enter()
     {
         base.Enter();
 
-        if(owner.GetCurrentEnergy() < energyExpenditure)
+        if (owner.CurrentEnergy < energyExpenditure)
         {
-            owner.Transition<OnGroundState>();
+            owner.Transition<PlayerOnGroundState>();
         }
         else
         {
-            owner.LoseEnergy(energyExpenditure);
+            owner.CurrentEnergy -= energyExpenditure;
 
-            owner.animator.SetTrigger("HolyNova");
-            owner.GetComponentInChildren<AttackHandler>().SetAttackName("HolyNova");
-            //animClip = owner.anim.GetCurrentAnimatorClipInfo(0);
-            clipTimer = 2f; 
-            //animClip[0].clip.length;
+            owner.Animator.SetTrigger("HolyNova");
+
+            // TODO: Fetch animation length and set clipTimer to that!
+            clipTimer = 2f;
         }
     }
-    /// <summary>
-    /// Stays in the state until the timer is finished
-    /// </summary>
+
     public override void HandleUpdate()
     {
         if (clipTimer <= 0)
         {
-            if (owner.collision.IsGrounded())
-            {
-                owner.Transition<OnGroundState>();
-            }
-            else
-            {
-                owner.Transition<InAirState>();
-            }
+            owner.Transition<PlayerOnGroundState>();
         }
 
         clipTimer -= Time.deltaTime;

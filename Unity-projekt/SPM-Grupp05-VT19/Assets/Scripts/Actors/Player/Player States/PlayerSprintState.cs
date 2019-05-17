@@ -1,12 +1,10 @@
 ﻿//Main author: Bilal El Medkouri
 //Secondary author: Anders Ragnar
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Player States/PlayerSprintState")]
-public class PlayerSprintState : RunState
+public class PlayerSprintState : PlayerRunState
 {
     // Attributes
     [SerializeField] private float staminaExpenditure;  // Stamina cost per second
@@ -16,28 +14,26 @@ public class PlayerSprintState : RunState
     {
         base.Enter();
 
-        if (owner.GetCurrentStamina() < staminaExpenditure * Time.deltaTime)
+        if (owner.CurrentStamina < staminaExpenditure * Time.deltaTime)
         {
-            owner.Transition<RunState>();
+            owner.Transition<PlayerRunState>();
         }
     }
 
     public override void HandleUpdate()
     {
-        Debug.Log(GetDirection());
         if (Input.GetButton("Xbox X") && GetDirection() != Vector3.zero)
         {
-            Debug.Log(staminaExpenditure * Time.deltaTime);
-            owner.LoseStamina(staminaExpenditure * Time.deltaTime);
+            owner.CurrentStamina -= staminaExpenditure * Time.deltaTime;
 
-            if (owner.GetCurrentStamina() < staminaExpenditure * Time.deltaTime)
+            if (owner.CurrentStamina < staminaExpenditure * Time.deltaTime)
             {
-                owner.Transition<RunState>();
+                owner.Transition<PlayerRunState>();
             }
         }
         else
         {
-            owner.Transition<RunState>();
+            owner.Transition<PlayerRunState>();
         }
         base.HandleUpdate();
     }
