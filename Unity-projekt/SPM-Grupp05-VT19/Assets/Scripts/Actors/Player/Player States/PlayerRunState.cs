@@ -10,6 +10,9 @@ public class PlayerRunState : PlayerOnGroundState
     public override void Enter()
     {
         base.Enter();
+
+        //Enters state run here
+       
     }
 
     public override void HandleUpdate()
@@ -24,6 +27,14 @@ public class PlayerRunState : PlayerOnGroundState
             owner.Transition<PlayerOnGroundState>();
         }
 
-        base.HandleUpdate();
+        base.HandleUpdate(); 
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+      
+        //Exits state
     }
 }
