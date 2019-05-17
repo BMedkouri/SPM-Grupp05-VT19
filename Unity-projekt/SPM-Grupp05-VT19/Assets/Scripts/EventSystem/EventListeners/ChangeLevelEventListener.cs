@@ -1,35 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//Main author: Anders Ragnar
+//Secondary author: Bilal El Medkouri
+
 using UnityEngine.SceneManagement;
 
-public class ChangeLevelEventListener : MonoBehaviour
+public class ChangeLevelEventListener : EventListener<ChangeLevelEvent>
 {
-    private void Start()
+    protected override void OnEvent(ChangeLevelEvent changeLevel)
     {
-        ChangeLevelEvent.RegisterListener(OnChangeLevelEvent);
-    }
-
-    private void OnDestroy()
-    {
-        ChangeLevelEvent.UnregisterListener(OnChangeLevelEvent);
-    }
-
-    private void OnChangeLevelEvent(ChangeLevelEvent changeLevel)
-    {
-        DebugEvent debugEvent = new DebugEvent
-        {
-            DebugMessage = "Transition to: " + changeLevel.Level
-        };
+        DebugEvent debugEvent = new DebugEvent("Transition to: " + changeLevel.Level);
         debugEvent.FireEvent();
 
-        SoundEvent soundEvent = new SoundEvent
-        {
-            AudioLocation = changeLevel.PlayerLocation,
-            AudioSource = changeLevel.ChangeLevelSound
-        };
-        soundEvent.FireEvent();
-        
+        // TODO: FIX!
+        //SoundEvent soundEvent = new SoundEvent(changeLevel.PlayerLocation, changeLevel.ChangeLevelSound);
+        //soundEvent.FireEvent();
+
         SceneManager.LoadScene(changeLevel.Level);
     }
 }

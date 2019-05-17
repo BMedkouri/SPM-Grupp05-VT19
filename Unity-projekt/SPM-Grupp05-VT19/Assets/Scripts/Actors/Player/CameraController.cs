@@ -2,8 +2,6 @@
 //Secondary author: Anders Ragnar
 
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -19,11 +17,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector3 cameraOffset;
     [SerializeField] private float yAxisJoystickSensitivity, xAxisJoystickSensitivity;
     [SerializeField] private bool yAxisInverted, xAxisInverted;
-    
+
     [SerializeField] private float minimumXRotation;
     [SerializeField] private float maximumXRotation;
     [SerializeField] private LayerMask geometryLayer;
-    
+
     /// <summary>
     /// Gets the spherecollider that makes sure that our camera doesn't pass through walls.
     /// Sets our camera's initial movement vector to 0.
@@ -36,7 +34,7 @@ public class CameraController : MonoBehaviour
     /// <summary>
     /// Calls on our CameraMovement() script.
     /// </summary>
-    private void Update()
+    private void LateUpdate()
     {
         //Moves camera
         CameraMovement();
@@ -52,11 +50,11 @@ public class CameraController : MonoBehaviour
         int yAxisInvertion = yAxisInverted ? -1 : 1;
         int xAxisInvertion = xAxisInverted ? -1 : 1;
 
-        
+
         //Receives input from mouse, multiplied by mouseSensitivity
         cameraRotation.x -= Input.GetAxis("Horizontal Turn") * yAxisJoystickSensitivity * xAxisInvertion;
         cameraRotation.y += Input.GetAxis("Vertical Turn") * xAxisJoystickSensitivity * yAxisInvertion;
-        
+
 
         //Sets a min and max for rotation on the x-axis. Basically how far up or down the character can look
         cameraRotation.x = Mathf.Clamp(cameraRotation.x, minimumXRotation, maximumXRotation);

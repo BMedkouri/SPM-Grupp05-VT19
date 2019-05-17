@@ -1,29 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main author: Anders Ragnar
+//Secondary author: Bilal El Medkouri
+
 using UnityEngine;
 
-/*
- * @author Anders Ragnar
- */
 [CreateAssetMenu(menuName = "Player States/PlayerHealState")]
 public class PlayerHealState : PlayerBaseState
 {
+    [Header("Heal properties:")]
     [SerializeField] private float healCastDuration, healAmount;
     private float timer;
+
+    //Methods
     public override void Enter()
     {
         base.Enter();
         timer = healCastDuration;
     }
-    /// <summary>
-    /// Stays in the state until the timer is finished
-    /// </summary>
+
     public override void HandleUpdate()
     {
         if (timer <= 0)
         {
-            owner.GetComponent<HealthComponent>().RecoverHealth(healAmount);
-            owner.Transition<OnGroundState>();
+            owner.GetComponent<HealthComponent>().CurrentHealth += healAmount;
+            owner.Transition<PlayerOnGroundState>();
         }
         timer -= Time.deltaTime;
     }

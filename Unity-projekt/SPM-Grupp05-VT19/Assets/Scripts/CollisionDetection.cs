@@ -1,8 +1,6 @@
 ﻿//Main author: Bilal El Medkouri
 //Secondary author: Anders Ragnar
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
@@ -20,6 +18,8 @@ public class CollisionDetection : MonoBehaviour
     [SerializeField] private LayerMask rayCastLayerMask;
     private float temporarySkinWidth;
 
+    public bool IsGrounded { get; private set; }
+
     private void Awake()
     {
         physics = GetComponent<PhysicsComponent>();
@@ -35,8 +35,8 @@ public class CollisionDetection : MonoBehaviour
     {
         CollisionCheck();
 
-        //Moves target and resets snaps per frame
-        transform.position += physics.GetVelocity() * Time.deltaTime - sumOfSnapsPerFrame;
+        // Moves target and resets snaps per frame
+        transform.position += physics.Velocity * Time.deltaTime - sumOfSnapsPerFrame;
         sumOfSnapsPerFrame = Vector3.zero;
     }
 
@@ -46,32 +46,34 @@ public class CollisionDetection : MonoBehaviour
         do
         {
             Vector3 normalForce = Vector3.zero;
-            if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, physics.GetVelocity().normalized, out hitInfo, Mathf.Infinity, rayCastLayerMask))
+            if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, physics.Velocity.normalized, out hitInfo, Mathf.Infinity, rayCastLayerMask))
             {
-                float angleOfImpact = Functions.CalculateAngleOfImpact(physics.GetVelocity(), hitInfo.normal);
+                float angleOfImpact = Functions.CalculateAngleOfImpact(physics.Velocity, hitInfo.normal);
                 float hypotenuse = Functions.CalculateHypotenuse(angleOfImpact, skinWidth);
 
                 float temporarySkinWidth = (skinWidth > hypotenuse ? skinWidth : hypotenuse);
 
-                if (hitInfo.distance - temporarySkinWidth <= physics.GetVelocity().magnitude * Time.deltaTime + temporarySkinWidth)
+                if (hitInfo.distance - temporarySkinWidth <= physics.Velocity.magnitude * Time.deltaTime + temporarySkinWidth)
                 {
                     if (hitInfo.distance - temporarySkinWidth > temporarySkinWidth)
                     {
-                        sumOfSnapsPerFrame += physics.GetVelocity().normalized * (hitInfo.distance - temporarySkinWidth);
-                        transform.position += physics.GetVelocity().normalized * (hitInfo.distance - temporarySkinWidth);
+                        sumOfSnapsPerFrame += physics.Velocity.normalized * (hitInfo.distance - temporarySkinWidth);
+                        transform.position += physics.Velocity.normalized * (hitInfo.distance - temporarySkinWidth);
                     }
                     else
                     {
-                        sumOfSnapsPerFrame -= physics.GetVelocity().normalized * (temporarySkinWidth - hitInfo.distance);
-                        transform.position -= physics.GetVelocity().normalized * (temporarySkinWidth - hitInfo.distance);
+                        sumOfSnapsPerFrame -= physics.Velocity.normalized * (temporarySkinWidth - hitInfo.distance);
+                        transform.position -= physics.Velocity.normalized * (temporarySkinWidth - hitInfo.distance);
                     }
                     // Calculate and apply forces
-                    normalForce = Functions.CalculateNormalForce(physics.GetVelocity(), hitInfo.normal);
+                    normalForce = Functions.CalculateNormalForce(physics.Velocity, hitInfo.normal);
 
-                    if (normalForce == -physics.GetVelocity() || normalForce == Vector3.zero)
+                    if (normalForce == -physics.Velocity || normalForce == Vector3.zero)
                     {
                         escape = 0;
                     }
+
+                    CheckIfGrounded(normalForce);
 
                     physics.ApplyForces(normalForce);
                 }
@@ -80,11 +82,16 @@ public class CollisionDetection : MonoBehaviour
         } while (hitInfo.collider != null && escape > 0);
     }
 
-    public bool IsGrounded()
+    private void CheckIfGrounded(Vector3 normalForce)
     {
-        RaycastHit hitInfo = new RaycastHit();
-
-        return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, temporarySkinWidth + groundCheckDistance, rayCastLayerMask);
+        if (normalForce.y == -physics.Velocity.y)
+        {
+            IsGrounded = true;
+        }
+        else
+        {
+            IsGrounded = false;
+        }
     }
 
     public RaycastHit GetGroundRaycastHit()
@@ -92,7 +99,7 @@ public class CollisionDetection : MonoBehaviour
         RaycastHit hitInfo = new RaycastHit();
 
         Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, skinWidth + groundCheckDistance, rayCastLayerMask);
-        
+
         return hitInfo;
     }
 }

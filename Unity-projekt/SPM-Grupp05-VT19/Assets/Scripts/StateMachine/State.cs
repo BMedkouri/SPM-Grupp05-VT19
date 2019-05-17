@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Co-authors: Anders Ragnar & Bilal El Medkour
+
 using UnityEngine;
 
 public class State : ScriptableObject

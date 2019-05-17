@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Author: Anders Ragnar
+
 using UnityEngine;
-/**
- * @author Anders Ragnar
- */
+
 [CreateAssetMenu(menuName = "Enemy States/EnemyChaseState")]
 public class EnemyChaseState : EnemyBaseState
 {
@@ -19,20 +17,20 @@ public class EnemyChaseState : EnemyBaseState
     /// </summary>
     public override void HandleUpdate()
     {
-        
-        owner.agent.SetDestination(owner.player.transform.position);
+
+        owner.Agent.SetDestination(Player.PlayerReference.transform.position);
 
         if (owner.GetDistance() > 20.0f || !owner.CanSeePlayer())
         {
             owner.Transition<EnemyIdleState>();
         }
 
-        if (owner.GetDistance() < owner.agent.stoppingDistance && owner.CanSeePlayer())
+        if (owner.GetDistance() < owner.Agent.stoppingDistance && owner.CanSeePlayer())
         {
-            owner.agent.acceleration = 60f;
+            owner.Agent.acceleration = 60f;
             owner.Transition<EnemyCombatState>();
         }
-        
+
         base.HandleUpdate();
-    }   
+    }
 }

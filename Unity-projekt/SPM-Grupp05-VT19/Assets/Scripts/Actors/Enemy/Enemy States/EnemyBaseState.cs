@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main author: Anders Ragnar
+//Secondary author: Bilal El Medkouri
+
 using UnityEngine;
 
-/**
- * @author Anders Ragnar
- * @co-author Bilal El Medkouri
- */
 public class EnemyBaseState : State
 {
+    [Header("Movement Speed:")]
     [SerializeField] protected float movementSpeed;
+
+    [Header("Material:")]
     [SerializeField] protected Material material;
 
     protected Enemy owner;
@@ -18,8 +18,8 @@ public class EnemyBaseState : State
     /// </summary>
     public override void Enter()
     {
-        owner.renderer.material = material;
-	    owner.agent.speed = movementSpeed;
+        owner.Renderer.material = material;
+        owner.Agent.speed = movementSpeed;
     }
 
     public override void Initialize(StateMachine owner)

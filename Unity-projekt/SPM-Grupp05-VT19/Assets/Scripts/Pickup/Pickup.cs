@@ -40,7 +40,7 @@ public class Pickup : MonoBehaviour
                 openedLid.SetActive(true);
 
                 other.transform.position = animationPosition.transform.position;
-                other.GetComponent<Player>().Transition<PickUpState>();
+                other.GetComponent<Player>().Transition<PlayerPickUpState>();
             }
         }
     }
