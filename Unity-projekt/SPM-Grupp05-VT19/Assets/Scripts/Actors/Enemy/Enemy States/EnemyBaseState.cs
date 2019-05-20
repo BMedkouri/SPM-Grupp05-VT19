@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class EnemyBaseState : State
 {
-    [Header("Movement Speed:")]
+    [Header("Movement Speed")]
     [SerializeField] protected float movementSpeed;
-
-    [Header("Material:")]
-    [SerializeField] protected Material material;
 
     protected Enemy owner;
 
@@ -18,7 +15,6 @@ public class EnemyBaseState : State
     /// </summary>
     public override void Enter()
     {
-        owner.Renderer.material = material;
         owner.Agent.speed = movementSpeed;
     }
 
