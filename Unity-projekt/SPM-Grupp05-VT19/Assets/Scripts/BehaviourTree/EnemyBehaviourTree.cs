@@ -15,6 +15,7 @@ public class EnemyBehaviourTree : MonoBehaviour
     
     private Node selectedBehaviour;
 
+    private bool areaOnEffect = true;
     [SerializeField] private float attackRange;
     [SerializeField] private float chaseRange;
     [SerializeField] private Vector3[] patrolePoints;
@@ -36,7 +37,7 @@ public class EnemyBehaviourTree : MonoBehaviour
     Node CreateBehaviourTree()
     {
 
-        Selector choosSequence = new Selector("choosSequence",
+        Selector wolfSequence = new Selector("wolfSequence",
             new Sequence("moveToPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(ChaseRange),
@@ -50,9 +51,23 @@ public class EnemyBehaviourTree : MonoBehaviour
             new Sequence("patrole",
                 new SetPatrolPoint(),
                 new Move())
-            
             );
 
+        Selector areaSequence = new Selector("choosSequence",
+            new Sequence("moveToPlayer",
+                new HasPlayer(),
+                new CheckDisntanceToPlayer(ChaseRange),
+                new Inverter(new CanAttackPlayer()),
+                new SetDestinationToPlayer(),
+                new Move()),
+            new Sequence("attackPlayer",
+                new HasPlayer(),
+                new CheckDisntanceToPlayer(AttackRange),
+                new AttackPlayer()),
+            new Sequence("patrole",
+                new SetPatrolPoint(),
+                new Move())
+            );
 
         Sequence patrole = new Sequence("patrole",
            new SetPatrolPoint(),
@@ -70,7 +85,7 @@ public class EnemyBehaviourTree : MonoBehaviour
             new AttackPlayer()
             );
         
-        Repeater repeater = new Repeater(choosSequence);
+        Repeater repeater = new Repeater(wolfSequence);
 
         return repeater;
 
