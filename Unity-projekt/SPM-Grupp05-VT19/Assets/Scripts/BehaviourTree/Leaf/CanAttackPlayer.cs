@@ -20,6 +20,7 @@ public class CanAttackPlayer : Leaf
         //här ska enemys attack spelas upp
         if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange)
         {
+            enemy.RotateToTarget(Player.PlayerReference.transform.position);
             //animator.Play("EnemyAttackAnimation");
             return NodeStatus.SUCCESS;
         }

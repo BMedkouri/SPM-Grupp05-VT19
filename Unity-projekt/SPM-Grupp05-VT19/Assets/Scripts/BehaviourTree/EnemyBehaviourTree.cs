@@ -86,4 +86,14 @@ public class EnemyBehaviourTree : MonoBehaviour
         }
         return false;
     }
+
+    public void RotateToTarget(Vector3 target)
+    {
+        Vector3 targetDir = target - transform.position;
+
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 7f * Time.deltaTime, 0.0f);
+
+        // Move our position a step closer to the target.
+        transform.rotation = Quaternion.LookRotation(newDir);
+    }
 }

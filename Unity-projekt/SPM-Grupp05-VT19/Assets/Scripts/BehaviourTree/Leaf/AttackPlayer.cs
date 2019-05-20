@@ -23,6 +23,7 @@ public class AttackPlayer : Leaf
         //här ska enemys attack spelas upp
         if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange)
         {
+            
             //animator.Play("EnemyAttackAnimation");
             Debug.Log("Attacking");
             return NodeStatus.SUCCESS;
