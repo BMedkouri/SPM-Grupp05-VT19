@@ -8,7 +8,7 @@ public class Move : Leaf
     public override NodeStatus OnBehave(BehaviourState state)
     {
         behaviour = (Behaviour)state;
-        enemy = behaviour.EnemyBehaviourTree;
+        enemy = behaviour.BehaviourTree;
         if (enemy.Agent.hasPath == false || Vector3.Distance(enemy.Agent.transform.position, enemy.transform.position) > 60f)
         {
             return NodeStatus.FAILURE;

@@ -14,7 +14,7 @@ public class Sequence : Composite
     public override NodeStatus OnBehave(BehaviourState state)
     {
         NodeStatus ret = children[currentChild].Behave(state);
-        Debug.Log(children[currentChild] + " " + children[currentChild].Behave(state));
+        //Debug.Log(children[currentChild] + " " + children[currentChild].Behave(state));
         switch (ret)
         {
             case NodeStatus.SUCCESS:

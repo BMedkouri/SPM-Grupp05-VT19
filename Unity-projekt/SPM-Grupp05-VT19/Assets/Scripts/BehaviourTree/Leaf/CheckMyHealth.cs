@@ -12,7 +12,7 @@ public class CheckMyHealth : Leaf
     public override NodeStatus OnBehave(BehaviourState state)
     {
         behaviour = (Behaviour)state;
-        EnemyBehaviourTree enemy = behaviour.EnemyBehaviourTree;
+        enemy = behaviour.BehaviourTree;
 
         HealthComponent healthStatus = enemy.GetComponent<HealthComponent>();
         if(health > healthStatus.CurrentHealth)
@@ -27,7 +27,6 @@ public class CheckMyHealth : Leaf
 
     public override void OnReset()
     {
-        throw new System.NotImplementedException();
     }
 
     // Start is called before the first frame update

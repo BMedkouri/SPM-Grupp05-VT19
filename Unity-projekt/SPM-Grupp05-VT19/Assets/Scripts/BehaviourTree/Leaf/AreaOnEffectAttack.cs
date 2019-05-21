@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class AreaOnEffectAttack : Leaf
 {
+    private bool canAttack;
+    public AreaOnEffectAttack(bool attack)
+    {
+        canAttack = attack;
+    }
     
     public override NodeStatus OnBehave(BehaviourState state)
     {
+        if(canAttack == false)
+        {
+            return NodeStatus.FAILURE;
+        }
         return NodeStatus.SUCCESS;
     }
 

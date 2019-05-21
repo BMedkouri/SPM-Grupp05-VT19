@@ -2,20 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanSeePlayer : Leaf
+public class Timer : Leaf
 {
+    private float timer;
+    
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        behaviour = (Behaviour)state;
-        enemy = behaviour.BehaviourTree;
-        if (enemy.CanSeePlayer()){
-            return NodeStatus.SUCCESS;
+        timer -= Time.deltaTime;
+        Debug.Log(timer);
+        if(timer > 0)
+        {
+            return NodeStatus.RUNNING;
         }
-        return NodeStatus.FAILURE;
+        else
+        {
+            return NodeStatus.SUCCESS;
+
+        }
     }
 
     public override void OnReset()
     {
+        timer = 3f;
     }
-    
 }

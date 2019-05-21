@@ -4,7 +4,6 @@ using System;
 
 public class HasPlayer : Leaf
 {
-  
     public override NodeStatus OnBehave(BehaviourState state)
     {
         if (Player.PlayerReference == null)
