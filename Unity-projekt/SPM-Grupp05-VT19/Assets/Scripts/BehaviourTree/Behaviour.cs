@@ -4,11 +4,10 @@ using UnityEngine.AI;
 
 public class Behaviour : BehaviourState
 {
-    public EnemyBehaviourTree EnemyBehaviourTree { get; private set; }
-
-    public Behaviour(EnemyBehaviourTree enemyBehaviourTree)
+    public BehaviourTree BehaviourTree { get; private set; }
+    
+    public Behaviour(BehaviourTree behaviourTree)
     {
-        EnemyBehaviourTree = enemyBehaviourTree;
+        BehaviourTree = behaviourTree;
     }
-
 }

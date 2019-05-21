@@ -10,7 +10,7 @@ public class CanAttackPlayer : Leaf
     public override NodeStatus OnBehave(BehaviourState state)
     {
         behaviour = (Behaviour)state;
-        enemy = behaviour.EnemyBehaviourTree;
+        enemy = behaviour.BehaviourTree;
         if (Player.PlayerReference == null)
             return NodeStatus.FAILURE;
 

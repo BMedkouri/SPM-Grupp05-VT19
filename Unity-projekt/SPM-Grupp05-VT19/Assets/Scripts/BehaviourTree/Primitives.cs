@@ -53,7 +53,6 @@ public abstract class Node {
 
         return ret;
     }
-
     public abstract NodeStatus OnBehave(BehaviourState state);
     public void Reset()
     {
@@ -94,7 +93,7 @@ public abstract class Composite : Node
 public abstract class Leaf : Node
 {
     protected Behaviour behaviour;
-    protected EnemyBehaviourTree enemy;
+    protected BehaviourTree enemy;
 }
 
 public abstract class Decorator : Node

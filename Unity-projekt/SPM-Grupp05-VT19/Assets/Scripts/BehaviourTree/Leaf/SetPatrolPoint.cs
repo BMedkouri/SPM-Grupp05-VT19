@@ -8,8 +8,8 @@ public class SetPatrolPoint : Leaf
     public override NodeStatus OnBehave(BehaviourState state)
     {
         behaviour = (Behaviour)state;
-        Vector3 enemey = behaviour.EnemyBehaviourTree.transform.position;
-        Vector3[] patrolePoints = behaviour.EnemyBehaviourTree.PatrolePoints;
+        Vector3 enemey = behaviour.BehaviourTree.transform.position;
+        Vector3[] patrolePoints = behaviour.BehaviourTree.PatrolePoints;
 
         if(patrolePoints == null || patrolePoints.Length == 0)
         {
