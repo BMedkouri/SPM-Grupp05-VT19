@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-public class Weapon2 : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     // Attributes
     [Header("Weapon properties")]
@@ -50,7 +50,7 @@ public class Weapon2 : MonoBehaviour
         {
             if (collision.collider.CompareTag("Player"))
             {
-                DamageEvent damageEvent = new DamageEvent(WeaponDamage, Player.PlayerReference.gameObject, collision.collider.gameObject);
+                DamageEvent damageEvent = new DamageEvent(WeaponDamage, transform.parent.gameObject, collision.collider.gameObject);
                 damageEvent.FireEvent();
 
                 foreach (ContactPoint contact in collision.contacts)
