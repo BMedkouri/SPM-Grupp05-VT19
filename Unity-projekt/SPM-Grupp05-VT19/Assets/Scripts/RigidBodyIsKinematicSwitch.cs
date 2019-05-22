@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class RigidBodyIsKinematicSwitch : MonoBehaviour
 {
+    private Weapon weapon;
+    private Offhand offhand;
+
+    private void Start()
+    {
+        if (gameObject.CompareTag("Player"))
+        {
+            weapon = Player.PlayerReference.PlayerEquipmentHandler.Weapon;
+            offhand = Player.PlayerReference.PlayerEquipmentHandler.Offhand;
+        }
+    }
+
     private void EnableWeaponCollisions()
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.ActiveWeaponWeapon.Rigidbody.isKinematic = false;
+            weapon.Rigidbody.isKinematic = false;
         }
         else if (gameObject.CompareTag("Enemy"))
         {
@@ -20,7 +32,7 @@ public class RigidBodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.ActiveWeaponWeapon.Rigidbody.isKinematic = true;
+            weapon.Rigidbody.isKinematic = true;
         }
         else if (gameObject.CompareTag("Enemy"))
         {
@@ -32,7 +44,7 @@ public class RigidBodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.ActiveOffhandOffhand.Rigidbody.isKinematic = false;
+            offhand.Rigidbody.isKinematic = false;
         }
     }
 
@@ -40,7 +52,7 @@ public class RigidBodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.ActiveOffhandOffhand.Rigidbody.isKinematic = true;
+            offhand.Rigidbody.isKinematic = true;
         }
     }
 }
