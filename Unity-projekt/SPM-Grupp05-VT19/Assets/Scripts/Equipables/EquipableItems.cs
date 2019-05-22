@@ -18,12 +18,19 @@ public class EquipableItems : MonoBehaviour
     public Rigidbody Rigidbody { get; private set; }
     public static List<Weapon> WeaponList { get; private set; }
     public static List<Offhand> OffhandList { get; private set; }
+
+    private static bool hasRunOnce;
     #endregion Variables
 
     #region Methods
     protected virtual void Awake()
     {
         Rigidbody = GetComponent<Rigidbody>();
+
+        if (hasRunOnce == true)
+            return;
+        
+        hasRunOnce = true;
         WeaponList = new List<Weapon>();
         OffhandList = new List<Offhand>();
     }

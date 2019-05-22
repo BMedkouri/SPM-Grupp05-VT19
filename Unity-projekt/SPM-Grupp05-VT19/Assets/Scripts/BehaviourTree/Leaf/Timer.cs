@@ -1,7 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+/*
+ * @author Anders Ragnar
+ */
 
+/// <summary>
+/// should be a timer that is for all other behaviours aswell.
+/// the timer should be set in the constructor and not be hardcoded like this.
+/// </summary>
 public class Timer : Leaf
 {
     private float timer;

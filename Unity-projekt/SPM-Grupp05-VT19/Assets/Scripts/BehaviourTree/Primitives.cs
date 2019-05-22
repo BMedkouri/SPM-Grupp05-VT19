@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System;
+/*
+ * @author Anders Ragnar
+ */
 
+/// <summary>
+/// I haven't writen any of thees classes, just made some changes
+/// </summary>
 public enum NodeStatus
 {
     FAILURE,
@@ -20,10 +24,9 @@ public abstract class Node {
     protected bool debug = false;
     public int ticks = 0;
     public static List<string> debugTypeBlacklist = new List<string>() { "Selector", "Sequence", "Repeater", "Inverter", "Succeeder" };
-    
+
     public virtual NodeStatus Behave(BehaviourState state)
     {
-        
         NodeStatus ret = OnBehave(state);
 
         if (debug && !debugTypeBlacklist.Contains(GetType().Name))
@@ -90,10 +93,22 @@ public abstract class Composite : Node
     }
 }
 
+/// <summary>
+/// Here the behaviour are set to the behaviour they are in.
+/// It sets it all the time, it should only do it once with an enter but 
+/// I didn't get it to work and I need to put time on other things
+/// </summary>
 public abstract class Leaf : Node
 {
     protected Behaviour behaviour;
     protected BehaviourTree enemy;
+    public override NodeStatus Behave(BehaviourState state)
+    {
+        behaviour = (Behaviour)state;
+        enemy = behaviour.BehaviourTree;
+        return base.Behave(state);
+    }
+ 
 }
 
 public abstract class Decorator : Node

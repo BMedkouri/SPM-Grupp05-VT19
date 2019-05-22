@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+/*
+ * @author Anders Ragnar
+ */
 public class AttackPlayer : Leaf
 {
     private float attackTimer, countDown;
@@ -9,11 +9,15 @@ public class AttackPlayer : Leaf
     {
         this.attackTimer = attackTimer;
     }
+    /// <summary>
+    /// This is one of the states that has some failsafes that you might think is "unnecessary"
+    /// but we don't want the enemies to continue to attack if the player is dead or if he runs away (might be something we change)
+    /// Here maybe the timer should be seperate aswell. the Object oriented hasn't realy come in yet.
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns></returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        
-        behaviour = (Behaviour)state;
-        enemy = behaviour.BehaviourTree;
         
         if (Player.PlayerReference == null)
             return NodeStatus.FAILURE;
@@ -28,7 +32,7 @@ public class AttackPlayer : Leaf
         //här ska enemys attack spelas upp
         if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange && attackTimer <= 0)
         {
-            enemy.Animator.SetTrigger("Attack");
+            //enemy.Animator.SetTrigger("Attack");
             //animator.Play("EnemyAttackAnimation");
             return NodeStatus.SUCCESS;
         }

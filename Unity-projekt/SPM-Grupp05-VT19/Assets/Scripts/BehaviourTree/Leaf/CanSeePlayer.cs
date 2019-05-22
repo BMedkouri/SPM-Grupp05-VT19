@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿/*
+ * @author Anders Ragnar
+ */
 
+ /// <summary>
+ /// just a class that checks if the enemy can see the player
+ /// </summary>
 public class CanSeePlayer : Leaf
 {
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        behaviour = (Behaviour)state;
-        enemy = behaviour.BehaviourTree;
         if (enemy.CanSeePlayer()){
             return NodeStatus.SUCCESS;
         }
