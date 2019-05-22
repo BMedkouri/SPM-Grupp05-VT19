@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class AreaOnEffectAttack : Leaf
 {
-    private bool canAttack;
-    public AreaOnEffectAttack(bool attack)
+    private float timer, countDown;
+    public AreaOnEffectAttack(float attackTimer)
     {
-        canAttack = attack;
+        timer = attackTimer;
     }
     
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        if(canAttack == false)
+        if(countDown < 0)
         {
-            return NodeStatus.FAILURE;
+            //sätt igång skadan här
+            return NodeStatus.SUCCESS;
         }
-        return NodeStatus.SUCCESS;
+        //uppladdning ska köras här
+        return NodeStatus.RUNNING;
     }
 
     public override void OnReset()
     {
-
+        countDown = timer;
     }
 
     // Start is called before the first frame update

@@ -24,10 +24,5 @@ public class Move : Leaf
     public override void OnReset()
     {        
     }
-
-    //public bool InDistance(Vector3 fromObject, Vector3 toObject, float distance)
-    //{
-    //    return (toObject - fromObject).sqrMagnitude < distance * distance;
-    //}
     
 }

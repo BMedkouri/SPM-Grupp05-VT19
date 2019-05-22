@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class AttackPlayer : Leaf
 {
-    private float attackTimer;
+    private float attackTimer, countDown;
+    public AttackPlayer(float attackTimer)
+    {
+        this.attackTimer = attackTimer;
+    }
     public override NodeStatus OnBehave(BehaviourState state)
     {
         
         behaviour = (Behaviour)state;
         enemy = behaviour.BehaviourTree;
-
+        
         if (Player.PlayerReference == null)
             return NodeStatus.FAILURE;
 
@@ -19,12 +23,13 @@ public class AttackPlayer : Leaf
         if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) > enemy.AttackRange)
             return NodeStatus.FAILURE;
 
+        enemy.RotateToTarget(Player.PlayerReference.transform.position);
+
         //här ska enemys attack spelas upp
         if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange && attackTimer <= 0)
         {
             enemy.Animator.SetTrigger("Attack");
             //animator.Play("EnemyAttackAnimation");
-            Debug.Log("Attacking");
             return NodeStatus.SUCCESS;
         }
         attackTimer -= Time.deltaTime;
@@ -34,6 +39,6 @@ public class AttackPlayer : Leaf
 
     public override void OnReset()
     {
-        attackTimer = 2f;
+        countDown = attackTimer;
     }
 }

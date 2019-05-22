@@ -34,7 +34,7 @@ public abstract class BehaviourTree : MonoBehaviour
         currentBehaviourState = new Behaviour(this);  // optionally add things you might need access to in your leaf nodes
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         behaviourTree.Behave(currentBehaviourState);
     }

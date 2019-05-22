@@ -12,7 +12,7 @@ public class RigidBodyIsKinematicSwitch : MonoBehaviour
         }
         else if (gameObject.CompareTag("Enemy"))
         {
-            // TODO: Like above but for an enemy
+            GetComponentInChildren<Rigidbody>().isKinematic = false;
         }
     }
 
@@ -24,7 +24,7 @@ public class RigidBodyIsKinematicSwitch : MonoBehaviour
         }
         else if (gameObject.CompareTag("Enemy"))
         {
-            // TODO: Like above but for an enemy
+            GetComponentInChildren<Rigidbody>().isKinematic = true;
         }
     }
 

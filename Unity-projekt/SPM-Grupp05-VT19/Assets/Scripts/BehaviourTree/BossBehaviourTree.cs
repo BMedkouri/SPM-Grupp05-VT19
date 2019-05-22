@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class BossBehaviourTree : BehaviourTree
 {
-    private bool areaAttack;
-
+    [SerializeField] private float areaAttackTimer;
+    [SerializeField] private float meeleAttackTimer;
+    [SerializeField] private float procentHealth;
+    private float xMovement;
+    private float yMovement;
+    protected override void FixedUpdate()
+    {
+        xMovement = Agent.velocity.x;
+        yMovement = Agent.velocity.y;
+        base.FixedUpdate();
+        animator.SetFloat("Speed", xMovement);
+        animator.SetFloat("Direction", yMovement);
+    }
     protected override Node CreateBehaviourTree()
     {
         Selector bossSelector = new Selector("bossSequence",
             new Sequence("areaAttack",
-                new CheckMyHealth(30f),
+                new CheckMyHealth(procentHealth),
                 new Timer(),
-                new AreaOnEffectAttack(areaAttack)),
+                new AreaOnEffectAttack(areaAttackTimer)),
             new Sequence("moveToPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(ChaseRange),
@@ -22,7 +33,7 @@ public class BossBehaviourTree : BehaviourTree
             new Sequence("attackPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(AttackRange),
-                new AttackPlayer()),
+                new AttackPlayer(meeleAttackTimer)),
             new Sequence("patrole",
                 new SetPatrolPoint(),
                 new Move())

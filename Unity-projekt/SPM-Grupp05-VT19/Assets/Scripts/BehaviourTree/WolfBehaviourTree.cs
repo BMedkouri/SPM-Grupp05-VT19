@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class WolfBehaviourTree : BehaviourTree
 {
+    private float attackTime;
     protected override Node CreateBehaviourTree()
     {
         Selector wolfSelector = new Selector("wolfSequence",
@@ -18,7 +19,7 @@ public class WolfBehaviourTree : BehaviourTree
             new Sequence("attackPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(AttackRange),
-                new AttackPlayer()),
+                new AttackPlayer(attackTime)),
             new Sequence("patrole",
                 new SetPatrolPoint(),
                 new Move())

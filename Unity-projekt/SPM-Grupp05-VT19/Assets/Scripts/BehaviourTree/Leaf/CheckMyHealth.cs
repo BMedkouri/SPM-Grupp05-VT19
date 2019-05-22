@@ -11,12 +11,14 @@ public class CheckMyHealth : Leaf
     }
     public override NodeStatus OnBehave(BehaviourState state)
     {
+        
         behaviour = (Behaviour)state;
         enemy = behaviour.BehaviourTree;
 
         HealthComponent healthStatus = enemy.GetComponent<HealthComponent>();
-        if(health > healthStatus.CurrentHealth)
+        if(healthStatus.CurrentHealth/healthStatus.MaxHealth < health)
         {
+            //sätt variabeln till true
             return NodeStatus.SUCCESS;
         }
         else
