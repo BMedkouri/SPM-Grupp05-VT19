@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class ExitPickUpState : MonoBehaviour
 {
-    [SerializeField] private GameObject excalibur;
-
     private void Bankai()
     {
-        excalibur.SetActive(true);
+        Player.PlayerReference.PlayerEquipmentHandler.EquippedWeaponID = 2;
     }
 
     private void ChangePlayerState()
     {
         Player.PlayerReference.Transition<PlayerOnGroundState>();
-        Player.PlayerReference.ActiveWeaponGameObject = excalibur;
     }
 }

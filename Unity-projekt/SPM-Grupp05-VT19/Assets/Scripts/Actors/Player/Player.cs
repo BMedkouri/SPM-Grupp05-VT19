@@ -10,16 +10,57 @@ public class Player : StateMachine
     // Player reference/static instance
     public static Player PlayerReference { get; private set; }
 
+    #region PlayerData
+    public PlayerData PlayerData { get; private set; }
 
+    private void OnEnable()
+    {
+        // Stamina
+        MaxStamina = maxStamina;
+        UIController.MaxStamina = MaxStamina;
+
+        // Energy
+        MaxEnergy = maxEnergy;
+        UIController.MaxEnergy = MaxEnergy;
+
+        PlayerData = GamePersistence.LoadPlayerData();
+
+        transform.position = PlayerData.Location;
+        HealthComponent.CurrentHealth = PlayerData.Health;
+        CurrentStamina = PlayerData.Stamina;
+        CurrentEnergy = PlayerData.Energy;
+        PlayerEquipmentHandler.EquippedWeaponID = PlayerData.WeaponID;
+        PlayerEquipmentHandler.EquippedOffhandID = PlayerData.OffhandID;
+    }
+
+    private void OnDisable()
+    {
+        GamePersistence.SaveData(this);
+    }
+    #endregion PlayerData
+
+    #region UI
     [Header("UI reference")]
     [SerializeField] private GameObject canvas;
     private UIController UIController;
+    #endregion UI
 
-
+    #region MovementSpeed
     [Header("Movement speed")]
     [SerializeField] private float acceleration;
     public float Acceleration { get => acceleration; set => acceleration = value; }
+    #endregion MovementSpeed
 
+    #region Components
+    public PhysicsComponent Physics { get; set; }
+    public CollisionDetection Collision { get; set; }
+    public Animator Animator { get; set; }
+    public RotatePlayer RotatePlayer { get; set; }
+    #endregion Components
+
+    #region Health
+    public HealthComponent HealthComponent { get; private set; }
+    #endregion Health
 
     #region Stamina
     [Header("Stamina")]
@@ -102,57 +143,18 @@ public class Player : StateMachine
     #endregion Energy
 
     #region Equipables
-
-    [Header("Weapon")]
-    [SerializeField] private GameObject activeWeaponGameObject;
-    public GameObject ActiveWeaponGameObject
-    {
-        get => activeWeaponGameObject;
-        set
-        {
-            activeWeaponGameObject = value;
-            ActiveWeaponWeapon = activeWeaponGameObject.GetComponent<Weapon>();
-        }
-    }
-
-    public Weapon ActiveWeaponWeapon { get; private set; }
-
-
-    [Header("Offhand")]
-    [SerializeField] private GameObject activeOffhandGameObject;
-    public GameObject ActiveOffhandGameObject
-    {
-        get => activeOffhandGameObject;
-        set
-        {
-            activeOffhandGameObject = value;
-            ActiveOffhandOffhand = activeOffhandGameObject.GetComponent<Offhand>();
-        }
-    }
-
-    public Offhand ActiveOffhandOffhand { get; private set; }
-
+    public PlayerEquipmentHandler PlayerEquipmentHandler { get; private set; }
     #endregion Equipables
 
-    // Components
-    public PhysicsComponent Physics { get; set; }
-    public CollisionDetection Collision { get; set; }
-    public Animator Animator { get; set; }
-    public RotatePlayer RotatePlayer { get; set; }
-
     #endregion Variables
-
 
     #region Methods
     protected override void Awake()
     {
         PlayerReference = this;
 
-        // Weapon
-        ActiveWeaponWeapon = ActiveWeaponGameObject.GetComponent<Weapon>();
-
-        // Offhand
-        ActiveOffhandOffhand = ActiveOffhandGameObject.GetComponent<Offhand>();
+        // Health
+        HealthComponent = GetComponent<HealthComponent>();
 
         // Stamina
         currentStaminaRegeneration = staminaRegeneration;
@@ -162,6 +164,9 @@ public class Player : StateMachine
         currentEnergyRegeneration = energyRegeneration;
         energyRegenerationTimer = energyRegenerationCooldown;
 
+        // Equipables
+        PlayerEquipmentHandler = GetComponent<PlayerEquipmentHandler>();
+
         // Getters
         Physics = GetComponent<PhysicsComponent>();
         Collision = GetComponent<CollisionDetection>();
@@ -169,19 +174,14 @@ public class Player : StateMachine
         RotatePlayer = GetComponentInChildren<RotatePlayer>();
         UIController = canvas.GetComponent<UIController>();
 
-
         base.Awake();
     }
 
     private void Start()
     {
-        // Stamina
-        MaxStamina = maxStamina;
-        UIController.MaxStamina = MaxStamina;
+        
 
-        // Energy
-        MaxEnergy = maxEnergy;
-        UIController.MaxEnergy = MaxEnergy;
+
     }
 
     public void Regeneration()
@@ -189,7 +189,6 @@ public class Player : StateMachine
         StaminaRegeneration();
         EnergyRegeneration();
     }
-
 
     private void StaminaRegeneration()
     {

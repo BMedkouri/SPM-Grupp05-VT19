@@ -71,7 +71,6 @@ public class Enemy : StateMachine
         Vector3[] movePoints = new Vector3[patrolLocations.Length];
         for (int i = 0; i < patrolLocations.Length; i++)
         {
-            Debug.Log("MovePoints");
             movePoints[i] = patrolLocations[i].transform.position;
         }
         return movePoints;

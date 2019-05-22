@@ -45,6 +45,11 @@ public class HealthBarController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        healthSlider.maxValue = maxHealth;
+    }
+
     private void UpdateHealthBar()
     {
         if (useHealthText)
@@ -54,7 +59,6 @@ public class HealthBarController : MonoBehaviour
         }
 
         // Slider setters
-        healthSlider.maxValue = maxHealth;
         healthSlider.value = currentHealth;
 
         if (healthSlider.gameObject.activeSelf == false && currentHealth < maxHealth)

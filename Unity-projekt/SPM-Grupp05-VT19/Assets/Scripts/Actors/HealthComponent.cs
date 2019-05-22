@@ -50,15 +50,8 @@ public class HealthComponent : MonoBehaviour
         }
     }
 
-    public bool IsDead { get; private set; }
-
     // Methods
     private void Awake()
-    {
-        IsDead = false;
-    }
-
-    private void Start()
     {
         healthBarController = canvas.GetComponent<HealthBarController>();
         MaxHealth = maxHealth;
