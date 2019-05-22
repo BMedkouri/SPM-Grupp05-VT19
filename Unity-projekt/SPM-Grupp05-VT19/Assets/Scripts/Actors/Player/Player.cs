@@ -11,6 +11,7 @@ public class Player : StateMachine
     public static Player PlayerReference { get; private set; }
 
     #region PlayerData
+    /*
     public PlayerData PlayerData { get; private set; }
 
     private void OnEnable()
@@ -37,6 +38,7 @@ public class Player : StateMachine
     {
         GamePersistence.SaveData(this);
     }
+    */
     #endregion PlayerData
 
     #region UI
@@ -177,11 +179,16 @@ public class Player : StateMachine
         base.Awake();
     }
 
+    // TODO: Remove after fixing save/load
     private void Start()
     {
-        
+        // Stamina
+        MaxStamina = maxStamina;
+        UIController.MaxStamina = MaxStamina;
 
-
+        // Energy
+        MaxEnergy = maxEnergy;
+        UIController.MaxEnergy = MaxEnergy;
     }
 
     public void Regeneration()
