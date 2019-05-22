@@ -12,6 +12,8 @@ public class Weapon : EquipableItems
 
     protected override void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("OnCollisionEnter");
+
         if (collision.collider.CompareTag("Offhand"))
         {
             // TODO: Add parry event
@@ -20,6 +22,8 @@ public class Weapon : EquipableItems
 
         else if (collision.collider.CompareTag("Enemy"))
         {
+            Debug.Log("Collision with enemy");
+
             DamageEvent damageEvent = new DamageEvent(ItemDamage, Player.PlayerReference.gameObject, collision.collider.gameObject);
             damageEvent.FireEvent();
 

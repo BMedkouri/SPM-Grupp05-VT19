@@ -47,25 +47,14 @@ public class PlayerEquipmentHandler : MonoBehaviour
     #endregion Variables
 
     #region Methods
-    /*private void Awake()
-    {
-        UpdateWeapon();
-        UpdateOffhand();
-    }*/
 
     #region Weapon
-    /*private void UpdateWeapon()
-    {
-        Weapon = EquippedWeapon.GetComponent<Weapon>();
-        equippedWeaponID = Weapon.ItemID;
-    }*/
-
     private void UpdateWeapon(int weaponID)
     {
         foreach (Weapon weapon in EquipableItems.WeaponList)
         {
             weapon.gameObject.SetActive(false);
-            Debug.Log("Weapon ID: " + weapon.ItemID + " Equipped weapon ID: " + weaponID);
+
             if (weapon.ItemID.Equals(weaponID))
             {
                 EquippedWeapon = weapon.gameObject;
@@ -78,12 +67,6 @@ public class PlayerEquipmentHandler : MonoBehaviour
     #endregion Weapon
 
     #region Offhand
-    /*private void UpdateOffhand()
-    {
-        Offhand = EquippedOffhand.GetComponent<Offhand>();
-        equippedOffhandID = Offhand.ItemID;
-    }*/
-
     private void UpdateOffhand(int offhandID)
     {
         foreach (Offhand offhand in EquipableItems.OffhandList)
@@ -103,3 +86,4 @@ public class PlayerEquipmentHandler : MonoBehaviour
 
     #endregion Methods
 }
+
