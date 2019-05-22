@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class sets all the points the enemy should patrole between
+/// </summary>
 public class SetPatrolPoint : Leaf
 {
     private int walkTo;
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        behaviour = (Behaviour)state;
-        Vector3 enemey = behaviour.BehaviourTree.transform.position;
-        Vector3[] patrolePoints = behaviour.BehaviourTree.PatrolePoints;
+        Vector3[] patrolePoints = enemy.PatrolePoints;
 
         if(patrolePoints == null || patrolePoints.Length == 0)
         {
@@ -18,7 +19,7 @@ public class SetPatrolPoint : Leaf
         int closest = 0;
         for (int i = 0; i < patrolePoints.Length; i++)
         {
-            if (Vector3.Distance(patrolePoints[i], enemey) < Vector3.Distance(patrolePoints[closest], enemey))
+            if (Vector3.Distance(patrolePoints[i], enemy.transform.position) < Vector3.Distance(patrolePoints[closest], enemy.transform.position))
             {
                 closest = i;
             }

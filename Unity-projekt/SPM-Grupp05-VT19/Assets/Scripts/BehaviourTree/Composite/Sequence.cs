@@ -1,7 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿/*
+ * @author Anders Ragnar
+ */
 
+ /// <summary>
+ /// i haven't writen this class
+ /// </summary>
 public class Sequence : Composite
 {
     int currentChild = 0;

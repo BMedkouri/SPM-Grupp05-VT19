@@ -1,22 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿/*
+ * @author Anders Ragnar
+ */
 
 public class CheckMyHealth : Leaf
 {
-    private float health;
+    private float procentHealth;
+    /// <summary>
+    /// sets a procent
+    /// </summary>
+    /// <param name="health">how much procent</param>
     public CheckMyHealth(float health)
     {
-        this.health = health;
+        procentHealth = health;
     }
+    /// <summary>
+    /// checks the procent of the Enemies health
+    /// </summary>
+    /// <param name="state">Contanct with the Enemy</param>
+    /// <returns>Success if it's under a procent of health</returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        
-        behaviour = (Behaviour)state;
-        enemy = behaviour.BehaviourTree;
-
         HealthComponent healthStatus = enemy.GetComponent<HealthComponent>();
-        if(healthStatus.CurrentHealth/healthStatus.MaxHealth < health)
+        if(healthStatus.CurrentHealth/healthStatus.MaxHealth < procentHealth)
         {
             //sätt variabeln till true
             return NodeStatus.SUCCESS;
@@ -31,15 +36,5 @@ public class CheckMyHealth : Leaf
     {
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
-
+/*
+ * @author Anders Ragnar
+ */
 public class HasPlayer : Leaf
 {
+    /// <summary>
+    /// Checks if there are any player in the game
+    /// </summary>
+    /// <param name="state">refference to the enemy</param>
+    /// <returns>Failure if there is no player</returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
         if (Player.PlayerReference == null)

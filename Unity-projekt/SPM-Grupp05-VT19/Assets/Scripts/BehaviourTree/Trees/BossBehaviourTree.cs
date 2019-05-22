@@ -1,14 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+/*
+ * @author Anders Ragnar
+ */
 public class BossBehaviourTree : BehaviourTree
 {
+    
     [SerializeField] private float areaAttackTimer;
     [SerializeField] private float meeleAttackTimer;
     [SerializeField] private float procentHealth;
+
+    //animationers x och y movement, kanske vi vill flytta ut till behaviour eftersom alla vill ha rörelse animationer
     private float xMovement;
     private float yMovement;
+
     protected override void FixedUpdate()
     {
         xMovement = Agent.velocity.x;
@@ -17,6 +21,12 @@ public class BossBehaviourTree : BehaviourTree
         animator.SetFloat("Speed", xMovement);
         animator.SetFloat("Direction", yMovement);
     }
+
+    /// <summary>
+    /// The selector goes thro each sequence and return the first one that returns true on it's own.
+    /// This enemy checks if it's under a special amount of health and then it makes another attack aswell.
+    /// </summary>
+    /// <returns>repeater, telling the behaviour what behaviour to repeat</returns>
     protected override Node CreateBehaviourTree()
     {
         Selector bossSelector = new Selector("bossSequence",

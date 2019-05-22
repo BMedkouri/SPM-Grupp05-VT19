@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+/*
+ * @author Anders Ragnar
+ */
 public class CanAttackPlayer : Leaf
 {
-    private Animator animator;
-    private AnimatorClipInfo[] animClip;
-
+    /// <summary>
+    /// This state checks if it can attack the enemy
+    /// </summary>
+    /// <param name="state">Behaviour is our connection to the Enemy</param>
+    /// <returns>Failure if it can't preforme this behaviour, Running if it is preforming and Success if it has preformed it</returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        behaviour = (Behaviour)state;
-        enemy = behaviour.BehaviourTree;
         if (Player.PlayerReference == null)
             return NodeStatus.FAILURE;
 

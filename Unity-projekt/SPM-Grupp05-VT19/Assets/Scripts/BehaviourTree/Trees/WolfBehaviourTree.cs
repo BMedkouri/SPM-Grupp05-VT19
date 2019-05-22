@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
-
+﻿using UnityEngine;
+/*
+ * @author Anders Ragnar
+ */
 public class WolfBehaviourTree : BehaviourTree
 {
-    private float attackTime;
+    [SerializeField] private float attackTime;
+    /// <summary>
+    /// the selector goes thro each sequence and return the first one that returns true on it's own
+    /// </summary>
+    /// <returns>repeater, telling the behaviour what behaviour to repeat</returns>
     protected override Node CreateBehaviourTree()
     {
         Selector wolfSelector = new Selector("wolfSequence",

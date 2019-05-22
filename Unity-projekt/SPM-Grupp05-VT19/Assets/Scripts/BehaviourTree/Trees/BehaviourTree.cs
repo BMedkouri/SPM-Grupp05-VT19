@@ -1,27 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
+/*
+ * @author Anders Ragnar
+ */
 
+
+/// <summary>
+/// This is a baseclass for all enemies that need a behaviour tree.
+/// It could be structed into more underclasses if there was a big variation on the enemies.
+/// </summary>
 public abstract class BehaviourTree : MonoBehaviour
 {
+    //non inspector variable
     protected Repeater repeater;
     protected Node behaviourTree;
     protected Behaviour currentBehaviourState;
+    protected Animator animator;
+    private bool areaOnEffect = true;
+
+    //inspector variable
+    [SerializeField] protected float attackRange;
+    [SerializeField] protected float chaseRange;
+    [SerializeField] protected Vector3[] patrolePoints;
+
+    //properties
     public NavMeshAgent Agent { get; private set; }
     public float AttackRange { get => attackRange; private set => attackRange = value; }
     public float ChaseRange { get => chaseRange; private set => chaseRange = value; }
     public Vector3[] PatrolePoints { get => patrolePoints; private set => patrolePoints = value; }
     public Animator Animator { get => animator; private set => animator = value; }
-
-    protected Node selectedBehaviour;
-
-    private bool areaOnEffect = true;
-    [SerializeField] protected float attackRange;
-    [SerializeField] protected float chaseRange;
-    [SerializeField] protected Vector3[] patrolePoints;
-    protected Animator animator;
-
+    
     protected void Awake()
     {
         animator = GetComponent<Animator>();
@@ -34,6 +42,7 @@ public abstract class BehaviourTree : MonoBehaviour
         currentBehaviourState = new Behaviour(this);  // optionally add things you might need access to in your leaf nodes
     }
 
+    //since this is not my code I'm a bit uncertain if this needs to be in the Fixedupdate
     protected virtual void FixedUpdate()
     {
         behaviourTree.Behave(currentBehaviourState);
@@ -43,6 +52,10 @@ public abstract class BehaviourTree : MonoBehaviour
 
     protected abstract Node CreateBehaviourTree();
 
+    /// <summary>
+    /// Makes a raycast between the enemy and the player
+    /// </summary>
+    /// <returns>true if the enemy can see the player</returns>
     public bool CanSeePlayer()
     {
 
@@ -53,6 +66,10 @@ public abstract class BehaviourTree : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// rotates the enemy towards the target
+    /// </summary>
+    /// <param name="target">the target we want the enemy to rotate to</param>
     public void RotateToTarget(Vector3 target)
     {
         Vector3 targetDir = target - transform.position;

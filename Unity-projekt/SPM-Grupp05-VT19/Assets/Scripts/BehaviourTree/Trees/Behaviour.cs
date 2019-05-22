@@ -1,7 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.AI;
+﻿/*
+ * @author Anders Ragnar
+ */
 
+ /// <summary>
+ /// The contact with the Enemy
+ /// </summary>
 public class Behaviour : BehaviourState
 {
     public BehaviourTree BehaviourTree { get; private set; }
