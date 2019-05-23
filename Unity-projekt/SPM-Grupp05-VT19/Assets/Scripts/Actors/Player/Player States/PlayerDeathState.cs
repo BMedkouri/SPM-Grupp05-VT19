@@ -9,7 +9,6 @@ public class PlayerDeathState : PlayerBaseState
     // Methods
     public override void Enter()
     {
-        owner.GetComponent<Renderer>().enabled = false;
     }
 
     public override void HandleUpdate() { }

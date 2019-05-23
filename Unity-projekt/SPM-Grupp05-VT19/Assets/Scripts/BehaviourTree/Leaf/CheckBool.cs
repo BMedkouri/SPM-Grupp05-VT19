@@ -5,13 +5,10 @@ using UnityEngine;
 public class CheckBool : Leaf
 {
     private bool check;
-    public CheckBool(bool check)
-    {
-        this.check = check;
-    }
-
+   
     public override NodeStatus OnBehave(BehaviourState state)
     {
+        check = enemy.GetComponent<BossBehaviourTree>().CanDoDarkAttack;
         if(check == true)
         {
             return NodeStatus.SUCCESS;
