@@ -13,7 +13,6 @@ public class PlayerLightState : PlayerOnGroundState
 
     // Animation 
     private float clipTimer;
-    AnimatorClipInfo[] animClip;
 
     // Methods
     public override void Enter()

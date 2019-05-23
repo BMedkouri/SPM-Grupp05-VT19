@@ -1,5 +1,5 @@
-﻿//Main author: Bilal El Medkouri
-//Secondary author: Anders Ragnar
+﻿//Main author: Anders Ragnar
+//Secondary author: Bilal El Medkouri
 
 using UnityEngine;
 

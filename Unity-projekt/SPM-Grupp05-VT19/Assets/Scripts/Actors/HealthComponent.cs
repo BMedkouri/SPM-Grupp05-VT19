@@ -38,9 +38,15 @@ public class HealthComponent : MonoBehaviour
             else if (value <= 0)
             {
                 currentHealth = value;
-                DeathEvent deathEvent = new DeathEvent(gameObject);
-                //deathEvent.FireEvent();
-                GetComponent<Player>().Transition<PlayerDeathState>();
+                if (gameObject.CompareTag("Player"))
+                {
+                    GetComponent<Player>().Transition<PlayerDeathState>();
+                }
+                else
+                {
+                    DeathEvent deathEvent = new DeathEvent(gameObject);
+                    deathEvent.FireEvent();
+                }
             }
             else
             {
