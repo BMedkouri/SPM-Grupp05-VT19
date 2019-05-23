@@ -11,13 +11,18 @@ public class Move : Leaf
     /// <returns>Failure if it can't preforme this behaviour, Running if it is preforming and Success if it has preformed it</returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        if (enemy.Agent.hasPath == false || Vector3.Distance(enemy.Agent.transform.position, enemy.transform.position) > 60f)
+       
+        if (enemy.Agent.hasPath == false)
         {
             return NodeStatus.FAILURE;
         }
-        else if (Vector3.Distance(enemy.Agent.transform.position, enemy.transform.position) < 3f)
+        else if (Vector3.Distance(enemy.Agent.transform.position, enemy.Agent.destination) < 3f)
         {
             return NodeStatus.SUCCESS;
+        }
+        else if (enemy.Agent.destination == Player.PlayerReference.transform.position && enemy.CanSeePlayer() && Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.ChaseRange)
+        {
+            return NodeStatus.FAILURE;
         }
         return NodeStatus.RUNNING;
 

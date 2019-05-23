@@ -102,12 +102,14 @@ public abstract class Leaf : Node
 {
     protected Behaviour behaviour;
     protected BehaviourTree enemy;
+    protected BossBehaviourTree bossBehaviour;
     public override NodeStatus Behave(BehaviourState state)
     {
         behaviour = (Behaviour)state;
         enemy = behaviour.BehaviourTree;
         return base.Behave(state);
     }
+
  
 }
 

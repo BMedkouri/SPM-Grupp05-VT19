@@ -12,28 +12,38 @@ using UnityEngine.AI;
 public abstract class BehaviourTree : MonoBehaviour
 {
     //non inspector variable
+
+    //protected
     protected Repeater repeater;
     protected Node behaviourTree;
     protected Behaviour currentBehaviourState;
     protected Animator animator;
+    protected Vector3[] movePoints;
+
+    //private
     private bool areaOnEffect = true;
 
     //inspector variable
     [SerializeField] protected float attackRange;
     [SerializeField] protected float chaseRange;
-    [SerializeField] protected Vector3[] patrolePoints;
+    [SerializeField] protected GameObject[] patrolePoints;
 
     //properties
     public NavMeshAgent Agent { get; private set; }
     public float AttackRange { get => attackRange; private set => attackRange = value; }
     public float ChaseRange { get => chaseRange; private set => chaseRange = value; }
-    public Vector3[] PatrolePoints { get => patrolePoints; private set => patrolePoints = value; }
+    public GameObject[] PatrolePoints { get => patrolePoints; private set => patrolePoints = value; }
     public Animator Animator { get => animator; private set => animator = value; }
-    
+
     protected void Awake()
     {
         animator = GetComponent<Animator>();
         Agent = GetComponent<NavMeshAgent>();
+        movePoints = new Vector3[patrolePoints.Length];
+        for (int i = 0; i < patrolePoints.Length; i++)
+        {
+            movePoints[i] = patrolePoints[i].transform.position;
+        }
     }
     // Start is called before the first frame update
     protected void Start()

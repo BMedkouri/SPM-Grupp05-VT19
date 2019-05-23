@@ -9,25 +9,33 @@
 /// </summary>
 public class Timer : Leaf
 {
-    private float timer;
-    
+    private float time;
+    private float countDown;
+    public Timer(float setTimer)
+    {
+        time = setTimer;
+        countDown = time;
+    }
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        timer -= Time.deltaTime;
-        Debug.Log(timer);
-        if(timer > 0)
+        countDown -= Time.deltaTime;
+        if(countDown > 0)
         {
             return NodeStatus.RUNNING;
         }
-        else
+        else if (countDown <= 0)
         {
             return NodeStatus.SUCCESS;
 
+        }
+        else
+        {
+            return NodeStatus.FAILURE;
         }
     }
 
     public override void OnReset()
     {
-        timer = 3f;
+        countDown = time;
     }
 }

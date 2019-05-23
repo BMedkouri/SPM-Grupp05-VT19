@@ -23,7 +23,7 @@ public class WolfBehaviourTree : BehaviourTree
                 new CheckDisntanceToPlayer(AttackRange),
                 new AttackPlayer(attackTime)),
             new Sequence("patrole",
-                new SetPatrolPoint(),
+                new SetPatrolPoint(movePoints),
                 new Move())
             );
         Repeater repeater = new Repeater(wolfSelector);

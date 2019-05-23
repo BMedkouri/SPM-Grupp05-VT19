@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -272,6 +272,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &173289440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 173289441}
+  m_Layer: 0
+  m_Name: PatrolePoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &173289441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173289440}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1598111816}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237841131
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +314,7 @@ GameObject:
   - component: {fileID: 237841133}
   - component: {fileID: 237841132}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,6 +354,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4593653966600835817}
+  - {fileID: 1598111816}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -467,6 +498,36 @@ Transform:
   - {fileID: 1791298147}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1030991561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1030991562}
+  m_Layer: 0
+  m_Name: PatrolePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1030991562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030991561}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1598111816}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1222291301
 PrefabInstance:
@@ -688,9 +749,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e97d80740d357418fbd396dcd1d4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemID: 0
   itemName: Cross
   itemDamage: 50
   itemHealAmount: 40
+--- !u!1 &1381434000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1381434001}
+  m_Layer: 0
+  m_Name: PatrolePoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1381434001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381434000}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1598111816}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1580906905
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +857,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580906905}
   m_CullTransparentMesh: 0
+--- !u!1 &1598111815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1598111816}
+  m_Layer: 0
+  m_Name: BossPatrolPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1598111816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598111815}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1030991562}
+  - {fileID: 1381434001}
+  - {fileID: 173289441}
+  m_Father: {fileID: 237841134}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616576342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1965,6 +2090,7 @@ GameObject:
   - component: {fileID: 4593653966600474318}
   - component: {fileID: 4593653966600474322}
   - component: {fileID: 4593653966600474320}
+  - component: {fileID: 4593653966600474324}
   m_Layer: 0
   m_Name: Boss_controller
   m_TagString: Enemy
@@ -2024,8 +2150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 2.5
-  chaseRange: 10
-  patrolePoints: []
+  chaseRange: 20
+  patrolePoints:
+  - {fileID: 1030991561}
+  - {fileID: 1381434000}
+  - {fileID: 173289440}
   areaAttackTimer: 6
   meeleAttackTimer: 2
   procentHealth: 0.3
@@ -2133,6 +2262,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4593653966600474324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593653966600474313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4063606dde9d7af42afad62b0cd7a523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  darkAttackPrefab: {fileID: 212688807901902450, guid: 3ab0c6e921c8d924a92e14a7a44fbc6e,
+    type: 3}
 --- !u!1 &4593653966600474325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,7 +2791,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4593653966600835743}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -5.4388638, y: -0.0051983614, z: 0.056595206}
 --- !u!4 &4593653966600835731
 Transform:
   m_ObjectHideFlags: 0
@@ -2656,9 +2799,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4593653966600474483}
-  m_LocalRotation: {x: -1.5099074e-24, y: 0.000000008322377, z: -0.000000034451904,
-    w: 1}
-  m_LocalPosition: {x: 0, y: -0.000000059604645, z: -2.1945813e-24}
+  m_LocalRotation: {x: -8.881783e-16, y: -0, z: -0.0000000344519, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4593653966600835823}
@@ -2711,7 +2853,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4593653966600835719}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.4536166, y: 0.22127046, z: 0.8768263}
 --- !u!4 &4593653966600835739
 Transform:
   m_ObjectHideFlags: 0
@@ -2801,7 +2943,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4593653966600835747}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 7.545319, y: -0.000013206173, z: -0.000008172328}
 --- !u!4 &4593653966600835751
 Transform:
   m_ObjectHideFlags: 0
@@ -2850,7 +2992,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4593653966600835731}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 86.24667, y: 74.1121, z: 164.91403}
 --- !u!4 &4593653966600835757
 Transform:
   m_ObjectHideFlags: 0
@@ -2880,7 +3022,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4593653966600835757}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -19.9519, y: 0.00000022991802, z: -0.00000012745079}
 --- !u!4 &4593653966600835761
 Transform:
   m_ObjectHideFlags: 0
@@ -3160,7 +3302,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4593653966600835795}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -5.4386744, y: -0.005153698, z: 0.056584857}
 --- !u!4 &4593653966600835799
 Transform:
   m_ObjectHideFlags: 0
@@ -3219,7 +3361,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4593653966600835803}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.06615854, y: 0.2360092, z: 0.89833343}
 --- !u!4 &4593653966600835807
 Transform:
   m_ObjectHideFlags: 0
@@ -3265,7 +3407,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4593653966600835809}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.0000001843869, y: -0.00000026841798, z: 0.00000018978817}
 --- !u!4 &4593653966600835813
 Transform:
   m_ObjectHideFlags: 0
@@ -3430,7 +3572,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4593653966600835815}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.9382398, y: -0.000024045718, z: 0.000013976955}
 --- !u!4 &4593653966600835835
 Transform:
   m_ObjectHideFlags: 0
@@ -3509,7 +3651,7 @@ Transform:
   - {fileID: 5138709038010101137}
   m_Father: {fileID: 4593653966600835751}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 4.9932156, y: -170.24834, z: -156.32541}
 --- !u!137 &4593653966605747145
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -3715,8 +3857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7027dbaf274866048915ebde23c92d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Sword
-  weaponDamage: 30
 --- !u!4 &5138709038010101137
 Transform:
   m_ObjectHideFlags: 0

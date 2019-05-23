@@ -1,4 +1,5 @@
-﻿/*
+﻿using UnityEngine;
+/*
  * @author Anders Ragnar
  */
 
@@ -21,7 +22,7 @@ public class CheckMyHealth : Leaf
     public override NodeStatus OnBehave(BehaviourState state)
     {
         HealthComponent healthStatus = enemy.GetComponent<HealthComponent>();
-        if(healthStatus.CurrentHealth/healthStatus.MaxHealth < procentHealth)
+        if(healthStatus.CurrentHealth/healthStatus.MaxHealth >= procentHealth)
         {
             //sätt variabeln till true
             return NodeStatus.SUCCESS;

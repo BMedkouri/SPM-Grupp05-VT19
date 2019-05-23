@@ -21,7 +21,7 @@ public class AttackPlayer : Leaf
         
         if (Player.PlayerReference == null)
             return NodeStatus.FAILURE;
-
+        
         if (!enemy.CanSeePlayer())
             return NodeStatus.FAILURE;
         if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) > enemy.AttackRange)
@@ -32,8 +32,7 @@ public class AttackPlayer : Leaf
         //här ska enemys attack spelas upp
         if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange && attackTimer <= 0)
         {
-            //enemy.Animator.SetTrigger("Attack");
-            //animator.Play("EnemyAttackAnimation");
+            enemy.Animator.SetTrigger("Attack");
             return NodeStatus.SUCCESS;
         }
         attackTimer -= Time.deltaTime;

@@ -7,7 +7,7 @@
  /// </summary>
 public class Behaviour : BehaviourState
 {
-    public BehaviourTree BehaviourTree { get; private set; }
+    public BehaviourTree BehaviourTree { get; set; }
     
     public Behaviour(BehaviourTree behaviourTree)
     {

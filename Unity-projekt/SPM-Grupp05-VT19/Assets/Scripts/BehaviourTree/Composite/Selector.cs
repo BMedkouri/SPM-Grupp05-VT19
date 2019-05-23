@@ -19,7 +19,6 @@ public class Selector : Composite
         }
 
         NodeStatus ret = children[currentChild].Behave(state);
-        //Debug.Log(children[currentChild]);
         switch(ret)
         {
             case NodeStatus.SUCCESS:

@@ -17,8 +17,8 @@ public class DarkWolfBehavoirTree : BehaviourTree
     {
         Sequence area = new Sequence("area",
             new CanSeePlayer(),
-            new Timer(),
-            new AreaOnEffectAttack(timerOnDarkAttack));
+            new Timer(timerOnDarkAttack),
+            new AreaOnEffectAttack());
         repeater = new Repeater(area);
         return repeater;
     }

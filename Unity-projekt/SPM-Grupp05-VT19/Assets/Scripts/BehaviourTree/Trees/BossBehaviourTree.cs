@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 /*
  * @author Anders Ragnar
  */
@@ -12,6 +13,8 @@ public class BossBehaviourTree : BehaviourTree
     //animationers x och y movement, kanske vi vill flytta ut till behaviour eftersom alla vill ha rörelse animationer
     private float xMovement;
     private float yMovement;
+
+    public bool CanDoDarkAttack { get; set; }
 
     protected override void FixedUpdate()
     {
@@ -31,12 +34,14 @@ public class BossBehaviourTree : BehaviourTree
     {
         Selector bossSelector = new Selector("bossSequence",
             new Sequence("areaAttack",
-                new CheckMyHealth(procentHealth),
-                new Timer(),
-                new AreaOnEffectAttack(areaAttackTimer)),
+                new CheckMyHealth(0.3f),
+                new CheckBool(CanDoDarkAttack),
+                new Timer(areaAttackTimer),
+                new AreaOnEffectAttack()),
             new Sequence("moveToPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(ChaseRange),
+                new CanSeePlayer(),
                 new Inverter(new CanAttackPlayer()),
                 new SetDestinationToPlayer(),
                 new Move()),
@@ -45,11 +50,24 @@ public class BossBehaviourTree : BehaviourTree
                 new CheckDisntanceToPlayer(AttackRange),
                 new AttackPlayer(meeleAttackTimer)),
             new Sequence("patrole",
-                new SetPatrolPoint(),
+                new SetPatrolPoint(movePoints),
                 new Move())
             );
 
         repeater = new Repeater(bossSelector);
         return repeater;
+
     }
+
+    public IEnumerator ResetBool(float random)
+    {
+        yield return new WaitForSeconds(random);
+        CanDoDarkAttack = true;
+    }
+
+    public void StartResetBool()
+    {
+        StartCoroutine(ResetBool(Random.Range(10,20)));
+    }
+
 }
