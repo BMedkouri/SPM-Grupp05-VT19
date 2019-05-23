@@ -11,6 +11,7 @@ public class Player : StateMachine
     public static Player PlayerReference { get; private set; }
 
     #region PlayerData
+    /*
     public PlayerData PlayerData { get; private set; }
 
     private void OnEnable()
@@ -37,6 +38,7 @@ public class Player : StateMachine
     {
         GamePersistence.SaveData(this);
     }
+    */
     #endregion PlayerData
 
     #region UI
