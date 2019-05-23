@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+//using TMPro;
 using UnityEngine.UI;
 
 public class LoreInteraction : MonoBehaviour
@@ -9,7 +9,7 @@ public class LoreInteraction : MonoBehaviour
     public bool displayInfo;
     private bool hasClickedY = false;
 
-    public TextMeshProUGUI textDisplay;
+    //public TextMeshProUGUI textDisplay;
 
 
     public GameObject myButton1;

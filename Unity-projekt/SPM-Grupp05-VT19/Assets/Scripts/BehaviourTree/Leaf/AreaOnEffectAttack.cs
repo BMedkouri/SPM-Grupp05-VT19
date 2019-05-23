@@ -16,8 +16,8 @@ public class AreaOnEffectAttack : Leaf
     {
         enemy.Animator.SetTrigger("DarkAoeAttack");
         //enemy = (BossBehaviourTree)behaviour.BehaviourTree;
-        enemy.GetComponent<BossBehaviourTree>().StartResetBool();
         enemy.GetComponent<BossBehaviourTree>().CanDoDarkAttack = false;
+        enemy.GetComponent<BossBehaviourTree>().StartResetBool();
         return NodeStatus.SUCCESS;
     }
 

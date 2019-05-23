@@ -3839,7 +3839,7 @@ GameObject:
   - component: {fileID: 3965445417058225083}
   - component: {fileID: 5138709038009807282}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: Boss Sword
   m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3854,9 +3854,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5138709038009807281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7027dbaf274866048915ebde23c92d91, type: 3}
+  m_Script: {fileID: 11500000, guid: 078fd912da767ad41bf92eeb0857955f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 50
 --- !u!4 &5138709038010101137
 Transform:
   m_ObjectHideFlags: 0

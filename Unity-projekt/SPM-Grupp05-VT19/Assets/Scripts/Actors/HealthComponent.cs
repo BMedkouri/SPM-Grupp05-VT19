@@ -39,7 +39,8 @@ public class HealthComponent : MonoBehaviour
             {
                 currentHealth = value;
                 DeathEvent deathEvent = new DeathEvent(gameObject);
-                deathEvent.FireEvent();
+                //deathEvent.FireEvent();
+                GetComponent<Player>().Transition<PlayerDeathState>();
             }
             else
             {

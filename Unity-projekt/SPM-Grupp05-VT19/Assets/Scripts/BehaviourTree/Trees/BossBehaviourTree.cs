@@ -13,6 +13,11 @@ public class BossBehaviourTree : BehaviourTree
     //animationers x och y movement, kanske vi vill flytta ut till behaviour eftersom alla vill ha rörelse animationer
     private float xMovement;
     private float yMovement;
+  
+    private void OnEnable()
+    {
+        CanDoDarkAttack = true;
+    }
 
     public bool CanDoDarkAttack { get; set; }
 
@@ -33,11 +38,13 @@ public class BossBehaviourTree : BehaviourTree
     protected override Node CreateBehaviourTree()
     {
         Selector bossSelector = new Selector("bossSequence",
+          
             new Sequence("areaAttack",
                 new CheckMyHealth(0.3f),
-                new CheckBool(CanDoDarkAttack),
+                new CheckBool(),
                 new Timer(areaAttackTimer),
                 new AreaOnEffectAttack()),
+
             new Sequence("moveToPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(ChaseRange),
@@ -45,10 +52,12 @@ public class BossBehaviourTree : BehaviourTree
                 new Inverter(new CanAttackPlayer()),
                 new SetDestinationToPlayer(),
                 new Move()),
+            
             new Sequence("attackPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(AttackRange),
                 new AttackPlayer(meeleAttackTimer)),
+            
             new Sequence("patrole",
                 new SetPatrolPoint(movePoints),
                 new Move())
