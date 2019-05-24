@@ -8,6 +8,7 @@ using UnityEngine;
 /// </summary>
 public class Offhand : EquipableItems
 {
+    [SerializeField] private GameObject holyNova;
     // TODO: Connect this to the player's heal.
     [SerializeField] private float itemHealAmount;
     public float ItemHealAmount { get => itemHealAmount; }
@@ -27,5 +28,10 @@ public class Offhand : EquipableItems
         }
 
         // Check for collision with enemy?
+    }
+
+    public void InstantiateHolyNova()
+    {
+        GameObject hn = Instantiate(holyNova, transform.position, Quaternion.identity);
     }
 }
