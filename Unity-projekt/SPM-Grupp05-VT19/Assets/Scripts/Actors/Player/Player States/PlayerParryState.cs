@@ -35,12 +35,12 @@ public class PlayerParryState : PlayerOnGroundState
 
     public override void HandleUpdate()
     {
-        if (clipTimer <= 0)
-        {
-            clipTimer = owner.Animator.GetCurrentAnimatorClipInfo(0).Length;
-            owner.Transition<PlayerOnGroundState>();
-        }
+        //if (clipTimer <= 0)
+        //{
+        //    clipTimer = owner.Animator.GetCurrentAnimatorClipInfo(0).Length;
+        //    owner.Transition<PlayerOnGroundState>();
+        //}
 
-        clipTimer -= Time.deltaTime;
+        //clipTimer -= Time.deltaTime;
     }
 }
