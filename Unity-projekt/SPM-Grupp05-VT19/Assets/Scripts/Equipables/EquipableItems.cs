@@ -3,6 +3,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Superclass for equipable items.
+/// </summary>
 public class EquipableItems : MonoBehaviour
 {
     #region Variables
@@ -27,10 +30,13 @@ public class EquipableItems : MonoBehaviour
     {
         Rigidbody = GetComponent<Rigidbody>();
 
+        // Makes sure that the lists are only created once. 
+        // The subclasses all call upon Base.Awake() to set their Rigidbody,
+        // but we don't want the lists to be created once per item, since the lists are static.
         if (hasRunOnce == true)
             return;
-        
         hasRunOnce = true;
+
         WeaponList = new List<Weapon>();
         OffhandList = new List<Offhand>();
     }

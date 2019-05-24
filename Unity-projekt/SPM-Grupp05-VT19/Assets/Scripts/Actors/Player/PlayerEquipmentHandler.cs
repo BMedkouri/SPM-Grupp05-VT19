@@ -2,6 +2,13 @@
 
 using UnityEngine;
 
+/// <summary>
+/// Class that handles the player's equipment.
+/// 
+/// The game objects are only used for debugging at the moment, the things that are used are the Weapon and Offhand classes, as well as the ID's.
+/// 
+/// When the ID changes, the active model is changed, as well as the script.
+/// </summary>
 public class PlayerEquipmentHandler : MonoBehaviour
 {
     #region Variables
