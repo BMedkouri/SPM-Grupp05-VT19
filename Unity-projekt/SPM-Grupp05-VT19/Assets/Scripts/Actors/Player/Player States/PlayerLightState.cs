@@ -11,9 +11,6 @@ public class PlayerLightState : PlayerOnGroundState
     [Header("Energy Cost:")]
     [SerializeField] private float energyExpenditure;
 
-    // Animation 
-    private float clipTimer;
-
     // Methods
     public override void Enter()
     {
@@ -28,19 +25,11 @@ public class PlayerLightState : PlayerOnGroundState
             owner.CurrentEnergy -= energyExpenditure;
 
             owner.Animator.SetTrigger("HolyNova");
-
-            // TODO: Fetch animation length and set clipTimer to that!
-            clipTimer = 2f;
+            
         }
     }
 
     public override void HandleUpdate()
     {
-        if (clipTimer <= 0)
-        {
-            owner.Transition<PlayerOnGroundState>();
-        }
-
-        clipTimer -= Time.deltaTime;
     }
 }

@@ -9,7 +9,6 @@ public class PlayerAttackState : PlayerBaseState
     // Attributes
     [SerializeField] private float attackSpeed;
     [SerializeField] private float staminaExpenditure;
-    private float attackTimer;
 
     // Methods
     public override void Enter()
@@ -25,19 +24,10 @@ public class PlayerAttackState : PlayerBaseState
             owner.CurrentStamina -= staminaExpenditure;
 
             owner.Animator.SetTrigger("SwordAndShieldSlash1");
-
-            attackTimer = 0.7f;
+            
         }
 
     }
 
-    public override void HandleUpdate()
-    {
-        if (attackTimer <= 0)
-        {
-            owner.Transition<PlayerOnGroundState>();
-        }
-
-        attackTimer -= Time.deltaTime;
-    }
+    public override void HandleUpdate(){ }
 }
