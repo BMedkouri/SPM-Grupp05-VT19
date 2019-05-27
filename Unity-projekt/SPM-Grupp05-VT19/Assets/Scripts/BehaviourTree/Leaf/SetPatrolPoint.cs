@@ -7,24 +7,18 @@ using UnityEngine;
 /// </summary>
 public class SetPatrolPoint : Leaf
 {
-    private Vector3[] movePoints;
-    public SetPatrolPoint(params Vector3[] movePoints)
+    private Vector3 movePoint;
+    public SetPatrolPoint(Vector3 movePoint)
     {
-        this.movePoints = movePoints;
+        this.movePoint = movePoint;
     }
-    private int walkTo;
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        if (movePoints == null || movePoints.Length == 0)
+        if (movePoint == null)
         {
             return NodeStatus.FAILURE;
-        };
-        if (Vector3.Distance(enemy.transform.position, movePoints[walkTo]) < 3f)
-        {
-            walkTo = (walkTo + 1) % movePoints.Length;
         }
-
-        enemy.Agent.SetDestination(movePoints[walkTo]);
+        enemy.Agent.SetDestination(movePoint);
         return NodeStatus.SUCCESS;
     }
 

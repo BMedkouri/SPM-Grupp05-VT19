@@ -10,7 +10,7 @@ public class PlayerLightState : PlayerOnGroundState
 
     [Header("Energy Cost:")]
     [SerializeField] private float energyExpenditure;
-
+    
     // Methods
     public override void Enter()
     {

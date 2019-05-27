@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class AreaOnEffectAttack : Leaf
 {
-    
     /// <summary>
     /// This makes the attack, maybe we should have a seperate timer and this should only make the attack.
     /// </summary>

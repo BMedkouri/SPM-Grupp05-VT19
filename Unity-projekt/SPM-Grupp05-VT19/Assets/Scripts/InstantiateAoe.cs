@@ -7,6 +7,6 @@ public class InstantiateAoe : MonoBehaviour
     [SerializeField] private GameObject Aoe;
     public void instantiateAoe()
     {
-        GameObject attack = Instantiate(Aoe);
+        GameObject attack = Instantiate(Aoe, transform);
     }
 }

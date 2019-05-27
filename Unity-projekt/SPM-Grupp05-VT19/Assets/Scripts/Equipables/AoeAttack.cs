@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class AoeAttack : MonoBehaviour
 {
+    
     private void OnEnable()
     {
         StartCoroutine(DestroyObject());
@@ -15,6 +17,7 @@ public class AoeAttack : MonoBehaviour
         {
             if (collision.collider.CompareTag("Player"))
             {
+                Debug.Log("Dark Attack Collision");
                 DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);
                 damageEvent.FireEvent();
             }
@@ -22,6 +25,9 @@ public class AoeAttack : MonoBehaviour
         {
             if (collision.collider.CompareTag("Enemy"))
             {
+                Debug.Log("AOE interupt");
+                collision.collider.GetComponent<BehaviourTree>().CanDoDarkAttack = false;
+                Debug.Log(collision.collider.GetComponent<BehaviourTree>().CanDoDarkAttack);
                 DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);
                 damageEvent.FireEvent();
             }
@@ -29,8 +35,8 @@ public class AoeAttack : MonoBehaviour
     }
     private IEnumerator DestroyObject()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
-   
+
 }
