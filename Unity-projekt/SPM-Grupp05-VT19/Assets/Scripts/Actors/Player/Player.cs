@@ -10,37 +10,6 @@ public class Player : StateMachine
     // Player reference/static instance
     public static Player PlayerReference { get; private set; }
 
-    #region PlayerData
-    /*
-    public PlayerData PlayerData { get; private set; }
-
-    private void OnEnable()
-    {
-        // Stamina
-        MaxStamina = maxStamina;
-        UIController.MaxStamina = MaxStamina;
-
-        // Energy
-        MaxEnergy = maxEnergy;
-        UIController.MaxEnergy = MaxEnergy;
-
-        PlayerData = GamePersistence.LoadPlayerData();
-
-        transform.position = PlayerData.Location;
-        HealthComponent.CurrentHealth = PlayerData.Health;
-        CurrentStamina = PlayerData.Stamina;
-        CurrentEnergy = PlayerData.Energy;
-        PlayerEquipmentHandler.EquippedWeaponID = PlayerData.WeaponID;
-        PlayerEquipmentHandler.EquippedOffhandID = PlayerData.OffhandID;
-    }
-
-    private void OnDisable()
-    {
-        GamePersistence.SaveData(this);
-    }
-    */
-    #endregion PlayerData
-
     #region UI
     [Header("UI reference")]
     [SerializeField] private GameObject canvas;
@@ -159,26 +128,35 @@ public class Player : StateMachine
     {
         PlayerReference = this;
 
-        // Health
-        HealthComponent = GetComponent<HealthComponent>();
-
-        // Stamina
-        currentStaminaRegeneration = staminaRegeneration;
-        staminaRegenerationTimer = staminaRegenerationCooldown;
-
-        // Energy
-        currentEnergyRegeneration = energyRegeneration;
-        energyRegenerationTimer = energyRegenerationCooldown;
-
-        // Equipables
-        PlayerEquipmentHandler = GetComponent<PlayerEquipmentHandler>();
-
         // Getters
         Physics = GetComponent<PhysicsComponent>();
         Collision = GetComponent<CollisionDetection>();
         Animator = GetComponentInChildren<Animator>();
         RotatePlayer = GetComponentInChildren<RotatePlayer>();
         UIController = canvas.GetComponent<UIController>();
+        PlayerEquipmentHandler = GetComponent<PlayerEquipmentHandler>();
+
+        // Health
+        HealthComponent = GetComponent<HealthComponent>();
+
+        // Stamina
+        currentStaminaRegeneration = staminaRegeneration;
+        staminaRegenerationTimer = staminaRegenerationCooldown;
+        MaxStamina = maxStamina;
+        UIController.MaxStamina = MaxStamina;
+
+        // Energy
+        currentEnergyRegeneration = energyRegeneration;
+        energyRegenerationTimer = energyRegenerationCooldown;
+        MaxEnergy = maxEnergy;
+        UIController.MaxEnergy = MaxEnergy;
+
+        // Equipment
+        PlayerEquipmentHandler.EquippedWeaponID = 1;
+        PlayerEquipmentHandler.EquippedOffhandID = 0;
+
+        // TODO: Load
+        // LoadGame();
 
         base.Awake();
     }
