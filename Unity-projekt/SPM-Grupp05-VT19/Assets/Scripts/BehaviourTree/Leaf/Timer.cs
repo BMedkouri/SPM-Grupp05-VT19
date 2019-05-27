@@ -21,12 +21,10 @@ public class Timer : Leaf
         countDown -= Time.deltaTime;
         if (enemy.CanDoDarkAttack == false)
         {
-            enemy.GetComponent<BossBehaviourTree>().StartResetBool();
             return NodeStatus.FAILURE;
         }
         else if (countDown > 0)
         {
-            //Debug.Log(countDown);
             return NodeStatus.RUNNING;
         }
         else if (countDown <= 0)

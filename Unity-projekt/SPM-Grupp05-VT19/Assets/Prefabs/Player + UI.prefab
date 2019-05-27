@@ -1834,6 +1834,7 @@ GameObject:
   - component: {fileID: 7590393855924533342}
   - component: {fileID: 2467305902809233648}
   - component: {fileID: 1786199549789845849}
+  - component: {fileID: 5514013533314514079}
   m_Layer: 9
   m_Name: PlayerController
   m_TagString: Player
@@ -2039,6 +2040,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee8b3bdcdc0a8447b29967c6e09f9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5514013533314514079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786199550338091691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4063606dde9d7af42afad62b0cd7a523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aoe: {fileID: 6990727903461274945, guid: 7c6ad7a41771a11419c189cf36690139, type: 3}
 --- !u!1 &1786199550338091733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,7 +2120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 59, y: 39.50006}
+  m_AnchoredPosition: {x: 59, y: 39.500122}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &6404375058637780624
@@ -4737,11 +4751,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5177043562720410739}
     m_Modifications:
-    - target: {fileID: 8161995645628436425, guid: 0bab29982a7911a4e811659e4ac21447,
-        type: 3}
-      propertyPath: m_Name
-      value: GUI_BarsOutline
-      objectReference: {fileID: 0}
     - target: {fileID: 8161995645628436424, guid: 0bab29982a7911a4e811659e4ac21447,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4847,6 +4856,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8161995645628436425, guid: 0bab29982a7911a4e811659e4ac21447,
+        type: 3}
+      propertyPath: m_Name
+      value: GUI_BarsOutline
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bab29982a7911a4e811659e4ac21447, type: 3}
 --- !u!224 &2698796766022155916 stripped
@@ -4862,16 +4876,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8606169779102693957}
     m_Modifications:
-    - target: {fileID: 5459134238589263994, guid: d2fc6b46cf1d5c2449ab887f43f52280,
-        type: 3}
-      propertyPath: m_Name
-      value: Rusty Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459134238589263994, guid: d2fc6b46cf1d5c2449ab887f43f52280,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 5459134238589631578, guid: d2fc6b46cf1d5c2449ab887f43f52280,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4927,6 +4931,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -100.355
       objectReference: {fileID: 0}
+    - target: {fileID: 5459134238589263994, guid: d2fc6b46cf1d5c2449ab887f43f52280,
+        type: 3}
+      propertyPath: m_Name
+      value: Rusty Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459134238589263994, guid: d2fc6b46cf1d5c2449ab887f43f52280,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2fc6b46cf1d5c2449ab887f43f52280, type: 3}
 --- !u!1 &4372428421888736834 stripped
@@ -4948,16 +4962,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8606169779102693957}
     m_Modifications:
-    - target: {fileID: 5459134238589263994, guid: a39f58bcd563a30419b1ef10270b214b,
-        type: 3}
-      propertyPath: m_Name
-      value: Excalibur
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459134238589263994, guid: a39f58bcd563a30419b1ef10270b214b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 5459134238589631578, guid: a39f58bcd563a30419b1ef10270b214b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5012,6 +5016,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -100.355
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459134238589263994, guid: a39f58bcd563a30419b1ef10270b214b,
+        type: 3}
+      propertyPath: m_Name
+      value: Excalibur
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459134238589263994, guid: a39f58bcd563a30419b1ef10270b214b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a39f58bcd563a30419b1ef10270b214b, type: 3}

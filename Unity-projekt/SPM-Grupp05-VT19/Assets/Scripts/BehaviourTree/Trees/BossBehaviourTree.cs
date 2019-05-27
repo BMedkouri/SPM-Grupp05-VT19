@@ -67,15 +67,6 @@ public class BossBehaviourTree : BehaviourTree
 
     }
 
-    public IEnumerator ResetBool(float random)
-    {
-        yield return new WaitForSeconds(random);
-        CanDoDarkAttack = true;
-    }
-
-    public void StartResetBool()
-    {
-        StartCoroutine(ResetBool(Random.Range(10,20)));
-    }
+    
 
 }

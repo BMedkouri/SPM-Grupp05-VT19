@@ -13,11 +13,18 @@ public class AreaOnEffectAttack : Leaf
     /// <returns>Success or Running, should be able to fail and should be able to come here on the fail reason</returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        enemy.Animator.SetTrigger("DarkAoeAttack");
-        //enemy = (BossBehaviourTree)behaviour.BehaviourTree;
-        enemy.GetComponent<BossBehaviourTree>().CanDoDarkAttack = false;
-        enemy.GetComponent<BossBehaviourTree>().StartResetBool();
-        return NodeStatus.SUCCESS;
+        if (enemy.CanDoDarkAttack)
+        {
+            Debug.Log("success");
+            enemy.GetComponent<BehaviourTree>().CanDoDarkAttack = false;
+            enemy.GetComponent<BehaviourTree>().StartResetBool();
+            enemy.Animator.SetTrigger("DarkAoeAttack");
+            return NodeStatus.SUCCESS;
+        }
+        else
+        {
+            return NodeStatus.FAILURE;
+        }
     }
 
     public override void OnReset()

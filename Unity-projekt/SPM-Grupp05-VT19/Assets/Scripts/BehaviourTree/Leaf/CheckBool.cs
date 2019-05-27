@@ -8,8 +8,7 @@ public class CheckBool : Leaf
    
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        check = enemy.GetComponent<BossBehaviourTree>().CanDoDarkAttack;
-        if(check == true)
+        if (enemy.CanDoDarkAttack  == true)
         {
             return NodeStatus.SUCCESS;
         }
@@ -21,5 +20,6 @@ public class CheckBool : Leaf
 
     public override void OnReset()
     {
+        
     }
 }

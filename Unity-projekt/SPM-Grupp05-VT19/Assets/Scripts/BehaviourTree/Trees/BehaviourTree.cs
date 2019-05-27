@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 /*
  * @author Anders Ragnar
@@ -86,5 +87,16 @@ public abstract class BehaviourTree : MonoBehaviour
 
         // Move our position a step closer to the target.
         transform.rotation = Quaternion.LookRotation(newDir);
+    }
+
+    public IEnumerator ResetBool(float random)
+    {
+        yield return new WaitForSeconds(random);
+        CanDoDarkAttack = true;
+    }
+
+    public void StartResetBool()
+    {
+        StartCoroutine(ResetBool(Random.Range(10, 20)));
     }
 }
