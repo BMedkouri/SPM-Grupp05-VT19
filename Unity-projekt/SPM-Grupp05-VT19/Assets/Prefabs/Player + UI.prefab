@@ -820,7 +820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93109ecfd23829249bfe6b5c3c2ea85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraOffset: {x: 0.97, y: 1.39, z: -2}
+  cameraOffset: {x: 0, y: 1.39, z: -2}
   yAxisJoystickSensitivity: 1
   xAxisJoystickSensitivity: 2
   yAxisInverted: 0
@@ -4621,16 +4621,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1786199550286875653}
     m_Modifications:
-    - target: {fileID: 1979435885814572216, guid: 7715a51ffeab4184394db740d78dc24a,
-        type: 3}
-      propertyPath: m_Name
-      value: AButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 1979435885814572216, guid: 7715a51ffeab4184394db740d78dc24a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5368825878766637626, guid: 7715a51ffeab4184394db740d78dc24a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4735,6 +4725,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979435885814572216, guid: 7715a51ffeab4184394db740d78dc24a,
+        type: 3}
+      propertyPath: m_Name
+      value: AButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979435885814572216, guid: 7715a51ffeab4184394db740d78dc24a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7715a51ffeab4184394db740d78dc24a, type: 3}
