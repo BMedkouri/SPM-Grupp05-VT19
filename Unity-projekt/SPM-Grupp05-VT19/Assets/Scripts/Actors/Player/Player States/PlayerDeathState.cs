@@ -9,6 +9,7 @@ public class PlayerDeathState : PlayerBaseState
     // Methods
     public override void Enter()
     {
+        owner.Animator.SetTrigger("Death");
     }
 
     public override void HandleUpdate() { }

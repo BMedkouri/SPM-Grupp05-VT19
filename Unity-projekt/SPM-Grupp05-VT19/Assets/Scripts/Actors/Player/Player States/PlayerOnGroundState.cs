@@ -16,7 +16,8 @@ public class PlayerOnGroundState : PlayerBaseState
     {
         // TODO: Change this later!   
         //Transition to RunningState if grounded
-        if (owner.Collision.IsGrounded == true && owner.GetCurrentState().ToString().Equals("PlayerOnGroundState(Clone) (PlayerOnGroundState)") && GetDirection() != Vector3.zero)
+        if (owner.Collision.IsGrounded == true && owner.GetCurrentState().ToString().Equals("PlayerOnGroundState(Clone) (PlayerOnGroundState)") 
+            && GetDirection() != Vector3.zero)
         {
             owner.Transition<PlayerRunState>();
         }
@@ -26,7 +27,7 @@ public class PlayerOnGroundState : PlayerBaseState
             owner.Transition<PlayerHealState>();
         }
 
-        if (Input.GetButton("Xbox B"))
+        else if (Input.GetButton("Xbox B"))
         {
             owner.Transition<PlayerDodgeState>();
         }
