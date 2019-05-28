@@ -2225,6 +2225,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.000000014901144
       objectReference: {fileID: 0}
+    - target: {fileID: 1786199550328584555, guid: 067526f8fed35214095b7445b0ff528d,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed by
+        Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Holy Nova'\n\tFrom
+        animation clip 'Parry'"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067526f8fed35214095b7445b0ff528d, type: 3}
 --- !u!1001 &1144571434
@@ -2705,7 +2717,7 @@ PrefabInstance:
     - target: {fileID: 7745809840835425641, guid: 3acb8cadb1e1c7344b7edd32f625f084,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.515
+      value: 3.471
       objectReference: {fileID: 0}
     - target: {fileID: 7745809840835425641, guid: 3acb8cadb1e1c7344b7edd32f625f084,
         type: 3}
