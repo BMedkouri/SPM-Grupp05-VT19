@@ -1,6 +1,5 @@
 ﻿//Author: Bilal El Medkouri
 
-
 public class DamageEventListener : EventListener<DamageEvent>
 {
     protected override void OnEvent(DamageEvent damageEvent)

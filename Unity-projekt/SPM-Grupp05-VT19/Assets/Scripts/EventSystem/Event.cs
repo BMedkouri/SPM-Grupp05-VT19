@@ -112,3 +112,23 @@ public class ChangeLevelEvent : Event<ChangeLevelEvent>
         PlayerLocation = playerLocation;
     }
 }
+
+public class SaveGameEvent : Event<SaveGameEvent>
+{
+    public Vector3 Position { get; }
+
+    public SaveGameEvent(Vector3 position)
+    {
+        Position = position;
+    }
+}
+
+public class CheckpointEvent : Event<CheckpointEvent>
+{
+    public int CheckpointNumber { get; }
+
+    public CheckpointEvent(int checkpointNumber)
+    {
+        CheckpointNumber = checkpointNumber;
+    }
+}

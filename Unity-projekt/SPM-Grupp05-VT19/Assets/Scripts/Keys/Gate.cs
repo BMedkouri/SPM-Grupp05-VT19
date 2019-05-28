@@ -17,5 +17,6 @@ public class Gate : MonoBehaviour
     public void OpenTheGates()
     {
         animator.SetTrigger("OpenTheGates");
+        LevelManager.Instance.HasDoorBeenOpened = true;
     }
 }

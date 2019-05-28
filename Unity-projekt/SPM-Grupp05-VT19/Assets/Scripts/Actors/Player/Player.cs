@@ -117,6 +117,10 @@ public class Player : StateMachine
     public PlayerEquipmentHandler PlayerEquipmentHandler { get; private set; }
     #endregion Equipables
 
+    #region IsHolyNovaUnlocked
+    public bool IsHolyNovaUnlocked { get; set; }
+    #endregion IsHolyNovaUnlocked 
+
     #region LevelTwoKey
     public bool HasLevelTwoKey { get; set; }
     #endregion LevelTwoKey
