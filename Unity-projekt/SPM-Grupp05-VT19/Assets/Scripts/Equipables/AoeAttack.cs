@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class AoeAttack : MonoBehaviour
 {
-    private void OnEnable()
-    {
-        StartCoroutine(DestroyObject());
-    }
     [SerializeField] private float damage;
     private void OnCollisionEnter(Collision collision)
     {
+        
         if (CompareTag("EnemyWeapon"))
         {
             if (collision.collider.CompareTag("Player"))
@@ -18,19 +16,17 @@ public class AoeAttack : MonoBehaviour
                 DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);
                 damageEvent.FireEvent();
             }
-        }else if (CompareTag("PlayerWeapon"))
+        }
+        else if (CompareTag("PlayerWeapon"))
         {
             if (collision.collider.CompareTag("Enemy"))
             {
+
+                collision.collider.GetComponent<BehaviourTree>().CanDoDarkAttack = false;
+                collision.collider.GetComponent<BehaviourTree>().StartResetBool();
                 DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);
                 damageEvent.FireEvent();
             }
         }
     }
-    private IEnumerator DestroyObject()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
-    }
-   
 }

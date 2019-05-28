@@ -11,14 +11,12 @@ public class EnemyAttacks : MonoBehaviour
         {
             DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);
             damageEvent.FireEvent();
-
-            foreach (ContactPoint contact in collision.contacts)
-            {
-                HitEvent hitEvent = new HitEvent(contact);
-                hitEvent.FireEvent();
-            }
         }
     }
-
 }
+//foreach (ContactPoint contact in collision.contacts)
+//{
+//    HitEvent hitEvent = new HitEvent(contact);
+//    hitEvent.FireEvent();
+//}
 

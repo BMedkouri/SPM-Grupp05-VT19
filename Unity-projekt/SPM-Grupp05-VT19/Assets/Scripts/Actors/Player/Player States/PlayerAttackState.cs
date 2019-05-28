@@ -21,9 +21,9 @@ public class PlayerAttackState : PlayerBaseState
         }
         else
         {
-            owner.CurrentStamina -= staminaExpenditure;
-
             owner.Animator.SetTrigger("SwordAndShieldSlash1");
+
+            owner.CurrentStamina -= staminaExpenditure;
             
         }
 

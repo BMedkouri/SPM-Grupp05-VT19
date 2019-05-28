@@ -11,8 +11,6 @@ public class PlayerParryState : PlayerOnGroundState
     [Header("Stamina cost:")]
     [SerializeField] private float staminaExpenditure;
 
-    private float clipTimer;
-
     // Methods
     public override void Enter()
     {
@@ -24,23 +22,13 @@ public class PlayerParryState : PlayerOnGroundState
         }
         else
         {
-            owner.Animator.SetTrigger("Block");
+            owner.Animator.SetTrigger("Parry");
 
             owner.CurrentStamina -= staminaExpenditure;
-
-            clipTimer = 0.5f; // TODO: Replace this with clip length!
-
         }
     }
 
     public override void HandleUpdate()
     {
-        //if (clipTimer <= 0)
-        //{
-        //    clipTimer = owner.Animator.GetCurrentAnimatorClipInfo(0).Length;
-        //    owner.Transition<PlayerOnGroundState>();
-        //}
-
-        //clipTimer -= Time.deltaTime;
     }
 }

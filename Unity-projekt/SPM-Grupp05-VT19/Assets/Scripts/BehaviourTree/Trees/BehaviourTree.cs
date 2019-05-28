@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 /*
  * @author Anders Ragnar
@@ -18,7 +19,7 @@ public abstract class BehaviourTree : MonoBehaviour
     protected Node behaviourTree;
     protected Behaviour currentBehaviourState;
     protected Animator animator;
-    protected Vector3[] movePoints;
+    protected Vector3 runbackLocation;
 
     //private
     private bool areaOnEffect = true;
@@ -26,24 +27,22 @@ public abstract class BehaviourTree : MonoBehaviour
     //inspector variable
     [SerializeField] protected float attackRange;
     [SerializeField] protected float chaseRange;
-    [SerializeField] protected GameObject[] patrolePoints;
+    [SerializeField] protected GameObject originLocation;
 
     //properties
     public NavMeshAgent Agent { get; private set; }
     public float AttackRange { get => attackRange; private set => attackRange = value; }
     public float ChaseRange { get => chaseRange; private set => chaseRange = value; }
-    public GameObject[] PatrolePoints { get => patrolePoints; private set => patrolePoints = value; }
+    public GameObject OriginLocation { get => originLocation; private set => originLocation = value; }
     public Animator Animator { get => animator; private set => animator = value; }
+    public bool CanDoDarkAttack { get; set; }
 
     protected void Awake()
     {
-        animator = GetComponent<Animator>();
         Agent = GetComponent<NavMeshAgent>();
-        movePoints = new Vector3[patrolePoints.Length];
-        for (int i = 0; i < patrolePoints.Length; i++)
-        {
-            movePoints[i] = patrolePoints[i].transform.position;
-        }
+        animator = GetComponent<Animator>();
+        runbackLocation = originLocation.transform.position;
+        CanDoDarkAttack = true;
     }
     // Start is called before the first frame update
     protected void Start()
@@ -88,5 +87,16 @@ public abstract class BehaviourTree : MonoBehaviour
 
         // Move our position a step closer to the target.
         transform.rotation = Quaternion.LookRotation(newDir);
+    }
+
+    public IEnumerator ResetBool(float random)
+    {
+        yield return new WaitForSeconds(random);
+        CanDoDarkAttack = true;
+    }
+
+    public void StartResetBool()
+    {
+        StartCoroutine(ResetBool(Random.Range(10, 20)));
     }
 }

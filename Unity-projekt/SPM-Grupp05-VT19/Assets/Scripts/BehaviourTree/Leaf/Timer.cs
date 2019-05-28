@@ -19,7 +19,11 @@ public class Timer : Leaf
     public override NodeStatus OnBehave(BehaviourState state)
     {
         countDown -= Time.deltaTime;
-        if(countDown > 0)
+        if (enemy.CanDoDarkAttack == false)
+        {
+            return NodeStatus.FAILURE;
+        }
+        else if (countDown > 0)
         {
             return NodeStatus.RUNNING;
         }
@@ -28,10 +32,7 @@ public class Timer : Leaf
             return NodeStatus.SUCCESS;
 
         }
-        else
-        {
-            return NodeStatus.FAILURE;
-        }
+        return NodeStatus.FAILURE;
     }
 
     public override void OnReset()

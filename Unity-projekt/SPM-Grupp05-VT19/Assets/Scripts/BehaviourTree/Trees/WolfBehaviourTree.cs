@@ -16,14 +16,16 @@ public class WolfBehaviourTree : BehaviourTree
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(ChaseRange),
                 new Inverter(new CanAttackPlayer()),
+                new Inverter(new CheckDistanceToOrigin(runbackLocation)),
                 new SetDestinationToPlayer(),
-                new Move()),
+                new MoveToPlayer(runbackLocation)),
             new Sequence("attackPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(AttackRange),
+                new Inverter(new CheckDistanceToOrigin(runbackLocation)),
                 new AttackPlayer(attackTime)),
             new Sequence("patrole",
-                new SetPatrolPoint(movePoints),
+                new SetPatrolPoint(runbackLocation),
                 new Move())
             );
         Repeater repeater = new Repeater(wolfSelector);

@@ -6,7 +6,7 @@ using UnityEngine;
 public class BossBehaviourTree : BehaviourTree
 {
     
-    [SerializeField] private float areaAttackTimer;
+    [SerializeField] private float timerOnDarkAttack;
     [SerializeField] private float meeleAttackTimer;
     [SerializeField] private float procentHealth;
 
@@ -19,7 +19,6 @@ public class BossBehaviourTree : BehaviourTree
         CanDoDarkAttack = true;
     }
 
-    public bool CanDoDarkAttack { get; set; }
 
     protected override void FixedUpdate()
     {
@@ -40,9 +39,9 @@ public class BossBehaviourTree : BehaviourTree
         Selector bossSelector = new Selector("bossSequence",
           
             new Sequence("areaAttack",
-                new CheckMyHealth(0.3f),
+                new CheckMyHealth(procentHealth),
                 new CheckBool(),
-                new Timer(areaAttackTimer),
+                new Timer(timerOnDarkAttack),
                 new AreaOnEffectAttack()),
 
             new Sequence("moveToPlayer",
@@ -51,16 +50,16 @@ public class BossBehaviourTree : BehaviourTree
                 new CanSeePlayer(),
                 new Inverter(new CanAttackPlayer()),
                 new SetDestinationToPlayer(),
-                new Move()),
+                new MoveToPlayer(runbackLocation)),
             
             new Sequence("attackPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(AttackRange),
-                new AttackPlayer(meeleAttackTimer)),
+                new AttackPlayer(meeleAttackTimer))
             
-            new Sequence("patrole",
-                new SetPatrolPoint(movePoints),
-                new Move())
+            //new Sequence("patrole",
+            //    new SetPatrolPoint(runbackLocation),
+            //    new Move())
             );
 
         repeater = new Repeater(bossSelector);
@@ -68,15 +67,6 @@ public class BossBehaviourTree : BehaviourTree
 
     }
 
-    public IEnumerator ResetBool(float random)
-    {
-        yield return new WaitForSeconds(random);
-        CanDoDarkAttack = true;
-    }
-
-    public void StartResetBool()
-    {
-        StartCoroutine(ResetBool(Random.Range(10,20)));
-    }
+    
 
 }

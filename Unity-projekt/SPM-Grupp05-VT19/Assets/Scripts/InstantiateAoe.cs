@@ -5,8 +5,9 @@ using UnityEngine;
 public class InstantiateAoe : MonoBehaviour
 {
     [SerializeField] private GameObject Aoe;
-    public void instantiateAoe()
+    public void InstantiateAOE()
     {
-        GameObject attack = Instantiate(Aoe);
+        GameObject attack = Instantiate(Aoe, transform);
+        Destroy(attack, 0.1f);
     }
 }

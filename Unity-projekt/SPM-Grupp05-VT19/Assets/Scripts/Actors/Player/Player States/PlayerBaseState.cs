@@ -71,29 +71,19 @@ public class PlayerBaseState : State
             owner.transform.position += Vector3.up * 5f;
         }
 
-        //Attack
-        if (Input.GetAxisRaw("Right Trigger") == 1 &&
-            !owner.GetCurrentState().ToString().Equals("PlayerAttackState(Clone) (PlayerAttackState)") &&
-            !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") &&
-            !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        if (Input.GetAxisRaw("Right Trigger") == 1 )
         {
             owner.Transition<PlayerAttackState>();
         }
-        if (Input.GetAxisRaw("Left Trigger") == 1 &&
-            !owner.GetCurrentState().ToString().Equals("PlayerAttackState(Clone) (PlayerAttackState)") &&
-            !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") &&
-            !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        else if (Input.GetAxisRaw("Left Trigger") == 1)
         {
             owner.Transition<PlayerParryState>();
         }
-        if (Input.GetButtonDown("Left Bumper") &&
-            !owner.GetCurrentState().ToString().Equals("PlayerAttackState(Clone) (PlayerAttackState)") &&
-            !owner.GetCurrentState().ToString().Equals("PlayerParryState(Clone) (PlayerParryState)") &&
-            !owner.GetCurrentState().ToString().Equals("PlayerLightState(Clone) (PlayerLightState)"))
+        else if (Input.GetButtonDown("Left Bumper") )
         {
             owner.Transition<PlayerLightState>();
         }
-
+        
         if (owner.Collision.IsGrounded == false)
         {
             owner.Transition<PlayerInAirState>();
