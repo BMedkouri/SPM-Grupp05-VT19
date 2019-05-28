@@ -13,17 +13,18 @@ public class PlayerHealState : PlayerBaseState
     //Methods
     public override void Enter()
     {
-        base.Enter();
-        timer = healCastDuration;
+        owner.Animator.SetTrigger("Heal");
+        //base.Enter();
+        //timer = healCastDuration;
     }
 
     public override void HandleUpdate()
     {
-        if (timer <= 0)
-        {
-            owner.GetComponent<HealthComponent>().CurrentHealth += healAmount;
-            owner.Transition<PlayerOnGroundState>();
-        }
-        timer -= Time.deltaTime;
+        //if (timer <= 0)
+        //{
+        //    owner.GetComponent<HealthComponent>().CurrentHealth += healAmount;
+        //    owner.Transition<PlayerOnGroundState>();
+        //}
+        //timer -= Time.deltaTime;
     }
 }
