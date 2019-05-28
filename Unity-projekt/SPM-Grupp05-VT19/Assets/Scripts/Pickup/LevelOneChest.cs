@@ -1,7 +1,5 @@
 ﻿//Author: Bilal El Medkouri
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelOneChest : MonoBehaviour
@@ -22,7 +20,7 @@ public class LevelOneChest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!hasBeenTriggered && other.CompareTag("Player"))
+        if (hasBeenTriggered == false && other.CompareTag("Player"))
         {
             button.SetActive(true);
         }
@@ -32,7 +30,7 @@ public class LevelOneChest : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (!hasBeenTriggered && Input.GetButtonDown("Xbox A"))
+            if (hasBeenTriggered == false && Input.GetButtonDown("Xbox A"))
             {
                 button.SetActive(false);
                 hasBeenTriggered = true;
@@ -41,15 +39,17 @@ public class LevelOneChest : MonoBehaviour
 
                 other.transform.position = animationPosition.transform.position;
                 other.GetComponent<Player>().Transition<PlayerPickUpState>();
+
+                LevelManager.Instance.HasInteractableObjectBeenActivated = true;
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!hasBeenTriggered && other.CompareTag("Player"))
+        if (hasBeenTriggered == false && other.CompareTag("Player"))
         {
             button.SetActive(false);
         }
-    }    
+    }
 }

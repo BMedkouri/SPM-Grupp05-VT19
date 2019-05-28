@@ -8,6 +8,6 @@ public class InstantiateAoe : MonoBehaviour
     public void InstantiateAOE()
     {
         GameObject attack = Instantiate(Aoe, transform);
-        //Destroy(attack, 0.1f);
+        Destroy(attack, 0.1f);
     }
 }

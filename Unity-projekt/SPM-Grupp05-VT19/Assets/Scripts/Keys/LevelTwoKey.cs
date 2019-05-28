@@ -32,6 +32,7 @@ public class LevelTwoKey : MonoBehaviour
 
                 other.GetComponent<Player>().Transition<PlayerPickUpState>();
                 Player.PlayerReference.HasLevelTwoKey = true;
+                LevelManager.Instance.HasInteractableObjectBeenActivated = true;
                 Destroy(gameObject, 2f);
             }
         }

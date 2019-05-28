@@ -8,10 +8,7 @@ public class AoeAttack : MonoBehaviour
     [SerializeField] private float damage;
     private void OnCollisionEnter(Collision collision)
     {
-        foreach (ContactPoint contact in collision.contacts)
-        {
-            Debug.Log(contact.otherCollider.transform.parent);
-        }
+        
         if (CompareTag("EnemyWeapon"))
         {
             if (collision.collider.CompareTag("Player"))

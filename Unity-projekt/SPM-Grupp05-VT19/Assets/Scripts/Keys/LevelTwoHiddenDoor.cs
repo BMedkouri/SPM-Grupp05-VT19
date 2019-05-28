@@ -1,0 +1,59 @@
+﻿//Author: Bilal El Medkouri
+
+using UnityEngine;
+
+public class LevelTwoHiddenDoor : MonoBehaviour
+{
+    public static LevelTwoHiddenDoor Instance;
+
+    private Animator animator;
+
+    [SerializeField] private GameObject button;
+    private bool hasBeenTriggered;
+
+    private void Awake()
+    {
+        Instance = this;
+        animator = GetComponent<Animator>();
+
+        hasBeenTriggered = false;
+        button.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (Player.PlayerReference.HasLevelTwoKey == true && hasBeenTriggered == false && other.CompareTag("Player"))
+        {
+            button.SetActive(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (Player.PlayerReference.HasLevelTwoKey == true && hasBeenTriggered == false && Input.GetButtonDown("Xbox A"))
+            {
+                button.SetActive(false);
+                hasBeenTriggered = true;
+                Player.PlayerReference.HasLevelTwoKey = false;
+
+                OpenHiddenDoor();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (Player.PlayerReference.HasLevelTwoKey == true && hasBeenTriggered == false && other.CompareTag("Player"))
+        {
+            button.SetActive(false);
+        }
+    }
+
+    private void OpenHiddenDoor()
+    {
+        animator.SetTrigger("OpenHiddenDoor");
+        LevelManager.Instance.HasDoorBeenOpened = true;
+    }
+}

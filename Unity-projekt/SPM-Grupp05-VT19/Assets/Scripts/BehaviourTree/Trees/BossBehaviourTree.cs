@@ -39,7 +39,7 @@ public class BossBehaviourTree : BehaviourTree
         Selector bossSelector = new Selector("bossSequence",
           
             new Sequence("areaAttack",
-                new CheckMyHealth(0.3f),
+                new CheckMyHealth(procentHealth),
                 new CheckBool(),
                 new Timer(timerOnDarkAttack),
                 new AreaOnEffectAttack()),
