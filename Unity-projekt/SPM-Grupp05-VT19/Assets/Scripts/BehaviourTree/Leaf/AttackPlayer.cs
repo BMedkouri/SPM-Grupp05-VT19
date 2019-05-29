@@ -7,6 +7,7 @@ public class AttackPlayer : Leaf
     private string[] attack;
     int index;
     private float attackTimer, countDown;
+    private float count;
     public AttackPlayer(float attackTimer, string[] attack)
     {
         this.attackTimer = attackTimer;
@@ -21,7 +22,6 @@ public class AttackPlayer : Leaf
     /// <returns></returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        Debug.Log("Count down: " + countDown);
         if (Player.PlayerReference == null)
             return NodeStatus.FAILURE;
         
@@ -35,17 +35,18 @@ public class AttackPlayer : Leaf
         //här ska enemys attack spelas upp
         if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange && countDown <= 0)
         {
-            Debug.Log("trigger animation in attack player: " + countDown);
             //Debug.Log(countDown);
             countDown = attackTimer;
             if (enemy is BossBehaviourTree==false)
             {
                 index = 0;
             }
-            //Debug.Log(attack[index]);
+            Debug.Log(count);
+            Debug.Log(attack[index]);
             enemy.Animator.SetTrigger(attack[index]);
             return NodeStatus.SUCCESS;
         }
+        count += Time.deltaTime;
         countDown -= Time.deltaTime;
         return NodeStatus.RUNNING;
     }
