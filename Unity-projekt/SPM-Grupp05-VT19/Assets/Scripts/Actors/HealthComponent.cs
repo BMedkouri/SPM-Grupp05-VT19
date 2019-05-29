@@ -57,6 +57,16 @@ public class HealthComponent : MonoBehaviour
         }
     }
 
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        healthBarController.CurrentHealth = currentHealth;
+    }
+
     // Methods
     private void Awake()
     {

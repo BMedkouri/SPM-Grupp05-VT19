@@ -23,29 +23,18 @@ public class PlayerDodgeState : PlayerOnGroundState
     public override void Enter()
     {
         base.Enter();
-
         if (owner.CurrentStamina < staminaExpenditure)
         {
             owner.Transition<PlayerOnGroundState>();
         }
         else
         {
-            owner.CurrentStamina -= staminaExpenditure;
-
-            owner.Physics.Velocity += (dodgeSpeed * owner.Physics.Direction);
-            owner.Animator.SetTrigger("Dodge");
-
-            countDown = dodgeTimer;
+            owner.Animator.SetTrigger("Roll");
         }
     }
 
     public override void HandleUpdate()
     {
-        if (countDown <= 0)
-        {
-            owner.Transition<PlayerOnGroundState>();
-        }
-
-        countDown -= Time.deltaTime;
+        owner.Physics.Velocity = (dodgeSpeed * owner.Physics.Direction == Vector3.zero ? Vector3.back : owner.Physics.Direction);
     }
 }

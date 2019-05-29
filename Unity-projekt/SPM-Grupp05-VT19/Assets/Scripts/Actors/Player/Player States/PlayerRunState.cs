@@ -17,10 +17,10 @@ public class PlayerRunState : PlayerOnGroundState
 
     public override void HandleUpdate()
     {
-        if (Input.GetButtonDown("Xbox X"))
-        {
-            owner.Transition<PlayerSprintState>();
-        }
+        //if (Input.GetButtonDown("Xbox X"))
+        //{
+        //    owner.Transition<PlayerSprintState>();
+        //}
 
         if (GetDirection() == Vector3.zero && Vector3.ProjectOnPlane(owner.Physics.Velocity, owner.Collision.GetGroundRaycastHit().normal) == Vector3.zero)
         {
