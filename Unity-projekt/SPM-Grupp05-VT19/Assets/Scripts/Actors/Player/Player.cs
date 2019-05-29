@@ -2,6 +2,7 @@
 //Secondary author: Anders Ragnar
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : StateMachine
 {
@@ -155,29 +156,53 @@ public class Player : StateMachine
         MaxEnergy = maxEnergy;
         UIController.MaxEnergy = MaxEnergy;
 
-        // Equipment
-        PlayerEquipmentHandler.EquippedWeaponID = 1;
-        PlayerEquipmentHandler.EquippedOffhandID = 0;
-
-        // TODO: Load
-        // LoadGame();
+        // Load player data
+        LoadPlayerData();
 
         base.Awake();
     }
 
-    // TODO: Remove after fixing save/load
-    /*
-    private void Start()
+    private void LoadPlayerData()
     {
-        // Stamina
-        MaxStamina = maxStamina;
-        UIController.MaxStamina = MaxStamina;
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
 
-        // Energy
-        MaxEnergy = maxEnergy;
-        UIController.MaxEnergy = MaxEnergy;
+        // Players position
+        if (currentScene == 1)
+        {
+            MovePlayerOnLoad(currentScene, 200f, 79f, 463f); // Default values
+        }
+        else if (currentScene == 2)
+        {
+            // MovePlayerOnLoad(currentScene, 0f, 0f, 0f);
+        }
+
+        // Health, stamina, and energy
+        HealthComponent.CurrentHealth = PlayerPrefs.GetFloat("currentHealth", 100f);
+        CurrentStamina = PlayerPrefs.GetFloat("currentStamina", 80f);
+        CurrentEnergy = PlayerPrefs.GetFloat("currentEnergy", 30f);
+
+        // Equipment
+        PlayerEquipmentHandler.EquippedWeaponID = PlayerPrefs.GetInt("weaponID", 1);
+        PlayerEquipmentHandler.EquippedOffhandID = PlayerPrefs.GetInt("offhandID", 0);
+
+        // Holy nova
+        int isHolyNovaUnlocked = PlayerPrefs.GetInt("isHolyNovaUnlocked", 0);
+        IsHolyNovaUnlocked = isHolyNovaUnlocked == 1 ? true : false;
+
+        // Level two key
+        int hasLevelTwoKey = PlayerPrefs.GetInt("hasLevelTwoKey", 0);
+        HasLevelTwoKey = hasLevelTwoKey == 1 ? true : false;
     }
-    */
+
+    private void MovePlayerOnLoad(int currentScene, float defaultX, float defaultY, float defaultZ)
+    {
+        float x, y, z;
+        x = PlayerPrefs.GetFloat("playerXLevel" + currentScene, defaultX);
+        y = PlayerPrefs.GetFloat("playerYLevel" + currentScene, defaultY);
+        z = PlayerPrefs.GetFloat("playerZLevel" + currentScene, defaultZ);
+        transform.position = new Vector3(x, y, z);
+    }
+
 
     public void Regeneration()
     {

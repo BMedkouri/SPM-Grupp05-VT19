@@ -101,18 +101,6 @@ public class ParticleEvent : Event<ParticleEvent>
     }
 }
 
-public class ChangeLevelEvent : Event<ChangeLevelEvent>
-{
-    public int Level { get; }
-    public Vector3 PlayerLocation { get; }
-
-    public ChangeLevelEvent(int level, Vector3 playerLocation)
-    {
-        Level = level;
-        PlayerLocation = playerLocation;
-    }
-}
-
 public class SaveGameEvent : Event<SaveGameEvent>
 {
     public Vector3 Position { get; }

@@ -15,19 +15,20 @@ public class GameManager : MonoBehaviour
     #region SaveGame
     public void SaveGame(Vector3 savePosition)
     {
-        SavePlayer(savePosition);
-        SaveLevel(SceneManager.GetActiveScene().buildIndex);
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
 
+        SavePlayer(savePosition, currentScene);
+        SaveLevel(currentScene);
     }
 
-    private void SavePlayer(Vector3 savePosition)
+    private void SavePlayer(Vector3 savePosition, int currentScene)
     {
         Player player = Player.PlayerReference;
 
-        // Player position
-        PlayerPrefs.SetFloat("x", savePosition.x);
-        PlayerPrefs.SetFloat("y", savePosition.y);
-        PlayerPrefs.SetFloat("z", savePosition.z);
+        // Player position per level
+        PlayerPrefs.SetFloat("playerXLevel" + currentScene, savePosition.x);
+        PlayerPrefs.SetFloat("playerYLevel" + currentScene, savePosition.y);
+        PlayerPrefs.SetFloat("playerZLevel" + currentScene, savePosition.z);
 
         // Health, stamina, and energy
         PlayerPrefs.SetFloat("currentHealth", player.HealthComponent.CurrentHealth);
@@ -54,9 +55,10 @@ public class GameManager : MonoBehaviour
         // Scene
         PlayerPrefs.SetInt("currentScene", currentScene);
 
-        // TODO: Save enemies 
-        // Check out this link: https://www.youtube.com/watch?v=J6FfcJpbPXE
+        // Enemies in current scene
+        level.SaveEnemies();
 
+        // Interactables and doors in current scene
         int hasInteractableObjectBeenActivated = level.HasInteractableObjectBeenActivated ? 1 : 0;
         int hasDoorBeenOpened = level.HasDoorBeenOpened ? 1 : 0;
 
@@ -82,7 +84,22 @@ public class GameManager : MonoBehaviour
     #region LoadGame
     public void LoadGame()
     {
-        // TODO
+        // TODO: Create a loading scene with a loading bar
+        LoadScene(PlayerPrefs.GetInt("currentScene"));
     }
     #endregion LoadGame
+
+    #region LoadScene
+    public void LoadScene(int scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
+    #endregion LoadScene
+
+    #region ResetPlayerPrefs
+    public void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+    #endregion ResetPlayerPrefs
 }

@@ -12,6 +12,12 @@ public class Gate : MonoBehaviour
     {
         Instance = this;
         animator = GetComponent<Animator>();
+
+        int hasTheGatesBeenOpened = PlayerPrefs.GetInt("levelOneDoor", 0);
+        if (hasTheGatesBeenOpened == 1)
+        {
+            OpenTheGates();
+        }
     }
 
     public void OpenTheGates()
