@@ -16,7 +16,14 @@ public class LevelTwoHiddenDoor : MonoBehaviour
         Instance = this;
         animator = GetComponent<Animator>();
 
-        hasBeenTriggered = false;
+        int isDoorOpen = PlayerPrefs.GetInt("levelTwoHiddenDoor", 0);
+        hasBeenTriggered = isDoorOpen == 1 ? true : false;
+
+        if (hasBeenTriggered == true)
+        {
+            OpenHiddenDoor();
+        }
+
         button.SetActive(false);
     }
 
@@ -37,6 +44,9 @@ public class LevelTwoHiddenDoor : MonoBehaviour
                 button.SetActive(false);
                 hasBeenTriggered = true;
                 Player.PlayerReference.HasLevelTwoKey = false;
+
+                SaveGameEvent saveGameEvent = new SaveGameEvent(Player.PlayerReference.transform.position);
+                saveGameEvent.FireEvent();
 
                 OpenHiddenDoor();
             }
