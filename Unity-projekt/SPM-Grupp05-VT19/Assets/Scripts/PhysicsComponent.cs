@@ -32,7 +32,7 @@ public class PhysicsComponent : MonoBehaviour
         Velocity = Vector3.zero;
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         ApplyGravity();
         ApplyAirResistance();
