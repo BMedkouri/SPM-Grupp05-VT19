@@ -31,7 +31,7 @@ public class CollisionDetection : MonoBehaviour
         point2 = capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         CollisionCheck();
 
@@ -42,7 +42,7 @@ public class CollisionDetection : MonoBehaviour
 
     private void CollisionCheck()
     {
-        int escape = 10;
+        int escape = 5;
         do
         {
             Vector3 normalForce = Vector3.zero;
@@ -98,7 +98,10 @@ public class CollisionDetection : MonoBehaviour
     {
         RaycastHit hitInfo = new RaycastHit();
 
-        Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, skinWidth + groundCheckDistance, rayCastLayerMask);
+        if (IsGrounded == true)
+        {
+            Physics.Raycast(transform.position, Vector3.down, out hitInfo, Mathf.Infinity, rayCastLayerMask);
+        }
 
         return hitInfo;
     }

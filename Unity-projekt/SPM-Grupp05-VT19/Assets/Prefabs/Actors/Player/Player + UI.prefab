@@ -751,13 +751,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786199549135875966}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.97, y: 1.39, z: -2}
+  m_LocalRotation: {x: 0.08115573, y: 0, z: 0, w: 0.9967014}
+  m_LocalPosition: {x: 0.35, y: 1.8, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1786199550337930891}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.31, y: 0, z: 0}
 --- !u!20 &1786199549135875936
 Camera:
   m_ObjectHideFlags: 0
@@ -820,13 +820,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93109ecfd23829249bfe6b5c3c2ea85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraOffset: {x: 0, y: 1.39, z: -2}
-  yAxisJoystickSensitivity: 1
-  xAxisJoystickSensitivity: 2
+  cameraOffset: {x: 0.35, y: 1.8, z: -2.1}
+  startingRotation: {x: 9.31, y: 0}
+  yAxisJoystickSensitivity: 2
+  xAxisJoystickSensitivity: 4
   yAxisInverted: 0
   xAxisInverted: 1
-  minimumXRotation: -89
-  maximumXRotation: 89
+  minimumXRotation: -7
+  maximumXRotation: 48
   geometryLayer:
     serializedVersion: 2
     m_Bits: 1024
