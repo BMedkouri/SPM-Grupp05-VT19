@@ -12,7 +12,7 @@ public class PlayerRunState : PlayerOnGroundState
         base.Enter();
 
         //Enters state run here
-       
+
     }
 
     public override void HandleUpdate()
@@ -22,19 +22,21 @@ public class PlayerRunState : PlayerOnGroundState
         //    owner.Transition<PlayerSprintState>();
         //}
 
+
+        // TODO: Replace the second check, or change this state
         if (GetDirection() == Vector3.zero && Vector3.ProjectOnPlane(owner.Physics.Velocity, owner.Collision.GetGroundRaycastHit().normal) == Vector3.zero)
         {
             owner.Transition<PlayerOnGroundState>();
         }
 
-        base.HandleUpdate(); 
+        base.HandleUpdate();
     }
 
     public override void Exit()
     {
         base.Exit();
 
-      
+
         //Exits state
     }
 }

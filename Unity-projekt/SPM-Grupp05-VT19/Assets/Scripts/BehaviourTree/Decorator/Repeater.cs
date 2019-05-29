@@ -10,7 +10,6 @@ public class Repeater : Decorator
     }
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        
         NodeStatus ret = child.Behave(state);
         if (ret != NodeStatus.RUNNING)
         {

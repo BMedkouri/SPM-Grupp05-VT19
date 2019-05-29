@@ -36,7 +36,7 @@ public class DarkWolfBehavoirTree : BehaviourTree
             new Sequence("attackPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(AttackRange),
-                new AttackPlayer(attackTimer)),
+                new AttackPlayer(attackTimer, attack)),
             
             new Sequence("patrole",
                 new SetPatrolPoint(runbackLocation),

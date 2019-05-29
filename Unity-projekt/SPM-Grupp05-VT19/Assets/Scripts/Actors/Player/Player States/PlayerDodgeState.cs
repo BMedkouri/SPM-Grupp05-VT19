@@ -29,12 +29,12 @@ public class PlayerDodgeState : PlayerOnGroundState
         }
         else
         {
-            owner.Animator.SetTrigger("Roll");
+            owner.Physics.Velocity += (dodgeSpeed * owner.Physics.Direction == Vector3.zero ? Vector3.back : owner.Physics.Direction);
+            owner.Animator.SetTrigger("Dodge");
         }
     }
 
     public override void HandleUpdate()
     {
-        owner.Physics.Velocity = (dodgeSpeed * owner.Physics.Direction == Vector3.zero ? Vector3.back : owner.Physics.Direction);
     }
 }

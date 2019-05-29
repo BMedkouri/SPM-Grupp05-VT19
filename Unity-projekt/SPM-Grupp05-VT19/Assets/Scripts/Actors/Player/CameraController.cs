@@ -9,12 +9,9 @@ using UnityEngine;
 /// </summary>
 public class CameraController : MonoBehaviour
 {
-    private Vector2 cameraRotation;
-    private SphereCollider sphereCollider;
-    private RaycastHit hitInfo;
-    Vector3 cameraMovement;
-
     [SerializeField] private Vector3 cameraOffset;
+    [SerializeField] private Vector2 startingRotation;
+
     [SerializeField] private float yAxisJoystickSensitivity, xAxisJoystickSensitivity;
     [SerializeField] private bool yAxisInverted, xAxisInverted;
 
@@ -22,13 +19,24 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float maximumXRotation;
     [SerializeField] private LayerMask geometryLayer;
 
+    private Vector2 cameraRotation;
+    private Vector3 cameraMovement;
+
+    private SphereCollider sphereCollider;
+    private RaycastHit hitInfo;
+
+
+
     /// <summary>
     /// Gets the spherecollider that makes sure that our camera doesn't pass through walls.
-    /// Sets our camera's initial movement vector to 0.
+    /// Sets the camera's starting rotation.
     /// </summary>
     private void Awake()
     {
         sphereCollider = GetComponent<SphereCollider>();
+        startingRotation.y -= 178f;
+
+        cameraRotation = startingRotation;
     }
 
     /// <summary>
@@ -62,8 +70,6 @@ public class CameraController : MonoBehaviour
         //Adjusts the camera in accordance with the camera offset
         cameraMovement = Quaternion.Euler(cameraRotation) * cameraOffset;
 
-        // DEN HÄR NOLLAR ROTATIONEN!! FIXA
-
         //Rotates camera based on input
         transform.rotation = Quaternion.Euler(cameraRotation);
 
@@ -80,10 +86,13 @@ public class CameraController : MonoBehaviour
     /// </summary>
     private void CameraCollisionCheck()
     {
-        int escape = 100;
+        int escape = 5;
+
         do
         {
-            if (Physics.SphereCast(transform.parent.position, sphereCollider.radius, cameraMovement.normalized, out hitInfo, cameraMovement.magnitude + sphereCollider.radius, geometryLayer))
+            Vector3 sphereCastOriginPosition = new Vector3(transform.parent.position.x, transform.parent.position.y + cameraOffset.y, transform.parent.position.z);
+
+            if (Physics.SphereCast(sphereCastOriginPosition, sphereCollider.radius, cameraMovement.normalized, out hitInfo, cameraMovement.magnitude + sphereCollider.radius, geometryLayer))
             {
                 if (hitInfo.distance - sphereCollider.radius > sphereCollider.radius)
                 {
@@ -94,6 +103,7 @@ public class CameraController : MonoBehaviour
                     cameraMovement = cameraMovement.normalized * (-sphereCollider.radius);
                 }
             }
+
             escape--;
         } while (hitInfo.collider != null && escape > 0);
     }
