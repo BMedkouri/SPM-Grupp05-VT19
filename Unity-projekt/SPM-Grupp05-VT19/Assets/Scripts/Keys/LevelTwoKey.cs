@@ -9,8 +9,15 @@ public class LevelTwoKey : MonoBehaviour
 
     private void Awake()
     {
-        hasBeenTriggered = false;
         button.SetActive(false);
+
+        int hasKeyBeenPickedUp = PlayerPrefs.GetInt("levelTwoKey", 0);
+        hasBeenTriggered = hasKeyBeenPickedUp == 1 ? true : false;
+
+        if (hasBeenTriggered == true)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,11 +36,13 @@ public class LevelTwoKey : MonoBehaviour
             {
                 button.SetActive(false);
                 hasBeenTriggered = true;
-
                 other.GetComponent<Player>().Transition<PlayerPickUpState>();
                 Player.PlayerReference.HasLevelTwoKey = true;
                 LevelManager.Instance.HasInteractableObjectBeenActivated = true;
                 Destroy(gameObject, 2f);
+
+                SaveGameEvent saveGameEvent = new SaveGameEvent(Player.PlayerReference.transform.position);
+                saveGameEvent.FireEvent();
             }
         }
     }
