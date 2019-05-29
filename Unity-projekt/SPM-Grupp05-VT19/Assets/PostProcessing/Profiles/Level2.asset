@@ -43,7 +43,7 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 0
+      intensity: 1
       radius: 0.3
       sampleCount: 10
       downsampling: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
       ambientOnly: 0
       highPrecision: 0
   screenSpaceReflection:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       reflection:
         blendType: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 4.04
-        threshold: 1.79
+        intensity: 0.45
+        threshold: 0.18
         softKnee: 0.36
         radius: 1.02
         antiFlicker: 1
