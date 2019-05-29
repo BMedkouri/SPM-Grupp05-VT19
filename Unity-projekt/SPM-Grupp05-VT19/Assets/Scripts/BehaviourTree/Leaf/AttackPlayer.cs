@@ -4,10 +4,13 @@
  */
 public class AttackPlayer : Leaf
 {
+    private string[] attack;
+    int index;
     private float attackTimer, countDown;
-    public AttackPlayer(float attackTimer)
+    public AttackPlayer(float attackTimer, string[] attack)
     {
         this.attackTimer = attackTimer;
+        this.attack = attack;
     }
     /// <summary>
     /// This is one of the states that has some failsafes that you might think is "unnecessary"
@@ -18,7 +21,7 @@ public class AttackPlayer : Leaf
     /// <returns></returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        
+        Debug.Log("Count down: " + countDown);
         if (Player.PlayerReference == null)
             return NodeStatus.FAILURE;
         
@@ -30,18 +33,25 @@ public class AttackPlayer : Leaf
         enemy.RotateToTarget(Player.PlayerReference.transform.position);
 
         //här ska enemys attack spelas upp
-        if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange && attackTimer <= 0)
+        if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange && countDown <= 0)
         {
-            enemy.Animator.SetTrigger("Attack");
+            Debug.Log("trigger animation in attack player: " + countDown);
+            //Debug.Log(countDown);
+            countDown = attackTimer;
+            if (enemy is BossBehaviourTree==false)
+            {
+                index = 0;
+            }
+            //Debug.Log(attack[index]);
+            enemy.Animator.SetTrigger(attack[index]);
             return NodeStatus.SUCCESS;
         }
-        attackTimer -= Time.deltaTime;
+        countDown -= Time.deltaTime;
         return NodeStatus.RUNNING;
     }
 
-
     public override void OnReset()
     {
-        countDown = attackTimer;
+        index = (index + 1) % attack.Length;
     }
 }

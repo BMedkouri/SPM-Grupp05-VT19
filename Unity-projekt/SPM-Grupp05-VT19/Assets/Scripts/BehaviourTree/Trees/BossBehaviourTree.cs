@@ -9,6 +9,7 @@ public class BossBehaviourTree : BehaviourTree
     [SerializeField] private float timerOnDarkAttack;
     [SerializeField] private float meeleAttackTimer;
     [SerializeField] private float procentHealth;
+    
 
     //animationers x och y movement, kanske vi vill flytta ut till behaviour eftersom alla vill ha rörelse animationer
     private float xMovement;
@@ -37,7 +38,7 @@ public class BossBehaviourTree : BehaviourTree
     protected override Node CreateBehaviourTree()
     {
         Selector bossSelector = new Selector("bossSequence",
-          
+
             new Sequence("areaAttack",
                 new CheckMyHealth(procentHealth),
                 new CheckBool(),
@@ -51,15 +52,11 @@ public class BossBehaviourTree : BehaviourTree
                 new Inverter(new CanAttackPlayer()),
                 new SetDestinationToPlayer(),
                 new MoveToPlayer(runbackLocation)),
-            
+
             new Sequence("attackPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(AttackRange),
-                new AttackPlayer(meeleAttackTimer))
-            
-            //new Sequence("patrole",
-            //    new SetPatrolPoint(runbackLocation),
-            //    new Move())
+                new AttackPlayer(meeleAttackTimer, attack))
             );
 
         repeater = new Repeater(bossSelector);
