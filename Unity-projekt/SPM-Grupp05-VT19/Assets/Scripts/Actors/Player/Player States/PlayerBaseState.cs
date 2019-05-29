@@ -71,7 +71,13 @@ public class PlayerBaseState : State
             owner.transform.position += Vector3.up * 5f;
         }
 
-        if (Input.GetAxisRaw("Right Trigger") == 1 )
+        // TODO: Remove this before building the game
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameManager.Instance.ResetPlayerPrefs(); // Resets save file
+        }
+
+        if (Input.GetAxisRaw("Right Trigger") == 1)
         {
             owner.Transition<PlayerAttackState>();
         }
@@ -79,11 +85,11 @@ public class PlayerBaseState : State
         {
             owner.Transition<PlayerParryState>();
         }
-        else if (Input.GetButtonDown("Left Bumper") )
+        else if (Input.GetButtonDown("Left Bumper"))
         {
             owner.Transition<PlayerLightState>();
         }
-        
+
         if (owner.Collision.IsGrounded == false)
         {
             owner.Transition<PlayerInAirState>();

@@ -60,7 +60,7 @@ public class HealthComponent : MonoBehaviour
     public void Heal(float amount)
     {
         currentHealth += amount;
-        if(currentHealth > maxHealth)
+        if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }

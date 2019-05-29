@@ -8,11 +8,15 @@ public class Enemy : StateMachine
 {
     // Attributes    
 
-    [Header("Enemy Patrol Locations:")]
+    [Header("Enemy Patrol Locations")]
     [SerializeField] private GameObject[] patrolLocations;
 
+    [Header("Enemy ID")]
+    [Tooltip("Has to be unique! Scene number and then two digits. Examples: 100, 105, 202.")]
+    [SerializeField] private int id;
+    public int ID { get => id; }
 
-    // Properties
+    // Components
     public MeshRenderer Renderer { get; set; }
     public Animator Animator { get; set; }
 
@@ -30,7 +34,27 @@ public class Enemy : StateMachine
         LayerMask = LayerMask.GetMask("Geometry");
         Animator = GetComponent<Animator>();
 
+        LoadEnemy();
+
         base.Awake();
+    }
+
+    private void LoadEnemy()
+    {
+        int isAlive = PlayerPrefs.GetInt("enemy" + ID, 1); // 0 == Dead, 1 == Alive
+        LevelManager.Instance.EnemyDictionary.Add(id, isAlive);
+
+        if (isAlive == 0)
+        {
+            // TODO: Transition to death state
+            Destroy(gameObject);
+        }
+    }
+
+    // TODO: Add this to death state
+    private void OnDestroy()
+    {
+        LevelManager.Instance.EnemyDictionary[id] = 0;
     }
 
     /// <summary>

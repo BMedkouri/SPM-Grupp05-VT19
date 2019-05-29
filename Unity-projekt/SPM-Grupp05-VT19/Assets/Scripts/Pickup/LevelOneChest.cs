@@ -12,10 +12,17 @@ public class LevelOneChest : MonoBehaviour
 
     private void Awake()
     {
-        hasBeenTriggered = false;
         button.SetActive(false);
         closedLid.SetActive(true);
         openedLid.SetActive(false);
+
+        int isChestOpen = PlayerPrefs.GetInt("levelOnechest", 0);
+        hasBeenTriggered = isChestOpen == 1 ? true : false;
+
+        if (hasBeenTriggered == true)
+        {
+            OpenChest();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,17 +39,35 @@ public class LevelOneChest : MonoBehaviour
         {
             if (hasBeenTriggered == false && Input.GetButtonDown("Xbox A"))
             {
-                button.SetActive(false);
-                hasBeenTriggered = true;
-                closedLid.SetActive(false);
-                openedLid.SetActive(true);
-
-                other.transform.position = animationPosition.transform.position;
-                other.GetComponent<Player>().Transition<PlayerPickUpState>();
-
-                LevelManager.Instance.HasInteractableObjectBeenActivated = true;
+                OpenChest(other);
             }
         }
+    }
+
+    private void OpenChest()
+    {
+        button.SetActive(false);
+        hasBeenTriggered = true;
+        closedLid.SetActive(false);
+        openedLid.SetActive(true);
+
+        LevelManager.Instance.HasInteractableObjectBeenActivated = true;
+    }
+
+    private void OpenChest(Collider other)
+    {
+        button.SetActive(false);
+        hasBeenTriggered = true;
+        closedLid.SetActive(false);
+        openedLid.SetActive(true);
+
+        SaveGameEvent saveGameEvent = new SaveGameEvent(Player.PlayerReference.transform.position);
+        saveGameEvent.FireEvent();
+
+        other.transform.position = animationPosition.transform.position;
+        other.GetComponent<Player>().Transition<PlayerPickUpState>();
+
+        LevelManager.Instance.HasInteractableObjectBeenActivated = true;
     }
 
     private void OnTriggerExit(Collider other)
