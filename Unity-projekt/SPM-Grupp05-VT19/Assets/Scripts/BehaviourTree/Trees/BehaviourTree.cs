@@ -20,7 +20,7 @@ public abstract class BehaviourTree : MonoBehaviour
     protected Behaviour currentBehaviourState;
     protected Animator animator;
     protected Vector3 runbackLocation;
-    protected string[] attack = { "Attack", "Attack2", "Attack3" };
+    protected string[] attack = { "Attack", "Attack2", "Attack3", "Attack4", "Attack5" };
 
     //private
     private bool areaOnEffect = true;
