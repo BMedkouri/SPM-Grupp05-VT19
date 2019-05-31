@@ -11,9 +11,7 @@ public class BossBehaviourTree : BehaviourTree
     [SerializeField] private float procentHealth;
     
 
-    //animationers x och y movement, kanske vi vill flytta ut till behaviour eftersom alla vill ha rörelse animationer
-    private float xMovement;
-    private float yMovement;
+    
   
     private void OnEnable()
     {
@@ -21,14 +19,14 @@ public class BossBehaviourTree : BehaviourTree
     }
 
 
-    protected override void FixedUpdate()
-    {
-        xMovement = Agent.velocity.x;
-        yMovement = Agent.velocity.y;
-        base.FixedUpdate();
-        animator.SetFloat("Speed", xMovement);
-        animator.SetFloat("Direction", yMovement);
-    }
+    //protected override void FixedUpdate()
+    //{
+    //    xMovement = Agent.velocity.x;
+    //    yMovement = Agent.velocity.y;
+    //    base.FixedUpdate();
+    //    animator.SetFloat("Speed", xMovement);
+    //    animator.SetFloat("Direction", yMovement);
+    //}
 
     /// <summary>
     /// The selector goes thro each sequence and return the first one that returns true on it's own.
@@ -55,15 +53,18 @@ public class BossBehaviourTree : BehaviourTree
 
             new Sequence("attackPlayer",
                 new HasPlayer(),
+                //new Inverter(new Selector("Check Dark Attack",
+                //    new CheckMyHealth(procentHealth),
+                //    new CheckBool())),
                 new CheckDisntanceToPlayer(AttackRange),
                 new AttackPlayer(meeleAttackTimer, attack))
             );
 
+        
         repeater = new Repeater(bossSelector);
         return repeater;
 
     }
-
     
-
+    
 }

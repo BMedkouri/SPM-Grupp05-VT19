@@ -23,6 +23,9 @@ public class MoveToPlayer : Leaf
         else if (enemy.Agent.destination == Player.PlayerReference.transform.position && enemy.CanSeePlayer() && Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.ChaseRange)
         {
             return NodeStatus.FAILURE;
+        }else if(enemy.CanSeePlayer() == false)
+        {
+            return NodeStatus.FAILURE;
         }
         return NodeStatus.RUNNING;
     }

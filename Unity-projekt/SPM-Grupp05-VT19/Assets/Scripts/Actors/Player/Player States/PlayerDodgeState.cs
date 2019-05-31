@@ -30,6 +30,7 @@ public class PlayerDodgeState : PlayerOnGroundState
         else
         {
             owner.Physics.Velocity += (dodgeSpeed * owner.Physics.Direction == Vector3.zero ? Vector3.back : owner.Physics.Direction);
+            //owner.Animator.applyRootMotion = true;
             owner.Animator.SetTrigger("Dodge");
         }
     }
@@ -37,4 +38,10 @@ public class PlayerDodgeState : PlayerOnGroundState
     public override void HandleUpdate()
     {
     }
+
+    //public override void Exit()
+    //{
+    //    base.Exit();
+    //    owner.Animator.applyRootMotion = false;
+    //}
 }

@@ -21,9 +21,12 @@ public abstract class BehaviourTree : MonoBehaviour
     protected Animator animator;
     protected Vector3 runbackLocation;
     protected string[] attack = { "Attack", "Attack2", "Attack3", "Attack4", "Attack5" };
-
+    
     //private
     private bool areaOnEffect = true;
+    //animationers x och y movement, kanske vi vill flytta ut till behaviour eftersom alla vill ha rörelse animationer
+    private float xMovement;
+    private float yMovement;
 
     //inspector variable
     [SerializeField] protected float attackRange;
@@ -56,6 +59,11 @@ public abstract class BehaviourTree : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         behaviourTree.Behave(currentBehaviourState);
+
+        xMovement = Agent.velocity.x;
+        yMovement = Agent.velocity.y;
+        animator.SetFloat("Speed", xMovement);
+        animator.SetFloat("Direction", yMovement);
     }
 
     // Update is called once per frame
@@ -99,5 +107,11 @@ public abstract class BehaviourTree : MonoBehaviour
     public void StartResetBool()
     {
         StartCoroutine(ResetBool(Random.Range(10, 20)));
+    }
+
+    public void DisableScript()
+    {
+        Debug.Log("death");
+        enabled = false;
     }
 }

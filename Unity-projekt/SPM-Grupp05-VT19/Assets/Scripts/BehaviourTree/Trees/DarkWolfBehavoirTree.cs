@@ -6,7 +6,7 @@ public class DarkWolfBehavoirTree : BehaviourTree
 {
     [SerializeField] private float timerOnDarkAttack;
     [SerializeField] private float attackTimer;
-    [SerializeField] private float procent;
+    [SerializeField] private float procentHealth;
 
     public bool AreaOnEffect { get; set; }
 
@@ -20,7 +20,7 @@ public class DarkWolfBehavoirTree : BehaviourTree
         Selector wolfSelector = new Selector("wolfSequence",
 
            new Sequence("areaAttack",
-               new CheckMyHealth(procent),
+               new CheckMyHealth(procentHealth),
                new CheckBool(),
                new Timer(timerOnDarkAttack),
                new AreaOnEffectAttack()),
@@ -29,16 +29,20 @@ public class DarkWolfBehavoirTree : BehaviourTree
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(ChaseRange),
                 new CanSeePlayer(),
-                new Inverter(new CanAttackPlayer()),
+                new Inverter(new CheckDisntanceToPlayer(AttackRange)),
                 new SetDestinationToPlayer(),
                 new MoveToPlayer(runbackLocation)),
             
             new Sequence("attackPlayer",
                 new HasPlayer(),
+                new Inverter(new Sequence("Check Dark Attack",
+                    new CheckMyHealth(procentHealth),
+                    new CheckBool())),
                 new CheckDisntanceToPlayer(AttackRange),
                 new AttackPlayer(attackTimer, attack)),
             
             new Sequence("patrole",
+                new Inverter(new CheckDisntanceToPlayer(ChaseRange)),
                 new SetPatrolPoint(runbackLocation),
                 new Move())
 

@@ -28,7 +28,10 @@ public class Weapon : EquipableItems
         {
             DamageEvent damageEvent = new DamageEvent(ItemDamage, Player.PlayerReference.gameObject, collision.collider.gameObject);
             damageEvent.FireEvent();
-
+            if(collision.collider.GetComponent<BehaviourTree>() is WolfBehaviourTree)
+            {
+                collision.collider.GetComponent<Animator>().SetTrigger("TakeHit");
+            }
             foreach (ContactPoint contact in collision.contacts)
             {
                 HitEvent hitEvent = new HitEvent(contact);

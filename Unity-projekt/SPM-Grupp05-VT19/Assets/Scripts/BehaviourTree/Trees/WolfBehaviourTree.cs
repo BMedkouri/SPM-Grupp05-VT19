@@ -12,18 +12,22 @@ public class WolfBehaviourTree : BehaviourTree
     protected override Node CreateBehaviourTree()
     {
         Selector wolfSelector = new Selector("wolfSequence",
+
             new Sequence("moveToPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(ChaseRange),
+                new CanSeePlayer(),
                 new Inverter(new CanAttackPlayer()),
                 new Inverter(new CheckDistanceToOrigin(runbackLocation)),
                 new SetDestinationToPlayer(),
                 new MoveToPlayer(runbackLocation)),
+
             new Sequence("attackPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(AttackRange),
                 new Inverter(new CheckDistanceToOrigin(runbackLocation)),
                 new AttackPlayer(attackTime, attack)),
+
             new Sequence("patrole",
                 new SetPatrolPoint(runbackLocation),
                 new Move())

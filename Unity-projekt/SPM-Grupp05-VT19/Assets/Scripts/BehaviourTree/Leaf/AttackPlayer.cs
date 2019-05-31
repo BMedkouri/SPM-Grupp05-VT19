@@ -41,8 +41,6 @@ public class AttackPlayer : Leaf
             {
                 index = 0;
             }
-            Debug.Log(count);
-            Debug.Log(attack[index]);
             enemy.Animator.SetTrigger(attack[index]);
             return NodeStatus.SUCCESS;
         }

@@ -44,8 +44,7 @@ public class HealthComponent : MonoBehaviour
                 }
                 else
                 {
-                    DeathEvent deathEvent = new DeathEvent(gameObject);
-                    deathEvent.FireEvent();
+                    GetComponent<Animator>().SetTrigger("Death");
                 }
             }
             else
