@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6f41089c24e7cb7478531da8a1d0aba5
+guid: 5c509e38bb513144f84c6b995a8061e8
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Wolf_Animated_Idle
-    100002: //RootNode
+    100000: //RootNode
+    100002: Wolf_Animation_TakeHit
     100004: Wolf_Animations:root
     100006: Wolf_Animations:Wolf_
     100008: Wolf_Animations:Wolf_ Head
@@ -40,7 +40,7 @@ ModelImporter:
     100068: Wolf_Animations:Wolf_ Tail4
     100070: Wolf_Animations:Wolf_ Tail5
     400000: //RootNode
-    400002: Wolf_Animated_Idle
+    400002: Wolf_Animation_TakeHit
     400004: Wolf_Animations:root
     400006: Wolf_Animations:Wolf_
     400008: Wolf_Animations:Wolf_ Head
@@ -81,41 +81,11 @@ ModelImporter:
     2100006: Wolf_Animations_Wolf_teeth_material
     2100008: Wolf_Animations_Wolf_eyes_material
     2100010: Wolf_Animations_HairPlanes_material
-    4300000: Wolf_Animated_Idle
+    4300000: Wolf_Animation_TakeHit
     7400000: Take 001
     9500000: //RootNode
-    13700000: Wolf_Animated_Idle
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wolf_Animations_HairPlanes_material
-    second: {fileID: 2100000, guid: 5a0cffd03e75ae444b5705b219d35a6d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wolf_Animations_Wolf_body_material
-    second: {fileID: 2100000, guid: 7411b8287b1ced647b959fc00795d72c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wolf_Animations_Wolf_claws_material
-    second: {fileID: 2100000, guid: 7411b8287b1ced647b959fc00795d72c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wolf_Animations_Wolf_eyes_material
-    second: {fileID: 2100000, guid: 63552cddb3b4cc745a910c6b418132a8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wolf_Animations_Wolf_teeth_material
-    second: {fileID: 2100000, guid: 7411b8287b1ced647b959fc00795d72c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wolf_Animations_Wolf_tongue_material
-    second: {fileID: 2100000, guid: 7411b8287b1ced647b959fc00795d72c, type: 2}
+    13700000: Wolf_Animation_TakeHit
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -147,7 +117,7 @@ ModelImporter:
       name: Take 001
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 75
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
