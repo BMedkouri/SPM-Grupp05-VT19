@@ -9,24 +9,11 @@ public class BossBehaviourTree : BehaviourTree
     [SerializeField] private float timerOnDarkAttack;
     [SerializeField] private float meeleAttackTimer;
     [SerializeField] private float procentHealth;
-    
 
-    
-  
     private void OnEnable()
     {
         CanDoDarkAttack = true;
     }
-
-
-    //protected override void FixedUpdate()
-    //{
-    //    xMovement = Agent.velocity.x;
-    //    yMovement = Agent.velocity.y;
-    //    base.FixedUpdate();
-    //    animator.SetFloat("Speed", xMovement);
-    //    animator.SetFloat("Direction", yMovement);
-    //}
 
     /// <summary>
     /// The selector goes thro each sequence and return the first one that returns true on it's own.

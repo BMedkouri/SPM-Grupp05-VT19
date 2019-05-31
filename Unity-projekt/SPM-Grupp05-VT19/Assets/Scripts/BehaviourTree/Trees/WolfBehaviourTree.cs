@@ -28,7 +28,8 @@ public class WolfBehaviourTree : BehaviourTree
                 new Inverter(new CheckDistanceToOrigin(runbackLocation)),
                 new AttackPlayer(attackTime, attack)),
 
-            new Sequence("patrole",
+            new Sequence("patrole", 
+                new Inverter(new CheckDisntanceToPlayer(ChaseRange)),
                 new SetPatrolPoint(runbackLocation),
                 new Move())
             );
