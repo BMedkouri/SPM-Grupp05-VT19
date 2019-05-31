@@ -21,7 +21,6 @@ public class CheckMyHealth : Leaf
     /// <returns>Success if it's under a procent of health</returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        Debug.Log("CheckHealth");
         HealthComponent healthStatus = enemy.GetComponent<HealthComponent>();
         if(healthStatus.CurrentHealth/healthStatus.MaxHealth <= procentHealth)
         {
