@@ -7,11 +7,11 @@
 /// should be a timer that is for all other behaviours aswell.
 /// the timer should be set in the constructor and not be hardcoded like this.
 /// </summary>
-public class Timer : Leaf
+public class DarkAttackTimer : Leaf
 {
     private float time;
     private float countDown;
-    public Timer(float setTimer)
+    public DarkAttackTimer(float setTimer)
     {
         time = setTimer;
         countDown = time;

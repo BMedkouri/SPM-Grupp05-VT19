@@ -22,7 +22,7 @@ public class DarkWolfBehavoirTree : BehaviourTree
            new Sequence("areaAttack",
                new CheckMyHealth(procentHealth),
                new CheckBool(),
-               new Timer(timerOnDarkAttack),
+               new DarkAttackTimer(timerOnDarkAttack),
                new AreaOnEffectAttack()),
 
             new Sequence("moveToPlayer",
@@ -39,7 +39,8 @@ public class DarkWolfBehavoirTree : BehaviourTree
                     new CheckMyHealth(procentHealth),
                     new CheckBool())),
                 new CheckDisntanceToPlayer(AttackRange),
-                new AttackPlayer(attackTimer, attack)),
+                new AttackTimer(attackTimer),
+                new AttackPlayer(attack)),
             
             new Sequence("patrole",
                 new Inverter(new CheckDisntanceToPlayer(ChaseRange)),
