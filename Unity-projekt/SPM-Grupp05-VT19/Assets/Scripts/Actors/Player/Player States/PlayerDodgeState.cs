@@ -15,7 +15,7 @@ public class PlayerDodgeState : PlayerOnGroundState
     [Header("Stamina cost:")]
     [SerializeField] private float staminaExpenditure;
 
-    private float countDown;
+    //private float countDown;
 
     /// <summary>
     /// Adds Velocity in the direction of the Joystick to make it feel like a dodge.
@@ -29,9 +29,9 @@ public class PlayerDodgeState : PlayerOnGroundState
         }
         else
         {
-            owner.Physics.Velocity += (dodgeSpeed * owner.Physics.Direction == Vector3.zero ? Vector3.back : owner.Physics.Direction);
+            //owner.Physics.Velocity += (dodgeSpeed * owner.Physics.Direction == Vector3.zero ? Vector3.back : owner.Physics.Direction);
             //owner.Animator.applyRootMotion = true;
-            owner.Animator.SetTrigger("Dodge");
+            owner.Animator.SetTrigger("Roll");
         }
     }
 
