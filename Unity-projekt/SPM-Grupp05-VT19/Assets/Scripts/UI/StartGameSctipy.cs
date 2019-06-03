@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 public class StartGameSctipy : MonoBehaviour
 {
 
-    [SerializeField] private string loadLevel;
+    [SerializeField] private int loadLevel;
 
 
     public void OnClickStartGame()
     {
+        GameManager.Instance.ResetPlayerPrefs();
         SceneManager.LoadScene(loadLevel);
     }
+
+    
 }
