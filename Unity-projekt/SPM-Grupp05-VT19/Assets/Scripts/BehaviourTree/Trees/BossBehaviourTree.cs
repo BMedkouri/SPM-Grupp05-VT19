@@ -49,9 +49,6 @@ public class BossBehaviourTree : BehaviourTree
 
             new Sequence("attackPlayer",
                 new HasPlayer(),
-                //new Inverter(new Selector("Check Dark Attack",
-                //    new CheckMyHealth(procentHealth),
-                //    new CheckBool())),
                 new CheckDisntanceToPlayer(AttackRange),
                 new AttackTimer(meeleAttackTimer),
                 new AttackPlayer(attack))

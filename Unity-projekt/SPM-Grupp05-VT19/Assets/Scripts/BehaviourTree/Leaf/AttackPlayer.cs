@@ -21,6 +21,7 @@ public class AttackPlayer : Leaf
     /// <returns></returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
+        Debug.Log("Attack Player");
         //här ska enemys attack spelas upp
         if (animationPlayed == false && Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange)
         {
@@ -28,12 +29,13 @@ public class AttackPlayer : Leaf
             if (enemy is BossBehaviourTree==false)
             {
                 index = 0;
-                countdown = 1f;
+                countdown = 0.75f;
             }
             else
             {
                 countdown = enemy.GetComponent<BossBehaviourTree>().Attacktimes[attack[index]];
             }
+            Debug.Log(attack[index]);
             enemy.Animator.SetTrigger(attack[index]);
         }
         countdown -= Time.deltaTime;

@@ -9,8 +9,11 @@ public class EnemyAttacks : MonoBehaviour
 
     private void Awake()
     {
-        particleSystem.Play();
-        particleSystem.emissionRate = 0f;
+        if (particleSystem != null)
+        {
+            particleSystem.Play();
+            particleSystem.emissionRate = 0f;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -23,9 +26,12 @@ public class EnemyAttacks : MonoBehaviour
             DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);
             damageEvent.FireEvent();
 
-            ParticleEvent particle = new ParticleEvent(transform.position, particleSystem);
-            particle.FireEvent();
-            particleSystem.emissionRate = 1f;
+            if (particleSystem != null)
+            {
+                ParticleEvent particle = new ParticleEvent(transform.position, particleSystem);
+                particle.FireEvent();
+                particleSystem.emissionRate = 1f;
+            }
         }
     }
 }
