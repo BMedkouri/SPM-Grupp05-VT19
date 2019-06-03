@@ -18,16 +18,19 @@ public class Player : StateMachine
     #endregion UI
 
     #region MovementSpeed
+    /*
     [Header("Movement speed")]
     [SerializeField] private float acceleration;
     public float Acceleration { get => acceleration; set => acceleration = value; }
+    */
     #endregion MovementSpeed
 
     #region Components
-    public PhysicsComponent Physics { get; set; }
-    public CollisionDetection Collision { get; set; }
+    //public PhysicsComponent Physics { get; set; }
+    //public CollisionDetection Collision { get; set; }
     public Animator Animator { get; set; }
-    public RotatePlayer RotatePlayer { get; set; }
+    //public RotatePlayer RotatePlayer { get; set; }
+    public MovementInput MovementInput { get; set; }
     #endregion Components
 
     #region Health
@@ -134,12 +137,13 @@ public class Player : StateMachine
         PlayerReference = this;
 
         // Getters
-        Physics = GetComponent<PhysicsComponent>();
-        Collision = GetComponent<CollisionDetection>();
+        //Physics = GetComponent<PhysicsComponent>();
+        //Collision = GetComponent<CollisionDetection>();
         Animator = GetComponentInChildren<Animator>();
-        RotatePlayer = GetComponentInChildren<RotatePlayer>();
+        //RotatePlayer = GetComponentInChildren<RotatePlayer>();
         UIController = canvas.GetComponent<UIController>();
         PlayerEquipmentHandler = GetComponent<PlayerEquipmentHandler>();
+        MovementInput = GetComponent<MovementInput>();
 
         // Health
         HealthComponent = GetComponent<HealthComponent>();
@@ -169,7 +173,7 @@ public class Player : StateMachine
         // Players position
         if (currentScene == 1)
         {
-            MovePlayerOnLoad(currentScene, 200f, 79f, 463f); // Default values
+            MovePlayerOnLoad(currentScene, 200f, 77.5f, 463f); // Default values
         }
         else if (currentScene == 2)
         {

@@ -34,7 +34,7 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         sphereCollider = GetComponent<SphereCollider>();
-        startingRotation.y -= 178f;
+        startingRotation.y -= Player.PlayerReference.transform.rotation.y;
 
         cameraRotation = startingRotation;
     }
