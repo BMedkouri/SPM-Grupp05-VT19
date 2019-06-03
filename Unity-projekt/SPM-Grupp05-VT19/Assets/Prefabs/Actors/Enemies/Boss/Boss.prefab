@@ -1476,7 +1476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 4898391908274160162}
-  maxHealth: 1
+  maxHealth: 200
 --- !u!114 &587747772814826198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1502,6 +1502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Aoe: {fileID: 212688807901902450, guid: 3ab0c6e921c8d924a92e14a7a44fbc6e, type: 3}
+  particleSystem: {fileID: 0}
 --- !u!114 &587747772814826190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3039,6 +3040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+  particleSystem: {fileID: 0}
 --- !u!1 &4898391908512932019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3192,3 +3194,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+  particleSystem: {fileID: 0}
