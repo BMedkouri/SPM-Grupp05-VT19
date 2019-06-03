@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     private SphereCollider sphereCollider;
     private RaycastHit hitInfo;
 
-
+    private Player player;
 
     /// <summary>
     /// Gets the spherecollider that makes sure that our camera doesn't pass through walls.
@@ -34,7 +34,13 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         sphereCollider = GetComponent<SphereCollider>();
-        startingRotation.y -= 178f;
+    }
+
+    private void Start()
+    {
+        player = Player.PlayerReference;
+
+        startingRotation.y -= player.transform.rotation.y;
 
         cameraRotation = startingRotation;
     }
@@ -77,7 +83,7 @@ public class CameraController : MonoBehaviour
         CameraCollisionCheck();
 
         //Transforms the camera based on input and collision check
-        transform.position = cameraMovement + transform.parent.position;
+        transform.position = cameraMovement + player.transform.position;
     }
 
     /// <summary>
@@ -90,7 +96,7 @@ public class CameraController : MonoBehaviour
 
         do
         {
-            Vector3 sphereCastOriginPosition = new Vector3(transform.parent.position.x, transform.parent.position.y + cameraOffset.y, transform.parent.position.z);
+            Vector3 sphereCastOriginPosition = new Vector3(player.transform.position.x, player.transform.position.y + cameraOffset.y, player.transform.position.z);
 
             if (Physics.SphereCast(sphereCastOriginPosition, sphereCollider.radius, cameraMovement.normalized, out hitInfo, cameraMovement.magnitude + sphereCollider.radius, geometryLayer))
             {
