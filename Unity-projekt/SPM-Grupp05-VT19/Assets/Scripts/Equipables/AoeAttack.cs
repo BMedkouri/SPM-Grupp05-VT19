@@ -21,7 +21,6 @@ public class AoeAttack : MonoBehaviour
         {
             if (collision.collider.CompareTag("Enemy"))
             {
-
                 collision.collider.GetComponent<BehaviourTree>().CanDoDarkAttack = false;
                 collision.collider.GetComponent<BehaviourTree>().StartResetBool();
                 DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);

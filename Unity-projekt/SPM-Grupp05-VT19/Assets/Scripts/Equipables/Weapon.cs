@@ -14,6 +14,11 @@ public class Weapon : EquipableItems
     {
         base.Awake();
         WeaponList.Add(this);
+        if (particleSystem != null)
+        {
+            particleSystem.Play();
+            particleSystem.emissionRate = 0f;
+        }
     }
 
     protected override void OnCollisionEnter(Collision collision)
@@ -28,7 +33,15 @@ public class Weapon : EquipableItems
         {
             DamageEvent damageEvent = new DamageEvent(ItemDamage, Player.PlayerReference.gameObject, collision.collider.gameObject);
             damageEvent.FireEvent();
-            if(collision.collider.GetComponent<BehaviourTree>() is WolfBehaviourTree)
+
+            if (particleSystem != null)
+            {
+                ParticleEvent particle = new ParticleEvent(transform.position, particleSystem);
+                particle.FireEvent();
+                particleSystem.emissionRate = 1f;
+            }
+
+            if (collision.collider.GetComponent<BehaviourTree>() is WolfBehaviourTree)
             {
                 collision.collider.GetComponent<Animator>().SetTrigger("TakeHit");
             }

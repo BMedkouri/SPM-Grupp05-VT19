@@ -24,7 +24,7 @@ public class PlayerRunState : PlayerOnGroundState
 
 
         // TODO: Replace the second check, or change this state
-        if (GetDirection() == Vector3.zero && Vector3.ProjectOnPlane(owner.Physics.Velocity, owner.Collision.GetGroundRaycastHit().normal) == Vector3.zero)
+        if (GetDirection() == Vector3.zero)
         {
             owner.Transition<PlayerOnGroundState>();
         }

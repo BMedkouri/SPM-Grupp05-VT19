@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerBaseState : State
 {
     // Attributes
-    protected Vector3 direction;
+    //protected Vector3 direction;
     protected Player owner;
 
 
@@ -31,6 +31,9 @@ public class PlayerBaseState : State
     /// </summary>
     private void PlayerInput()
     {
+        owner.MovementInput.UpdateMovementInput();
+
+        /*
         //Takes input from player
         direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -57,6 +60,7 @@ public class PlayerBaseState : State
             //Rotates the players mesh with the direction
             owner.RotatePlayer.Rotate(direction);
         }
+        */
 
         //Heal player - For testing purposes
         if (Input.GetKeyDown(KeyCode.K))
@@ -90,17 +94,21 @@ public class PlayerBaseState : State
             owner.Transition<PlayerLightState>();
         }
 
-        if (owner.Collision.IsGrounded == false)
+        if (owner.MovementInput.IsGrounded == true)
+        {
+            owner.Transition<PlayerOnGroundState>();
+        }
+        else
         {
             owner.Transition<PlayerInAirState>();
         }
 
-        owner.Animator.SetFloat("Speed", owner.Physics.Velocity.x);
-        owner.Animator.SetFloat("Direction", owner.Physics.Velocity.z);
+        //owner.Animator.SetFloat("Speed", owner.Physics.Velocity.x);
+        //owner.Animator.SetFloat("Direction", owner.Physics.Velocity.z);
     }
 
     public Vector3 GetDirection()
     {
-        return direction;
+        return owner.MovementInput.DesiredMoveDirection;
     }
 }

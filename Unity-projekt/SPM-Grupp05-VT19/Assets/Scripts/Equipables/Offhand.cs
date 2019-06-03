@@ -17,13 +17,27 @@ public class Offhand : EquipableItems
     {
         base.Awake();
         OffhandList.Add(this);
+        if (particleSystem != null)
+        {
+            particleSystem.Play();
+            particleSystem.emissionRate = 0f;
+        }
     }
 
     protected override void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Weapon"))
+        if (collision.collider.CompareTag("EnemyWeapon"))
         {
             // TODO: Add parry event
+
+            if(particleSystem != null)
+            {
+                ParticleEvent particle = new ParticleEvent(collision.transform.position, particleSystem);
+                particle.FireEvent();
+
+                particleSystem.emissionRate = 1f;
+            }
+            
             Debug.Log("Parry");
         }
 
