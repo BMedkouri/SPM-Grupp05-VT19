@@ -6,11 +6,10 @@ public class AttackPlayer : Leaf
 {
     private string[] attack;
     int index;
-    private float attackTimer, countDown;
-    private float count;
-    public AttackPlayer(float attackTimer, string[] attack)
+    private float countdown;
+    private bool animationPlayed;
+    public AttackPlayer(string[] attack)
     {
-        this.attackTimer = attackTimer;
         this.attack = attack;
     }
     /// <summary>
@@ -22,35 +21,35 @@ public class AttackPlayer : Leaf
     /// <returns></returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        if (Player.PlayerReference == null)
-            return NodeStatus.FAILURE;
-        
-        if (!enemy.CanSeePlayer())
-            return NodeStatus.FAILURE;
-        if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) > enemy.AttackRange)
-            return NodeStatus.FAILURE;
-
-        enemy.RotateToTarget(Player.PlayerReference.transform.position);
-
         //här ska enemys attack spelas upp
-        if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange && countDown <= 0)
+        if (animationPlayed == false && Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange)
         {
-            //Debug.Log(countDown);
-            countDown = attackTimer;
+            animationPlayed = true;
             if (enemy is BossBehaviourTree==false)
             {
                 index = 0;
+                countdown = 1f;
+            }
+            else
+            {
+                countdown = enemy.GetComponent<BossBehaviourTree>().Attacktimes[attack[index]];
             }
             enemy.Animator.SetTrigger(attack[index]);
+        }
+        countdown -= Time.deltaTime;
+        if(countdown <= 0)
+        {
             return NodeStatus.SUCCESS;
         }
-        count += Time.deltaTime;
-        countDown -= Time.deltaTime;
-        return NodeStatus.RUNNING;
+        else
+        {
+            return NodeStatus.RUNNING;
+        }
     }
 
     public override void OnReset()
     {
         index = (index + 1) % attack.Length;
+        animationPlayed = false;
     }
 }

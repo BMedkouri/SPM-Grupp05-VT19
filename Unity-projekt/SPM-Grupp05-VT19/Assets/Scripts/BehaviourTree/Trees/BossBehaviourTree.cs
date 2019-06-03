@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 /*
  * @author Anders Ragnar
@@ -10,9 +11,17 @@ public class BossBehaviourTree : BehaviourTree
     [SerializeField] private float meeleAttackTimer;
     [SerializeField] private float procentHealth;
 
+    public Dictionary<string, float> Attacktimes { get; private set; }
+
     private void OnEnable()
     {
         CanDoDarkAttack = true;
+        Attacktimes = new Dictionary<string, float>();
+        Attacktimes.Add("Attack", 2.933f);
+        Attacktimes.Add("Attack2", 3.44f);
+        Attacktimes.Add("Attack3", 3.2f);
+        Attacktimes.Add("Attack4", 3.567f);
+        Attacktimes.Add("Attack5", 1.9f);
     }
 
     /// <summary>
@@ -27,7 +36,7 @@ public class BossBehaviourTree : BehaviourTree
             new Sequence("areaAttack",
                 new CheckMyHealth(procentHealth),
                 new CheckBool(),
-                new Timer(timerOnDarkAttack),
+                new DarkAttackTimer(timerOnDarkAttack),
                 new AreaOnEffectAttack()),
 
             new Sequence("moveToPlayer",
@@ -44,7 +53,8 @@ public class BossBehaviourTree : BehaviourTree
                 //    new CheckMyHealth(procentHealth),
                 //    new CheckBool())),
                 new CheckDisntanceToPlayer(AttackRange),
-                new AttackPlayer(meeleAttackTimer, attack))
+                new AttackTimer(meeleAttackTimer),
+                new AttackPlayer(attack))
             );
 
         
