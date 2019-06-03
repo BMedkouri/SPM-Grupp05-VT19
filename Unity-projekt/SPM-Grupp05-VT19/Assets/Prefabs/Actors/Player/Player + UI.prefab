@@ -2053,6 +2053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Aoe: {fileID: 6990727903461274945, guid: 7c6ad7a41771a11419c189cf36690139, type: 3}
+  particleSystem: {fileID: 0}
 --- !u!1 &1786199550338091733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,8 +2133,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6404375058637780627}
-  - component: {fileID: 6404375058637780631}
-  - component: {fileID: 6404375058637780628}
   - component: {fileID: 6404375058637780629}
   - component: {fileID: 6404375058637780626}
   m_Layer: 9
@@ -2158,39 +2157,6 @@ Transform:
   m_Father: {fileID: 8606169779102693915}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -62.646004, y: -92.614006, z: -2.068}
---- !u!54 &6404375058637780631
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6404375058637780624}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!114 &6404375058637780628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6404375058637780624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2e97d80740d357418fbd396dcd1d4ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemID: 0
-  itemName: Old Cross
-  itemDamage: 50
-  holyNova: {fileID: 0}
-  itemHealAmount: 40
 --- !u!65 &6404375058637780629
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2200,7 +2166,7 @@ BoxCollider:
   m_GameObject: {fileID: 6404375058637780624}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2219,6 +2185,7 @@ MonoBehaviour:
   itemID: 0
   itemName: Cross
   itemDamage: 50
+  particleSystem: {fileID: 0}
   holyNova: {fileID: 0}
   itemHealAmount: 40
 --- !u!1 &6404375059501857007
