@@ -27,10 +27,8 @@ public class MovementInput : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-    public void UpdateMovementInput()
+    private void Update()
     {
-        InputMagnitude();
-
         IsGrounded = controller.isGrounded;
         if (IsGrounded)
         {
@@ -38,11 +36,16 @@ public class MovementInput : MonoBehaviour
         }
         else
         {
-            verticalVelocity -= 2f;
+            verticalVelocity -= 9.8f * Time.deltaTime;
         }
 
         moveVector = new Vector3(0f, verticalVelocity, 0f);
         controller.Move(moveVector);
+    }
+
+    public void UpdateMovementInput()
+    {
+        InputMagnitude();
     }
 
     private void PlayerMoveAndRotation()
