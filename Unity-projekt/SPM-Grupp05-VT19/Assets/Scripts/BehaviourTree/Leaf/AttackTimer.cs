@@ -9,7 +9,7 @@ public class AttackTimer : Leaf
     public AttackTimer(float setTimer)
     {
         time = setTimer;
-        countDown = time;
+        //countDown = time;
     }
 
     public override NodeStatus OnBehave(BehaviourState state)

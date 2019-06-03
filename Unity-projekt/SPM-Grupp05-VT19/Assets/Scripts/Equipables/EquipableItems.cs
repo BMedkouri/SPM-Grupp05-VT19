@@ -13,6 +13,7 @@ public class EquipableItems : MonoBehaviour
     [SerializeField] private int itemID;
     [SerializeField] private string itemName;
     [SerializeField] private float itemDamage;
+    [SerializeField] protected ParticleSystem particleSystem;
 
     public int ItemID { get => itemID; }
     public string ItemName { get => itemName; }

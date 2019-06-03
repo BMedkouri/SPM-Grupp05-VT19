@@ -111,7 +111,6 @@ public abstract class BehaviourTree : MonoBehaviour
 
     public void DisableScript()
     {
-        Debug.Log("death");
         enabled = false;
     }
 }

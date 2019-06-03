@@ -231,5 +231,10 @@ public class Player : StateMachine
 
         energyRegenerationTimer -= Time.deltaTime;
     }
+
+    public void DisableScript()
+    {
+        enabled = false;
+    }
     #endregion Methods
 }
