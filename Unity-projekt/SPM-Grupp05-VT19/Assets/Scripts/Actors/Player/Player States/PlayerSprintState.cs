@@ -6,6 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player States/PlayerSprintState")]
 public class PlayerSprintState : PlayerRunState
 {
+    // TODO: Everything!
+
+
+
     // Attributes
     [SerializeField] private float staminaExpenditure;  // Stamina cost per second
 
@@ -22,7 +26,7 @@ public class PlayerSprintState : PlayerRunState
 
     public override void HandleUpdate()
     {
-        if (Input.GetButton("Xbox X") && GetDirection() != Vector3.zero)
+        if (Input.GetButton("Xbox X"))
         {
             owner.CurrentStamina -= staminaExpenditure * Time.deltaTime;
 
@@ -31,10 +35,12 @@ public class PlayerSprintState : PlayerRunState
                 owner.Transition<PlayerRunState>();
             }
         }
+
         else
         {
             owner.Transition<PlayerRunState>();
         }
+
         base.HandleUpdate();
     }
 }

@@ -6,12 +6,18 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player States/PlayerAttackState")]
 public class PlayerAttackState : PlayerBaseState
 {
-    // Attributes
-    [SerializeField] private float attackSpeed;
+    #region Variables
+
+    [Header("Stamina cost")]
     [SerializeField] private float staminaExpenditure;
-    private string[] attacks = {"Attack", "Attack2", "Attack3", "Attack4"};
-    private int index;
-    // Methods
+
+    private string[] attacks = { "Attack", "Attack2", "Attack3", "Attack4" };
+    private int attackIndex;
+
+    #endregion Variables
+
+    #region Methods
+
     public override void Enter()
     {
         base.Enter();
@@ -23,9 +29,15 @@ public class PlayerAttackState : PlayerBaseState
         else
         {
             owner.CurrentStamina -= staminaExpenditure;
-            index = (index + 1) % attacks.Length;
-            owner.Animator.SetTrigger(attacks[index]);
+            attackIndex = Random.Range(0, attacks.Length);
+            owner.Animator.SetTrigger(attacks[attackIndex]);
         }
     }
-    public override void HandleUpdate(){ }
+
+    public override void HandleUpdate()
+    {
+        PlayerRegeneration();
+    }
+
+    #endregion Methods
 }

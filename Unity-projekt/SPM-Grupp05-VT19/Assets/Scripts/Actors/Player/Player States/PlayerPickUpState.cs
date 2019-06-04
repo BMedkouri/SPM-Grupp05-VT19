@@ -7,10 +7,14 @@ public class PlayerPickUpState : PlayerOnGroundState
 {
     public override void Enter()
     {
-        base.Enter();
         owner.Animator.SetTrigger("PickUp");
         owner.PlayerEquipmentHandler.EquippedWeapon.SetActive(false);
     }
 
     public override void HandleUpdate() { }
+
+    public override void Exit()
+    {
+        owner.PlayerEquipmentHandler.EquippedWeapon.SetActive(true);
+    }
 }

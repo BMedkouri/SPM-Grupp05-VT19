@@ -14,7 +14,6 @@ public class AttackTimer : Leaf
 
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        Debug.Log("AttackTimer " + countDown);
         if (Player.PlayerReference == null)
             return NodeStatus.FAILURE;
         if (!enemy.CanSeePlayer())

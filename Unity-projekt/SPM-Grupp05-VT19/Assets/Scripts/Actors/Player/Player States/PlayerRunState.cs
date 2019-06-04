@@ -7,36 +7,22 @@ using UnityEngine;
 public class PlayerRunState : PlayerOnGroundState
 {
     // Methods
-    public override void Enter()
-    {
-        base.Enter();
-
-        //Enters state run here
-
-    }
-
     public override void HandleUpdate()
     {
-        //if (Input.GetButtonDown("Xbox X"))
-        //{
-        //    owner.Transition<PlayerSprintState>();
-        //}
-
-
-        // TODO: Replace the second check, or change this state
-        if (GetDirection() == Vector3.zero)
+        /*if (Input.GetButtonDown("Xbox X"))
         {
-            owner.Transition<PlayerOnGroundState>();
+            owner.Transition<PlayerSprintState>();
         }
+        else
+        {*/
+        PlayerMovementInput();
+        //}
 
         base.HandleUpdate();
     }
 
-    public override void Exit()
+    protected void PlayerMovementInput()
     {
-        base.Exit();
-
-
-        //Exits state
+        owner.MovementInput.UpdateMovementInput();
     }
 }
