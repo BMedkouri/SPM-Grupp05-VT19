@@ -14,7 +14,8 @@ public class PlayerInAirState : PlayerBaseState
             owner.Transition<PlayerOnGroundState>();
         }
 
-        owner.MovementInput.UpdateMovementInput();
+        //owner.MovementInput.UpdateMovementInput();
+        PlayerInput();
 
         base.HandleUpdate();
     }
