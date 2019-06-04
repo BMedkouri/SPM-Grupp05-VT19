@@ -15,17 +15,40 @@ public class EnemyAttacks : MonoBehaviour
             particleSystem.emissionRate = 0f;
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.collider.CompareTag("Offhand"))
+    //    {
+    //        GetComponentInParent<Animator>().SetTrigger("Parried");
+    //        return;
+    //    }
+    //    else if (collision.collider.CompareTag("Player"))
+    //    {
+    //        Debug.Log("Attack makes damage");
+    //        DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);
+    //        damageEvent.FireEvent();
+
+    //        if (particleSystem != null)
+    //        {
+    //            ParticleEvent particle = new ParticleEvent(transform.position, particleSystem);
+    //            particle.FireEvent();
+    //            particleSystem.emissionRate = 1f;
+    //        }
+    //    }
+    //}
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.collider.CompareTag("Offhand"))
+        if (collision.CompareTag("Offhand"))
         {
+
             GetComponentInParent<Animator>().SetTrigger("Parried");
             return;
         }
-        else if (collision.collider.CompareTag("Player"))
+       
+        else if (collision.CompareTag("Player"))
         {
             Debug.Log("Attack makes damage");
-            DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);
+            DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.gameObject);
             damageEvent.FireEvent();
 
             if (particleSystem != null)

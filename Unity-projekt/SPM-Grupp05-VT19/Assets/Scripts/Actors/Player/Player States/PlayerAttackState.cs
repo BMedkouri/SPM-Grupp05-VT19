@@ -11,7 +11,7 @@ public class PlayerAttackState : PlayerBaseState
     [Header("Stamina cost")]
     [SerializeField] private float staminaExpenditure;
 
-    private string[] attacks = { "Attack", "Attack2", "Attack3", "Attack4" };
+    private string[] attacks = { "Attack", "Attack2"};
     private int attackIndex;
 
     #endregion Variables
