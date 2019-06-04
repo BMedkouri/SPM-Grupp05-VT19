@@ -19,7 +19,7 @@ public class RigidbodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.PlayerEquipmentHandler.Weapon.Rigidbody.isKinematic = false;
+            Player.Instance.PlayerEquipmentHandler.Weapon.Rigidbody.isKinematic = false;
         }
         else if (gameObject.CompareTag("Enemy"))
         {
@@ -31,7 +31,7 @@ public class RigidbodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.PlayerEquipmentHandler.Weapon.Rigidbody.isKinematic = true;
+            Player.Instance.PlayerEquipmentHandler.Weapon.Rigidbody.isKinematic = true;
         }
         else if (gameObject.CompareTag("Enemy"))
         {
@@ -45,7 +45,7 @@ public class RigidbodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.PlayerEquipmentHandler.Offhand.Rigidbody.isKinematic = false;
+            Player.Instance.PlayerEquipmentHandler.Offhand.Rigidbody.isKinematic = false;
         }
     }
 
@@ -53,7 +53,7 @@ public class RigidbodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.PlayerEquipmentHandler.Offhand.Rigidbody.isKinematic = true;
+            Player.Instance.PlayerEquipmentHandler.Offhand.Rigidbody.isKinematic = true;
         }
     }
     #endregion Offhand

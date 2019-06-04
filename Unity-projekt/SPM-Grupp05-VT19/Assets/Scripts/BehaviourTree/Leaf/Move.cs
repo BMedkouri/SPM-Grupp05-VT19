@@ -20,7 +20,7 @@ public class Move : Leaf
         {
             return NodeStatus.SUCCESS;
         }
-        else if (enemy.Agent.destination == Player.PlayerReference.transform.position && enemy.CanSeePlayer() && Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.ChaseRange)
+        else if (enemy.Agent.destination == Player.Instance.transform.position && enemy.CanSeePlayer() && Vector3.Distance(enemy.transform.position, Player.Instance.transform.position) < enemy.ChaseRange)
         {
             return NodeStatus.FAILURE;
         }

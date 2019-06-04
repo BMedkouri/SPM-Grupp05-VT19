@@ -9,6 +9,6 @@ public class ExitStates : MonoBehaviour
 {
     private void ExitCurrentState()
     {
-        Player.PlayerReference.Transition<PlayerOnGroundState>();
+        Player.Instance.Transition<PlayerOnGroundState>();
     }
 }

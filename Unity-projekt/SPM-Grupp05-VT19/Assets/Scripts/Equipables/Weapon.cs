@@ -15,7 +15,7 @@ public class Weapon : EquipableItems
     protected override void Awake()
     {
         base.Awake();
-        WeaponList.Add(this);
+        //WeaponList.Add(this);
         if (particleSystem != null)
         {
             //particleSystem.Play();
@@ -32,7 +32,7 @@ public class Weapon : EquipableItems
 
         else if (collision.collider.CompareTag("Enemy"))
         {
-            DamageEvent damageEvent = new DamageEvent(ItemDamage, Player.PlayerReference.gameObject, collision.collider.gameObject);
+            DamageEvent damageEvent = new DamageEvent(ItemDamage, Player.Instance.gameObject, collision.collider.gameObject);
             damageEvent.FireEvent();
 
             if (hit != null)

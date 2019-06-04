@@ -14,14 +14,14 @@ public class BossAttackTimer : Leaf
 
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        if (Player.PlayerReference == null)
+        if (Player.Instance == null)
             return NodeStatus.FAILURE;
         if (!enemy.CanSeePlayer())
             return NodeStatus.FAILURE;
-        if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) > enemy.AttackRange)
+        if (Vector3.Distance(enemy.transform.position, Player.Instance.transform.position) > enemy.AttackRange)
             return NodeStatus.FAILURE;
 
-        enemy.RotateToTarget(Player.PlayerReference.transform.position);
+        enemy.RotateToTarget(Player.Instance.transform.position);
         
         countDown -= Time.deltaTime;
         if (countDown > 0)

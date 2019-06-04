@@ -8,7 +8,7 @@ public class OpensGate : MonoBehaviour
     {
         Gate.Instance.OpenTheGates();
 
-        SaveGameEvent saveGameEvent = new SaveGameEvent(Player.PlayerReference.transform.position);
+        SaveGameEvent saveGameEvent = new SaveGameEvent(Player.Instance.transform.position);
         saveGameEvent.FireEvent();
     }
 }

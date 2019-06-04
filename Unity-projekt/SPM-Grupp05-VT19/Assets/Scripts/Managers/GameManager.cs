@@ -10,10 +10,15 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        Debug.Log("Awake");
+
+        // TODO: Call on player's run on awake - TEST
+        //Player.Instance.RunOnAwake();
+        Debug.Log("GM Awake");
+
+        /*Debug.Log("Awake");
         Player.PlayerReference.enabled = true;
-        Debug.Log(Player.PlayerReference.enabled);
-        Player.PlayerReference.Transition<PlayerOnGroundState>();
+        Debug.Log(Player.PlayerReference.enabled ? "true" : "false");
+        Player.PlayerReference.Transition<PlayerOnGroundState>();*/
     }
 
     #region SaveGame
@@ -27,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void SavePlayer(Vector3 savePosition, int currentScene)
     {
-        Player player = Player.PlayerReference;
+        Player player = Player.Instance;
 
         // Player position per level
         PlayerPrefs.SetFloat("playerXLevel" + currentScene, savePosition.x);

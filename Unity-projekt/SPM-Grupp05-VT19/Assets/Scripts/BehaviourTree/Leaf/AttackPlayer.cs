@@ -23,7 +23,7 @@ public class AttackPlayer : Leaf
     {
         
         //här ska enemys attack spelas upp
-        if (animationPlayed == false && Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange)
+        if (animationPlayed == false && Vector3.Distance(enemy.transform.position, Player.Instance.transform.position) < enemy.AttackRange)
         {
             Debug.Log("Attacks Player");
             animationPlayed = true;

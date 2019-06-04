@@ -17,11 +17,11 @@ public class Offhand : EquipableItems
     protected override void Awake()
     {
         base.Awake();
-        OffhandList.Add(this);
+        //OffhandList.Add(this);
         if (particleSystem != null)
         {
             particleSystem.Play();
-            particleSystem.emissionRate = 0f;
+            //particleSystem.emissionRate = 0f;
         }
     }
 
@@ -40,9 +40,9 @@ public class Offhand : EquipableItems
                 ParticleEvent particle = new ParticleEvent(collision.transform.position, particleSystem);
                 particle.FireEvent();
 
-                particleSystem.emissionRate = 1f;
+                //particleSystem.emissionRate = 1f;
             }
-            
+
             Debug.Log("Parry");
         }
 

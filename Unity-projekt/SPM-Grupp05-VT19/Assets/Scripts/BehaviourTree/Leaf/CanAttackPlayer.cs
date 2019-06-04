@@ -11,16 +11,16 @@ public class CanAttackPlayer : Leaf
     /// <returns>Failure if it can't preforme this behaviour, Running if it is preforming and Success if it has preformed it</returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        if (Player.PlayerReference == null)
+        if (Player.Instance == null)
             return NodeStatus.FAILURE;
 
         if (!enemy.CanSeePlayer())
             return NodeStatus.FAILURE;
 
         //här ska enemys attack spelas upp
-        if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange)
+        if (Vector3.Distance(enemy.transform.position, Player.Instance.transform.position) < enemy.AttackRange)
         {
-            enemy.RotateToTarget(Player.PlayerReference.transform.position);
+            enemy.RotateToTarget(Player.Instance.transform.position);
             //animator.Play("EnemyAttackAnimation");
             return NodeStatus.SUCCESS;
         }

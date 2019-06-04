@@ -61,7 +61,7 @@ public class LevelOneChest : MonoBehaviour
         closedLid.SetActive(false);
         openedLid.SetActive(true);
 
-        SaveGameEvent saveGameEvent = new SaveGameEvent(Player.PlayerReference.transform.position);
+        SaveGameEvent saveGameEvent = new SaveGameEvent(Player.Instance.transform.position);
         saveGameEvent.FireEvent();
 
         other.transform.position = animationPosition.transform.position;

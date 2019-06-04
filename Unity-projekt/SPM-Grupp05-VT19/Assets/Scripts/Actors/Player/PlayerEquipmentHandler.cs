@@ -58,6 +58,7 @@ public class PlayerEquipmentHandler : MonoBehaviour
     #region Weapon
     private void UpdateWeapon(int weaponID)
     {
+        /*
         foreach (Weapon weapon in EquipableItems.WeaponList)
         {
             weapon.gameObject.SetActive(false);
@@ -70,12 +71,14 @@ public class PlayerEquipmentHandler : MonoBehaviour
                 Weapon = weapon;
             }
         }
+        */
     }
     #endregion Weapon
 
     #region Offhand
     private void UpdateOffhand(int offhandID)
     {
+        /*
         foreach (Offhand offhand in EquipableItems.OffhandList)
         {
             offhand.gameObject.SetActive(false);
@@ -88,6 +91,7 @@ public class PlayerEquipmentHandler : MonoBehaviour
                 Offhand = offhand;
             }
         }
+        */
     }
     #endregion Offhand
 

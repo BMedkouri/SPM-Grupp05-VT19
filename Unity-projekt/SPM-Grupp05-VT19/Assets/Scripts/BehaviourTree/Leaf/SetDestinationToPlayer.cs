@@ -10,7 +10,7 @@ public class SetDestinationToPlayer : Leaf
    
     public override NodeStatus OnBehave(BehaviourState state)
     {
-            enemy.Agent.SetDestination(Player.PlayerReference.transform.position);
+            enemy.Agent.SetDestination(Player.Instance.transform.position);
         
         if (behaviour.BehaviourTree.Agent.hasPath == false)
         {

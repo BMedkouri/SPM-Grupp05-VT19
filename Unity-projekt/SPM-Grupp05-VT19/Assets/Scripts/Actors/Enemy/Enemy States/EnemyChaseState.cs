@@ -18,7 +18,7 @@ public class EnemyChaseState : EnemyBaseState
     public override void HandleUpdate()
     {
 
-        owner.Agent.SetDestination(Player.PlayerReference.transform.position);
+        owner.Agent.SetDestination(Player.Instance.transform.position);
 
         if (owner.GetDistance() > 20.0f || !owner.CanSeePlayer())
         {

@@ -12,7 +12,7 @@ public class CheckDisntanceToPlayer : Leaf
     }
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < range)
+        if (Vector3.Distance(enemy.transform.position, Player.Instance.transform.position) < range)
         {
             return NodeStatus.SUCCESS;
         }

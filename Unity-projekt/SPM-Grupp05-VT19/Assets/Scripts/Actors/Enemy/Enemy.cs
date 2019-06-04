@@ -65,8 +65,8 @@ public class Enemy : StateMachine
     /// </returns>
     public bool CanSeePlayer()
     {
-        if (Player.PlayerReference != null)
-            return !Physics.Linecast(transform.position, Player.PlayerReference.transform.position, LayerMask);
+        if (Player.Instance != null)
+            return !Physics.Linecast(transform.position, Player.Instance.transform.position, LayerMask);
         return false;
     }
 
@@ -77,9 +77,9 @@ public class Enemy : StateMachine
     /// returns the distance between the player and the enemy
     public float GetDistance()
     {
-        if (Player.PlayerReference != null)
+        if (Player.Instance != null)
         {
-            return Vector3.Distance(Player.PlayerReference.transform.position, transform.position);
+            return Vector3.Distance(Player.Instance.transform.position, transform.position);
         }
         return 0f;
 

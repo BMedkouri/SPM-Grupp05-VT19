@@ -64,7 +64,7 @@ public class EnemyCombatState : EnemyBaseState
     /// </summary>
     private void RotateToTarget()
     {
-        Vector3 targetDir = Player.PlayerReference.transform.position - owner.transform.position;
+        Vector3 targetDir = Player.Instance.transform.position - owner.transform.position;
 
         Vector3 newDir = Vector3.RotateTowards(owner.transform.forward, targetDir, movementSpeed * Time.deltaTime, 0.0f);
 

@@ -11,7 +11,7 @@ public class MoveToPlayer : Leaf
     }
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        enemy.Agent.SetDestination(Player.PlayerReference.transform.position);
+        enemy.Agent.SetDestination(Player.Instance.transform.position);
         if (enemy.Agent.hasPath == false)
         {
             return NodeStatus.FAILURE;
@@ -20,7 +20,7 @@ public class MoveToPlayer : Leaf
         {
             return NodeStatus.SUCCESS;
         }
-        else if (enemy.Agent.destination == Player.PlayerReference.transform.position && enemy.CanSeePlayer() && Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.ChaseRange)
+        else if (enemy.Agent.destination == Player.Instance.transform.position && enemy.CanSeePlayer() && Vector3.Distance(enemy.transform.position, Player.Instance.transform.position) < enemy.ChaseRange)
         {
             return NodeStatus.FAILURE;
         }else if(enemy.CanSeePlayer() == false)
