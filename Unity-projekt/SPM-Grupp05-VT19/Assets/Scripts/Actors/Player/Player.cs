@@ -17,19 +17,8 @@ public class Player : StateMachine
     private UIController UIController;
     #endregion UI
 
-    #region MovementSpeed
-    /*
-    [Header("Movement speed")]
-    [SerializeField] private float acceleration;
-    public float Acceleration { get => acceleration; set => acceleration = value; }
-    */
-    #endregion MovementSpeed
-
     #region Components
-    //public PhysicsComponent Physics { get; set; }
-    //public CollisionDetection Collision { get; set; }
     public Animator Animator { get; set; }
-    //public RotatePlayer RotatePlayer { get; set; }
     public MovementInput MovementInput { get; set; }
     #endregion Components
 
@@ -137,10 +126,7 @@ public class Player : StateMachine
         PlayerReference = this;
 
         // Getters
-        //Physics = GetComponent<PhysicsComponent>();
-        //Collision = GetComponent<CollisionDetection>();
         Animator = GetComponentInChildren<Animator>();
-        //RotatePlayer = GetComponentInChildren<RotatePlayer>();
         UIController = canvas.GetComponent<UIController>();
         PlayerEquipmentHandler = GetComponent<PlayerEquipmentHandler>();
         MovementInput = GetComponent<MovementInput>();

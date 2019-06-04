@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
-    //Attributes
+    #region Variables
 
-    [Header("UI reference:")]
+    [Header("UI reference")]
     [SerializeField] private GameObject canvas;
     private HealthBarController healthBarController;
 
-    [Header("Health attributes:")]
+    [Header("Health attributes")]
     [SerializeField] private float maxHealth;
-    private float currentHealth;
-
-
-    // Properties
     public float MaxHealth
     {
         get => maxHealth;
@@ -26,51 +22,72 @@ public class HealthComponent : MonoBehaviour
         }
     }
 
+    #region CurrentHealth
+    private float currentHealth;
     public float CurrentHealth
     {
         get => currentHealth;
         set
         {
+            // In heal cases
+            // Might be obsolete
             if (value > MaxHealth)
             {
                 currentHealth = MaxHealth;
             }
-            else if (value <= 0)
+            else if (value > currentHealth)
             {
                 currentHealth = value;
-                if (gameObject.CompareTag("Player"))
+            }
+
+            // In damage cases
+            else if (value < currentHealth)
+            {
+                if (IsInvulnerable == true) { }
+
+                else if (value <= 0)
                 {
-                    GetComponent<Player>().Transition<PlayerDeathState>();
+                    currentHealth = value;
+                    if (gameObject.CompareTag("Player"))
+                    {
+                        GetComponent<Player>().Transition<PlayerDeathState>();
+                    }
+                    else
+                    {
+                        GetComponent<Animator>().SetTrigger("Death");
+                    }
                 }
                 else
                 {
-                    GetComponent<Animator>().SetTrigger("Death");
+                    currentHealth = value;
                 }
-            }
-            else
-            {
-                currentHealth = value;
             }
 
             healthBarController.CurrentHealth = currentHealth;
         }
     }
+    #endregion CurrentHealth
 
-    public void Heal(float amount)
-    {
-        currentHealth += amount;
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-        healthBarController.CurrentHealth = currentHealth;
-    }
+    public bool IsInvulnerable { get; set; }
 
-    // Methods
+    #endregion Variables
+
+    #region Methods
     private void Awake()
     {
         healthBarController = canvas.GetComponent<HealthBarController>();
+        healthBarController.MaxHealth = maxHealth;
         MaxHealth = maxHealth;
-        healthBarController.MaxHealth = MaxHealth;
+        IsInvulnerable = false;
     }
+
+    private void HealPlayer()
+    {
+        if (gameObject.CompareTag("Player"))
+        {
+            float healAmount = GetComponent<Player>().PlayerEquipmentHandler.Offhand.ItemHealAmount;
+            CurrentHealth += healAmount;
+        }
+    }
+    #endregion Methods
 }

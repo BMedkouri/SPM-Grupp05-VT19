@@ -6,42 +6,33 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player States/PlayerDodgeState")]
 public class PlayerDodgeState : PlayerOnGroundState
 {
-    // Attributes
-
-    [Header("Dodge properties:")]
-    [SerializeField] private float dodgeTimer; // TODO: Replace this with animation length
-    [SerializeField] private float dodgeSpeed;
-
     [Header("Stamina cost:")]
     [SerializeField] private float staminaExpenditure;
 
-    //private float countDown;
-
-    /// <summary>
-    /// Adds Velocity in the direction of the Joystick to make it feel like a dodge.
-    /// </summary>
+    #region Methods
     public override void Enter()
     {
-        base.Enter();
         if (owner.CurrentStamina < staminaExpenditure)
         {
             owner.Transition<PlayerOnGroundState>();
         }
+
         else
         {
-            //owner.Physics.Velocity += (dodgeSpeed * owner.Physics.Direction == Vector3.zero ? Vector3.back : owner.Physics.Direction);
-            //owner.Animator.applyRootMotion = true;
+            owner.CurrentStamina -= staminaExpenditure;
             owner.Animator.SetTrigger("Roll");
+            owner.HealthComponent.IsInvulnerable = true;
         }
     }
 
     public override void HandleUpdate()
     {
+        PlayerRegeneration();
     }
 
-    //public override void Exit()
-    //{
-    //    base.Exit();
-    //    owner.Animator.applyRootMotion = false;
-    //}
+    public override void Exit()
+    {
+        owner.HealthComponent.IsInvulnerable = false;
+    }
+    #endregion Methods
 }
