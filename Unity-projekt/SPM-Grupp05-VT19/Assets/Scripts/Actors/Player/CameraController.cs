@@ -66,8 +66,8 @@ public class CameraController : MonoBehaviour
 
 
         //Receives input from mouse, multiplied by mouseSensitivity
-        cameraRotation.x -= Input.GetAxis("Horizontal Turn") * yAxisJoystickSensitivity * xAxisInvertion;
-        cameraRotation.y += Input.GetAxis("Vertical Turn") * xAxisJoystickSensitivity * yAxisInvertion;
+        cameraRotation.x -= Input.GetAxis("Horizontal Turn") * yAxisJoystickSensitivity * xAxisInvertion * Time.deltaTime;
+        cameraRotation.y += Input.GetAxis("Vertical Turn") * xAxisJoystickSensitivity * yAxisInvertion * Time.deltaTime;
 
 
         //Sets a min and max for rotation on the x-axis. Basically how far up or down the character can look
