@@ -36,6 +36,8 @@ public class MovementInput : MonoBehaviour
         }
         else
         {
+            //ResetInputMagnitude();
+
             verticalVelocity -= 9.8f * Time.deltaTime;
         }
 
@@ -93,5 +95,12 @@ public class MovementInput : MonoBehaviour
         {
             animator.SetFloat("InputMagnitude", speed, 0f, Time.deltaTime);
         }
+    }
+
+    private void ResetInputMagnitude()
+    {
+        inputX = 0f;
+        inputZ = 0f;
+        speed = 0f;
     }
 }

@@ -20,6 +20,7 @@ public class EnemyAttacks : MonoBehaviour
         if (collision.collider.CompareTag("Offhand"))
         {
             GetComponentInParent<Animator>().SetTrigger("Parried");
+            return;
         }
         else if (collision.collider.CompareTag("Player"))
         {

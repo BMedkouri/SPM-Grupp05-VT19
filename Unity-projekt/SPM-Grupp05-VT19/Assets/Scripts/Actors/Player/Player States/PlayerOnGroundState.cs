@@ -7,32 +7,75 @@ using UnityEngine;
 public class PlayerOnGroundState : PlayerBaseState
 {
     // Methods
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
     public override void HandleUpdate()
     {
-        // TODO: Change this later!   
-        //Transition to RunningState if grounded
-        if (owner.MovementInput.IsGrounded == true && owner.GetCurrentState().ToString().Equals("PlayerOnGroundState(Clone) (PlayerOnGroundState)")
-            && GetDirection() != Vector3.zero)
+        // Move to air state if airborne
+        if (owner.MovementInput.IsGrounded == false)
         {
-            owner.Transition<PlayerRunState>();
+            owner.Transition<PlayerInAirState>();
         }
 
-        if (Input.GetButton("Xbox Y"))
+        else
         {
-            owner.Transition<PlayerHealState>();
-        }
-
-        if (Input.GetButton("Xbox B"))
-        {
-            owner.Transition<PlayerDodgeState>();
+            PlayerInput();
         }
 
         base.HandleUpdate();
     }
 
+    private void PlayerInput()
+    {
+        // TODO: Remove temporary if-cases
+        #region Temporary
+        // Heal player - Temporary
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            owner.HealthComponent.CurrentHealth += 30.0f;
+            owner.CurrentStamina += 15.0f;
+            owner.CurrentEnergy += 10.0f;
+        }
+
+        // Move player 5m up - Temporary
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            owner.transform.position += Vector3.up * 5f;
+        }
+
+        // Reset save file - Temporary
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameManager.Instance.ResetPlayerPrefs();
+        }
+        #endregion Temporary
+
+        if (Input.GetAxisRaw("Right Trigger") == 1)
+        {
+            owner.Transition<PlayerAttackState>();
+        }
+
+        else if (Input.GetAxisRaw("Left Trigger") == 1)
+        {
+            owner.Transition<PlayerParryState>();
+        }
+
+        else if (Input.GetButtonDown("Left Bumper"))
+        {
+            owner.Transition<PlayerLightState>();
+        }
+
+        else if (Input.GetButton("Xbox Y"))
+        {
+            owner.Transition<PlayerHealState>();
+        }
+
+        else if (Input.GetButton("Xbox B"))
+        {
+            owner.Transition<PlayerDodgeState>();
+        }
+
+        else
+        {
+            owner.Transition<PlayerRunState>();
+        }
+    }
 }

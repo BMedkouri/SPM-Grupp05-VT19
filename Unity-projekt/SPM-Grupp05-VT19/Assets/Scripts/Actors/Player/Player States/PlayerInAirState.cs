@@ -9,13 +9,13 @@ public class PlayerInAirState : PlayerBaseState
     // Methods
     public override void HandleUpdate()
     {
-        /*
-        if (owner.Collision.IsGrounded)
+        if (owner.MovementInput.IsGrounded == true)
         {
             owner.Transition<PlayerOnGroundState>();
         }
-        */
-        base.HandleUpdate();
 
+        owner.MovementInput.UpdateMovementInput();
+
+        base.HandleUpdate();
     }
 }
