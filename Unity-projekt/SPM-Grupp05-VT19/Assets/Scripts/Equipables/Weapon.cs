@@ -11,14 +11,14 @@ using UnityEngine;
 public class Weapon : EquipableItems
 {
     [SerializeField] private AudioSource hit;
+
     protected override void Awake()
     {
         base.Awake();
         WeaponList.Add(this);
         if (particleSystem != null)
         {
-            particleSystem.Play();
-            particleSystem.emissionRate = 0f;
+            //particleSystem.Play();
         }
     }
 
@@ -35,7 +35,6 @@ public class Weapon : EquipableItems
             DamageEvent damageEvent = new DamageEvent(ItemDamage, Player.PlayerReference.gameObject, collision.collider.gameObject);
             damageEvent.FireEvent();
 
-
             if (hit != null)
             {
                 SoundEvent sound = new SoundEvent(transform.position, hit);
@@ -43,9 +42,8 @@ public class Weapon : EquipableItems
             }
             if (particleSystem != null)
             {
-                ParticleEvent particle = new ParticleEvent(transform.position, particleSystem);
+                ParticleEvent particle = new ParticleEvent(collision.collider.transform.position, particleSystem);
                 particle.FireEvent();
-                particleSystem.emissionRate = 1f;
             }
 
             if (collision.collider.GetComponent<BehaviourTree>() is WolfBehaviourTree)

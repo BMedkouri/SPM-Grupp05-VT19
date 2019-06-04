@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AttackTimer : Leaf
 {
@@ -30,8 +28,6 @@ public class AttackTimer : Leaf
         }
         else if (countDown <= 0)
         {
-            Debug.Log("success");
-            
             return NodeStatus.SUCCESS;
         }
         return NodeStatus.FAILURE;
