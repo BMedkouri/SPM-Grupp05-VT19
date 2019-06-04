@@ -10,7 +10,6 @@ public class CanSeePlayer : Leaf
 {
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        Debug.Log("Can See Player");
         if (enemy.CanSeePlayer()){
             return NodeStatus.SUCCESS;
         }
