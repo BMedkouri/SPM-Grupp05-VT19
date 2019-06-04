@@ -15,14 +15,9 @@ public class PlayerRunState : PlayerOnGroundState
         }
         else
         {*/
-        PlayerMovementInput();
+        //PlayerMovementInput();
         //}
 
         base.HandleUpdate();
-    }
-
-    protected void PlayerMovementInput()
-    {
-        owner.MovementInput.UpdateMovementInput();
     }
 }
