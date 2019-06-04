@@ -7,6 +7,11 @@ public class ControllerPopupScript : MonoBehaviour
 {
 
     [SerializeField] private GameObject controllerPopup;
+    private void Awake()
+    {
+
+        controllerPopup.SetActive(false);
+    }
 
     public void ControllerClick()
     {
