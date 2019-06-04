@@ -14,6 +14,9 @@ public class DynamicFootSteps : MonoBehaviour
     public AudioClip grassSound;
     public AudioClip bricksSound;
     public AudioClip dodgeSound;
+    public AudioClip attackSound;
+    public AudioClip swingSound;
+    public AudioClip heal;
 
     private string colliderType;
 
@@ -55,9 +58,24 @@ public class DynamicFootSteps : MonoBehaviour
         time = AudioSettings.dspTime;
     }
 
-    void PlayDodge(int foot_number)
+    void PlayDodge()
     {
         source.PlayOneShot(dodgeSound);
+    }
+
+    void PlayAttack()
+    {
+        source.PlayOneShot(attackSound);
+    }
+
+    void PlaySwing()
+    {
+        source.PlayOneShot(swingSound);
+    }
+
+    void AuraSound()
+    {
+        source.PlayOneShot(heal);
     }
 
 
