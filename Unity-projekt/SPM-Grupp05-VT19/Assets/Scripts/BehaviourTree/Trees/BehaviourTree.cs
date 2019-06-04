@@ -56,7 +56,7 @@ public abstract class BehaviourTree : MonoBehaviour
     }
 
     //since this is not my code I'm a bit uncertain if this needs to be in the Fixedupdate
-    protected virtual void FixedUpdate()
+    protected virtual void Update()
     {
         behaviourTree.Behave(currentBehaviourState);
 
