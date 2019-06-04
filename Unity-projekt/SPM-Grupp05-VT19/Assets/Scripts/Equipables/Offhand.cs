@@ -11,6 +11,7 @@ public class Offhand : EquipableItems
     [SerializeField] private GameObject holyNova;
     // TODO: Connect this to the player's heal.
     [SerializeField] private float itemHealAmount;
+    [SerializeField] private AudioSource parry;
     public float ItemHealAmount { get => itemHealAmount; }
 
     protected override void Awake()
@@ -29,8 +30,12 @@ public class Offhand : EquipableItems
         if (collision.collider.CompareTag("EnemyWeapon"))
         {
             // TODO: Add parry event
-
-            if(particleSystem != null)
+            if (parry != null)
+            {
+                SoundEvent sound = new SoundEvent(transform.position, parry);
+                sound.FireEvent();
+            }
+            if (particleSystem != null)
             {
                 ParticleEvent particle = new ParticleEvent(collision.transform.position, particleSystem);
                 particle.FireEvent();

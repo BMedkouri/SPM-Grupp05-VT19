@@ -6,7 +6,7 @@ public class EnemyAttacks : MonoBehaviour
 {
     [SerializeField] private float damage;
     [SerializeField] private ParticleSystem particleSystem;
-    [SerializeField] private AudioSource hit, parry;
+    [SerializeField] private AudioSource hit;
 
     private void Awake()
     {
@@ -20,11 +20,6 @@ public class EnemyAttacks : MonoBehaviour
     {
         if (collision.CompareTag("Offhand"))
         {
-            if(parry != null)
-            {
-                SoundEvent sound = new SoundEvent(transform.position, parry);
-                sound.FireEvent();
-            }
             Debug.Log("Parried");
             GetComponentInParent<Animator>().SetTrigger("Parried");
             return;
