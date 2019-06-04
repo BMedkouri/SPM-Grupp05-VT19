@@ -4597,7 +4597,8 @@ MonoBehaviour:
   itemID: 1
   itemName: Rusty Sword
   itemDamage: 15
-  particleSystem: {fileID: 0}
+  particleSystem: {fileID: 5064632505921136476, guid: cdc3bd6da7982e443834b4e3b16e7f17,
+    type: 3}
 --- !u!1 &7959781648022877904
 GameObject:
   m_ObjectHideFlags: 0
@@ -4695,7 +4696,8 @@ MonoBehaviour:
   itemID: 2
   itemName: Excalibur
   itemDamage: 25
-  particleSystem: {fileID: 0}
+  particleSystem: {fileID: 5064632505921136476, guid: cdc3bd6da7982e443834b4e3b16e7f17,
+    type: 3}
 --- !u!198 &3918993254357333202
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -9923,6 +9925,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 648784186551091252}
     m_Modifications:
+    - target: {fileID: 8188146221738699622, guid: 6afeb7971460ce64aa37679f605a4d99,
+        type: 3}
+      propertyPath: m_Name
+      value: Menu_button
+      objectReference: {fileID: 0}
     - target: {fileID: 8188146221738699617, guid: 6afeb7971460ce64aa37679f605a4d99,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10027,11 +10034,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188146221738699622, guid: 6afeb7971460ce64aa37679f605a4d99,
-        type: 3}
-      propertyPath: m_Name
-      value: Menu_button
       objectReference: {fileID: 0}
     - target: {fileID: 8188146221738699616, guid: 6afeb7971460ce64aa37679f605a4d99,
         type: 3}
