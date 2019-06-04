@@ -1384,7 +1384,6 @@ GameObject:
   - component: {fileID: 587747772814826198}
   - component: {fileID: 587747772814826200}
   - component: {fileID: 587747772814826190}
-  - component: {fileID: 4916094482464852461}
   - component: {fileID: 2777016849565313511}
   m_Layer: 0
   m_Name: Boss_controller
@@ -1523,21 +1522,6 @@ MonoBehaviour:
   timerOnDarkAttack: 15
   meeleAttackTimer: 6
   procentHealth: 0.3
-  bossWin:
-    m_Handle: 0
---- !u!114 &4916094482464852461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587747772814826201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3870a18be71fd474f952dfffecbfde2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneNumber: 3
 --- !u!114 &2777016849565313511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3054,6 +3038,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   particleSystem: {fileID: 0}
+  hit: {fileID: 0}
+  parry: {fileID: 0}
 --- !u!1 &4898391908512932019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3208,3 +3194,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   particleSystem: {fileID: 0}
+  hit: {fileID: 0}
+  parry: {fileID: 0}

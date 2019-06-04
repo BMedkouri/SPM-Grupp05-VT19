@@ -153,6 +153,12 @@ public class Player : StateMachine
         base.Awake();
     }
 
+    private void OnEnable()
+    {
+        LoadPlayerData();
+        Debug.Log("PlayerOnEnable");
+    }
+
     private void LoadPlayerData()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;

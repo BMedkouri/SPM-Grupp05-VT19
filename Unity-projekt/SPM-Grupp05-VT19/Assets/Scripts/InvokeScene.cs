@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main author: Anders Ragnar
+//Secondary author: Bilal El Medkouri
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
