@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class StartGameSctipy : MonoBehaviour
 {
@@ -11,9 +8,13 @@ public class StartGameSctipy : MonoBehaviour
 
     public void OnClickStartGame()
     {
-        GameManager.Instance.ResetPlayerPrefs();
-        SceneManager.LoadScene(loadLevel);
+        GameManager.Instance.LoadScene(loadLevel);
     }
 
-    
+    public void NewGame()
+    {
+        GameManager.Instance.NewGame();
+    }
+
+
 }
