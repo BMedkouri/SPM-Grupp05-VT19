@@ -50,7 +50,7 @@ public class BossBehaviourTree : BehaviourTree
             new Sequence("attackPlayer",
                 new HasPlayer(),
                 new CheckDisntanceToPlayer(AttackRange),
-                new AttackTimer(meeleAttackTimer),
+                new BossAttackTimer(meeleAttackTimer),
                 new AttackPlayer(attack))
             );
 

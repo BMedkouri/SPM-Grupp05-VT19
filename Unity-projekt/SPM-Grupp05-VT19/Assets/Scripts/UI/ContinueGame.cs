@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ContinueGame : MonoBehaviour
 {
-    private void OnMouseOver()
+    public void OnMouseOver()
     {
         GameManager.Instance.LoadGame();
     }

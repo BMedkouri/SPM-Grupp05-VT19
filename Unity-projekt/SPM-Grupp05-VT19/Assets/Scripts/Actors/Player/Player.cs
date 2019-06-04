@@ -231,7 +231,16 @@ public class Player : StateMachine
 
     private void DeathMenu()
     {
-        deathMenu.SetActive(true);
+
+        if (Physics.SphereCast(transform.position, 3f, Vector3.zero, out RaycastHit hit, 3f, LayerMask.GetMask("BossArea")))
+        {
+            GetComponent<InvokeScene>().EndGame();
+        }
+        else
+        {
+            Debug.Log("Deathmenu");
+            deathMenu.SetActive(true);
+        }
     }
 
     #endregion Methods
