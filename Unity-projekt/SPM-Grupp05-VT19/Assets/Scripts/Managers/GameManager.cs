@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     public void LoadGame()
     {
         // TODO: Create a loading scene with a loading bar
-        LoadScene(PlayerPrefs.GetInt("currentScene"));
+        LoadScene(PlayerPrefs.GetInt("currentScene", 1));
     }
     #endregion LoadGame
 
