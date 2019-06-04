@@ -820,6 +820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 648784186501618362}
   - component: {fileID: 648784186509309274}
+  - component: {fileID: 4594703671204661339}
   - component: {fileID: 5749496293925273312}
   - component: {fileID: 8609475287539236086}
   - component: {fileID: 8982702193830962747}
@@ -844,8 +845,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648784186501908122}
-  m_LocalRotation: {x: -0, y: 0.4769803, z: -0, w: 0.878914}
-  m_LocalPosition: {x: 200, y: 77.5, z: 463}
+  m_LocalRotation: {x: -0, y: 0.003805775, z: -0, w: 0.99999285}
+  m_LocalPosition: {x: -0.011590815, y: -0.037457507, z: 0.052038215}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 648784186501618308}
@@ -872,6 +873,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4594703671204661339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648784186501908122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ab7e0dfb0d12945b7404a25c6672b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  box: {fileID: 971421088454251638}
 --- !u!114 &5749496293925273312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,6 +941,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7a3ba6ba678a9341bcb771ac1de439e, type: 2}
   currentState: {fileID: 0}
   canvas: {fileID: 648784186551091253}
+  deathMenu: {fileID: 0}
   maxStamina: 80
   staminaRegeneration: 5
   staminaRegenerationCooldown: 0.5
@@ -4375,7 +4390,7 @@ GameObject:
   - component: {fileID: 971421088454251637}
   m_Layer: 0
   m_Name: SuperCoolCross
-  m_TagString: Untagged
+  m_TagString: Parry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4449,10 +4464,10 @@ BoxCollider:
   m_GameObject: {fileID: 5970417715759195599}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.28690028, y: 0.44395992, z: 0.025653414}
-  m_Center: {x: -0.000000004952261, y: -0.041538764, z: 0.00000000417847}
+  m_Size: {x: 0.7599635, y: 0.7305582, z: 0.025653414}
+  m_Center: {x: -0.03015653, y: -0.07539164, z: 0.000000083355474}
 --- !u!114 &971421088454251637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9801,6 +9816,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 648784186551091252}
     m_Modifications:
+    - target: {fileID: 8188146221738699622, guid: 6afeb7971460ce64aa37679f605a4d99,
+        type: 3}
+      propertyPath: m_Name
+      value: Menu_button
+      objectReference: {fileID: 0}
+    - target: {fileID: 8188146221738699622, guid: 6afeb7971460ce64aa37679f605a4d99,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8188146221738699617, guid: 6afeb7971460ce64aa37679f605a4d99,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9905,16 +9930,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188146221738699622, guid: 6afeb7971460ce64aa37679f605a4d99,
-        type: 3}
-      propertyPath: m_Name
-      value: Menu_button
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188146221738699622, guid: 6afeb7971460ce64aa37679f605a4d99,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8188146221738699616, guid: 6afeb7971460ce64aa37679f605a4d99,
         type: 3}
