@@ -23,6 +23,7 @@ public class EnemyAttacks : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Player"))
         {
+            Debug.Log("Attack makes damage");
             DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);
             damageEvent.FireEvent();
 

@@ -21,10 +21,11 @@ public class AttackPlayer : Leaf
     /// <returns></returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        Debug.Log("Attack Player");
+        
         //här ska enemys attack spelas upp
         if (animationPlayed == false && Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < enemy.AttackRange)
         {
+            Debug.Log("Attacks Player");
             animationPlayed = true;
             if (enemy is BossBehaviourTree==false)
             {
