@@ -109,7 +109,7 @@ public abstract class BehaviourTree : MonoBehaviour
         StartCoroutine(ResetBool(Random.Range(10, 20)));
     }
 
-    public void DisableScript()
+    public virtual void DisableScript()
     {
         enabled = false;
     }
