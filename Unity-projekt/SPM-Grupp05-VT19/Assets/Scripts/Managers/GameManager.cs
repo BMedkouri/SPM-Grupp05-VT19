@@ -81,25 +81,25 @@ public class GameManager : MonoBehaviour
     }
     #endregion SaveGame
 
-    #region LoadGame
+    public void NewGame()
+    {
+        ResetPlayerPrefs();
+        LoadGame();
+    }
+
     public void LoadGame()
     {
         // TODO: Create a loading scene with a loading bar
         LoadScene(PlayerPrefs.GetInt("currentScene", 1));
     }
-    #endregion LoadGame
 
-    #region LoadScene
     public void LoadScene(int scene)
     {
         SceneManager.LoadScene(scene);
     }
-    #endregion LoadScene
 
-    #region ResetPlayerPrefs
     public void ResetPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
     }
-    #endregion ResetPlayerPrefs
 }

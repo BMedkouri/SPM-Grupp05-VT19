@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 /*
 * @author Anders Ragnar
 */
@@ -11,7 +10,6 @@ public class BossBehaviourTree : BehaviourTree
     [SerializeField] private float timerOnDarkAttack;
     [SerializeField] private float meeleAttackTimer;
     [SerializeField] private float procentHealth;
-    [SerializeField] private Scene bossWin;
 
     public Dictionary<string, float> Attacktimes { get; private set; }
 
@@ -47,7 +45,7 @@ public class BossBehaviourTree : BehaviourTree
                 new CanSeePlayer(),
                 new Inverter(new CanAttackPlayer()),
                 new SetDestinationToPlayer(),
-                new Move()),
+                new MoveToPlayer(runbackLocation)),
 
             new Sequence("attackPlayer",
                 new HasPlayer(),
@@ -64,11 +62,6 @@ public class BossBehaviourTree : BehaviourTree
     public override void DisableScript()
     {
         base.DisableScript();
-        Invoke("EndGame", 3f);
     }
     
-    public void EndGame()
-    {
-        SceneManager.LoadScene(3);
-    }
 }

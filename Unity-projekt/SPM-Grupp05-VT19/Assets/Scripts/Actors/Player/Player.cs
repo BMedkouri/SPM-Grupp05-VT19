@@ -225,7 +225,7 @@ public class Player : StateMachine
 
     public void DisableScript()
     {
-        enabled = false;
+        //enabled = false;
         Invoke("DeathMenu", 3f);
     }
 
@@ -241,6 +241,12 @@ public class Player : StateMachine
             Debug.Log("Deathmenu");
             deathMenu.SetActive(true);
         }
+    }
+
+    public void EnableScript()
+    {
+        deathMenu.SetActive(false);
+        enabled = true;
     }
 
     #endregion Methods
