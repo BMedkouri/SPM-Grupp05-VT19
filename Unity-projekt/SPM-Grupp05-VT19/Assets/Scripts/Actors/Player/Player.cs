@@ -14,6 +14,7 @@ public class Player : StateMachine
     #region UI
     [Header("UI reference")]
     [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject deathMenu;
     private UIController UIController;
     #endregion UI
 
@@ -225,6 +226,13 @@ public class Player : StateMachine
     public void DisableScript()
     {
         enabled = false;
+        Invoke("DeathMenu", 3f);
     }
+
+    private void DeathMenu()
+    {
+        deathMenu.SetActive(true);
+    }
+
     #endregion Methods
 }
