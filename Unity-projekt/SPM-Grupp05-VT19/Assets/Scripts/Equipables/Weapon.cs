@@ -10,6 +10,7 @@ using UnityEngine;
 /// </summary>
 public class Weapon : EquipableItems
 {
+    [SerializeField] private AudioSource hit;
     protected override void Awake()
     {
         base.Awake();
@@ -34,6 +35,12 @@ public class Weapon : EquipableItems
             DamageEvent damageEvent = new DamageEvent(ItemDamage, Player.PlayerReference.gameObject, collision.collider.gameObject);
             damageEvent.FireEvent();
 
+
+            if (hit != null)
+            {
+                SoundEvent sound = new SoundEvent(transform.position, hit);
+                sound.FireEvent();
+            }
             if (particleSystem != null)
             {
                 ParticleEvent particle = new ParticleEvent(transform.position, particleSystem);
