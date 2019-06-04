@@ -15,32 +15,12 @@ public class EnemyAttacks : MonoBehaviour
             particleSystem.emissionRate = 0f;
         }
     }
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.collider.CompareTag("Offhand"))
-    //    {
-    //        GetComponentInParent<Animator>().SetTrigger("Parried");
-    //        return;
-    //    }
-    //    else if (collision.collider.CompareTag("Player"))
-    //    {
-    //        Debug.Log("Attack makes damage");
-    //        DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.collider.gameObject);
-    //        damageEvent.FireEvent();
-
-    //        if (particleSystem != null)
-    //        {
-    //            ParticleEvent particle = new ParticleEvent(transform.position, particleSystem);
-    //            particle.FireEvent();
-    //            particleSystem.emissionRate = 1f;
-    //        }
-    //    }
-    //}
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Offhand"))
         {
 
+            Debug.Log("Parried");
             GetComponentInParent<Animator>().SetTrigger("Parried");
             return;
         }
@@ -60,9 +40,4 @@ public class EnemyAttacks : MonoBehaviour
         }
     }
 }
-//foreach (ContactPoint contact in collision.contacts)
-//{
-//    HitEvent hitEvent = new HitEvent(contact);
-//    hitEvent.FireEvent();
-//}
 

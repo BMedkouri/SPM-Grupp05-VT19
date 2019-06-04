@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -11,7 +8,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void OnClickStartGame()
     {
-        SceneManager.LoadScene(loadLevel);
+        GameManager.Instance.LoadScene(loadLevel);
 
         Debug.Log("Main menu click");
     }

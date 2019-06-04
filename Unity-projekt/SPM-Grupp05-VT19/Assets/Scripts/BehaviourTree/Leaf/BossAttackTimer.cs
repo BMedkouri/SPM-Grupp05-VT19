@@ -24,7 +24,6 @@ public class BossAttackTimer : Leaf
         enemy.RotateToTarget(Player.PlayerReference.transform.position);
         
         countDown -= Time.deltaTime;
-        Debug.Log(countDown);
         if (countDown > 0)
         {
             return NodeStatus.RUNNING;
