@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /*
- * @author Anders Ragnar
- */
+* @author Anders Ragnar
+*/
 public class BossBehaviourTree : BehaviourTree
 {
     
     [SerializeField] private float timerOnDarkAttack;
     [SerializeField] private float meeleAttackTimer;
     [SerializeField] private float procentHealth;
-    [SerializeField] private GameObject bossWin;
+    [SerializeField] private Scene bossWin;
 
     public Dictionary<string, float> Attacktimes { get; private set; }
 
@@ -68,6 +69,6 @@ public class BossBehaviourTree : BehaviourTree
     
     public void EndGame()
     {
-        bossWin.SetActive(true);
+        SceneManager.LoadScene(3);
     }
 }
