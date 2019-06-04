@@ -47,7 +47,7 @@ public class BossBehaviourTree : BehaviourTree
                 new CanSeePlayer(),
                 new Inverter(new CanAttackPlayer()),
                 new SetDestinationToPlayer(),
-                new MoveToPlayer(runbackLocation)),
+                new Move()),
 
             new Sequence("attackPlayer",
                 new HasPlayer(),

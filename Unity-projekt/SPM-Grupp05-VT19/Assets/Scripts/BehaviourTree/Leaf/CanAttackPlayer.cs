@@ -26,6 +26,8 @@ public class CanAttackPlayer : Leaf
             //animator.Play("EnemyAttackAnimation");
             return NodeStatus.SUCCESS;
         }
+        Debug.Log("AttackRange: " + enemy.AttackRange);
+        Debug.Log("Distance: " + Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position));
         Debug.Log("failure");
 
         return NodeStatus.FAILURE;
