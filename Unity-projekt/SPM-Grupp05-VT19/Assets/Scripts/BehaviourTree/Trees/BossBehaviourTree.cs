@@ -10,7 +10,7 @@ public class BossBehaviourTree : BehaviourTree
     [SerializeField] private float timerOnDarkAttack;
     [SerializeField] private float meeleAttackTimer;
     [SerializeField] private float procentHealth;
-    [SerializeField] private GameObject end;
+    [SerializeField] private GameObject bossWin;
 
     public Dictionary<string, float> Attacktimes { get; private set; }
 
@@ -68,6 +68,6 @@ public class BossBehaviourTree : BehaviourTree
     
     public void EndGame()
     {
-        Instantiate(end);
+        bossWin.SetActive(true);
     }
 }
