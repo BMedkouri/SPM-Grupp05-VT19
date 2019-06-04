@@ -14,7 +14,6 @@ public class CheckDisntanceToPlayer : Leaf
     {
         if (Vector3.Distance(enemy.transform.position, Player.PlayerReference.transform.position) < range)
         {
-            Debug.Log("Success CheckDinstance " + range);
             return NodeStatus.SUCCESS;
         }
         else

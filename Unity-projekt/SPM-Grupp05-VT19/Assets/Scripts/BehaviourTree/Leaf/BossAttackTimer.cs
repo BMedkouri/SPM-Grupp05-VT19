@@ -31,7 +31,6 @@ public class BossAttackTimer : Leaf
         }
         else if (countDown <= 0)
         {
-            Debug.Log("success");
             countDown = time;
             return NodeStatus.SUCCESS;
         }
