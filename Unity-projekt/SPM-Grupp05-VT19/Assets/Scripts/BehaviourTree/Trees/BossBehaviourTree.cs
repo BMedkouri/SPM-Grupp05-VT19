@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 /*
 * @author Anders Ragnar
 */
 public class BossBehaviourTree : BehaviourTree
 {
-    
+
     [SerializeField] private float timerOnDarkAttack;
     [SerializeField] private float meeleAttackTimer;
     [SerializeField] private float procentHealth;
@@ -54,14 +53,20 @@ public class BossBehaviourTree : BehaviourTree
                 new AttackPlayer(attack))
             );
 
-        
+
         repeater = new Repeater(bossSelector);
         return repeater;
 
     }
     public override void DisableScript()
     {
+        Invoke("TransitionToWinScene", 3f);
         base.DisableScript();
     }
-    
+
+    private void TransitionToWinScene()
+    {
+        GameManager.Instance.LoadScene(3);
+    }
+
 }
