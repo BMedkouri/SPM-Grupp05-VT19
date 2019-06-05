@@ -11,6 +11,8 @@ public class CheckpointManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("CM Awake");
+
         Instance = this;
 
         for (int i = 0; i < checkpoints.Length; i++)

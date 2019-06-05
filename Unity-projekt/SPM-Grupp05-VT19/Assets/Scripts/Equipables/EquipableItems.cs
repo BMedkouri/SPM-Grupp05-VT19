@@ -1,6 +1,5 @@
 ﻿//Author: Bilal El Medkouri
 
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -20,10 +19,10 @@ public class EquipableItems : MonoBehaviour
     public float ItemDamage { get => itemDamage; }
 
     public Rigidbody Rigidbody { get; private set; }
-    public static List<Weapon> WeaponList { get; private set; }
-    public static List<Offhand> OffhandList { get; private set; }
+    //public static List<Weapon> WeaponList { get; private set; }
+    //public static List<Offhand> OffhandList { get; private set; }
 
-    private static bool hasRunOnce;
+    //private static bool hasRunOnce;
     #endregion Variables
 
     #region Methods
@@ -34,12 +33,12 @@ public class EquipableItems : MonoBehaviour
         // Makes sure that the lists are only created once. 
         // The subclasses all call upon Base.Awake() to set their Rigidbody,
         // but we don't want the lists to be created once per item, since the lists are static.
-        if (hasRunOnce == true)
+        /*if (hasRunOnce == true)
             return;
         hasRunOnce = true;
 
         WeaponList = new List<Weapon>();
-        OffhandList = new List<Offhand>();
+        OffhandList = new List<Offhand>();*/
     }
 
     protected virtual void OnCollisionEnter(Collision collision) { }

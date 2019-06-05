@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        player = Player.PlayerReference;
+        player = Player.Instance;
 
         startingRotation.y -= player.transform.rotation.y;
 

@@ -37,11 +37,11 @@ public class LevelTwoKey : MonoBehaviour
                 button.SetActive(false);
                 hasBeenTriggered = true;
                 other.GetComponent<Player>().Transition<PlayerPickUpState>();
-                Player.PlayerReference.HasLevelTwoKey = true;
+                Player.Instance.HasLevelTwoKey = true;
                 LevelManager.Instance.HasInteractableObjectBeenActivated = true;
                 Destroy(gameObject, 2f);
 
-                SaveGameEvent saveGameEvent = new SaveGameEvent(Player.PlayerReference.transform.position);
+                SaveGameEvent saveGameEvent = new SaveGameEvent(Player.Instance.transform.position);
                 saveGameEvent.FireEvent();
             }
         }

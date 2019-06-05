@@ -9,7 +9,7 @@ public class Player : StateMachine
     #region Variables
 
     // Player reference/static instance
-    public static Player PlayerReference { get; private set; }
+    public static Player Instance { get; private set; }
 
     #region UI
     [Header("UI reference")]
@@ -127,7 +127,9 @@ public class Player : StateMachine
     #region Methods
     protected override void Awake()
     {
-        PlayerReference = this;
+        base.Awake();
+
+        Instance = this;
 
         SetSword();
 
@@ -183,8 +185,10 @@ public class Player : StateMachine
         CurrentEnergy = PlayerPrefs.GetFloat("currentEnergy", 30f);
 
         // Equipment
-        PlayerEquipmentHandler.EquippedWeaponID = PlayerPrefs.GetInt("weaponID", 1);
-        PlayerEquipmentHandler.EquippedOffhandID = PlayerPrefs.GetInt("offhandID", 0);
+        // TODO: Fix!
+
+        //PlayerEquipmentHandler.EquippedWeaponID = PlayerPrefs.GetInt("weaponID", 1);
+        //PlayerEquipmentHandler.EquippedOffhandID = PlayerPrefs.GetInt("offhandID", 0);
 
         // Holy nova
         int isHolyNovaUnlocked = PlayerPrefs.GetInt("isHolyNovaUnlocked", 0);

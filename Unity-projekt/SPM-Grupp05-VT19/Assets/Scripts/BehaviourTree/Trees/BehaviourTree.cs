@@ -77,9 +77,9 @@ public abstract class BehaviourTree : MonoBehaviour
     public bool CanSeePlayer()
     {
 
-        if (Player.PlayerReference != null)
+        if (Player.Instance != null)
         {
-            return !Physics.Linecast(transform.position, Player.PlayerReference.transform.position, LayerMask.GetMask("Geometry"));
+            return !Physics.Linecast(transform.position, Player.Instance.transform.position, LayerMask.GetMask("Geometry"));
         }
         return false;
     }

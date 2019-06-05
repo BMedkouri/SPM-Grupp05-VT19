@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("LM Awake");
         Instance = this;
 
         EnemyDictionary = new Dictionary<int, int>();

@@ -11,7 +11,7 @@ public class HasPlayer : Leaf
     /// <returns>Failure if there is no player</returns>
     public override NodeStatus OnBehave(BehaviourState state)
     {
-        if (Player.PlayerReference == null)
+        if (Player.Instance == null)
         {
             Debug.Log("Has no Player, in HasPlayer");
             return NodeStatus.FAILURE;

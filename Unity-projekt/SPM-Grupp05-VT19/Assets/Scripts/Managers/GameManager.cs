@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void SavePlayer(Vector3 savePosition, int currentScene)
     {
-        Player player = Player.PlayerReference;
+        Player player = Player.Instance;
 
         // Player position per level
         PlayerPrefs.SetFloat("playerXLevel" + currentScene, savePosition.x);

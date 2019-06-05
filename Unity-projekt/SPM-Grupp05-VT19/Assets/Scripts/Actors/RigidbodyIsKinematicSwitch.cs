@@ -47,7 +47,7 @@ public class RigidbodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.PlayerEquipmentHandler.Offhand.Rigidbody.isKinematic = false;
+            Player.Instance.PlayerEquipmentHandler.Offhand.Rigidbody.isKinematic = false;
         }
     }
 
@@ -55,7 +55,7 @@ public class RigidbodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.PlayerEquipmentHandler.Offhand.Rigidbody.isKinematic = true;
+            Player.Instance.PlayerEquipmentHandler.Offhand.Rigidbody.isKinematic = true;
         }
     }
     #endregion Offhand

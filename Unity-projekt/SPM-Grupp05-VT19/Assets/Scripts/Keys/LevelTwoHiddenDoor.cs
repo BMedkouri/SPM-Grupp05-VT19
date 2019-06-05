@@ -29,7 +29,7 @@ public class LevelTwoHiddenDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Player.PlayerReference.HasLevelTwoKey == true && hasBeenTriggered == false && other.CompareTag("Player"))
+        if (Player.Instance.HasLevelTwoKey == true && hasBeenTriggered == false && other.CompareTag("Player"))
         {
             button.SetActive(true);
         }
@@ -39,13 +39,13 @@ public class LevelTwoHiddenDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (Player.PlayerReference.HasLevelTwoKey == true && hasBeenTriggered == false && Input.GetButtonDown("Xbox A"))
+            if (Player.Instance.HasLevelTwoKey == true && hasBeenTriggered == false && Input.GetButtonDown("Xbox A"))
             {
                 button.SetActive(false);
                 hasBeenTriggered = true;
-                Player.PlayerReference.HasLevelTwoKey = false;
+                Player.Instance.HasLevelTwoKey = false;
 
-                SaveGameEvent saveGameEvent = new SaveGameEvent(Player.PlayerReference.transform.position);
+                SaveGameEvent saveGameEvent = new SaveGameEvent(Player.Instance.transform.position);
                 saveGameEvent.FireEvent();
 
                 OpenHiddenDoor();
@@ -55,7 +55,7 @@ public class LevelTwoHiddenDoor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (Player.PlayerReference.HasLevelTwoKey == true && hasBeenTriggered == false && other.CompareTag("Player"))
+        if (Player.Instance.HasLevelTwoKey == true && hasBeenTriggered == false && other.CompareTag("Player"))
         {
             button.SetActive(false);
         }

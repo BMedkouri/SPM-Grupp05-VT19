@@ -50,7 +50,7 @@ public class HealthComponent : MonoBehaviour
                     currentHealth = value;
                     if (gameObject.CompareTag("Player"))
                     {
-                        Player.PlayerReference.Transition<PlayerDeathState>();
+                        Player.Instance.Transition<PlayerDeathState>();
                     }
                     else
                     {
