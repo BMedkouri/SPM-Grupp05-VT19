@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class MainMenuScript : MonoBehaviour
 
     public void OnClickStartGame()
     {
-        GameManager.Instance.LoadScene(loadLevel);
-
-        Debug.Log("Main menu click");
+        SceneManager.LoadScene(loadLevel);
+        //GameManager.Instance.LoadScene(loadLevel);
+        
     }
 }

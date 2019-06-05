@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Change : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class Change : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.LoadScene(2);
+            SceneManager.LoadScene(2);
         }
     }
 }

@@ -109,6 +109,9 @@ public class Player : StateMachine
 
     #region Equipables
     public PlayerEquipmentHandler PlayerEquipmentHandler { get; private set; }
+    [SerializeField] private GameObject beginSword;
+    [SerializeField] private GameObject excalibur;
+    public static bool Sword { get; set; }
     #endregion Equipables
 
     #region IsHolyNovaUnlocked
@@ -125,6 +128,8 @@ public class Player : StateMachine
     protected override void Awake()
     {
         PlayerReference = this;
+
+        SetSword();
 
         // Getters
         Animator = GetComponentInChildren<Animator>();
@@ -148,15 +153,14 @@ public class Player : StateMachine
         UIController.MaxEnergy = MaxEnergy;
 
         // Load player data
-        LoadPlayerData();
+        //LoadPlayerData();
 
         base.Awake();
     }
 
     private void OnEnable()
     {
-        LoadPlayerData();
-        Debug.Log("PlayerOnEnable");
+        //LoadPlayerData();
     }
 
     private void LoadPlayerData()
@@ -237,22 +241,39 @@ public class Player : StateMachine
 
     private void DeathMenu()
     {
-
-        if (Physics.SphereCast(transform.position, 3f, Vector3.zero, out RaycastHit hit, 3f, LayerMask.GetMask("BossArea")))
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5f);
+        foreach(Collider collider in hitColliders)
         {
-            GetComponent<InvokeScene>().EndGame();
+            if (collider.CompareTag("BossRoom"))
+            {
+                GetComponent<InvokeScene>().EndGame();
+                return;
+            }
         }
-        else
-        {
-            Debug.Log("Deathmenu");
-            deathMenu.SetActive(true);
-        }
+       
+            
+      Debug.Log("Deathmenu");
+      deathMenu.SetActive(true);
     }
 
     public void EnableScript()
     {
         deathMenu.SetActive(false);
         enabled = true;
+    }
+
+    public void SetSword()
+    {
+        if(Sword == true)
+        {
+            excalibur.SetActive(true);
+            beginSword.SetActive(false);
+        }
+        else
+        {
+            excalibur.SetActive(false);
+            beginSword.SetActive(true);
+        }
     }
 
     #endregion Methods

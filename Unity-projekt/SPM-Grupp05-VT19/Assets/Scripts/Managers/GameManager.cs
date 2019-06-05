@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Debug.Log("Awake");
-        Player.PlayerReference.enabled = true;
-        Debug.Log(Player.PlayerReference.enabled);
-        Player.PlayerReference.Transition<PlayerOnGroundState>();
+        //Player.PlayerReference.enabled = true;
+        //Debug.Log(Player.PlayerReference.enabled);
+        //Player.PlayerReference.Transition<PlayerOnGroundState>();
     }
 
     #region SaveGame

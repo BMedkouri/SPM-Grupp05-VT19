@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartGameSctipy : MonoBehaviour
 {
@@ -8,12 +9,12 @@ public class StartGameSctipy : MonoBehaviour
 
     public void OnClickStartGame()
     {
-        GameManager.Instance.LoadScene(loadLevel);
+        SceneManager.LoadScene(loadLevel);
     }
 
     public void NewGame()
     {
-        GameManager.Instance.NewGame();
+        SceneManager.LoadScene(1);
     }
 
 

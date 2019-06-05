@@ -51,7 +51,10 @@ public class LevelOneChest : MonoBehaviour
         closedLid.SetActive(false);
         openedLid.SetActive(true);
 
-        LevelManager.Instance.HasInteractableObjectBeenActivated = true;
+        Player.Sword = true;
+        Player.PlayerReference.SetSword();
+
+        //LevelManager.Instance.HasInteractableObjectBeenActivated = true;
     }
 
     private void OpenChest(Collider other)
@@ -61,13 +64,16 @@ public class LevelOneChest : MonoBehaviour
         closedLid.SetActive(false);
         openedLid.SetActive(true);
 
-        SaveGameEvent saveGameEvent = new SaveGameEvent(Player.PlayerReference.transform.position);
-        saveGameEvent.FireEvent();
+        Player.Sword = true;
+        Player.PlayerReference.SetSword();
+
+        //SaveGameEvent saveGameEvent = new SaveGameEvent(Player.PlayerReference.transform.position);
+        //saveGameEvent.FireEvent();
 
         other.transform.position = animationPosition.transform.position;
         other.GetComponent<Player>().Transition<PlayerPickUpState>();
 
-        LevelManager.Instance.HasInteractableObjectBeenActivated = true;
+        //LevelManager.Instance.HasInteractableObjectBeenActivated = true;
     }
 
     private void OnTriggerExit(Collider other)

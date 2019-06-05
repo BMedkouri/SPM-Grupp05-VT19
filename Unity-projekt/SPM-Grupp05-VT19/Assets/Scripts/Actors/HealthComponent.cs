@@ -81,11 +81,11 @@ public class HealthComponent : MonoBehaviour
         IsInvulnerable = false;
     }
 
-    private void HealPlayer()
+    private void HealPlayer(float healAmount)
     {
         if (gameObject.CompareTag("Player"))
         {
-            float healAmount = GetComponent<Player>().PlayerEquipmentHandler.Offhand.ItemHealAmount;
+            //float healAmount = GetComponent<Player>().PlayerEquipmentHandler.Offhand.ItemHealAmount;
             CurrentHealth += healAmount;
         }
     }

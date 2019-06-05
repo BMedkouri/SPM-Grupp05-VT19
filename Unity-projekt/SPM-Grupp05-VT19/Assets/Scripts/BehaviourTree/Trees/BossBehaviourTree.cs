@@ -60,13 +60,8 @@ public class BossBehaviourTree : BehaviourTree
     }
     public override void DisableScript()
     {
-        Invoke("TransitionToWinScene", 3f);
+        GetComponent<InvokeScene>().InvokeDeathScene();
         base.DisableScript();
-    }
-
-    private void TransitionToWinScene()
-    {
-        GameManager.Instance.LoadScene(3);
     }
 
 }

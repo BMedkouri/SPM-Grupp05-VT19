@@ -52,4 +52,10 @@ public class DarkWolfBehavoirTree : BehaviourTree
         repeater = new Repeater(wolfSelector);
         return repeater;
     }
+
+    public override void DisableScript()
+    {
+        base.DisableScript();
+        Gate.Instance.OpenTheGates();
+    }
 }

@@ -19,7 +19,7 @@ public class RigidbodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.PlayerEquipmentHandler.Weapon.Rigidbody.isKinematic = false;
+            Player.PlayerReference.PlayerEquipmentHandler.GetComponentInChildren<Rigidbody>().isKinematic = false;
         }
         else if (gameObject.CompareTag("Enemy"))
         {
@@ -31,7 +31,9 @@ public class RigidbodyIsKinematicSwitch : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            Player.PlayerReference.PlayerEquipmentHandler.Weapon.Rigidbody.isKinematic = true;
+
+            Player.PlayerReference.PlayerEquipmentHandler.GetComponentInChildren<Rigidbody>().isKinematic = true;
+                //Weapon.Rigidbody.isKinematic = true;
         }
         else if (gameObject.CompareTag("Enemy"))
         {

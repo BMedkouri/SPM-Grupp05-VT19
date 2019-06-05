@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 6797786325783131903}
-  maxHealth: 59
+  maxHealth: 80
 --- !u!114 &537112603286665623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   attackRange: 2.5
   chaseRange: 40
   originLocation: {fileID: 2028188788829080178}
-  timerOnDarkAttack: 15
+  timerOnDarkAttack: 8
   attackTimer: 2
   procentHealth: 0.5
 --- !u!114 &1402049146999816797
@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Aoe: {fileID: 212688807901902450, guid: fcb55dfc58c4d4543843ffb7a96a9034, type: 3}
+  particleSystem: {fileID: 0}
 --- !u!1 &537112603286665612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 30
+  particleSystem: {fileID: 0}
+  hit: {fileID: 0}
 --- !u!1 &2028188788829080178
 GameObject:
   m_ObjectHideFlags: 0

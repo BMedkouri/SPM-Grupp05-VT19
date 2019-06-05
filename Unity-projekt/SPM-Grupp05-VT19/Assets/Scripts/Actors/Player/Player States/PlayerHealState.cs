@@ -8,9 +8,21 @@ public class PlayerHealState : PlayerBaseState
 {
     // Player is healed via the animation!!!              ***
 
+    [Header("Energy Cost")]
+    [SerializeField] private float energyExpenditure;
+
     public override void Enter()
     {
-        owner.Animator.SetTrigger("Heal");
+        if (owner.CurrentEnergy < energyExpenditure)
+        {
+            owner.Transition<PlayerOnGroundState>();
+        }
+
+        else
+        {
+            owner.CurrentEnergy -= energyExpenditure;
+            owner.Animator.SetTrigger("Heal");
+        }
     }
 
     public override void HandleUpdate()
